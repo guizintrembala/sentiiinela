@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -156,6 +157,8 @@
 
       font-size: 13px;
       font-weight: 600;
+
+      margin-top: 8px;
     }
 
     .btn-atualizar:hover {
@@ -189,7 +192,9 @@
 
     .btn-salvar:hover {
       transform: translateY(-1px);
-      box-shadow: 0 7px 20px rgba(8, 126, 164, 0.28);
+
+      box-shadow:
+        0 7px 20px rgba(8, 126, 164, 0.28);
     }
 
     /* =========================
@@ -199,7 +204,9 @@
     .main-grid {
       display: grid;
       grid-template-columns: 1fr 1.25fr;
+
       gap: 24px;
+
       align-items: start;
     }
 
@@ -229,13 +236,17 @@
 
     .card-header h2 {
       color: var(--azul-escuro);
+
       font-size: 19px;
+
       font-weight: 750;
     }
 
     .card-header p {
       color: var(--cinza-texto);
+
       font-size: 13px;
+
       margin-top: 5px;
     }
 
@@ -249,7 +260,9 @@
 
     .fila-header {
       display: flex;
+
       align-items: center;
+
       justify-content: space-between;
 
       margin-bottom: 16px;
@@ -257,24 +270,31 @@
 
     .fila-count {
       background: var(--azul-claro);
+
       color: var(--azul-escuro);
 
       min-width: 30px;
+
       height: 30px;
 
       display: flex;
+
       align-items: center;
+
       justify-content: center;
 
       border-radius: 50%;
 
       font-size: 13px;
+
       font-weight: 800;
     }
 
     #fila-pacientes {
       max-height: 520px;
+
       overflow-y: auto;
+
       padding-right: 4px;
     }
 
@@ -284,13 +304,17 @@
 
     #fila-pacientes::-webkit-scrollbar-thumb {
       background: #cbdde3;
+
       border-radius: 10px;
     }
 
     .fila-item {
       display: flex;
+
       align-items: center;
+
       justify-content: space-between;
+
       gap: 15px;
 
       background: #f8fbfc;
@@ -308,7 +332,9 @@
 
     .fila-item:hover {
       border-color: #a9ced9;
+
       background: #f2fafc;
+
       transform: translateX(2px);
     }
 
@@ -322,10 +348,13 @@
       color: #2c444d;
 
       font-size: 15px;
+
       font-weight: 750;
 
       white-space: nowrap;
+
       overflow: hidden;
+
       text-overflow: ellipsis;
 
       max-width: 280px;
@@ -345,6 +374,7 @@
       flex-shrink: 0;
 
       background: var(--verde);
+
       color: white;
 
       padding: 9px 12px;
@@ -352,6 +382,7 @@
       border-radius: 9px;
 
       font-size: 12px;
+
       font-weight: 700;
 
       transition: 0.2s;
@@ -359,19 +390,25 @@
 
     .btn-chamar:hover {
       background: #128e75;
+
       transform: translateY(-1px);
     }
 
     .fila-vazia {
       text-align: center;
+
       padding: 35px 15px;
+
       color: #8999a0;
+
       font-size: 14px;
     }
 
     .fila-vazia-icon {
       font-size: 32px;
+
       margin-bottom: 8px;
+
       opacity: 0.7;
     }
 
@@ -380,17 +417,20 @@
        ========================= */
 
     .form-section {
-      margin-bottom: 22px;
+      margin-bottom: 25px;
     }
 
     .section-title {
       display: flex;
+
       align-items: center;
+
       gap: 9px;
 
       color: var(--azul-escuro);
 
       font-size: 14px;
+
       font-weight: 750;
 
       margin-bottom: 13px;
@@ -398,30 +438,39 @@
 
     .section-number {
       width: 25px;
+
       height: 25px;
 
       display: flex;
+
       align-items: center;
+
       justify-content: center;
 
       background: var(--azul-claro);
+
       color: var(--azul);
 
       border-radius: 50%;
 
       font-size: 12px;
+
       font-weight: 800;
     }
 
     .form-grid {
       display: grid;
+
       grid-template-columns: 1fr 1fr;
+
       gap: 14px;
     }
 
     .field {
       display: flex;
+
       flex-direction: column;
+
       gap: 6px;
     }
 
@@ -433,6 +482,7 @@
       color: #52666e;
 
       font-size: 12px;
+
       font-weight: 700;
     }
 
@@ -471,6 +521,7 @@
 
     textarea {
       min-height: 100px;
+
       resize: vertical;
     }
 
@@ -501,42 +552,55 @@
 
     .resultado-titulo {
       font-size: 12px;
+
       font-weight: 700;
+
       text-transform: uppercase;
+
       letter-spacing: 1px;
+
       margin-bottom: 5px;
     }
 
     .resultado-risco {
       font-size: 25px;
+
       font-weight: 850;
     }
 
     .resultado.verde {
       background: var(--verde-claro);
+
       border: 1px solid #bde9de;
+
       color: #087b66;
     }
 
     .resultado.amarelo {
       background: var(--amarelo-claro);
+
       border: 1px solid #f2dda4;
+
       color: #9b7000;
     }
 
     .resultado.vermelho {
       background: var(--vermelho-claro);
+
       border: 1px solid #f0c4c4;
+
       color: #b52f2f;
     }
 
     /* =========================
-       LEGENDA DE RISCO
+       LEGENDA
        ========================= */
 
     .legenda {
       display: grid;
+
       grid-template-columns: repeat(3, 1fr);
+
       gap: 8px;
 
       margin-top: 18px;
@@ -544,31 +608,36 @@
 
     .risco-legenda {
       border-radius: 9px;
+
       padding: 9px 5px;
 
       text-align: center;
 
       font-size: 11px;
+
       font-weight: 700;
     }
 
     .risco-verde {
       background: var(--verde-claro);
+
       color: #087b66;
     }
 
     .risco-amarelo {
       background: var(--amarelo-claro);
+
       color: #9b7000;
     }
 
     .risco-vermelho {
       background: var(--vermelho-claro);
+
       color: #b52f2f;
     }
 
     /* =========================
-       STATUS / NOTIFICAÇÃO
+       MENSAGEM
        ========================= */
 
     #mensagem {
@@ -581,20 +650,27 @@
       border-radius: 10px;
 
       font-size: 13px;
+
       font-weight: 600;
     }
 
     #mensagem.sucesso {
       display: block;
+
       background: var(--verde-claro);
+
       color: #087b66;
+
       border: 1px solid #bde9de;
     }
 
     #mensagem.erro {
       display: block;
+
       background: var(--vermelho-claro);
+
       color: #b52f2f;
+
       border: 1px solid #f0c4c4;
     }
 
@@ -617,6 +693,7 @@
        ========================= */
 
     @media (max-width: 1000px) {
+
       .main-grid {
         grid-template-columns: 1fr;
       }
@@ -630,12 +707,15 @@
 
       .container {
         width: 94%;
+
         padding-top: 15px;
       }
 
       .header {
         flex-direction: column;
+
         align-items: stretch;
+
         gap: 15px;
       }
 
@@ -657,6 +737,7 @@
 
       .fila-item {
         align-items: flex-start;
+
         flex-direction: column;
       }
 
@@ -670,6 +751,7 @@
     }
   </style>
 </head>
+
 
 <body>
 
@@ -688,11 +770,17 @@
       </div>
 
       <div>
+
         <h1>Hosp+</h1>
-        <p>Sistema de Atendimento Hospitalar</p>
+
+        <p>
+          Sistema de Atendimento Hospitalar
+        </p>
+
       </div>
 
     </div>
+
 
     <div class="header-actions">
 
@@ -721,8 +809,9 @@
 
   <div class="main-grid">
 
+
     <!-- =========================
-         FILA DE PACIENTES
+         FILA
          ========================= -->
 
     <section class="card">
@@ -732,12 +821,17 @@
         <div class="fila-header">
 
           <div>
-            <h2>Pacientes aguardando</h2>
+
+            <h2>
+              Pacientes aguardando
+            </h2>
 
             <p>
               Selecione um paciente para realizar a chamada.
             </p>
+
           </div>
+
 
           <div
             class="fila-count"
@@ -756,8 +850,13 @@
         <div id="fila-pacientes">
 
           <div class="fila-vazia">
-            <div class="fila-vazia-icon">⏳</div>
+
+            <div class="fila-vazia-icon">
+              ⏳
+            </div>
+
             Carregando pacientes...
+
           </div>
 
         </div>
@@ -776,14 +875,16 @@
 
 
     <!-- =========================
-         FORMULÁRIO DE TRIAGEM
+         TRIAGEM
          ========================= -->
 
     <section class="card">
 
       <div class="card-header">
 
-        <h2>Triagem do paciente</h2>
+        <h2>
+          Triagem do paciente
+        </h2>
 
         <p>
           Preencha as informações para registrar o atendimento.
@@ -795,7 +896,9 @@
       <div class="card-body">
 
 
-        <!-- DADOS DO PACIENTE -->
+        <!-- =========================
+             DADOS DO PACIENTE
+             ========================= -->
 
         <div class="form-section">
 
@@ -812,15 +915,132 @@
 
           <div class="form-grid">
 
+
+            <!-- NOME -->
+
             <div class="field full">
 
               <label for="nome">
-                Nome do paciente
+                Nome completo *
               </label>
 
               <input
                 id="nome"
+                type="text"
                 placeholder="Digite o nome completo"
+              >
+
+            </div>
+
+
+            <!-- CPF -->
+
+            <div class="field">
+
+              <label for="cpf">
+                CPF *
+              </label>
+
+              <input
+                id="cpf"
+                type="text"
+                placeholder="000.000.000-00"
+                maxlength="14"
+              >
+
+            </div>
+
+
+            <!-- DATA NASCIMENTO -->
+
+            <div class="field">
+
+              <label for="dataNascimento">
+                Data de nascimento
+              </label>
+
+              <input
+                id="dataNascimento"
+                type="date"
+              >
+
+            </div>
+
+
+            <!-- TELEFONE -->
+
+            <div class="field">
+
+              <label for="telefone">
+                Telefone
+              </label>
+
+              <input
+                id="telefone"
+                type="tel"
+                placeholder="(00) 00000-0000"
+                maxlength="15"
+              >
+
+            </div>
+
+
+            <!-- TIPO -->
+
+            <div class="field">
+
+              <label for="tipo">
+                Tipo de atendimento *
+              </label>
+
+              <select id="tipo">
+
+                <option value="">
+                  Selecione
+                </option>
+
+                <option value="Convenio">
+                  Convênio
+                </option>
+
+                <option value="Particular">
+                  Particular
+                </option>
+
+              </select>
+
+            </div>
+
+
+            <!-- CONVÊNIO -->
+
+            <div class="field full">
+
+              <label for="convenio">
+                Convênio / Plano de saúde
+              </label>
+
+              <input
+                id="convenio"
+                type="text"
+                placeholder="Nome do convênio ou plano"
+              >
+
+            </div>
+
+
+            <!-- CARTEIRINHA -->
+
+            <div class="field full">
+
+              <label for="carteirinha">
+                Número da carteirinha
+              </label>
+
+              <input
+                id="carteirinha"
+                type="text"
+                placeholder="Número da carteirinha do convênio"
               >
 
             </div>
@@ -830,7 +1050,9 @@
         </div>
 
 
-        <!-- SINTOMAS -->
+        <!-- =========================
+             QUEIXA
+             ========================= -->
 
         <div class="form-section">
 
@@ -847,10 +1069,11 @@
 
           <div class="form-grid">
 
+
             <div class="field">
 
               <label for="sintoma">
-                Sintoma principal
+                Sintoma principal *
               </label>
 
               <select id="sintoma">
@@ -926,6 +1149,8 @@
                 id="temp"
                 type="number"
                 step="0.1"
+                min="30"
+                max="45"
                 placeholder="Ex.: 36.5"
               >
 
@@ -936,7 +1161,9 @@
         </div>
 
 
-        <!-- INFORMAÇÕES COMPLEMENTARES -->
+        <!-- =========================
+             INFORMAÇÕES COMPLEMENTARES
+             ========================= -->
 
         <div class="form-section">
 
@@ -953,6 +1180,7 @@
 
           <div class="form-grid">
 
+
             <div class="field full">
 
               <label for="alergia">
@@ -961,6 +1189,7 @@
 
               <input
                 id="alergia"
+                type="text"
                 placeholder="Informe alergias conhecidas ou digite 'Nenhuma'"
               >
 
@@ -985,7 +1214,9 @@
         </div>
 
 
-        <!-- RESULTADO -->
+        <!-- =========================
+             RESULTADO
+             ========================= -->
 
         <div
           id="resultado"
@@ -1006,7 +1237,9 @@
         </div>
 
 
-        <!-- LEGENDA -->
+        <!-- =========================
+             LEGENDA
+             ========================= -->
 
         <div class="legenda">
 
@@ -1025,7 +1258,9 @@
         </div>
 
 
-        <!-- SALVAR -->
+        <!-- =========================
+             SALVAR
+             ========================= -->
 
         <button
           class="btn-salvar"
@@ -1058,7 +1293,15 @@
 
     fetch("/pacientes")
 
-      .then(r => r.json())
+      .then(response => {
+
+        if (!response.ok) {
+          throw new Error("Erro ao carregar pacientes");
+        }
+
+        return response.json();
+
+      })
 
       .then(pacientes => {
 
@@ -1069,25 +1312,29 @@
           document.getElementById("fila-count");
 
 
-        // Apenas pacientes aguardando triagem
+        // Somente pacientes aguardando triagem
+
         const fila =
           pacientes.filter(
             p => p.status === "triagem"
           );
 
 
-        count.innerText = fila.length;
+        count.innerText =
+          fila.length;
 
 
         if (fila.length === 0) {
 
           div.innerHTML = `
             <div class="fila-vazia">
+
               <div class="fila-vazia-icon">
                 ✓
               </div>
 
               Nenhum paciente aguardando triagem.
+
             </div>
           `;
 
@@ -1135,6 +1382,7 @@
 
 
           info.appendChild(nome);
+
           info.appendChild(detalhes);
 
 
@@ -1153,6 +1401,7 @@
 
 
           item.appendChild(info);
+
           item.appendChild(button);
 
 
@@ -1162,15 +1411,23 @@
 
       })
 
-      .catch(() => {
+      .catch(error => {
+
+        console.error(error);
 
         document.getElementById(
           "fila-pacientes"
         ).innerHTML = `
-          <div class="fila-vazia"
-               style="color:#b52f2f;">
+
+          <div
+            class="fila-vazia"
+            style="color:#b52f2f;"
+          >
+
             ⚠️ Erro ao carregar pacientes.
+
           </div>
+
         `;
 
       });
@@ -1195,14 +1452,24 @@
       body: JSON.stringify({
 
         localTipo: "GUICHÊ",
+
         localNumero: "01",
+
         paciente: nome
 
       })
 
     })
 
-    .then(r => r.json())
+    .then(response => {
+
+      if (!response.ok) {
+        throw new Error("Erro na chamada");
+      }
+
+      return response.json();
+
+    })
 
     .then(() => {
 
@@ -1213,7 +1480,9 @@
 
     })
 
-    .catch(() => {
+    .catch(error => {
+
+      console.error(error);
 
       mostrarMensagem(
         "Não foi possível realizar a chamada na TV.",
@@ -1235,34 +1504,54 @@
   ) {
 
     const vermelhos = [
+
       "infarto",
+
       "avc",
+
       "convulsao",
+
       "hemorragia",
+
       "falta_ar_grave"
+
     ];
 
 
     const amarelos = [
+
       "febre",
+
       "vomito",
+
       "diarreia",
+
       "falta_ar_moderada"
+
     ];
 
 
-    if (temperatura >= 39) {
+    if (
+      !isNaN(temperatura) &&
+      temperatura >= 39
+    ) {
+
       return "vermelho";
+
     }
 
 
     if (vermelhos.includes(sintoma)) {
+
       return "vermelho";
+
     }
 
 
     if (amarelos.includes(sintoma)) {
+
       return "amarelo";
+
     }
 
 
@@ -1277,34 +1566,142 @@
 
   function salvar() {
 
+    /* =========================
+       DADOS DO PACIENTE
+       ========================= */
+
     const nome =
-      document.getElementById("nome").value.trim();
+      document
+        .getElementById("nome")
+        .value
+        .trim();
+
+
+    const cpf =
+      document
+        .getElementById("cpf")
+        .value
+        .trim();
+
+
+    const dataNascimento =
+      document
+        .getElementById("dataNascimento")
+        .value;
+
+
+    const telefone =
+      document
+        .getElementById("telefone")
+        .value
+        .trim();
+
+
+    const tipo =
+      document
+        .getElementById("tipo")
+        .value;
+
+
+    const convenio =
+      document
+        .getElementById("convenio")
+        .value
+        .trim();
+
+
+    const carteirinha =
+      document
+        .getElementById("carteirinha")
+        .value
+        .trim();
+
+
+    /* =========================
+       DADOS DA TRIAGEM
+       ========================= */
 
     const sintoma =
-      document.getElementById("sintoma").value;
+      document
+        .getElementById("sintoma")
+        .value;
+
+
+    const temperaturaTexto =
+      document
+        .getElementById("temp")
+        .value;
+
 
     const temperatura =
-      Number(
-        document.getElementById("temp").value
-      );
+      temperaturaTexto === ""
+        ? null
+        : Number(temperaturaTexto);
+
 
     const alergia =
-      document.getElementById("alergia").value.trim();
+      document
+        .getElementById("alergia")
+        .value
+        .trim();
+
 
     const observacao =
-      document.getElementById("observacao").value.trim();
+      document
+        .getElementById("observacao")
+        .value
+        .trim();
 
+
+    /* =========================
+       VALIDAÇÕES
+       ========================= */
 
     if (!nome) {
 
       mostrarMensagem(
-        "Informe o nome do paciente.",
+        "Informe o nome completo do paciente.",
         "erro"
       );
 
-      document.getElementById("nome").focus();
+      document
+        .getElementById("nome")
+        .focus();
 
       return;
+
+    }
+
+
+    if (!cpf) {
+
+      mostrarMensagem(
+        "Informe o CPF do paciente.",
+        "erro"
+      );
+
+      document
+        .getElementById("cpf")
+        .focus();
+
+      return;
+
+    }
+
+
+    if (!tipo) {
+
+      mostrarMensagem(
+        "Selecione o tipo de atendimento.",
+        "erro"
+      );
+
+      document
+        .getElementById("tipo")
+        .focus();
+
+      return;
+
     }
 
 
@@ -1315,11 +1712,41 @@
         "erro"
       );
 
-      document.getElementById("sintoma").focus();
+      document
+        .getElementById("sintoma")
+        .focus();
 
       return;
+
     }
 
+
+    if (
+      temperatura !== null &&
+      (
+        isNaN(temperatura) ||
+        temperatura < 30 ||
+        temperatura > 45
+      )
+    ) {
+
+      mostrarMensagem(
+        "Informe uma temperatura válida.",
+        "erro"
+      );
+
+      document
+        .getElementById("temp")
+        .focus();
+
+      return;
+
+    }
+
+
+    /* =========================
+       CLASSIFICAR
+       ========================= */
 
     const risco =
       classificarRisco(
@@ -1328,13 +1755,20 @@
       );
 
 
-    /* Exibe classificação */
+    /* =========================
+       EXIBIR RESULTADO
+       ========================= */
 
     const resultado =
-      document.getElementById("resultado");
+      document.getElementById(
+        "resultado"
+      );
+
 
     const resultadoRisco =
-      document.getElementById("resultado-risco");
+      document.getElementById(
+        "resultado-risco"
+      );
 
 
     resultado.className =
@@ -1342,9 +1776,13 @@
 
 
     const nomesRisco = {
+
       verde: "VERDE",
+
       amarelo: "AMARELO",
+
       vermelho: "VERMELHO"
+
     };
 
 
@@ -1352,38 +1790,66 @@
       nomesRisco[risco];
 
 
-    /* Envia para o servidor */
+    /* =========================
+       ENVIO PARA O BACKEND
+       ========================= */
+
+    const dados = {
+
+      nome,
+
+      cpf,
+
+      dataNascimento,
+
+      telefone,
+
+      tipo,
+
+      convenio,
+
+      carteirinha,
+
+      sintoma,
+
+      temperatura,
+
+      alergia,
+
+      observacao,
+
+      risco
+
+    };
+
 
     fetch("/triagem", {
 
       method: "POST",
 
       headers: {
-        "Content-Type": "application/json"
+
+        "Content-Type":
+          "application/json"
+
       },
 
-      body: JSON.stringify({
-
-        nome,
-        sintoma,
-        temperatura,
-        alergia,
-        observacao,
-        risco
-
-      })
+      body:
+        JSON.stringify(dados)
 
     })
 
-    .then(r => {
+    .then(response => {
 
-      if (!r.ok) {
+      if (!response.ok) {
+
         throw new Error(
-          "Erro ao salvar"
+          "Erro ao salvar triagem"
         );
+
       }
 
-      return r.json();
+      return response.json();
 
     })
 
@@ -1394,13 +1860,21 @@
         "sucesso"
       );
 
-      /* Atualiza fila */
+
+      /* Atualiza a fila */
 
       carregarPacientes();
 
+
+      /* Limpa o formulário */
+
+      limparFormulario();
+
     })
 
-    .catch(() => {
+    .catch(error => {
+
+      console.error(error);
 
       mostrarMensagem(
         "Não foi possível salvar a triagem.",
@@ -1413,6 +1887,247 @@
 
 
   /* =====================================================
+     LIMPAR FORMULÁRIO
+     ===================================================== */
+
+  function limparFormulario() {
+
+    document
+      .getElementById("nome")
+      .value = "";
+
+
+    document
+      .getElementById("cpf")
+      .value = "";
+
+
+    document
+      .getElementById("dataNascimento")
+      .value = "";
+
+
+    document
+      .getElementById("telefone")
+      .value = "";
+
+
+    document
+      .getElementById("tipo")
+      .value = "";
+
+
+    document
+      .getElementById("convenio")
+      .value = "";
+
+
+    document
+      .getElementById("carteirinha")
+      .value = "";
+
+
+    document
+      .getElementById("sintoma")
+      .value = "";
+
+
+    document
+      .getElementById("temp")
+      .value = "";
+
+
+    document
+      .getElementById("alergia")
+      .value = "";
+
+
+    document
+      .getElementById("observacao")
+      .value = "";
+
+
+    document
+      .getElementById("resultado")
+      .className = "resultado";
+
+
+    document
+      .getElementById("resultado-risco")
+      .innerText = "—";
+
+  }
+
+
+  /* =====================================================
+     MÁSCARA DE CPF
+     ===================================================== */
+
+  document
+    .getElementById("cpf")
+    .addEventListener(
+      "input",
+      function () {
+
+        let cpf =
+          this.value
+            .replace(/\D/g, "")
+            .substring(0, 11);
+
+
+        if (cpf.length > 9) {
+
+          cpf = cpf.replace(
+            /(\d{3})(\d{3})(\d{3})(\d{2})/,
+            "$1.$2.$3-$4"
+          );
+
+        }
+
+        else if (cpf.length > 6) {
+
+          cpf = cpf.replace(
+            /(\d{3})(\d{3})(\d{1,3})/,
+            "$1.$2.$3"
+          );
+
+        }
+
+        else if (cpf.length > 3) {
+
+          cpf = cpf.replace(
+            /(\d{3})(\d{1,3})/,
+            "$1.$2"
+          );
+
+        }
+
+
+        this.value = cpf;
+
+      }
+    );
+
+
+  /* =====================================================
+     MÁSCARA DE TELEFONE
+     ===================================================== */
+
+  document
+    .getElementById("telefone")
+    .addEventListener(
+      "input",
+      function () {
+
+        let telefone =
+          this.value
+            .replace(/\D/g, "")
+            .substring(0, 11);
+
+
+        if (telefone.length > 10) {
+
+          telefone =
+            telefone.replace(
+              /(\d{2})(\d{5})(\d{4})/,
+              "($1) $2-$3"
+            );
+
+        }
+
+        else if (telefone.length > 6) {
+
+          telefone =
+            telefone.replace(
+              /(\d{2})(\d{4})(\d{1,4})/,
+              "($1) $2-$3"
+            );
+
+        }
+
+        else if (telefone.length > 2) {
+
+          telefone =
+            telefone.replace(
+              /(\d{2})(\d{1,5})/,
+              "($1) $2"
+            );
+
+        }
+
+
+        this.value = telefone;
+
+      }
+    );
+
+
+  /* =====================================================
+     MOSTRAR / OCULTAR DADOS DE CONVÊNIO
+     ===================================================== */
+
+  function verificarTipoAtendimento() {
+
+    const tipo =
+      document
+        .getElementById("tipo")
+        .value;
+
+
+    const convenio =
+      document
+        .getElementById("convenio");
+
+
+    const carteirinha =
+      document
+        .getElementById("carteirinha");
+
+
+    if (tipo === "Particular") {
+
+      convenio.value = "";
+
+      carteirinha.value = "";
+
+      convenio.disabled = true;
+
+      carteirinha.disabled = true;
+
+      convenio.placeholder =
+        "Não se aplica";
+
+      carteirinha.placeholder =
+        "Não se aplica";
+
+    }
+
+    else {
+
+      convenio.disabled = false;
+
+      carteirinha.disabled = false;
+
+      convenio.placeholder =
+        "Nome do convênio ou plano";
+
+      carteirinha.placeholder =
+        "Número da carteirinha do convênio";
+
+    }
+
+  }
+
+
+  document
+    .getElementById("tipo")
+    .addEventListener(
+      "change",
+      verificarTipoAtendimento
+    );
+
+
+  /* =====================================================
      MENSAGEM
      ===================================================== */
 
@@ -1422,7 +2137,9 @@
   ) {
 
     const mensagem =
-      document.getElementById("mensagem");
+      document.getElementById(
+        "mensagem"
+      );
 
 
     mensagem.className =
@@ -1434,8 +2151,11 @@
 
 
     window.scrollTo({
+
       top: 0,
+
       behavior: "smooth"
+
     });
 
 
@@ -1457,7 +2177,7 @@
   carregarPacientes();
 
 
-  /* Atualiza a fila automaticamente */
+  /* Atualiza a fila a cada 10 segundos */
 
   setInterval(
     carregarPacientes,
@@ -1467,4 +2187,5 @@
 </script>
 
 </body>
+
 </html>

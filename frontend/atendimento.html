@@ -1,55 +1,209 @@
 <!DOCTYPE html>
-<html>
-<head><link rel="stylesheet" href="style.css"></head>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Atendimento</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
 <body>
-<div class="container">
-<h2>Atendimento</h2>
+  <div class="container">
+    <h2>Atendimento</h2>
 
-  <label>Nome completo</label>
-  <input id="nome" type="text" placeholder="Nome completo">
-  
-  <label>CPF</label>
-  <input id="cpf" type="text" placeholder="CPF">
+    <form id="formAtendimento">
 
-  <label>Data de nascimento</label>
-  <input id="dataNascimento" type="date">
+      <label for="nome">Nome Completo</label>
+      <input type="text" id="nome" name="nome" required>
 
-  <label>Telefone</label>
-  <input id="telefone" type="tel" placeholder="Telefone">
+      <label for="cpf">CPF</label>
+      <input
+        type="text"
+        id="cpf"
+        name="cpf"
+        placeholder="000.000.000-00"
+        required
+      >
 
-  <label>E-mail</label>
-  <input id="email" type="email" placeholder="E-mail">
+      <label for="nomeMae">Nome da Mãe</label>
+      <input type="text" id="nomeMae" name="nomeMae" required>
 
-  <label>Endereço</label>
-  <input id="endereco" type="text" placeholder="Endereço">
+      <label for="dataNascimento">Data de Nascimento</label>
+      <input
+        type="date"
+        id="dataNascimento"
+        name="dataNascimento"
+        required
+      >
 
+      <label for="estadoCivil">Estado Civil</label>
+      <select id="estadoCivil" name="estadoCivil" required>
+        <option value="">Selecione</option>
+        <option value="Solteiro">Solteiro(a)</option>
+        <option value="Casado">Casado(a)</option>
+        <option value="Divorciado">Divorciado(a)</option>
+        <option value="Viuvo">Viúvo(a)</option>
+        <option value="Uniao Estavel">União Estável</option>
+      </select>
 
-<input id="nome" placeholder="Nome">
-<input id="cpf" placeholder="CPF">
+      <label for="contato">Contato</label>
+      <input type="text" id="contato" name="contato">
 
-<select id="tipo">
-  <option>Convenio</option>
-  <option>Particular</option>
-</select>
+      <label for="telefone">Telefone</label>
+      <input
+        type="tel"
+        id="telefone"
+        name="telefone"
+        placeholder="(00) 00000-0000"
+        required
+      >
 
-<input type="file" id="foto">
+      <label for="email">E-mail</label>
+      <input
+        type="email"
+        id="email"
+        name="email"
+        placeholder="email@exemplo.com"
+      >
 
-<button onclick="cadastrar()">Cadastrar</button>
-</div>
+      <label for="contatoEmergencia">Contato de Emergência</label>
+      <input
+        type="text"
+        id="contatoEmergencia"
+        name="contatoEmergencia"
+        placeholder="Nome e telefone"
+      >
 
-<script>
-function cadastrar(){
- fetch("http://localhost:3000/atendimento",{
-  method:"POST",
-  headers:{"Content-Type":"application/json"},
-  body: JSON.stringify({
-    nome: nome.value,
-    cpf: cpf.value,
-    tipo: tipo.value
-  })
- });
- alert("Paciente enviado para triagem");
-}
-</script>
+      <h3>Endereço Completo</h3>
+
+      <label for="cep">CEP</label>
+      <input
+        type="text"
+        id="cep"
+        name="cep"
+        placeholder="00000-000"
+      >
+
+      <label for="logradouro">Rua / Logradouro</label>
+      <input type="text" id="logradouro" name="logradouro">
+
+      <label for="numero">Número</label>
+      <input type="text" id="numero" name="numero">
+
+      <label for="complemento">Complemento</label>
+      <input type="text" id="complemento" name="complemento">
+
+      <label for="bairro">Bairro</label>
+      <input type="text" id="bairro" name="bairro">
+
+      <label for="cidade">Cidade</label>
+      <input type="text" id="cidade" name="cidade">
+
+      <label for="estado">Estado</label>
+      <input
+        type="text"
+        id="estado"
+        name="estado"
+        maxlength="2"
+        placeholder="UF"
+      >
+
+      <label for="tipo">Tipo de Atendimento</label>
+      <select id="tipo" name="tipo" required>
+        <option value="Convenio">Convênio</option>
+        <option value="Particular">Particular</option>
+      </select>
+
+      <label for="convenio">Convênio</label>
+      <input
+        type="text"
+        id="convenio"
+        name="convenio"
+        placeholder="Nome do convênio"
+      >
+
+      <label for="documento">Documento / Foto</label>
+      <input
+        type="file"
+        id="documento"
+        name="documento"
+        accept="image/*,.pdf"
+      >
+
+      <button type="submit">Cadastrar</button>
+
+    </form>
+  </div>
+
+  <script>
+    document
+      .getElementById("formAtendimento")
+      .addEventListener("submit", cadastrar);
+
+    async function cadastrar(event) {
+      event.preventDefault();
+
+      const dados = {
+        nome: document.getElementById("nome").value,
+        cpf: document.getElementById("cpf").value,
+        nomeMae: document.getElementById("nomeMae").value,
+        dataNascimento: document.getElementById("dataNascimento").value,
+        estadoCivil: document.getElementById("estadoCivil").value,
+        contato: document.getElementById("contato").value,
+        telefone: document.getElementById("telefone").value,
+        email: document.getElementById("email").value,
+        contatoEmergencia:
+          document.getElementById("contatoEmergencia").value,
+
+        endereco: {
+          cep: document.getElementById("cep").value,
+          logradouro: document.getElementById("logradouro").value,
+          numero: document.getElementById("numero").value,
+          complemento: document.getElementById("complemento").value,
+          bairro: document.getElementById("bairro").value,
+          cidade: document.getElementById("cidade").value,
+          estado: document.getElementById("estado").value
+        },
+
+        tipo: document.getElementById("tipo").value,
+        convenio: document.getElementById("convenio").value
+      };
+
+      const arquivo = document.getElementById("documento").files[0];
+
+      if (arquivo) {
+        dados.documento = {
+          nome: arquivo.name,
+          tipo: arquivo.type,
+          tamanho: arquivo.size
+        };
+      }
+
+      try {
+        const resposta = await fetch(
+          "http://localhost:3000/atendimento",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify(dados)
+          }
+        );
+
+        if (!resposta.ok) {
+          throw new Error("Erro ao cadastrar atendimento");
+        }
+
+        alert("Paciente enviado para triagem!");
+
+        document.getElementById("formAtendimento").reset();
+
+      } catch (erro) {
+        console.error(erro);
+        alert("Não foi possível enviar o paciente para a triagem.");
+      }
+    }
+  </script>
 </body>
 </html>

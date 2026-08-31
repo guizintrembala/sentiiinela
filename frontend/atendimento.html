@@ -12,7 +12,6 @@
 
   <title>Atendimento | Hosp+</title>
 
-
   <style>
 
     * {
@@ -22,9 +21,7 @@
       font-family: "Segoe UI", Arial, sans-serif;
     }
 
-
     :root {
-
       --azul: #087ea4;
       --azul-escuro: #075b78;
       --azul-claro: #eaf7fb;
@@ -45,7 +42,6 @@
         0 8px 25px rgba(0, 70, 95, 0.09);
     }
 
-
     body {
 
       min-height: 100vh;
@@ -60,11 +56,6 @@
       color: #263942;
     }
 
-
-    /* =========================
-       CONTAINER
-       ========================= */
-
     .container {
 
       width: 94%;
@@ -75,7 +66,6 @@
 
       padding: 30px 0 50px;
     }
-
 
     /* =========================
        CABEÇALHO
@@ -103,17 +93,14 @@
       box-shadow: var(--sombra);
     }
 
-
     .brand-icon {
 
       width: 52px;
-
       height: 52px;
 
       display: flex;
 
       align-items: center;
-
       justify-content: center;
 
       background:
@@ -124,10 +111,8 @@
       border-radius: 14px;
 
       font-size: 28px;
-
       font-weight: 800;
     }
-
 
     .header h1 {
 
@@ -139,7 +124,6 @@
       font-weight: 800;
     }
 
-
     .header p {
 
       color:
@@ -150,6 +134,52 @@
       margin-top: 3px;
     }
 
+    /* =========================
+       MENSAGEM
+       ========================= */
+
+    #mensagem {
+
+      display: none;
+
+      margin-bottom: 18px;
+
+      padding: 13px 15px;
+
+      border-radius: 10px;
+
+      font-size: 13px;
+
+      font-weight: 600;
+    }
+
+    #mensagem.sucesso {
+
+      display: block;
+
+      background:
+        var(--verde-claro);
+
+      color:
+        #087b66;
+
+      border:
+        1px solid #bde9de;
+    }
+
+    #mensagem.erro {
+
+      display: block;
+
+      background:
+        var(--vermelho-claro);
+
+      color:
+        #b52f2f;
+
+      border:
+        1px solid #f0c4c4;
+    }
 
     /* =========================
        CARD
@@ -171,7 +201,6 @@
       overflow: hidden;
     }
 
-
     .card-header {
 
       padding: 22px 24px;
@@ -181,7 +210,6 @@
 
       background: #fbfdfe;
     }
-
 
     .card-header h2 {
 
@@ -193,7 +221,6 @@
       font-weight: 750;
     }
 
-
     .card-header p {
 
       color:
@@ -204,12 +231,10 @@
       margin-top: 5px;
     }
 
-
     .card-body {
 
       padding: 24px;
     }
-
 
     /* =========================
        SEÇÕES
@@ -219,7 +244,6 @@
 
       margin-bottom: 25px;
     }
-
 
     .section-title {
 
@@ -239,17 +263,14 @@
       margin-bottom: 15px;
     }
 
-
     .section-number {
 
       width: 27px;
-
       height: 27px;
 
       display: flex;
 
       align-items: center;
-
       justify-content: center;
 
       background:
@@ -265,7 +286,6 @@
       font-weight: 800;
     }
 
-
     /* =========================
        GRID
        ========================= */
@@ -280,7 +300,6 @@
       gap: 15px;
     }
 
-
     .field {
 
       display: flex;
@@ -290,13 +309,11 @@
       gap: 6px;
     }
 
-
     .field.full {
 
       grid-column:
         1 / -1;
     }
-
 
     /* =========================
        CAMPOS
@@ -311,7 +328,6 @@
 
       font-weight: 700;
     }
-
 
     input,
     select {
@@ -338,7 +354,6 @@
       transition: 0.2s;
     }
 
-
     input:focus,
     select:focus {
 
@@ -352,13 +367,11 @@
         rgba(8, 126, 164, 0.10);
     }
 
-
     input::placeholder {
 
       color:
         #a2b0b5;
     }
-
 
     /* =========================
        UPLOAD
@@ -379,7 +392,6 @@
       transition: 0.2s;
     }
 
-
     .upload-box:hover {
 
       border-color:
@@ -388,7 +400,6 @@
       background:
         var(--azul-claro);
     }
-
 
     .upload-info {
 
@@ -399,57 +410,6 @@
 
       margin-top: 7px;
     }
-
-
-    /* =========================
-       MENSAGEM
-       ========================= */
-
-    #mensagem {
-
-      display: none;
-
-      margin-bottom: 18px;
-
-      padding: 13px 15px;
-
-      border-radius: 10px;
-
-      font-size: 13px;
-
-      font-weight: 600;
-    }
-
-
-    #mensagem.sucesso {
-
-      display: block;
-
-      background:
-        var(--verde-claro);
-
-      color:
-        #087b66;
-
-      border:
-        1px solid #bde9de;
-    }
-
-
-    #mensagem.erro {
-
-      display: block;
-
-      background:
-        var(--vermelho-claro);
-
-      color:
-        #b52f2f;
-
-      border:
-        1px solid #f0c4c4;
-    }
-
 
     /* =========================
        BOTÃO
@@ -487,7 +447,6 @@
       transition: 0.2s;
     }
 
-
     .btn-cadastrar:hover {
 
       transform:
@@ -498,7 +457,6 @@
         rgba(8, 126, 164, 0.28);
     }
 
-
     .btn-cadastrar:disabled {
 
       opacity: 0.6;
@@ -508,7 +466,6 @@
 
       transform: none;
     }
-
 
     /* =========================
        RODAPÉ
@@ -526,7 +483,6 @@
       margin-top: 22px;
     }
 
-
     /* =========================
        RESPONSIVO
        ========================= */
@@ -540,19 +496,16 @@
         padding-top: 15px;
       }
 
-
       .header {
 
         padding: 18px;
       }
-
 
       .form-grid {
 
         grid-template-columns:
           1fr;
       }
-
 
       .field.full {
 
@@ -573,17 +526,13 @@
 <div class="container">
 
 
-  <!-- =========================
-       CABEÇALHO
-       ========================= -->
+  <!-- CABEÇALHO -->
 
   <header class="header">
-
 
     <div class="brand-icon">
       +
     </div>
-
 
     <div>
 
@@ -597,20 +546,15 @@
 
     </div>
 
-
   </header>
 
 
-  <!-- =========================
-       MENSAGEM
-       ========================= -->
+  <!-- MENSAGEM -->
 
   <div id="mensagem"></div>
 
 
-  <!-- =========================
-       CARD
-       ========================= -->
+  <!-- FORMULÁRIO -->
 
   <section class="card">
 
@@ -631,7 +575,10 @@
     <div class="card-body">
 
 
-      <form id="formAtendimento">
+      <form
+        id="formAtendimento"
+        enctype="multipart/form-data"
+      >
 
 
         <!-- =========================
@@ -836,7 +783,6 @@
                 id="email"
                 name="email"
                 placeholder="email@exemplo.com"
-                autocomplete="email"
               >
 
             </div>
@@ -911,7 +857,6 @@
                 type="text"
                 id="numero"
                 name="numero"
-                placeholder="Número"
               >
 
             </div>
@@ -927,7 +872,6 @@
                 type="text"
                 id="logradouro"
                 name="logradouro"
-                placeholder="Rua, avenida, praça..."
               >
 
             </div>
@@ -943,7 +887,6 @@
                 type="text"
                 id="complemento"
                 name="complemento"
-                placeholder="Apartamento, bloco..."
               >
 
             </div>
@@ -1002,7 +945,7 @@
 
 
         <!-- =========================
-             TIPO DE ATENDIMENTO
+             ATENDIMENTO
              ========================= -->
 
         <div class="form-section">
@@ -1085,51 +1028,42 @@
               5
             </span>
 
-            Documento
+            Documento / Foto
 
           </div>
 
 
           <div class="upload-box">
 
-
             <div class="field">
 
-
               <label for="documento">
-
-                Documento / Foto
-
+                Documento
               </label>
-
 
               <input
                 type="file"
                 id="documento"
                 name="documento"
-                accept="image/*,.pdf"
+                accept="image/jpeg,image/png,application/pdf"
               >
-
 
               <div class="upload-info">
 
                 Formatos permitidos:
-                PDF, JPG, JPEG, PNG.
+                JPG, PNG ou PDF.
+                Tamanho máximo: 10 MB.
 
               </div>
 
-
             </div>
-
 
           </div>
 
         </div>
 
 
-        <!-- =========================
-             BOTÃO
-             ========================= -->
+        <!-- BOTÃO -->
 
         <button
           type="submit"
@@ -1168,9 +1102,7 @@
      ===================================================== */
 
   document
-    .getElementById(
-      "formAtendimento"
-    )
+    .getElementById("formAtendimento")
     .addEventListener(
       "submit",
       cadastrar
@@ -1185,7 +1117,7 @@
     .getElementById("cpf")
     .addEventListener(
       "input",
-      function() {
+      function () {
 
         let valor =
           this.value
@@ -1214,8 +1146,7 @@
           );
 
 
-        this.value =
-          valor;
+        this.value = valor;
 
       }
     );
@@ -1229,7 +1160,7 @@
     .getElementById("telefone")
     .addEventListener(
       "input",
-      function() {
+      function () {
 
         let valor =
           this.value
@@ -1237,16 +1168,13 @@
             .slice(0, 11);
 
 
-        if (
-          valor.length <= 10
-        ) {
+        if (valor.length <= 10) {
 
           valor =
             valor.replace(
               /^(\d{2})(\d)/,
               "($1) $2"
             );
-
 
           valor =
             valor.replace(
@@ -1262,7 +1190,6 @@
               "($1) $2"
             );
 
-
           valor =
             valor.replace(
               /(\d{5})(\d)/,
@@ -1272,8 +1199,7 @@
         }
 
 
-        this.value =
-          valor;
+        this.value = valor;
 
       }
     );
@@ -1287,7 +1213,7 @@
     .getElementById("cep")
     .addEventListener(
       "input",
-      function() {
+      function () {
 
         let valor =
           this.value
@@ -1295,9 +1221,7 @@
             .slice(0, 8);
 
 
-        if (
-          valor.length > 5
-        ) {
+        if (valor.length > 5) {
 
           valor =
             valor.replace(
@@ -1308,8 +1232,7 @@
         }
 
 
-        this.value =
-          valor;
+        this.value = valor;
 
       }
     );
@@ -1323,7 +1246,7 @@
     .getElementById("estado")
     .addEventListener(
       "input",
-      function() {
+      function () {
 
         this.value =
           this.value
@@ -1346,7 +1269,7 @@
     .getElementById("tipo")
     .addEventListener(
       "change",
-      function() {
+      function () {
 
         const convenio =
           document.getElementById(
@@ -1382,9 +1305,7 @@
      CADASTRAR
      ===================================================== */
 
-  async function cadastrar(
-    event
-  ) {
+  async function cadastrar(event) {
 
     event.preventDefault();
 
@@ -1401,13 +1322,7 @@
       );
 
 
-    /* =====================
-       VALIDAÇÃO HTML
-       ===================== */
-
-    if (
-      !form.checkValidity()
-    ) {
+    if (!form.checkValidity()) {
 
       form.reportValidity();
 
@@ -1416,225 +1331,30 @@
     }
 
 
-    /* =====================
-       CAPTURA DADOS
-       ===================== */
-
-    const dados = {
-
-
-      nome:
-        document
-          .getElementById("nome")
-          .value
-          .trim(),
-
-
-      cpf:
-        document
-          .getElementById("cpf")
-          .value
-          .trim(),
-
-
-      nomeMae:
-        document
-          .getElementById("nomeMae")
-          .value
-          .trim(),
-
-
-      dataNascimento:
-        document
-          .getElementById(
-            "dataNascimento"
-          )
-          .value,
-
-
-      estadoCivil:
-        document
-          .getElementById(
-            "estadoCivil"
-          )
-          .value,
-
-
-      contato:
-        document
-          .getElementById("contato")
-          .value
-          .trim(),
-
-
-      telefone:
-        document
-          .getElementById(
-            "telefone"
-          )
-          .value
-          .trim(),
-
-
-      email:
-        document
-          .getElementById("email")
-          .value
-          .trim(),
-
-
-      contatoEmergencia:
-        document
-          .getElementById(
-            "contatoEmergencia"
-          )
-          .value
-          .trim(),
-
-
-      /* =====================
-         ENDEREÇO
-         ===================== */
-
-      endereco: {
-
-        cep:
-          document
-            .getElementById("cep")
-            .value
-            .trim(),
-
-
-        logradouro:
-          document
-            .getElementById(
-              "logradouro"
-            )
-            .value
-            .trim(),
-
-
-        numero:
-          document
-            .getElementById("numero")
-            .value
-            .trim(),
-
-
-        complemento:
-          document
-            .getElementById(
-              "complemento"
-            )
-            .value
-            .trim(),
-
-
-        bairro:
-          document
-            .getElementById("bairro")
-            .value
-            .trim(),
-
-
-        cidade:
-          document
-            .getElementById("cidade")
-            .value
-            .trim(),
-
-
-        estado:
-          document
-            .getElementById("estado")
-            .value
-            .trim()
-
-      },
-
-
-      /* =====================
-         ATENDIMENTO
-         ===================== */
-
-      tipo:
-        document
-          .getElementById("tipo")
-          .value,
-
-
-      convenio:
-        document
-          .getElementById(
-            "convenio"
-          )
-          .value
-          .trim(),
-
-
-      /*
-       * O backend deve gerar
-       * o ID definitivo.
-       */
-
-      status:
-        "triagem"
-
-    };
-
-
-    /* =====================
-       ARQUIVO
-       ===================== */
-
-    const arquivo =
-      document
-        .getElementById(
-          "documento"
-        )
-        .files[0];
-
-
     /*
-     * Para facilitar o tratamento
-     * no backend, enviaremos os
-     * dados como JSON dentro do
-     * FormData.
+     * FormData pega TODOS os campos
+     * do formulário automaticamente.
+     *
+     * Isso é compatível com:
+     *
+     * upload.single("documento")
+     *
+     * no servidor.
      */
 
     const formData =
-      new FormData();
+      new FormData(form);
 
 
-    formData.append(
-      "dados",
-      JSON.stringify(dados)
-    );
-
-
-    if (arquivo) {
-
-      formData.append(
-        "documento",
-        arquivo
-      );
-
-    }
-
-
-    /* =====================
-       DESABILITA BOTÃO
-       ===================== */
+    /*
+     * Evita envio duplicado.
+     */
 
     botao.disabled = true;
 
     botao.innerText =
       "Enviando atendimento...";
 
-
-    /* =====================
-       ENVIA
-       ===================== */
 
     try {
 
@@ -1643,38 +1363,31 @@
         await fetch(
           "/atendimento",
           {
-
             method: "POST",
-
-            body:
-              formData
-
+            body: formData
           }
         );
+
+
+      const dados =
+        await resposta.json();
 
 
       if (!resposta.ok) {
 
         throw new Error(
+          dados.erro ||
           "Erro ao cadastrar atendimento"
         );
 
       }
 
 
-      const resultado =
-        await resposta.json();
-
-
       console.log(
-        "Atendimento cadastrado:",
-        resultado
+        "Paciente cadastrado:",
+        dados.paciente
       );
 
-
-      /* =====================
-         SUCESSO
-         ===================== */
 
       mostrarMensagem(
         "Paciente cadastrado e enviado para a triagem com sucesso.",
@@ -1683,15 +1396,14 @@
 
 
       /*
-       * Limpa formulário.
+       * Limpa o formulário.
        */
 
       form.reset();
 
 
       /*
-       * Restaura estado do
-       * campo convênio.
+       * Restaura o campo convênio.
        */
 
       const convenio =
@@ -1700,9 +1412,7 @@
         );
 
 
-      convenio.disabled =
-        false;
-
+      convenio.disabled = false;
 
       convenio.placeholder =
         "Nome do convênio";
@@ -1712,12 +1422,13 @@
 
 
       console.error(
-        "Erro ao cadastrar atendimento:",
+        "Erro:",
         erro
       );
 
 
       mostrarMensagem(
+        erro.message ||
         "Não foi possível enviar o paciente para a triagem.",
         "erro"
       );
@@ -1726,9 +1437,7 @@
     } finally {
 
 
-      botao.disabled =
-        false;
-
+      botao.disabled = false;
 
       botao.innerText =
         "✓ Cadastrar e enviar para triagem";
@@ -1746,7 +1455,6 @@
     texto,
     tipo
   ) {
-
 
     const mensagem =
       document.getElementById(

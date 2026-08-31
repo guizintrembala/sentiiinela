@@ -6,11 +6,8 @@
 
 body {
     min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    padding: 40px 20px;
 
-    /* Imagem de fundo */
     background-image:
         linear-gradient(rgba(0, 70, 100, 0.55), rgba(0, 30, 50, 0.65)),
         url("fundo-hospital.jpg");
@@ -22,17 +19,17 @@ body {
     font-family: Arial, Helvetica, sans-serif;
 }
 
-/* Caixa de login */
+/* Caixa principal */
 .container {
-    width: 380px;
-    padding: 40px 35px;
+    width: 100%;
+    max-width: 850px;
+    margin: auto;
+    padding: 40px;
 
-    background: rgba(255, 255, 255, 0.94);
+    background: rgba(255, 255, 255, 0.95);
     border-radius: 20px;
 
     box-shadow: 0 15px 40px rgba(0, 0, 0, 0.30);
-
-    text-align: center;
 
     animation: aparecer 0.6s ease;
 }
@@ -40,44 +37,103 @@ body {
 /* Título */
 .container h2 {
     color: #087f9c;
-    font-size: 27px;
-    margin-bottom: 25px;
+    font-size: 28px;
+    text-align: center;
+    margin-bottom: 30px;
 }
 
-/* Imagem do hospital */
-.container img {
-    width: 100px;
-    height: 100px;
-    object-fit: contain;
-    margin-bottom: 25px;
+/* Formulário */
+#formAtendimento {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px 20px;
+}
+
+/* Labels */
+.container label {
+    display: block;
+
+    color: #3d555c;
+    font-size: 14px;
+    font-weight: bold;
+
+    margin-bottom: -10px;
 }
 
 /* Campos */
-.container input {
+.container input,
+.container select {
     width: 100%;
-    height: 50px;
+    height: 48px;
 
-    margin-bottom: 15px;
-    padding: 0 16px;
+    padding: 0 14px;
 
     border: 2px solid #d9e6ea;
     border-radius: 10px;
 
     outline: none;
 
-    font-size: 16px;
+    background-color: white;
+
+    font-size: 15px;
     color: #333;
 
     transition: 0.3s;
 }
 
-.container input:focus {
+.container input:focus,
+.container select:focus {
     border-color: #08a6c7;
-    box-shadow: 0 0 0 3px rgba(8, 166, 199, 0.12);
+
+    box-shadow:
+        0 0 0 3px rgba(8, 166, 199, 0.12);
+}
+
+/* Placeholder */
+.container input::placeholder {
+    color: #999;
+}
+
+/* Títulos das seções */
+.container h3 {
+    grid-column: 1 / -1;
+
+    margin-top: 15px;
+    margin-bottom: 5px;
+
+    padding-bottom: 10px;
+
+    color: #087f9c;
+    font-size: 19px;
+
+    border-bottom: 2px solid #d9e6ea;
+}
+
+/* Campo de arquivo */
+.container input[type="file"] {
+    height: auto;
+    padding: 12px;
+
+    background-color: #f8fbfc;
+
+    cursor: pointer;
+}
+
+/* Label do documento */
+.container label[for="documento"] {
+    grid-column: 1 / -1;
+    margin-top: 5px;
+}
+
+/* Documento */
+#documento {
+    grid-column: 1 / -1;
 }
 
 /* Botão */
 .container button {
+    grid-column: 1 / -1;
+
     width: 100%;
     height: 50px;
 
@@ -86,9 +142,14 @@ body {
     border: none;
     border-radius: 10px;
 
-    background: linear-gradient(135deg, #08a6c7, #087f9c);
+    background: linear-gradient(
+        135deg,
+        #08a6c7,
+        #087f9c
+    );
 
     color: white;
+
     font-size: 17px;
     font-weight: bold;
 
@@ -99,7 +160,9 @@ body {
 
 .container button:hover {
     transform: translateY(-2px);
-    box-shadow: 0 8px 18px rgba(8, 127, 156, 0.35);
+
+    box-shadow:
+        0 8px 18px rgba(8, 127, 156, 0.35);
 }
 
 .container button:active {
@@ -120,13 +183,29 @@ body {
 }
 
 /* Responsividade */
-@media (max-width: 480px) {
+@media (max-width: 650px) {
+
+    body {
+        padding: 20px 10px;
+    }
+
     .container {
-        width: 90%;
+        width: 100%;
         padding: 30px 25px;
     }
 
+    #formAtendimento {
+        grid-template-columns: 1fr;
+    }
+
+    .container h3,
+    .container label[for="documento"],
+    #documento,
+    .container button {
+        grid-column: 1;
+    }
+
     .container h2 {
-        font-size: 23px;
+        font-size: 24px;
     }
 }

@@ -1,20 +1,33 @@
+```html
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>Atendimento</title>
+
   <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
+
   <div class="container">
+
     <h2>Atendimento</h2>
 
     <form id="formAtendimento">
 
+      <!-- DADOS PESSOAIS -->
+
       <label for="nome">Nome Completo</label>
-      <input type="text" id="nome" name="nome" required>
+      <input
+        type="text"
+        id="nome"
+        name="nome"
+        required
+      >
 
       <label for="cpf">CPF</label>
       <input
@@ -22,11 +35,17 @@
         id="cpf"
         name="cpf"
         placeholder="000.000.000-00"
+        maxlength="14"
         required
       >
 
       <label for="nomeMae">Nome da Mãe</label>
-      <input type="text" id="nomeMae" name="nomeMae" required>
+      <input
+        type="text"
+        id="nomeMae"
+        name="nomeMae"
+        required
+      >
 
       <label for="dataNascimento">Data de Nascimento</label>
       <input
@@ -37,7 +56,11 @@
       >
 
       <label for="estadoCivil">Estado Civil</label>
-      <select id="estadoCivil" name="estadoCivil" required>
+      <select
+        id="estadoCivil"
+        name="estadoCivil"
+        required
+      >
         <option value="">Selecione</option>
         <option value="Solteiro">Solteiro(a)</option>
         <option value="Casado">Casado(a)</option>
@@ -46,8 +69,16 @@
         <option value="Uniao Estavel">União Estável</option>
       </select>
 
+
+      <!-- CONTATO -->
+
       <label for="contato">Contato</label>
-      <input type="text" id="contato" name="contato">
+      <input
+        type="text"
+        id="contato"
+        name="contato"
+        placeholder="Ex.: WhatsApp"
+      >
 
       <label for="telefone">Telefone</label>
       <input
@@ -55,6 +86,7 @@
         id="telefone"
         name="telefone"
         placeholder="(00) 00000-0000"
+        maxlength="15"
         required
       >
 
@@ -66,13 +98,19 @@
         placeholder="email@exemplo.com"
       >
 
-      <label for="contatoEmergencia">Contato de Emergência</label>
+      <label for="contatoEmergencia">
+        Contato de Emergência
+      </label>
+
       <input
         type="text"
         id="contatoEmergencia"
         name="contatoEmergencia"
         placeholder="Nome e telefone"
       >
+
+
+      <!-- ENDEREÇO -->
 
       <h3>Endereço Completo</h3>
 
@@ -82,22 +120,43 @@
         id="cep"
         name="cep"
         placeholder="00000-000"
+        maxlength="9"
       >
 
       <label for="logradouro">Rua / Logradouro</label>
-      <input type="text" id="logradouro" name="logradouro">
+      <input
+        type="text"
+        id="logradouro"
+        name="logradouro"
+      >
 
       <label for="numero">Número</label>
-      <input type="text" id="numero" name="numero">
+      <input
+        type="text"
+        id="numero"
+        name="numero"
+      >
 
       <label for="complemento">Complemento</label>
-      <input type="text" id="complemento" name="complemento">
+      <input
+        type="text"
+        id="complemento"
+        name="complemento"
+      >
 
       <label for="bairro">Bairro</label>
-      <input type="text" id="bairro" name="bairro">
+      <input
+        type="text"
+        id="bairro"
+        name="bairro"
+      >
 
       <label for="cidade">Cidade</label>
-      <input type="text" id="cidade" name="cidade">
+      <input
+        type="text"
+        id="cidade"
+        name="cidade"
+      >
 
       <label for="estado">Estado</label>
       <input
@@ -108,21 +167,44 @@
         placeholder="UF"
       >
 
+
+      <!-- ATENDIMENTO -->
+
       <label for="tipo">Tipo de Atendimento</label>
-      <select id="tipo" name="tipo" required>
+
+      <select
+        id="tipo"
+        name="tipo"
+        required
+      >
+        <option value="">Selecione</option>
         <option value="Convenio">Convênio</option>
         <option value="Particular">Particular</option>
       </select>
 
-      <label for="convenio">Convênio</label>
-      <input
-        type="text"
-        id="convenio"
-        name="convenio"
-        placeholder="Nome do convênio"
-      >
 
-      <label for="documento">Documento / Foto</label>
+      <!-- CONVÊNIO -->
+
+      <div id="campoConvenio">
+
+        <label for="convenio">Convênio</label>
+
+        <input
+          type="text"
+          id="convenio"
+          name="convenio"
+          placeholder="Nome do convênio"
+        >
+
+      </div>
+
+
+      <!-- DOCUMENTO -->
+
+      <label for="documento">
+        Documento / Foto
+      </label>
+
       <input
         type="file"
         id="documento"
@@ -130,80 +212,363 @@
         accept="image/*,.pdf"
       >
 
-      <button type="submit">Cadastrar</button>
+
+      <!-- BOTÃO -->
+
+      <button type="submit">
+        Cadastrar
+      </button>
 
     </form>
+
   </div>
 
+
   <script>
-    document
-      .getElementById("formAtendimento")
-      .addEventListener("submit", cadastrar);
 
-    async function cadastrar(event) {
-      event.preventDefault();
+    const form = document.getElementById("formAtendimento");
 
-      const dados = {
-        nome: document.getElementById("nome").value,
-        cpf: document.getElementById("cpf").value,
-        nomeMae: document.getElementById("nomeMae").value,
-        dataNascimento: document.getElementById("dataNascimento").value,
-        estadoCivil: document.getElementById("estadoCivil").value,
-        contato: document.getElementById("contato").value,
-        telefone: document.getElementById("telefone").value,
-        email: document.getElementById("email").value,
-        contatoEmergencia:
-          document.getElementById("contatoEmergencia").value,
+    const tipo = document.getElementById("tipo");
 
-        endereco: {
-          cep: document.getElementById("cep").value,
-          logradouro: document.getElementById("logradouro").value,
-          numero: document.getElementById("numero").value,
-          complemento: document.getElementById("complemento").value,
-          bairro: document.getElementById("bairro").value,
-          cidade: document.getElementById("cidade").value,
-          estado: document.getElementById("estado").value
-        },
+    const campoConvenio =
+      document.getElementById("campoConvenio");
 
-        tipo: document.getElementById("tipo").value,
-        convenio: document.getElementById("convenio").value
-      };
+    const convenio =
+      document.getElementById("convenio");
 
-      const arquivo = document.getElementById("documento").files[0];
 
-      if (arquivo) {
-        dados.documento = {
-          nome: arquivo.name,
-          tipo: arquivo.type,
-          tamanho: arquivo.size
-        };
+    /*
+      CONTROLE DO CAMPO CONVÊNIO
+    */
+
+    function atualizarConvenio() {
+
+      if (tipo.value === "Convenio") {
+
+        campoConvenio.style.display = "block";
+
+        convenio.required = true;
+
+      } else {
+
+        campoConvenio.style.display = "none";
+
+        convenio.required = false;
+
+        convenio.value = "";
+
       }
 
+    }
+
+    tipo.addEventListener(
+      "change",
+      atualizarConvenio
+    );
+
+    atualizarConvenio();
+
+
+    /*
+      MÁSCARA CPF
+    */
+
+    document
+      .getElementById("cpf")
+      .addEventListener("input", function () {
+
+        let valor = this.value
+          .replace(/\D/g, "")
+          .slice(0, 11);
+
+        valor = valor.replace(
+          /(\d{3})(\d)/,
+          "$1.$2"
+        );
+
+        valor = valor.replace(
+          /(\d{3})(\d)/,
+          "$1.$2"
+        );
+
+        valor = valor.replace(
+          /(\d{3})(\d{1,2})$/,
+          "$1-$2"
+        );
+
+        this.value = valor;
+
+      });
+
+
+    /*
+      MÁSCARA CEP
+    */
+
+    document
+      .getElementById("cep")
+      .addEventListener("input", function () {
+
+        let valor = this.value
+          .replace(/\D/g, "")
+          .slice(0, 8);
+
+        if (valor.length > 5) {
+
+          valor =
+            valor.substring(0, 5)
+            + "-"
+            + valor.substring(5);
+
+        }
+
+        this.value = valor;
+
+      });
+
+
+    /*
+      MÁSCARA TELEFONE
+    */
+
+    document
+      .getElementById("telefone")
+      .addEventListener("input", function () {
+
+        let valor = this.value
+          .replace(/\D/g, "")
+          .slice(0, 11);
+
+        if (valor.length > 10) {
+
+          valor = valor.replace(
+            /^(\d{2})(\d{5})(\d{4}).*/,
+            "($1) $2-$3"
+          );
+
+        } else if (valor.length > 6) {
+
+          valor = valor.replace(
+            /^(\d{2})(\d{4})(\d{0,4}).*/,
+            "($1) $2-$3"
+          );
+
+        } else if (valor.length > 2) {
+
+          valor = valor.replace(
+            /^(\d{2})(\d{0,5}).*/,
+            "($1) $2"
+          );
+
+        }
+
+        this.value = valor;
+
+      });
+
+
+    /*
+      SUBMIT
+    */
+
+    form.addEventListener(
+      "submit",
+      cadastrar
+    );
+
+
+    async function cadastrar(event) {
+
+      event.preventDefault();
+
+
+      /*
+        PEGA O ARQUIVO
+      */
+
+      const arquivo =
+        document.getElementById("documento")
+          .files[0];
+
+
+      /*
+        CRIA FORMDATA
+      */
+
+      const formData = new FormData();
+
+
+      /*
+        DADOS PESSOAIS
+      */
+
+      formData.append(
+        "nome",
+        document.getElementById("nome").value
+      );
+
+      formData.append(
+        "cpf",
+        document.getElementById("cpf").value
+      );
+
+      formData.append(
+        "nomeMae",
+        document.getElementById("nomeMae").value
+      );
+
+      formData.append(
+        "dataNascimento",
+        document.getElementById("dataNascimento").value
+      );
+
+      formData.append(
+        "estadoCivil",
+        document.getElementById("estadoCivil").value
+      );
+
+      formData.append(
+        "contato",
+        document.getElementById("contato").value
+      );
+
+      formData.append(
+        "telefone",
+        document.getElementById("telefone").value
+      );
+
+      formData.append(
+        "email",
+        document.getElementById("email").value
+      );
+
+      formData.append(
+        "contatoEmergencia",
+        document.getElementById("contatoEmergencia").value
+      );
+
+
+      /*
+        ENDEREÇO
+      */
+
+      formData.append(
+        "cep",
+        document.getElementById("cep").value
+      );
+
+      formData.append(
+        "logradouro",
+        document.getElementById("logradouro").value
+      );
+
+      formData.append(
+        "numero",
+        document.getElementById("numero").value
+      );
+
+      formData.append(
+        "complemento",
+        document.getElementById("complemento").value
+      );
+
+      formData.append(
+        "bairro",
+        document.getElementById("bairro").value
+      );
+
+      formData.append(
+        "cidade",
+        document.getElementById("cidade").value
+      );
+
+      formData.append(
+        "estado",
+        document.getElementById("estado").value
+      );
+
+
+      /*
+        ATENDIMENTO
+      */
+
+      formData.append(
+        "tipo",
+        document.getElementById("tipo").value
+      );
+
+      formData.append(
+        "convenio",
+        document.getElementById("convenio").value
+      );
+
+
+      /*
+        ARQUIVO
+      */
+
+      if (arquivo) {
+
+        formData.append(
+          "documento",
+          arquivo
+        );
+
+      }
+
+
+      /*
+        ENVIO PARA O BACKEND
+      */
+
       try {
+
         const resposta = await fetch(
           "/atendimento",
           {
             method: "POST",
-            headers: {
-              "Content-Type": "application/json"
-            },
-            body: JSON.stringify(dados)
+            body: formData
           }
         );
 
+
         if (!resposta.ok) {
-          throw new Error("Erro ao cadastrar atendimento");
+
+          throw new Error(
+            "Erro ao cadastrar atendimento"
+          );
+
         }
 
-        alert("Paciente enviado para triagem!");
 
-        document.getElementById("formAtendimento").reset();
+        alert(
+          "Paciente enviado para triagem!"
+        );
+
+
+        form.reset();
+
+        atualizarConvenio();
+
 
       } catch (erro) {
-        console.error(erro);
-        alert("Não foi possível enviar o paciente para a triagem.");
+
+        console.error(
+          "Erro:",
+          erro
+        );
+
+        alert(
+          "Não foi possível enviar o paciente para a triagem."
+        );
+
       }
+
     }
+
   </script>
+
 </body>
+
 </html>
+```

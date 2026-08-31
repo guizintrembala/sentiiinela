@@ -6,71 +6,37 @@
 
 body {
     min-height: 100vh;
-    padding: 40px 60px;
-
+    background: #eef5f7;
     font-family: Arial, Helvetica, sans-serif;
-
-    background:
-        linear-gradient(
-            135deg,
-            #e9f6f9,
-            #f7fbfc
-        );
-
     color: #26383e;
+    padding: 40px;
 }
-
-
-/* =================================
-   CONTAINER
-================================= */
 
 .container {
     width: 100%;
-    max-width: 1150px;
-    margin: 0 auto;
+    max-width: 1200px;
+    min-height: 700px;
+    margin: auto;
 
-    background: #ffffff;
+    background: white;
 
-    border-radius: 18px;
+    border-radius: 20px;
 
-    box-shadow:
-        0 15px 50px rgba(0, 70, 100, 0.12);
+    box-shadow: 0 15px 50px rgba(0, 60, 80, 0.15);
 
     overflow: hidden;
-
-    animation: aparecer 0.6s ease;
 }
-
-
-/* =================================
-   CABEÇALHO
-================================= */
 
 .container h2 {
-    margin: 0;
-
-    padding: 28px 40px;
-
-    background:
-        linear-gradient(
-            135deg,
-            #087f9c,
-            #08a6c7
-        );
-
+    background: #087f9c;
     color: white;
 
-    font-size: 30px;
-    text-align: left;
+    padding: 30px 40px;
 
-    letter-spacing: 0.3px;
+    font-size: 32px;
+
+    margin: 0;
 }
-
-
-/* =================================
-   FORMULÁRIO
-================================= */
 
 #formAtendimento {
     padding: 40px;
@@ -79,403 +45,104 @@ body {
 
     grid-template-columns: 1fr 1fr;
 
-    column-gap: 28px;
-    row-gap: 8px;
+    gap: 15px 25px;
 }
 
-
-/* =================================
-   LABELS
-================================= */
-
-.container label {
-    display: block;
-
-    margin-top: 12px;
-    margin-bottom: 7px;
+label {
+    font-size: 14px;
+    font-weight: bold;
 
     color: #40565c;
 
-    font-size: 13px;
-    font-weight: bold;
+    margin-top: 10px;
 }
 
-
-/* =================================
-   INPUTS E SELECTS
-================================= */
-
-.container input,
-.container select {
+input,
+select {
     width: 100%;
-    height: 46px;
+    height: 48px;
 
-    padding: 0 14px;
-
-    border: 1px solid #d4e2e6;
+    border: 1px solid #d3e2e6;
     border-radius: 9px;
 
-    background: #fbfdfe;
+    padding: 0 15px;
 
-    color: #26383e;
+    background: #f9fcfd;
 
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 14px;
+    font-size: 15px;
 
     outline: none;
-
-    transition: 0.25s;
 }
 
-
-.container input:hover,
-.container select:hover {
-    border-color: #a8c8d0;
-}
-
-
-.container input:focus,
-.container select:focus {
+input:focus,
+select:focus {
     border-color: #08a6c7;
 
-    background: white;
-
-    box-shadow:
-        0 0 0 3px rgba(8, 166, 199, 0.10);
+    box-shadow: 0 0 0 3px rgba(8, 166, 199, 0.1);
 }
 
-
-.container input::placeholder {
-    color: #9aa9ad;
-}
-
-
-/* =================================
-   PRIMEIRA SEÇÃO
-================================= */
-
-/* Nome completo ocupa a tela inteira */
-label[for="nome"],
-#nome {
-    grid-column: 1 / -1;
-}
-
-
-/* =================================
-   ENDEREÇO
-================================= */
-
-.container h3 {
+h3 {
     grid-column: 1 / -1;
 
     margin-top: 30px;
-    margin-bottom: 5px;
 
-    padding: 18px 0 12px;
-
-    border-top: 1px solid #e4edef;
-    border-bottom: 2px solid #d9e8eb;
+    padding-bottom: 12px;
 
     color: #087f9c;
 
-    font-size: 19px;
+    border-bottom: 2px solid #e2eef1;
 }
-
-
-/* =================================
-   ORGANIZAÇÃO DOS CAMPOS
-================================= */
-
-/*
-   Cada label + input continua sendo
-   um elemento separado no grid.
-
-   Aqui fazemos os pares ficarem
-   organizados visualmente.
-*/
-
-
-/* Nome da mãe */
-label[for="nomeMae"],
-#nomeMae {
-    grid-column: 1;
-}
-
-
-/* Data de nascimento */
-label[for="dataNascimento"],
-#dataNascimento {
-    grid-column: 2;
-}
-
-
-/* Estado civil */
-label[for="estadoCivil"],
-#estadoCivil {
-    grid-column: 1;
-}
-
-
-/* Contato */
-label[for="contato"],
-#contato {
-    grid-column: 2;
-}
-
-
-/* Telefone */
-label[for="telefone"],
-#telefone {
-    grid-column: 1;
-}
-
-
-/* E-mail */
-label[for="email"],
-#email {
-    grid-column: 2;
-}
-
-
-/* Contato de emergência */
-label[for="contatoEmergencia"],
-#contatoEmergencia {
-    grid-column: 1 / -1;
-}
-
-
-/* =================================
-   CAMPOS DO ENDEREÇO
-================================= */
-
-label[for="cep"],
-#cep {
-    grid-column: 1;
-}
-
-
-label[for="logradouro"],
-#logradouro {
-    grid-column: 2;
-}
-
-
-label[for="numero"],
-#numero {
-    grid-column: 1;
-}
-
-
-label[for="complemento"],
-#complemento {
-    grid-column: 2;
-}
-
-
-label[for="bairro"],
-#bairro {
-    grid-column: 1;
-}
-
-
-label[for="cidade"],
-#cidade {
-    grid-column: 2;
-}
-
-
-label[for="estado"],
-#estado {
-    grid-column: 1;
-}
-
-
-/* =================================
-   ATENDIMENTO
-================================= */
-
-label[for="tipo"],
-#tipo {
-    grid-column: 1;
-}
-
-
-label[for="convenio"],
-#convenio {
-    grid-column: 2;
-}
-
-
-/* =================================
-   DOCUMENTO
-================================= */
-
-label[for="documento"],
-#documento {
-    grid-column: 1 / -1;
-}
-
 
 input[type="file"] {
     height: auto;
-
-    padding: 11px;
-
-    background: #f7fbfc;
-
-    cursor: pointer;
+    padding: 12px;
 }
 
-
-/* =================================
-   BOTÃO
-================================= */
-
-.container button {
+button {
     grid-column: 1 / -1;
 
-    width: 240px;
-    height: 50px;
+    width: 250px;
 
-    margin: 28px auto 0;
+    margin: 30px auto 0;
+
+    height: 50px;
 
     border: none;
     border-radius: 10px;
 
-    background:
-        linear-gradient(
-            135deg,
-            #08a6c7,
-            #087f9c
-        );
+    background: linear-gradient(
+        135deg,
+        #08a6c7,
+        #087f9c
+    );
 
     color: white;
 
-    font-size: 15px;
+    font-size: 16px;
     font-weight: bold;
 
     cursor: pointer;
-
-    box-shadow:
-        0 8px 20px rgba(8, 127, 156, 0.20);
-
-    transition: 0.25s;
 }
 
-
-.container button:hover {
+button:hover {
     transform: translateY(-2px);
 
     box-shadow:
-        0 12px 25px rgba(8, 127, 156, 0.30);
+        0 8px 20px rgba(8, 127, 156, 0.3);
 }
 
-
-.container button:active {
-    transform: translateY(0);
-}
-
-
-/* =================================
-   ANIMAÇÃO
-================================= */
-
-@keyframes aparecer {
-
-    from {
-        opacity: 0;
-        transform: translateY(15px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-
-/* =================================
-   RESPONSIVO
-================================= */
-
-@media (max-width: 750px) {
+@media (max-width: 700px) {
 
     body {
-        padding: 20px 10px;
-    }
-
-    .container {
-        border-radius: 14px;
-    }
-
-    .container h2 {
-        padding: 25px;
-        font-size: 26px;
+        padding: 15px;
     }
 
     #formAtendimento {
-        padding: 25px 20px;
-
         grid-template-columns: 1fr;
     }
 
-    label[for="nome"],
-    #nome,
-
-    label[for="nomeMae"],
-    #nomeMae,
-
-    label[for="dataNascimento"],
-    #dataNascimento,
-
-    label[for="estadoCivil"],
-    #estadoCivil,
-
-    label[for="contato"],
-    #contato,
-
-    label[for="telefone"],
-    #telefone,
-
-    label[for="email"],
-    #email,
-
-    label[for="contatoEmergencia"],
-    #contatoEmergencia,
-
-    label[for="cep"],
-    #cep,
-
-    label[for="logradouro"],
-    #logradouro,
-
-    label[for="numero"],
-    #numero,
-
-    label[for="complemento"],
-    #complemento,
-
-    label[for="bairro"],
-    #bairro,
-
-    label[for="cidade"],
-    #cidade,
-
-    label[for="estado"],
-    #estado,
-
-    label[for="tipo"],
-    #tipo,
-
-    label[for="convenio"],
-    #convenio,
-
-    label[for="documento"],
-    #documento {
+    h3,
+    button {
         grid-column: 1;
-    }
-
-    .container button {
-        width: 100%;
     }
 }

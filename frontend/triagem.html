@@ -1,12 +1,20 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
+
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
 
   <title>Triagem | Hosp+</title>
 
+
   <style>
+
     * {
       box-sizing: border-box;
       margin: 0;
@@ -14,7 +22,9 @@
       font-family: "Segoe UI", Arial, sans-serif;
     }
 
+
     :root {
+
       --azul: #087ea4;
       --azul-escuro: #075b78;
       --azul-claro: #eaf7fb;
@@ -34,101 +44,149 @@
 
       --branco: #ffffff;
 
-      --sombra: 0 8px 25px rgba(0, 70, 95, 0.09);
+      --sombra:
+        0 8px 25px rgba(0, 70, 95, 0.09);
     }
+
 
     body {
+
       background:
-        linear-gradient(135deg, #f7fcfd 0%, #eaf5f8 100%);
+        linear-gradient(
+          135deg,
+          #f7fcfd 0%,
+          #eaf5f8 100%
+        );
 
       min-height: 100vh;
+
       color: #263942;
     }
+
 
     /* =========================
        LAYOUT
        ========================= */
 
     .container {
+
       width: 94%;
+
       max-width: 1500px;
+
       margin: 0 auto;
+
       padding: 28px 0 50px;
     }
+
 
     /* =========================
        CABEÇALHO
        ========================= */
 
     .header {
+
       display: flex;
+
       align-items: center;
+
       justify-content: space-between;
 
       background: white;
 
       padding: 18px 24px;
+
       margin-bottom: 24px;
 
-      border: 1px solid var(--cinza-borda);
+      border:
+        1px solid var(--cinza-borda);
+
       border-radius: 18px;
 
       box-shadow: var(--sombra);
     }
 
+
     .brand {
+
       display: flex;
+
       align-items: center;
+
       gap: 14px;
     }
 
+
     .brand-icon {
+
       width: 52px;
       height: 52px;
 
       display: flex;
+
       align-items: center;
       justify-content: center;
 
       background: var(--azul);
+
       color: white;
 
       border-radius: 14px;
 
       font-size: 28px;
+
       font-weight: 800;
     }
+
 
     .brand h1 {
+
       color: var(--azul-escuro);
+
       font-size: 25px;
+
       font-weight: 800;
     }
 
+
     .brand p {
+
       color: var(--cinza-texto);
+
       font-size: 13px;
+
       margin-top: 2px;
     }
 
+
     .header-actions {
+
       display: flex;
+
       align-items: center;
+
       gap: 10px;
     }
+
 
     /* =========================
        BOTÕES
        ========================= */
 
     button {
+
       border: none;
+
       cursor: pointer;
+
       font-family: inherit;
     }
 
+
     .btn-tv {
+
       background: var(--azul);
+
       color: white;
 
       padding: 11px 16px;
@@ -136,18 +194,27 @@
       border-radius: 10px;
 
       font-size: 14px;
+
       font-weight: 700;
 
       transition: 0.2s;
     }
 
+
     .btn-tv:hover {
-      background: var(--azul-escuro);
-      transform: translateY(-1px);
+
+      background:
+        var(--azul-escuro);
+
+      transform:
+        translateY(-1px);
     }
 
+
     .btn-atualizar {
+
       background: #edf3f5;
+
       color: #50636b;
 
       padding: 9px 14px;
@@ -155,21 +222,88 @@
       border-radius: 9px;
 
       font-size: 13px;
+
       font-weight: 600;
+
+      margin-top: 8px;
     }
 
+
     .btn-atualizar:hover {
+
       background: #dfe9ed;
     }
 
+
+    .btn-chamar {
+
+      flex-shrink: 0;
+
+      background: var(--verde);
+
+      color: white;
+
+      padding: 9px 12px;
+
+      border-radius: 9px;
+
+      font-size: 12px;
+
+      font-weight: 700;
+
+      transition: 0.2s;
+    }
+
+
+    .btn-chamar:hover {
+
+      background: #128e75;
+
+      transform:
+        translateY(-1px);
+    }
+
+
+    .btn-selecionar {
+
+      flex-shrink: 0;
+
+      background: var(--azul);
+
+      color: white;
+
+      padding: 9px 12px;
+
+      border-radius: 9px;
+
+      font-size: 12px;
+
+      font-weight: 700;
+
+      transition: 0.2s;
+    }
+
+
+    .btn-selecionar:hover {
+
+      background:
+        var(--azul-escuro);
+
+      transform:
+        translateY(-1px);
+    }
+
+
     .btn-salvar {
+
       width: 100%;
 
-      background: linear-gradient(
-        135deg,
-        var(--azul),
-        var(--azul-escuro)
-      );
+      background:
+        linear-gradient(
+          135deg,
+          var(--azul),
+          var(--azul-escuro)
+        );
 
       color: white;
 
@@ -178,124 +312,187 @@
       border-radius: 12px;
 
       font-size: 16px;
+
       font-weight: 700;
 
       margin-top: 8px;
 
-      box-shadow: 0 5px 15px rgba(8, 126, 164, 0.2);
+      box-shadow:
+        0 5px 15px
+        rgba(8, 126, 164, 0.2);
 
       transition: 0.2s;
     }
 
+
     .btn-salvar:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 7px 20px rgba(8, 126, 164, 0.28);
+
+      transform:
+        translateY(-1px);
+
+      box-shadow:
+        0 7px 20px
+        rgba(8, 126, 164, 0.28);
     }
+
 
     /* =========================
        GRID PRINCIPAL
        ========================= */
 
     .main-grid {
+
       display: grid;
-      grid-template-columns: 1fr 1.25fr;
+
+      grid-template-columns:
+        1fr 1.25fr;
+
       gap: 24px;
+
       align-items: start;
     }
+
 
     /* =========================
        CARDS
        ========================= */
 
     .card {
-      background: var(--branco);
 
-      border: 1px solid var(--cinza-borda);
+      background:
+        var(--branco);
+
+      border:
+        1px solid var(--cinza-borda);
 
       border-radius: 20px;
 
-      box-shadow: var(--sombra);
+      box-shadow:
+        var(--sombra);
 
       overflow: hidden;
     }
 
+
     .card-header {
+
       padding: 22px 24px;
 
-      border-bottom: 1px solid var(--cinza-borda);
+      border-bottom:
+        1px solid var(--cinza-borda);
 
       background: #fbfdfe;
     }
 
+
     .card-header h2 {
-      color: var(--azul-escuro);
+
+      color:
+        var(--azul-escuro);
+
       font-size: 19px;
+
       font-weight: 750;
     }
 
+
     .card-header p {
-      color: var(--cinza-texto);
+
+      color:
+        var(--cinza-texto);
+
       font-size: 13px;
+
       margin-top: 5px;
     }
 
+
     .card-body {
+
       padding: 22px 24px;
     }
 
+
     /* =========================
-       FILA DE PACIENTES
+       FILA
        ========================= */
 
     .fila-header {
+
       display: flex;
+
       align-items: center;
+
       justify-content: space-between;
 
       margin-bottom: 16px;
     }
 
+
     .fila-count {
-      background: var(--azul-claro);
-      color: var(--azul-escuro);
+
+      background:
+        var(--azul-claro);
+
+      color:
+        var(--azul-escuro);
 
       min-width: 30px;
+
       height: 30px;
 
       display: flex;
+
       align-items: center;
+
       justify-content: center;
 
       border-radius: 50%;
 
       font-size: 13px;
+
       font-weight: 800;
     }
 
+
     #fila-pacientes {
+
       max-height: 520px;
+
       overflow-y: auto;
+
       padding-right: 4px;
     }
 
+
     #fila-pacientes::-webkit-scrollbar {
+
       width: 5px;
     }
 
+
     #fila-pacientes::-webkit-scrollbar-thumb {
+
       background: #cbdde3;
+
       border-radius: 10px;
     }
 
+
     .fila-item {
+
       display: flex;
+
       align-items: center;
+
       justify-content: space-between;
+
       gap: 15px;
 
       background: #f8fbfc;
 
-      border: 1px solid var(--cinza-borda);
+      border:
+        1px solid var(--cinza-borda);
 
       border-radius: 13px;
 
@@ -306,32 +503,48 @@
       transition: 0.2s;
     }
 
+
     .fila-item:hover {
+
       border-color: #a9ced9;
+
       background: #f2fafc;
-      transform: translateX(2px);
+
+      transform:
+        translateX(2px);
     }
+
 
     .paciente-info {
+
       min-width: 0;
+
+      flex: 1;
     }
 
+
     .paciente-nome {
+
       display: block;
 
       color: #2c444d;
 
       font-size: 15px;
+
       font-weight: 750;
 
       white-space: nowrap;
+
       overflow: hidden;
+
       text-overflow: ellipsis;
 
       max-width: 280px;
     }
 
+
     .paciente-detalhes {
+
       display: block;
 
       color: #84959c;
@@ -341,107 +554,138 @@
       margin-top: 4px;
     }
 
-    .btn-chamar {
-      flex-shrink: 0;
 
-      background: var(--verde);
-      color: white;
+    .fila-botoes {
 
-      padding: 9px 12px;
+      display: flex;
 
-      border-radius: 9px;
-
-      font-size: 12px;
-      font-weight: 700;
-
-      transition: 0.2s;
+      gap: 7px;
     }
 
-    .btn-chamar:hover {
-      background: #128e75;
-      transform: translateY(-1px);
-    }
 
     .fila-vazia {
+
       text-align: center;
+
       padding: 35px 15px;
+
       color: #8999a0;
+
       font-size: 14px;
     }
 
+
     .fila-vazia-icon {
+
       font-size: 32px;
+
       margin-bottom: 8px;
+
       opacity: 0.7;
     }
+
 
     /* =========================
        FORMULÁRIO
        ========================= */
 
     .form-section {
+
       margin-bottom: 22px;
     }
 
+
     .section-title {
+
       display: flex;
+
       align-items: center;
+
       gap: 9px;
 
-      color: var(--azul-escuro);
+      color:
+        var(--azul-escuro);
 
       font-size: 14px;
+
       font-weight: 750;
 
       margin-bottom: 13px;
     }
 
+
     .section-number {
+
       width: 25px;
+
       height: 25px;
 
       display: flex;
+
       align-items: center;
+
       justify-content: center;
 
-      background: var(--azul-claro);
-      color: var(--azul);
+      background:
+        var(--azul-claro);
+
+      color:
+        var(--azul);
 
       border-radius: 50%;
 
       font-size: 12px;
+
       font-weight: 800;
     }
 
+
     .form-grid {
+
       display: grid;
-      grid-template-columns: 1fr 1fr;
+
+      grid-template-columns:
+        1fr 1fr;
+
       gap: 14px;
     }
 
+
     .field {
+
       display: flex;
+
       flex-direction: column;
+
       gap: 6px;
     }
 
+
     .field.full {
-      grid-column: 1 / -1;
+
+      grid-column:
+        1 / -1;
     }
 
+
     label {
+
       color: #52666e;
 
       font-size: 12px;
+
       font-weight: 700;
     }
+
 
     input,
     select,
     textarea {
+
       width: 100%;
 
-      border: 1px solid #d5e2e6;
+      border:
+        1px solid #d5e2e6;
 
       background: #fbfdfe;
 
@@ -458,32 +702,90 @@
       transition: 0.2s;
     }
 
+
     input:focus,
     select:focus,
     textarea:focus {
-      border-color: var(--azul);
+
+      border-color:
+        var(--azul);
 
       background: white;
 
       box-shadow:
-        0 0 0 3px rgba(8, 126, 164, 0.10);
+        0 0 0 3px
+        rgba(8, 126, 164, 0.10);
     }
 
+
+    input[readonly] {
+
+      background:
+        #f2f6f8;
+
+      color:
+        #61757d;
+
+      cursor: not-allowed;
+    }
+
+
     textarea {
+
       min-height: 100px;
+
       resize: vertical;
     }
 
+
     input::placeholder,
     textarea::placeholder {
-      color: #a2b0b5;
+
+      color:
+        #a2b0b5;
     }
+
+
+    /* =========================
+       PACIENTE SELECIONADO
+       ========================= */
+
+    .paciente-selecionado {
+
+      display: none;
+
+      margin-bottom: 22px;
+
+      padding: 13px 15px;
+
+      background:
+        var(--verde-claro);
+
+      border:
+        1px solid #bde9de;
+
+      border-radius: 11px;
+
+      color: #087b66;
+
+      font-size: 13px;
+
+      font-weight: 700;
+    }
+
+
+    .paciente-selecionado.visivel {
+
+      display: block;
+    }
+
 
     /* =========================
        CLASSIFICAÇÃO
        ========================= */
 
     .resultado {
+
       display: none;
 
       margin-top: 18px;
@@ -495,83 +797,135 @@
       text-align: center;
     }
 
+
     .resultado.visivel {
+
       display: block;
     }
 
+
     .resultado-titulo {
+
       font-size: 12px;
+
       font-weight: 700;
+
       text-transform: uppercase;
+
       letter-spacing: 1px;
+
       margin-bottom: 5px;
     }
 
+
     .resultado-risco {
+
       font-size: 25px;
+
       font-weight: 850;
     }
 
+
     .resultado.verde {
-      background: var(--verde-claro);
-      border: 1px solid #bde9de;
+
+      background:
+        var(--verde-claro);
+
+      border:
+        1px solid #bde9de;
+
       color: #087b66;
     }
 
+
     .resultado.amarelo {
-      background: var(--amarelo-claro);
-      border: 1px solid #f2dda4;
+
+      background:
+        var(--amarelo-claro);
+
+      border:
+        1px solid #f2dda4;
+
       color: #9b7000;
     }
 
+
     .resultado.vermelho {
-      background: var(--vermelho-claro);
-      border: 1px solid #f0c4c4;
+
+      background:
+        var(--vermelho-claro);
+
+      border:
+        1px solid #f0c4c4;
+
       color: #b52f2f;
     }
 
+
     /* =========================
-       LEGENDA DE RISCO
+       LEGENDA
        ========================= */
 
     .legenda {
+
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+
+      grid-template-columns:
+        repeat(3, 1fr);
+
       gap: 8px;
 
       margin-top: 18px;
     }
 
+
     .risco-legenda {
+
       border-radius: 9px;
+
       padding: 9px 5px;
 
       text-align: center;
 
       font-size: 11px;
+
       font-weight: 700;
     }
 
+
     .risco-verde {
-      background: var(--verde-claro);
+
+      background:
+        var(--verde-claro);
+
       color: #087b66;
     }
 
+
     .risco-amarelo {
-      background: var(--amarelo-claro);
+
+      background:
+        var(--amarelo-claro);
+
       color: #9b7000;
     }
 
+
     .risco-vermelho {
-      background: var(--vermelho-claro);
+
+      background:
+        var(--vermelho-claro);
+
       color: #b52f2f;
     }
 
+
     /* =========================
-       STATUS / NOTIFICAÇÃO
+       MENSAGEM
        ========================= */
 
     #mensagem {
+
       display: none;
 
       margin-bottom: 18px;
@@ -581,28 +935,45 @@
       border-radius: 10px;
 
       font-size: 13px;
+
       font-weight: 600;
     }
 
+
     #mensagem.sucesso {
+
       display: block;
-      background: var(--verde-claro);
+
+      background:
+        var(--verde-claro);
+
       color: #087b66;
-      border: 1px solid #bde9de;
+
+      border:
+        1px solid #bde9de;
     }
 
+
     #mensagem.erro {
+
       display: block;
-      background: var(--vermelho-claro);
+
+      background:
+        var(--vermelho-claro);
+
       color: #b52f2f;
-      border: 1px solid #f0c4c4;
+
+      border:
+        1px solid #f0c4c4;
     }
+
 
     /* =========================
        RODAPÉ
        ========================= */
 
     .footer {
+
       text-align: center;
 
       color: #8a9aa0;
@@ -612,68 +983,106 @@
       margin-top: 22px;
     }
 
+
     /* =========================
        RESPONSIVIDADE
        ========================= */
 
     @media (max-width: 1000px) {
+
       .main-grid {
+
         grid-template-columns: 1fr;
       }
 
       #fila-pacientes {
+
         max-height: 350px;
       }
     }
 
+
     @media (max-width: 650px) {
 
       .container {
+
         width: 94%;
+
         padding-top: 15px;
       }
 
+
       .header {
+
         flex-direction: column;
+
         align-items: stretch;
+
         gap: 15px;
       }
 
+
       .header-actions {
+
         width: 100%;
       }
+
 
       .btn-tv {
+
         width: 100%;
       }
 
+
       .form-grid {
+
         grid-template-columns: 1fr;
       }
 
+
       .field.full {
+
         grid-column: auto;
       }
 
+
       .fila-item {
+
         align-items: flex-start;
+
         flex-direction: column;
       }
 
-      .btn-chamar {
+
+      .fila-botoes {
+
         width: 100%;
       }
 
+
+      .btn-chamar,
+      .btn-selecionar {
+
+        flex: 1;
+      }
+
+
       .paciente-nome {
+
         max-width: 100%;
       }
     }
+
   </style>
+
 </head>
+
 
 <body>
 
+
 <div class="container">
+
 
   <!-- =========================
        CABEÇALHO
@@ -688,11 +1097,19 @@
       </div>
 
       <div>
-        <h1>Hosp+</h1>
-        <p>Sistema de Atendimento Hospitalar</p>
+
+        <h1>
+          Hosp+
+        </h1>
+
+        <p>
+          Sistema de Atendimento Hospitalar
+        </p>
+
       </div>
 
     </div>
+
 
     <div class="header-actions">
 
@@ -716,28 +1133,35 @@
 
 
   <!-- =========================
-       CONTEÚDO PRINCIPAL
+       CONTEÚDO
        ========================= -->
 
   <div class="main-grid">
 
+
     <!-- =========================
-         FILA DE PACIENTES
+         FILA
          ========================= -->
 
     <section class="card">
+
 
       <div class="card-header">
 
         <div class="fila-header">
 
           <div>
-            <h2>Pacientes aguardando</h2>
+
+            <h2>
+              Pacientes aguardando
+            </h2>
 
             <p>
-              Selecione um paciente para realizar a chamada.
+              Selecione um paciente para realizar a triagem.
             </p>
+
           </div>
+
 
           <div
             class="fila-count"
@@ -753,11 +1177,17 @@
 
       <div class="card-body">
 
+
         <div id="fila-pacientes">
 
           <div class="fila-vazia">
-            <div class="fila-vazia-icon">⏳</div>
+
+            <div class="fila-vazia-icon">
+              ⏳
+            </div>
+
             Carregando pacientes...
+
           </div>
 
         </div>
@@ -770,23 +1200,27 @@
           🔄 Atualizar lista
         </button>
 
+
       </div>
 
     </section>
 
 
     <!-- =========================
-         FORMULÁRIO DE TRIAGEM
+         TRIAGEM
          ========================= -->
 
     <section class="card">
 
+
       <div class="card-header">
 
-        <h2>Triagem do paciente</h2>
+        <h2>
+          Triagem do paciente
+        </h2>
 
         <p>
-          Preencha as informações para registrar o atendimento.
+          Selecione um paciente na fila e preencha as informações clínicas.
         </p>
 
       </div>
@@ -795,244 +1229,388 @@
       <div class="card-body">
 
 
-        <!-- DADOS DO PACIENTE -->
-
-        <div class="form-section">
-
-          <div class="section-title">
-
-            <span class="section-number">
-              1
-            </span>
-
-            Dados do paciente
-
-          </div>
-
-
-          <div class="form-grid">
-
-            <div class="field full">
-
-              <label for="nome">
-                Nome do paciente
-              </label>
-
-              <input
-                id="nome"
-                placeholder="Digite o nome completo"
-              >
-
-            </div>
-
-          </div>
-
-        </div>
-
-
-        <!-- SINTOMAS -->
-
-        <div class="form-section">
-
-          <div class="section-title">
-
-            <span class="section-number">
-              2
-            </span>
-
-            Queixa principal
-
-          </div>
-
-
-          <div class="form-grid">
-
-            <div class="field">
-
-              <label for="sintoma">
-                Sintoma principal
-              </label>
-
-              <select id="sintoma">
-
-                <option value="">
-                  Selecione o sintoma
-                </option>
-
-                <option value="dor_leve">
-                  Dor leve
-                </option>
-
-                <option value="resfriado">
-                  Resfriado
-                </option>
-
-                <option value="coriza">
-                  Coriza
-                </option>
-
-                <option value="tosse">
-                  Tosse
-                </option>
-
-                <option value="febre">
-                  Febre
-                </option>
-
-                <option value="vomito">
-                  Vômito
-                </option>
-
-                <option value="diarreia">
-                  Diarreia
-                </option>
-
-                <option value="falta_ar_moderada">
-                  Falta de ar moderada
-                </option>
-
-                <option value="falta_ar_grave">
-                  Falta de ar grave
-                </option>
-
-                <option value="infarto">
-                  Suspeita de infarto
-                </option>
-
-                <option value="avc">
-                  Suspeita de AVC
-                </option>
-
-                <option value="convulsao">
-                  Convulsão
-                </option>
-
-                <option value="hemorragia">
-                  Hemorragia
-                </option>
-
-              </select>
-
-            </div>
-
-
-            <div class="field">
-
-              <label for="temp">
-                Temperatura (°C)
-              </label>
-
-              <input
-                id="temp"
-                type="number"
-                step="0.1"
-                placeholder="Ex.: 36.5"
-              >
-
-            </div>
-
-          </div>
-
-        </div>
-
-
-        <!-- INFORMAÇÕES COMPLEMENTARES -->
-
-        <div class="form-section">
-
-          <div class="section-title">
-
-            <span class="section-number">
-              3
-            </span>
-
-            Informações complementares
-
-          </div>
-
-
-          <div class="form-grid">
-
-            <div class="field full">
-
-              <label for="alergia">
-                Alergias
-              </label>
-
-              <input
-                id="alergia"
-                placeholder="Informe alergias conhecidas ou digite 'Nenhuma'"
-              >
-
-            </div>
-
-
-            <div class="field full">
-
-              <label for="observacao">
-                Observações
-              </label>
-
-              <textarea
-                id="observacao"
-                placeholder="Descreva informações relevantes para a equipe..."
-              ></textarea>
-
-            </div>
-
-          </div>
-
-        </div>
-
-
-        <!-- RESULTADO -->
-
         <div
-          id="resultado"
-          class="resultado"
+          id="paciente-selecionado"
+          class="paciente-selecionado"
         >
+          👤 Nenhum paciente selecionado.
+        </div>
 
-          <div class="resultado-titulo">
-            Classificação de risco
+
+        <form id="formTriagem">
+
+
+          <!-- =========================
+               DADOS DO PACIENTE
+               ========================= -->
+
+          <div class="form-section">
+
+            <div class="section-title">
+
+              <span class="section-number">
+                1
+              </span>
+
+              Dados do paciente
+
+            </div>
+
+
+            <div class="form-grid">
+
+
+              <div class="field full">
+
+                <label for="nome">
+                  Nome do paciente
+                </label>
+
+                <input
+                  id="nome"
+                  readonly
+                  placeholder="Selecione um paciente da fila"
+                >
+
+              </div>
+
+
+              <div class="field">
+
+                <label for="cpf">
+                  CPF
+                </label>
+
+                <input
+                  id="cpf"
+                  readonly
+                  placeholder="—"
+                >
+
+              </div>
+
+
+              <div class="field">
+
+                <label for="dataNascimento">
+                  Data de nascimento
+                </label>
+
+                <input
+                  id="dataNascimento"
+                  type="date"
+                  readonly
+                >
+
+              </div>
+
+
+              <div class="field">
+
+                <label for="nomeMae">
+                  Nome da mãe
+                </label>
+
+                <input
+                  id="nomeMae"
+                  readonly
+                  placeholder="—"
+                >
+
+              </div>
+
+
+              <div class="field">
+
+                <label for="telefone">
+                  Telefone
+                </label>
+
+                <input
+                  id="telefone"
+                  readonly
+                  placeholder="—"
+                >
+
+              </div>
+
+
+              <div class="field">
+
+                <label for="tipo">
+                  Tipo de atendimento
+                </label>
+
+                <input
+                  id="tipo"
+                  readonly
+                  placeholder="—"
+                >
+
+              </div>
+
+
+              <div class="field">
+
+                <label for="convenio">
+                  Convênio
+                </label>
+
+                <input
+                  id="convenio"
+                  readonly
+                  placeholder="—"
+                >
+
+              </div>
+
+
+              <div class="field full">
+
+                <label for="endereco">
+                  Endereço
+                </label>
+
+                <input
+                  id="endereco"
+                  readonly
+                  placeholder="—"
+                >
+
+              </div>
+
+
+            </div>
+
           </div>
+
+
+          <!-- =========================
+               QUEIXA PRINCIPAL
+               ========================= -->
+
+          <div class="form-section">
+
+
+            <div class="section-title">
+
+              <span class="section-number">
+                2
+              </span>
+
+              Queixa principal
+
+            </div>
+
+
+            <div class="form-grid">
+
+
+              <div class="field">
+
+                <label for="sintoma">
+                  Sintoma principal
+                </label>
+
+
+                <select id="sintoma">
+
+                  <option value="">
+                    Selecione o sintoma
+                  </option>
+
+                  <option value="dor_leve">
+                    Dor leve
+                  </option>
+
+                  <option value="resfriado">
+                    Resfriado
+                  </option>
+
+                  <option value="coriza">
+                    Coriza
+                  </option>
+
+                  <option value="tosse">
+                    Tosse
+                  </option>
+
+                  <option value="febre">
+                    Febre
+                  </option>
+
+                  <option value="vomito">
+                    Vômito
+                  </option>
+
+                  <option value="diarreia">
+                    Diarreia
+                  </option>
+
+                  <option value="falta_ar_moderada">
+                    Falta de ar moderada
+                  </option>
+
+                  <option value="falta_ar_grave">
+                    Falta de ar grave
+                  </option>
+
+                  <option value="infarto">
+                    Suspeita de infarto
+                  </option>
+
+                  <option value="avc">
+                    Suspeita de AVC
+                  </option>
+
+                  <option value="convulsao">
+                    Convulsão
+                  </option>
+
+                  <option value="hemorragia">
+                    Hemorragia
+                  </option>
+
+                </select>
+
+              </div>
+
+
+              <div class="field">
+
+                <label for="temp">
+                  Temperatura (°C)
+                </label>
+
+                <input
+                  id="temp"
+                  type="number"
+                  step="0.1"
+                  min="30"
+                  max="45"
+                  placeholder="Ex.: 36.5"
+                >
+
+              </div>
+
+
+            </div>
+
+          </div>
+
+
+          <!-- =========================
+               INFORMAÇÕES COMPLEMENTARES
+               ========================= -->
+
+          <div class="form-section">
+
+
+            <div class="section-title">
+
+              <span class="section-number">
+                3
+              </span>
+
+              Informações complementares
+
+            </div>
+
+
+            <div class="form-grid">
+
+
+              <div class="field full">
+
+                <label for="alergia">
+                  Alergias
+                </label>
+
+                <input
+                  id="alergia"
+                  placeholder="Informe alergias conhecidas ou digite 'Nenhuma'"
+                >
+
+              </div>
+
+
+              <div class="field full">
+
+                <label for="observacao">
+                  Observações
+                </label>
+
+                <textarea
+                  id="observacao"
+                  placeholder="Descreva informações relevantes para a equipe..."
+                ></textarea>
+
+              </div>
+
+
+            </div>
+
+          </div>
+
+
+          <!-- =========================
+               RESULTADO
+               ========================= -->
 
           <div
-            id="resultado-risco"
-            class="resultado-risco"
+            id="resultado"
+            class="resultado"
           >
-            —
+
+            <div class="resultado-titulo">
+              Classificação de risco
+            </div>
+
+            <div
+              id="resultado-risco"
+              class="resultado-risco"
+            >
+              —
+            </div>
+
           </div>
 
-        </div>
 
+          <!-- =========================
+               LEGENDA
+               ========================= -->
 
-        <!-- LEGENDA -->
+          <div class="legenda">
 
-        <div class="legenda">
+            <div class="risco-legenda risco-verde">
+              🟢 VERDE
+            </div>
 
-          <div class="risco-legenda risco-verde">
-            🟢 VERDE
+            <div class="risco-legenda risco-amarelo">
+              🟡 AMARELO
+            </div>
+
+            <div class="risco-legenda risco-vermelho">
+              🔴 VERMELHO
+            </div>
+
           </div>
 
-          <div class="risco-legenda risco-amarelo">
-            🟡 AMARELO
-          </div>
 
-          <div class="risco-legenda risco-vermelho">
-            🔴 VERMELHO
-          </div>
+          <!-- =========================
+               SALVAR
+               ========================= -->
 
-        </div>
+          <button
+            type="submit"
+            class="btn-salvar"
+          >
+            ✓ Salvar Triagem
+          </button>
 
 
-        <!-- SALVAR -->
+        </form>
 
-        <button
-          class="btn-salvar"
-          onclick="salvar()"
-        >
-          ✓ Salvar Triagem
-        </button>
 
       </div>
 
@@ -1042,13 +1620,42 @@
 
 
   <div class="footer">
+
     Hosp+ • Sistema de Atendimento Hospitalar
+
   </div>
+
 
 </div>
 
 
 <script>
+
+
+  /* =====================================================
+     PACIENTE SELECIONADO
+     ===================================================== */
+
+  let pacienteSelecionado = null;
+
+
+  /* =====================================================
+     FORMULÁRIO
+     ===================================================== */
+
+  document
+    .getElementById("formTriagem")
+    .addEventListener(
+      "submit",
+      function(event) {
+
+        event.preventDefault();
+
+        salvar();
+
+      }
+    );
+
 
   /* =====================================================
      CARREGAR PACIENTES
@@ -1056,104 +1663,220 @@
 
   function carregarPacientes() {
 
+
     fetch("/pacientes")
 
-      .then(r => r.json())
+
+      .then(response => {
+
+        if (!response.ok) {
+
+          throw new Error(
+            "Erro ao buscar pacientes"
+          );
+
+        }
+
+        return response.json();
+
+      })
+
 
       .then(pacientes => {
 
+
         const div =
-          document.getElementById("fila-pacientes");
-
-        const count =
-          document.getElementById("fila-count");
-
-
-        // Apenas pacientes aguardando triagem
-        const fila =
-          pacientes.filter(
-            p => p.status === "triagem"
+          document.getElementById(
+            "fila-pacientes"
           );
 
 
-        count.innerText = fila.length;
+        const count =
+          document.getElementById(
+            "fila-count"
+          );
+
+
+        /*
+         * Somente pacientes aguardando
+         * triagem.
+         */
+
+        const fila =
+          pacientes.filter(
+            paciente =>
+              paciente.status === "triagem"
+          );
+
+
+        count.innerText =
+          fila.length;
 
 
         if (fila.length === 0) {
 
+
           div.innerHTML = `
+
             <div class="fila-vazia">
+
               <div class="fila-vazia-icon">
                 ✓
               </div>
 
               Nenhum paciente aguardando triagem.
+
             </div>
+
           `;
 
+
           return;
+
         }
 
 
         div.innerHTML = "";
 
 
-        fila.forEach(p => {
+        fila.forEach(paciente => {
+
 
           const item =
-            document.createElement("div");
+            document.createElement(
+              "div"
+            );
+
 
           item.className =
             "fila-item";
 
 
+          /* =====================
+             INFORMAÇÕES
+             ===================== */
+
           const info =
-            document.createElement("div");
+            document.createElement(
+              "div"
+            );
+
 
           info.className =
             "paciente-info";
 
 
           const nome =
-            document.createElement("span");
+            document.createElement(
+              "span"
+            );
+
 
           nome.className =
             "paciente-nome";
 
+
           nome.innerText =
-            p.nome || "Paciente";
+            paciente.nome ||
+            "Paciente";
 
 
           const detalhes =
-            document.createElement("span");
+            document.createElement(
+              "span"
+            );
+
 
           detalhes.className =
             "paciente-detalhes";
 
+
           detalhes.innerText =
-            `CPF: ${p.cpf || "—"} • Tipo: ${p.tipo || "—"}`;
+            `CPF: ${
+              paciente.cpf || "—"
+            } • Tipo: ${
+              paciente.tipo || "—"
+            }`;
 
 
           info.appendChild(nome);
+
           info.appendChild(detalhes);
 
 
-          const button =
-            document.createElement("button");
+          /* =====================
+             BOTÕES
+             ===================== */
 
-          button.className =
+          const botoes =
+            document.createElement(
+              "div"
+            );
+
+
+          botoes.className =
+            "fila-botoes";
+
+
+          /* Selecionar */
+
+          const btnSelecionar =
+            document.createElement(
+              "button"
+            );
+
+
+          btnSelecionar.className =
+            "btn-selecionar";
+
+
+          btnSelecionar.innerText =
+            "👤 Selecionar";
+
+
+          btnSelecionar.onclick =
+            () => selecionarPaciente(
+              paciente
+            );
+
+
+          /* Chamar na TV */
+
+          const btnTV =
+            document.createElement(
+              "button"
+            );
+
+
+          btnTV.className =
             "btn-chamar";
 
-          button.innerText =
-            "📺 Chamar na TV";
+
+          btnTV.innerText =
+            "📺 Chamar";
 
 
-          button.onclick = () =>
-            chamarNaTV(p.nome);
+          btnTV.onclick =
+            () =>
+              chamarNaTV(
+                paciente.nome
+              );
+
+
+          botoes.appendChild(
+            btnSelecionar
+          );
+
+          botoes.appendChild(
+            btnTV
+          );
 
 
           item.appendChild(info);
-          item.appendChild(button);
+
+          item.appendChild(
+            botoes
+          );
 
 
           div.appendChild(item);
@@ -1162,15 +1885,26 @@
 
       })
 
-      .catch(() => {
+
+      .catch(erro => {
+
+
+        console.error(erro);
+
 
         document.getElementById(
           "fila-pacientes"
         ).innerHTML = `
-          <div class="fila-vazia"
-               style="color:#b52f2f;">
+
+          <div
+            class="fila-vazia"
+            style="color:#b52f2f;"
+          >
+
             ⚠️ Erro ao carregar pacientes.
+
           </div>
+
         `;
 
       });
@@ -1179,48 +1913,216 @@
 
 
   /* =====================================================
-     CHAMAR PACIENTE NA TV
+     SELECIONAR PACIENTE
      ===================================================== */
 
-  function chamarNaTV(nome) {
+  function selecionarPaciente(
+    paciente
+  ) {
 
-    fetch("/tv/chamar", {
 
-      method: "POST",
+    /*
+     * Guarda o objeto inteiro.
+     *
+     * O ID será usado para vincular
+     * a triagem ao atendimento.
+     */
 
-      headers: {
-        "Content-Type": "application/json"
-      },
+    pacienteSelecionado =
+      paciente;
 
-      body: JSON.stringify({
 
-        localTipo: "GUICHÊ",
-        localNumero: "01",
-        paciente: nome
+    /* =====================
+       DADOS BÁSICOS
+       ===================== */
+
+    document.getElementById(
+      "nome"
+    ).value =
+      paciente.nome || "";
+
+
+    document.getElementById(
+      "cpf"
+    ).value =
+      paciente.cpf || "";
+
+
+    document.getElementById(
+      "dataNascimento"
+    ).value =
+      paciente.dataNascimento || "";
+
+
+    document.getElementById(
+      "nomeMae"
+    ).value =
+      paciente.nomeMae || "";
+
+
+    document.getElementById(
+      "telefone"
+    ).value =
+      paciente.telefone || "";
+
+
+    document.getElementById(
+      "tipo"
+    ).value =
+      paciente.tipo || "";
+
+
+    document.getElementById(
+      "convenio"
+    ).value =
+      paciente.convenio || "";
+
+
+    /* =====================
+       ENDEREÇO
+       ===================== */
+
+    const endereco =
+      paciente.endereco || {};
+
+
+    document.getElementById(
+      "endereco"
+    ).value = [
+
+      endereco.logradouro,
+
+      endereco.numero,
+
+      endereco.complemento,
+
+      endereco.bairro,
+
+      endereco.cidade,
+
+      endereco.estado,
+
+      endereco.cep
+
+    ]
+
+      .filter(Boolean)
+
+      .join(", ");
+
+
+    /* =====================
+       INDICADOR
+       ===================== */
+
+    const indicador =
+      document.getElementById(
+        "paciente-selecionado"
+      );
+
+
+    indicador.className =
+      "paciente-selecionado visivel";
+
+
+    indicador.innerText =
+      `👤 Paciente selecionado: ${
+        paciente.nome || "Paciente"
+      }`;
+
+
+    mostrarMensagem(
+      `Paciente ${
+        paciente.nome || ""
+      } selecionado para triagem.`,
+      "sucesso"
+    );
+
+
+    /*
+     * Leva o usuário para o
+     * formulário.
+     */
+
+    document
+      .getElementById("sintoma")
+      .focus();
+
+  }
+
+
+  /* =====================================================
+     CHAMAR NA TV
+     ===================================================== */
+
+  function chamarNaTV(
+    nome
+  ) {
+
+
+    fetch(
+      "/tv/chamar",
+      {
+
+        method: "POST",
+
+        headers: {
+          "Content-Type":
+            "application/json"
+        },
+
+        body: JSON.stringify({
+
+          localTipo:
+            "GUICHÊ",
+
+          localNumero:
+            "01",
+
+          paciente:
+            nome
+
+        })
+
+      }
+    )
+
+
+      .then(response => {
+
+        if (!response.ok) {
+
+          throw new Error(
+            "Erro na chamada"
+          );
+
+        }
+
+        return response.json();
 
       })
 
-    })
 
-    .then(r => r.json())
+      .then(() => {
 
-    .then(() => {
+        mostrarMensagem(
+          `Paciente ${nome} chamado para o Guichê 01.`,
+          "sucesso"
+        );
 
-      mostrarMensagem(
-        `Paciente ${nome} chamado para o Guichê 01.`,
-        "sucesso"
-      );
+      })
 
-    })
 
-    .catch(() => {
+      .catch(erro => {
 
-      mostrarMensagem(
-        "Não foi possível realizar a chamada na TV.",
-        "erro"
-      );
+        console.error(erro);
 
-    });
+        mostrarMensagem(
+          "Não foi possível realizar a chamada na TV.",
+          "erro"
+        );
+
+      });
 
   }
 
@@ -1234,37 +2136,85 @@
     temperatura
   ) {
 
+
     const vermelhos = [
+
       "infarto",
+
       "avc",
+
       "convulsao",
+
       "hemorragia",
+
       "falta_ar_grave"
+
     ];
 
 
     const amarelos = [
+
       "febre",
+
       "vomito",
+
       "diarreia",
+
       "falta_ar_moderada"
+
     ];
 
 
-    if (temperatura >= 39) {
+    /*
+     * Temperatura muito elevada.
+     */
+
+    if (
+      Number.isFinite(
+        temperatura
+      ) &&
+      temperatura >= 39
+    ) {
+
       return "vermelho";
+
     }
 
 
-    if (vermelhos.includes(sintoma)) {
+    /*
+     * Situações classificadas
+     * como emergência.
+     */
+
+    if (
+      vermelhos.includes(
+        sintoma
+      )
+    ) {
+
       return "vermelho";
+
     }
 
 
-    if (amarelos.includes(sintoma)) {
+    /*
+     * Situações de prioridade.
+     */
+
+    if (
+      amarelos.includes(
+        sintoma
+      )
+    ) {
+
       return "amarelo";
+
     }
 
+
+    /*
+     * Demais situações.
+     */
 
     return "verde";
 
@@ -1275,38 +2225,90 @@
      SALVAR TRIAGEM
      ===================================================== */
 
-  function salvar() {
-
-    const nome =
-      document.getElementById("nome").value.trim();
-
-    const sintoma =
-      document.getElementById("sintoma").value;
-
-    const temperatura =
-      Number(
-        document.getElementById("temp").value
-      );
-
-    const alergia =
-      document.getElementById("alergia").value.trim();
-
-    const observacao =
-      document.getElementById("observacao").value.trim();
+  async function salvar() {
 
 
-    if (!nome) {
+    /* =====================
+       VERIFICA PACIENTE
+       ===================== */
+
+    if (
+      !pacienteSelecionado
+    ) {
 
       mostrarMensagem(
-        "Informe o nome do paciente.",
+        "Selecione um paciente da fila antes de salvar a triagem.",
         "erro"
       );
 
-      document.getElementById("nome").focus();
-
       return;
+
     }
 
+
+    /*
+     * Verifica se o backend
+     * forneceu um ID.
+     */
+
+    if (
+      !pacienteSelecionado.id
+    ) {
+
+      mostrarMensagem(
+        "O atendimento selecionado não possui um ID válido.",
+        "erro"
+      );
+
+      console.error(
+        "Paciente sem ID:",
+        pacienteSelecionado
+      );
+
+      return;
+
+    }
+
+
+    /* =====================
+       CAPTURA FORMULÁRIO
+       ===================== */
+
+    const sintoma =
+      document.getElementById(
+        "sintoma"
+      ).value;
+
+
+    const temperaturaTexto =
+      document.getElementById(
+        "temp"
+      ).value;
+
+
+    const temperatura =
+      temperaturaTexto === ""
+        ? null
+        : Number(
+            temperaturaTexto
+          );
+
+
+    const alergia =
+      document.getElementById(
+        "alergia"
+      ).value.trim();
+
+
+    const observacao =
+      document.getElementById(
+        "observacao"
+      ).value.trim();
+
+
+    /* =====================
+       VALIDAÇÕES
+       ===================== */
 
     if (!sintoma) {
 
@@ -1315,11 +2317,43 @@
         "erro"
       );
 
-      document.getElementById("sintoma").focus();
+      document
+        .getElementById("sintoma")
+        .focus();
 
       return;
+
     }
 
+
+    if (
+      temperatura !== null &&
+      (
+        Number.isNaN(
+          temperatura
+        ) ||
+        temperatura < 30 ||
+        temperatura > 45
+      )
+    ) {
+
+      mostrarMensagem(
+        "Informe uma temperatura válida.",
+        "erro"
+      );
+
+      document
+        .getElementById("temp")
+        .focus();
+
+      return;
+
+    }
+
+
+    /* =====================
+       CLASSIFICA RISCO
+       ===================== */
 
     const risco =
       classificarRisco(
@@ -1328,13 +2362,20 @@
       );
 
 
-    /* Exibe classificação */
+    /* =====================
+       MOSTRA RESULTADO
+       ===================== */
 
     const resultado =
-      document.getElementById("resultado");
+      document.getElementById(
+        "resultado"
+      );
+
 
     const resultadoRisco =
-      document.getElementById("resultado-risco");
+      document.getElementById(
+        "resultado-risco"
+      );
 
 
     resultado.className =
@@ -1342,9 +2383,16 @@
 
 
     const nomesRisco = {
-      verde: "VERDE",
-      amarelo: "AMARELO",
-      vermelho: "VERMELHO"
+
+      verde:
+        "VERDE",
+
+      amarelo:
+        "AMARELO",
+
+      vermelho:
+        "VERMELHO"
+
     };
 
 
@@ -1352,62 +2400,190 @@
       nomesRisco[risco];
 
 
-    /* Envia para o servidor */
+    /* =====================
+       DADOS DA TRIAGEM
+       ===================== */
 
-    fetch("/triagem", {
+    const dadosTriagem = {
 
-      method: "POST",
+      /*
+       * ID que liga a triagem
+       * ao atendimento original.
+       */
 
-      headers: {
-        "Content-Type": "application/json"
-      },
+      atendimentoId:
+        pacienteSelecionado.id,
 
-      body: JSON.stringify({
 
-        nome,
-        sintoma,
-        temperatura,
-        alergia,
-        observacao,
-        risco
+      /*
+       * Nome vem do cadastro
+       * original.
+       */
 
-      })
+      nome:
+        pacienteSelecionado.nome,
 
-    })
 
-    .then(r => {
+      sintoma,
 
-      if (!r.ok) {
-        throw new Error(
-          "Erro ao salvar"
+      temperatura,
+
+      alergia,
+
+      observacao,
+
+      risco
+
+    };
+
+
+    console.log(
+      "Enviando triagem:",
+      dadosTriagem
+    );
+
+
+    /* =====================
+       ENVIA PARA BACKEND
+       ===================== */
+
+    try {
+
+
+      const resposta =
+        await fetch(
+          "/triagem",
+          {
+
+            method: "POST",
+
+            headers: {
+
+              "Content-Type":
+                "application/json"
+
+            },
+
+            body:
+              JSON.stringify(
+                dadosTriagem
+              )
+
+          }
         );
+
+
+      if (!resposta.ok) {
+
+        throw new Error(
+          "Erro ao salvar triagem"
+        );
+
       }
 
-      return r.json();
 
-    })
+      const resultadoServidor =
+        await resposta.json();
 
-    .then(() => {
+
+      console.log(
+        "Triagem salva:",
+        resultadoServidor
+      );
+
+
+      /* =====================
+         SUCESSO
+         ===================== */
 
       mostrarMensagem(
-        "Triagem salva com sucesso.",
+        `Triagem de ${
+          pacienteSelecionado.nome
+        } salva com sucesso.`,
         "sucesso"
       );
 
-      /* Atualiza fila */
+
+      /*
+       * Limpa paciente selecionado.
+       */
+
+      pacienteSelecionado =
+        null;
+
+
+      /*
+       * Limpa formulário.
+       */
+
+      document
+        .getElementById(
+          "formTriagem"
+        )
+        .reset();
+
+
+      /*
+       * Limpa indicador.
+       */
+
+      const indicador =
+        document.getElementById(
+          "paciente-selecionado"
+        );
+
+
+      indicador.className =
+        "paciente-selecionado";
+
+
+      indicador.innerText =
+        "👤 Nenhum paciente selecionado.";
+
+
+      /*
+       * Esconde classificação.
+       */
+
+      document.getElementById(
+        "resultado"
+      ).className =
+        "resultado";
+
+
+      document.getElementById(
+        "resultado-risco"
+      ).innerText =
+        "—";
+
+
+      /*
+       * Atualiza a fila.
+       *
+       * O backend deverá ter mudado
+       * o status do paciente de
+       * "triagem" para
+       * "aguardando_atendimento".
+       */
 
       carregarPacientes();
 
-    })
 
-    .catch(() => {
+    } catch (erro) {
+
+
+      console.error(
+        "Erro ao salvar triagem:",
+        erro
+      );
+
 
       mostrarMensagem(
         "Não foi possível salvar a triagem.",
         "erro"
       );
 
-    });
+    }
 
   }
 
@@ -1421,8 +2597,11 @@
     tipo
   ) {
 
+
     const mensagem =
-      document.getElementById("mensagem");
+      document.getElementById(
+        "mensagem"
+      );
 
 
     mensagem.className =
@@ -1434,8 +2613,11 @@
 
 
     window.scrollTo({
+
       top: 0,
+
       behavior: "smooth"
+
     });
 
 
@@ -1457,14 +2639,20 @@
   carregarPacientes();
 
 
-  /* Atualiza a fila automaticamente */
+  /*
+   * Atualiza a fila a cada
+   * 10 segundos.
+   */
 
   setInterval(
     carregarPacientes,
     10000
   );
 
+
 </script>
 
+
 </body>
+
 </html>

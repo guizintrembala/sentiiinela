@@ -6,165 +6,391 @@
 
 body {
     min-height: 100vh;
-    padding: 40px 20px;
-
-    background-image:
-        linear-gradient(
-            rgba(0, 70, 100, 0.55),
-            rgba(0, 30, 50, 0.65)
-        ),
-        url("fundo-hospital.jpg");
-
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+    padding: 45px 60px;
 
     font-family: Arial, Helvetica, sans-serif;
+
+    background:
+        linear-gradient(
+            135deg,
+            #eaf7fa 0%,
+            #f5f9fa 50%,
+            #e7f3f6 100%
+        );
+
+    color: #26383e;
 }
 
-/* Caixa principal */
+/* =========================
+   CONTAINER PRINCIPAL
+========================= */
+
 .container {
     width: 100%;
-    max-width: 700px;
-    margin: 0 auto;
-    padding: 40px;
+    max-width: 1200px;
+    margin: auto;
 
-    background: rgba(255, 255, 255, 0.95);
-    border-radius: 20px;
+    background: #ffffff;
 
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.30);
+    border-radius: 18px;
+
+    box-shadow:
+        0 20px 60px rgba(0, 70, 100, 0.12);
+
+    overflow: hidden;
 
     animation: aparecer 0.6s ease;
 }
 
-/* Título */
-.container h2 {
-    color: #087f9c;
-    font-size: 30px;
-    text-align: center;
-    margin-bottom: 35px;
+
+/* =========================
+   CABEÇALHO
+========================= */
+
+.header {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+
+    padding: 28px 40px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #087f9c,
+            #08a6c7
+        );
+
+    color: white;
 }
 
-/* Formulário */
+.header-icon {
+    width: 52px;
+    height: 52px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: rgba(255, 255, 255, 0.16);
+
+    border: 1px solid rgba(255, 255, 255, 0.25);
+
+    border-radius: 14px;
+
+    font-size: 27px;
+    font-weight: bold;
+}
+
+.header h1 {
+    font-size: 28px;
+    margin-bottom: 5px;
+}
+
+.header p {
+    font-size: 14px;
+    opacity: 0.85;
+}
+
+
+/* =========================
+   FORMULÁRIO
+========================= */
+
 #formAtendimento {
+    padding: 35px 40px;
+}
+
+
+/* =========================
+   SEÇÕES
+========================= */
+
+.form-section {
+    padding: 28px 0;
+
+    border-bottom: 1px solid #e7eef0;
+}
+
+.form-section:first-child {
+    padding-top: 5px;
+}
+
+.section-title {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+
+    margin-bottom: 25px;
+}
+
+.section-title > span {
+    width: 38px;
+    height: 38px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 10px;
+
+    background: #e8f7fa;
+
+    color: #087f9c;
+
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.section-title h2 {
+    font-size: 18px;
+    color: #087f9c;
+
+    margin-bottom: 3px;
+}
+
+.section-title p {
+    color: #84959a;
+    font-size: 13px;
+}
+
+
+/* =========================
+   GRID DOS CAMPOS
+========================= */
+
+.form-grid {
+    display: grid;
+
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 20px 24px;
+}
+
+.field {
     display: flex;
     flex-direction: column;
 }
 
-/* Labels */
-.container label {
-    display: block;
-
-    color: #333;
-    font-size: 15px;
-    font-weight: bold;
-
-    margin-bottom: 7px;
+.field-full {
+    grid-column: 1 / -1;
 }
 
-/* Campos */
-.container input,
-.container select {
+.field-large {
+    grid-column: span 1;
+}
+
+
+/* =========================
+   LABEL
+========================= */
+
+.field label {
+    margin-bottom: 8px;
+
+    color: #40565c;
+
+    font-size: 13px;
+    font-weight: bold;
+}
+
+
+/* =========================
+   INPUTS
+========================= */
+
+.field input,
+.field select {
     width: 100%;
-    height: 48px;
+    height: 46px;
 
     padding: 0 14px;
 
-    border: 2px solid #d9e6ea;
-    border-radius: 10px;
+    border: 1px solid #d6e3e7;
+    border-radius: 9px;
 
-    background-color: #fff;
+    background: #fbfdfe;
 
     outline: none;
 
+    color: #26383e;
+
     font-family: Arial, Helvetica, sans-serif;
-    font-size: 15px;
-    color: #333;
+    font-size: 14px;
 
-    margin-bottom: 20px;
-
-    transition: 0.3s;
+    transition: all 0.25s ease;
 }
 
-/* Quando clicar no campo */
-.container input:focus,
-.container select:focus {
+.field input:hover,
+.field select:hover {
+    border-color: #a9cbd3;
+}
+
+.field input:focus,
+.field select:focus {
+    background: #ffffff;
+
     border-color: #08a6c7;
 
     box-shadow:
-        0 0 0 3px rgba(8, 166, 199, 0.12);
+        0 0 0 3px rgba(8, 166, 199, 0.10);
 }
 
-/* Placeholder */
-.container input::placeholder {
-    color: #888;
+.field input::placeholder {
+    color: #9aa9ad;
 }
 
-/* Título da seção de endereço */
-.container h3 {
-    margin-top: 15px;
-    margin-bottom: 25px;
 
-    padding-bottom: 10px;
+/* =========================
+   ARQUIVO
+========================= */
 
-    color: #087f9c;
-    font-size: 20px;
+.file-box {
+    width: 100%;
 
-    border-bottom: 2px solid #d9e6ea;
+    padding: 5px;
+
+    border: 1px dashed #b8d2d8;
+    border-radius: 9px;
+
+    background: #f7fbfc;
 }
 
-/* Campo de arquivo */
-.container input[type="file"] {
-    height: auto;
-    padding: 12px;
+.file-box input {
+    border: none !important;
+    background: transparent !important;
 
-    background-color: #f8fbfc;
+    box-shadow: none !important;
 
     cursor: pointer;
 }
 
-/* Botão */
-.container button {
-    width: 100%;
+
+/* =========================
+   RODAPÉ
+========================= */
+
+.form-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 30px;
+
+    padding-top: 30px;
+}
+
+
+/* Segurança */
+
+.security {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    color: #60767c;
+}
+
+.security > span {
+    width: 38px;
+    height: 38px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #eef8fa;
+
+    border-radius: 9px;
+
+    font-size: 17px;
+}
+
+.security strong {
+    display: block;
+
+    color: #40565c;
+
+    font-size: 13px;
+
+    margin-bottom: 3px;
+}
+
+.security small {
+    display: block;
+
+    font-size: 11px;
+}
+
+
+/* =========================
+   BOTÃO
+========================= */
+
+button {
+    min-width: 230px;
     height: 50px;
 
-    margin-top: 5px;
+    padding: 0 22px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
 
     border: none;
     border-radius: 10px;
 
-    background: linear-gradient(
-        135deg,
-        #08a6c7,
-        #087f9c
-    );
+    background:
+        linear-gradient(
+            135deg,
+            #08a6c7,
+            #087f9c
+        );
 
     color: white;
 
-    font-size: 17px;
+    font-size: 14px;
     font-weight: bold;
 
     cursor: pointer;
 
-    transition: 0.3s;
+    box-shadow:
+        0 8px 20px rgba(8, 127, 156, 0.22);
+
+    transition: all 0.25s ease;
 }
 
-.container button:hover {
+button span {
+    font-size: 20px;
+
+    transition: transform 0.25s ease;
+}
+
+button:hover {
     transform: translateY(-2px);
 
     box-shadow:
-        0 8px 18px rgba(8, 127, 156, 0.35);
+        0 12px 25px rgba(8, 127, 156, 0.30);
 }
 
-.container button:active {
+button:hover span {
+    transform: translateX(4px);
+}
+
+button:active {
     transform: translateY(0);
 }
 
-/* Animação */
+
+/* =========================
+   ANIMAÇÃO
+========================= */
+
 @keyframes aparecer {
     from {
         opacity: 0;
-        transform: translateY(20px);
+        transform: translateY(15px);
     }
 
     to {
@@ -173,25 +399,39 @@ body {
     }
 }
 
-/* Celular */
-@media (max-width: 600px) {
+
+/* =========================
+   RESPONSIVIDADE
+========================= */
+
+@media (max-width: 800px) {
 
     body {
-        padding: 20px 10px;
+        padding: 20px;
     }
 
-    .container {
+    #formAtendimento {
+        padding: 25px;
+    }
+
+    .header {
+        padding: 25px;
+    }
+
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .field-full {
+        grid-column: auto;
+    }
+
+    .form-footer {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    button {
         width: 100%;
-        padding: 30px 25px;
-        border-radius: 15px;
-    }
-
-    .container h2 {
-        font-size: 27px;
-        margin-bottom: 30px;
-    }
-
-    .container label {
-        font-size: 15px;
     }
 }

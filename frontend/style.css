@@ -9,7 +9,10 @@ body {
     padding: 40px 20px;
 
     background-image:
-        linear-gradient(rgba(0, 70, 100, 0.55), rgba(0, 30, 50, 0.65)),
+        linear-gradient(
+            rgba(0, 70, 100, 0.55),
+            rgba(0, 30, 50, 0.65)
+        ),
         url("fundo-hospital.jpg");
 
     background-size: cover;
@@ -22,8 +25,8 @@ body {
 /* Caixa principal */
 .container {
     width: 100%;
-    max-width: 850px;
-    margin: auto;
+    max-width: 700px;
+    margin: 0 auto;
     padding: 40px;
 
     background: rgba(255, 255, 255, 0.95);
@@ -37,27 +40,26 @@ body {
 /* Título */
 .container h2 {
     color: #087f9c;
-    font-size: 28px;
+    font-size: 30px;
     text-align: center;
-    margin-bottom: 30px;
+    margin-bottom: 35px;
 }
 
 /* Formulário */
 #formAtendimento {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 18px 20px;
+    display: flex;
+    flex-direction: column;
 }
 
 /* Labels */
 .container label {
     display: block;
 
-    color: #3d555c;
-    font-size: 14px;
+    color: #333;
+    font-size: 15px;
     font-weight: bold;
 
-    margin-bottom: -10px;
+    margin-bottom: 7px;
 }
 
 /* Campos */
@@ -71,16 +73,20 @@ body {
     border: 2px solid #d9e6ea;
     border-radius: 10px;
 
+    background-color: #fff;
+
     outline: none;
 
-    background-color: white;
-
+    font-family: Arial, Helvetica, sans-serif;
     font-size: 15px;
     color: #333;
+
+    margin-bottom: 20px;
 
     transition: 0.3s;
 }
 
+/* Quando clicar no campo */
 .container input:focus,
 .container select:focus {
     border-color: #08a6c7;
@@ -91,20 +97,18 @@ body {
 
 /* Placeholder */
 .container input::placeholder {
-    color: #999;
+    color: #888;
 }
 
-/* Títulos das seções */
+/* Título da seção de endereço */
 .container h3 {
-    grid-column: 1 / -1;
-
     margin-top: 15px;
-    margin-bottom: 5px;
+    margin-bottom: 25px;
 
     padding-bottom: 10px;
 
     color: #087f9c;
-    font-size: 19px;
+    font-size: 20px;
 
     border-bottom: 2px solid #d9e6ea;
 }
@@ -119,25 +123,12 @@ body {
     cursor: pointer;
 }
 
-/* Label do documento */
-.container label[for="documento"] {
-    grid-column: 1 / -1;
-    margin-top: 5px;
-}
-
-/* Documento */
-#documento {
-    grid-column: 1 / -1;
-}
-
 /* Botão */
 .container button {
-    grid-column: 1 / -1;
-
     width: 100%;
     height: 50px;
 
-    margin-top: 10px;
+    margin-top: 5px;
 
     border: none;
     border-radius: 10px;
@@ -182,8 +173,8 @@ body {
     }
 }
 
-/* Responsividade */
-@media (max-width: 650px) {
+/* Celular */
+@media (max-width: 600px) {
 
     body {
         padding: 20px 10px;
@@ -192,20 +183,15 @@ body {
     .container {
         width: 100%;
         padding: 30px 25px;
-    }
-
-    #formAtendimento {
-        grid-template-columns: 1fr;
-    }
-
-    .container h3,
-    .container label[for="documento"],
-    #documento,
-    .container button {
-        grid-column: 1;
+        border-radius: 15px;
     }
 
     .container h2 {
-        font-size: 24px;
+        font-size: 27px;
+        margin-bottom: 30px;
+    }
+
+    .container label {
+        font-size: 15px;
     }
 }

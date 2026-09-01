@@ -1,0 +1,650 @@
+``
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chamadas - Hospital</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: "Segoe UI", Arial, sans-serif;
+    }
+
+    :root {
+      --azul: #087ea4;
+      --azul-escuro: #075b78;
+      --azul-claro: #eaf7fb;
+      --verde: #18a889;
+      --branco: #ffffff;
+      --cinza: #f4f7f9;
+      --cinza-texto: #60717a;
+      --cinza-borda: #dce7eb;
+      --sombra: 0 10px 30px rgba(0, 66, 91, 0.12);
+    }
+
+    body {
+      background:
+        linear-gradient(135deg, #f5fbfd 0%, #e8f5f8 100%);
+      min-height: 100vh;
+      overflow: hidden;
+      color: #263942;
+    }
+
+    /* =========================
+       CONTAINER PRINCIPAL
+       ========================= */
+
+    .tv-container {
+      width: 94vw;
+      height: 92vh;
+      margin: auto;
+
+      display: grid;
+      grid-template-columns: 31% 69%;
+      gap: 22px;
+
+      position: relative;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    /* =========================
+       PAINÉIS
+       ========================= */
+
+    .left-panel,
+    .right-panel {
+      display: flex;
+      flex-direction: column;
+      gap: 22px;
+      min-width: 0;
+    }
+
+    .left-panel {
+      width: 100%;
+    }
+
+    .right-panel {
+      width: 100%;
+    }
+
+    /* =========================
+       CARDS
+       ========================= */
+
+    .box {
+      background: var(--branco);
+      border: 1px solid var(--cinza-borda);
+      border-radius: 24px;
+
+      padding: 28px;
+
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+
+      box-shadow: var(--sombra);
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* detalhe superior */
+    .box::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 6px;
+      background: linear-gradient(
+        90deg,
+        var(--azul),
+        var(--verde)
+      );
+    }
+
+    /* =========================
+       TÍTULOS
+       ========================= */
+
+    .box-title {
+      color: var(--cinza-texto);
+      font-size: clamp(16px, 1.4vw, 26px);
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+
+      margin-bottom: 18px;
+    }
+
+    /* =========================
+       LOCAL / GUICHÊ
+       ========================= */
+
+    .local-box {
+      flex: 1;
+      background: linear-gradient(
+        145deg,
+        #ffffff 0%,
+        #f2fafc 100%
+      );
+    }
+
+    .local-box .box-title {
+      color: var(--azul);
+    }
+
+    .local-number {
+      color: var(--azul-escuro);
+      font-size: clamp(90px, 9vw, 180px);
+      font-weight: 800;
+      line-height: 0.95;
+      letter-spacing: -5px;
+    }
+
+    .local-type {
+      color: var(--cinza-texto);
+      font-size: clamp(16px, 1.5vw, 28px);
+      font-weight: 600;
+      margin-top: 15px;
+    }
+
+    /* =========================
+       HISTÓRICO
+       ========================= */
+
+    .history-box {
+      flex: 1;
+      justify-content: flex-start;
+      align-items: stretch;
+      padding: 28px 30px;
+    }
+
+    .history-box .box-title {
+      align-self: center;
+      margin-bottom: 20px;
+    }
+
+    #history-list {
+      list-style: none;
+      width: 100%;
+      color: #405761;
+      font-size: clamp(15px, 1.25vw, 22px);
+      font-weight: 600;
+      text-align: left;
+    }
+
+    #history-list li {
+      display: flex;
+      align-items: center;
+
+      min-height: 48px;
+      margin-bottom: 8px;
+      padding: 10px 14px;
+
+      background: var(--cinza);
+      border-radius: 10px;
+
+      border-left: 4px solid #b9dce5;
+    }
+
+    #history-list li:first-child {
+      background: var(--azul-claro);
+      border-left-color: var(--azul);
+      color: var(--azul-escuro);
+    }
+
+    /* =========================
+       PACIENTE
+       ========================= */
+
+    .patient-box {
+      flex: 3;
+      min-height: 0;
+
+      background:
+        radial-gradient(
+          circle at top right,
+          rgba(24, 168, 137, 0.10),
+          transparent 35%
+        ),
+        linear-gradient(
+          145deg,
+          #ffffff 0%,
+          #f4fbfd 100%
+        );
+    }
+
+    .patient-box .box-title {
+      color: var(--azul);
+      font-size: clamp(18px, 1.7vw, 32px);
+      margin-bottom: 25px;
+    }
+
+    .patient-name {
+      width: 100%;
+
+      color: #174c5d;
+
+      font-size: clamp(42px, 5.5vw, 105px);
+      font-weight: 800;
+      line-height: 1.05;
+
+      letter-spacing: -2px;
+
+      word-break: break-word;
+      overflow-wrap: anywhere;
+    }
+
+    /* =========================
+       ÁREA DE AGUARDE
+       ========================= */
+
+    .waiting-indicator {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+
+      margin-top: 28px;
+
+      color: #7a8b92;
+      font-size: clamp(14px, 1.1vw, 20px);
+      font-weight: 500;
+    }
+
+    .waiting-dot {
+      width: 10px;
+      height: 10px;
+
+      border-radius: 50%;
+      background: var(--verde);
+
+      box-shadow: 0 0 0 5px rgba(24, 168, 137, 0.12);
+    }
+
+    /* =========================
+       LOGO
+       ========================= */
+
+    .logo-box {
+      flex: 1;
+
+      flex-direction: row;
+      justify-content: space-between;
+
+      padding: 20px 35px;
+
+      background: #ffffff;
+    }
+
+    .hospital-brand {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .hospital-icon {
+      width: 54px;
+      height: 54px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      background: var(--azul);
+      color: white;
+
+      border-radius: 14px;
+
+      font-size: 28px;
+      font-weight: bold;
+    }
+
+    .logo-text {
+      color: var(--azul-escuro);
+      font-size: clamp(22px, 2.2vw, 42px);
+      font-weight: 800;
+      letter-spacing: -1px;
+    }
+
+    .logo-subtitle {
+      color: #84959c;
+      font-size: clamp(12px, 0.9vw, 18px);
+      font-weight: 500;
+    }
+
+    .clock {
+      color: #71848c;
+      font-size: clamp(18px, 1.5vw, 28px);
+      font-weight: 600;
+    }
+
+    /* =========================
+       CHAMADA NOVA
+       ========================= */
+
+    @keyframes chamada {
+      0% {
+        transform: scale(1);
+        box-shadow: var(--sombra);
+      }
+
+      35% {
+        transform: scale(1.015);
+        box-shadow:
+          0 0 0 8px rgba(8, 126, 164, 0.12),
+          0 15px 40px rgba(0, 66, 91, 0.18);
+      }
+
+      70% {
+        transform: scale(1.005);
+      }
+
+      100% {
+        transform: scale(1);
+        box-shadow: var(--sombra);
+      }
+    }
+
+    .flash {
+      animation: chamada 0.8s ease 3;
+    }
+
+    /* =========================
+       RESPONSIVIDADE
+       ========================= */
+
+    @media (max-width: 900px) {
+      .tv-container {
+        width: 94vw;
+        height: 94vh;
+
+        grid-template-columns: 1fr;
+        grid-template-rows: 38% 62%;
+
+        gap: 15px;
+      }
+
+      .left-panel,
+      .right-panel {
+        gap: 15px;
+      }
+
+      .local-number {
+        font-size: 15vw;
+      }
+
+      .patient-name {
+        font-size: 9vw;
+      }
+
+      .logo-box {
+        padding: 15px 20px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <main class="tv-container">
+
+    <!-- =========================
+         PAINEL ESQUERDO
+         ========================= -->
+
+    <section class="left-panel">
+
+      <!-- Local -->
+      <div class="box local-box">
+
+        <div class="box-title" id="local-tipo">
+          GUICHÊ
+        </div>
+
+        <div
+          class="local-number"
+          id="local-numero"
+        >
+          --
+        </div>
+
+        <div class="local-type">
+          Dirija-se ao local indicado
+        </div>
+
+      </div>
+
+
+      <!-- Histórico -->
+      <div class="box history-box">
+
+        <div class="box-title">
+          Últimas chamadas
+        </div>
+
+        <ul id="history-list">
+          <li>Aguardando chamadas...</li>
+        </ul>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         PAINEL DIREITO
+         ========================= -->
+
+    <section class="right-panel">
+
+      <!-- Paciente -->
+      <div class="box patient-box">
+
+        <div class="box-title">
+          Paciente chamado
+        </div>
+
+        <div
+          class="patient-name"
+          id="patient-name"
+        >
+          AGUARDANDO...
+        </div>
+
+        <div class="waiting-indicator">
+
+          <span class="waiting-dot"></span>
+
+          <span>
+            Por favor, dirija-se ao local indicado
+          </span>
+
+        </div>
+
+      </div>
+
+
+      <!-- Rodapé / Logo -->
+      <div class="box logo-box">
+
+        <div class="hospital-brand">
+
+          <div class="hospital-icon">
+            +
+          </div>
+
+          <div>
+            <div class="logo-text">
+              Hosp+
+            </div>
+
+            <div class="logo-subtitle">
+              Cuidar. Acolher. Transformar.
+            </div>
+          </div>
+
+        </div>
+
+        <div
+          class="clock"
+          id="clock"
+        >
+          --:--
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <script>
+
+    let ultimoId = null;
+
+
+    /* =========================
+       ATUALIZAÇÃO DA CHAMADA
+       ========================= */
+
+    function atualizar() {
+
+      fetch("/tv/chamada")
+
+        .then(r => r.json())
+
+        .then(data => {
+
+          const chamada = data.chamada;
+          const historico = data.historico || [];
+
+
+          if (chamada) {
+
+            document.getElementById("local-tipo").innerText =
+              chamada.localTipo || "GUICHÊ";
+
+            document.getElementById("local-numero").innerText =
+              chamada.localNumero || "--";
+
+            document.getElementById("patient-name").innerText =
+              chamada.paciente || "AGUARDANDO...";
+
+
+            /* Nova chamada */
+
+            if (chamada.id !== ultimoId) {
+
+              ultimoId = chamada.id;
+
+              const patientBox =
+                document.querySelector(".patient-box");
+
+              patientBox.classList.remove("flash");
+
+              void patientBox.offsetWidth;
+
+              patientBox.classList.add("flash");
+            }
+
+          }
+
+
+          /* =========================
+             HISTÓRICO
+             ========================= */
+
+          const list =
+            document.getElementById("history-list");
+
+          list.innerHTML = "";
+
+
+          if (historico.length === 0) {
+
+            const li =
+              document.createElement("li");
+
+            li.innerText =
+              "Nenhuma chamada recente";
+
+            list.appendChild(li);
+
+          } else {
+
+            historico
+              .slice(0, 4)
+              .forEach(h => {
+
+                const li =
+                  document.createElement("li");
+
+                const tipo =
+                  h.localTipo
+                    ? h.localTipo.substring(0, 4)
+                    : "GUIC";
+
+                li.innerText =
+                  `${tipo}. ${h.localNumero || "--"} - ${h.paciente || "Paciente"}`;
+
+                list.appendChild(li);
+
+              });
+
+          }
+
+        })
+
+        .catch(err =>
+          console.log(
+            "Erro ao buscar chamada:",
+            err
+          )
+        );
+    }
+
+
+    /* =========================
+       RELÓGIO
+       ========================= */
+
+    function atualizarRelogio() {
+
+      const agora = new Date();
+
+      const horas =
+        String(agora.getHours()).padStart(2, "0");
+
+      const minutos =
+        String(agora.getMinutes()).padStart(2, "0");
+
+      document.getElementById("clock").innerText =
+        `${horas}:${minutos}`;
+    }
+
+
+    /* =========================
+       INICIALIZAÇÃO
+       ========================= */
+
+    atualizar();
+
+    atualizarRelogio();
+
+    setInterval(atualizar, 2000);
+
+    setInterval(atualizarRelogio, 1000);
+
+  </script>
+
+</body>
+</html>
+```

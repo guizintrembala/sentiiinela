@@ -3,11 +3,13 @@ const fs = require("fs");
 const path = require("path");
 const cors = require("cors");
 const multer = require("multer");
+const PDFDocument = require("pdfkit");
 
 const app = express();
 
 app.use(express.json());
 app.use(cors());
+
 
 // =====================================================
 // FRONTEND
@@ -15,9 +17,10 @@ app.use(cors());
 
 app.use(
   express.static(
-    path.join(__dirname, "../frontend")
+    path.join(__dirname, "../front-end")
   )
 );
+
 
 // =====================================================
 // CONFIGURAÇÃO DE UPLOAD
@@ -95,11 +98,14 @@ const upload = multer({
 
 });
 
+
 // Permitir acesso aos documentos
+
 app.use(
   "/uploads",
   express.static(UPLOAD_DIR)
 );
+
 
 // =====================================================
 // BANCO DE DADOS
@@ -122,6 +128,7 @@ function bancoVazio() {
   };
 
 }
+
 
 function readDB() {
 
@@ -176,6 +183,7 @@ function readDB() {
 
 }
 
+
 function writeDB(data) {
 
   fs.writeFileSync(
@@ -189,6 +197,7 @@ function writeDB(data) {
   );
 
 }
+
 
 // =====================================================
 // LOGIN
@@ -216,6 +225,7 @@ app.post("/login", (req, res) => {
 
 });
 
+
 // =====================================================
 // ATENDIMENTO
 // =====================================================
@@ -234,41 +244,75 @@ app.post(
         id: Date.now(),
 
         // DADOS PESSOAIS
+
         nome: req.body.nome,
+
         cpf: req.body.cpf,
-        nomeMae: req.body.nomeMae,
+
+        nomeMae:
+          req.body.nomeMae,
+
         dataNascimento:
           req.body.dataNascimento,
+
         estadoCivil:
           req.body.estadoCivil,
 
+
         // CONTATOS
-        contato: req.body.contato,
-        telefone: req.body.telefone,
-        email: req.body.email,
+
+        contato:
+          req.body.contato,
+
+        telefone:
+          req.body.telefone,
+
+        email:
+          req.body.email,
+
         contatoEmergencia:
           req.body.contatoEmergencia,
 
+
         // ENDEREÇO
+
         endereco: {
 
-          cep: req.body.cep,
+          cep:
+            req.body.cep,
+
           logradouro:
             req.body.logradouro,
-          numero: req.body.numero,
+
+          numero:
+            req.body.numero,
+
           complemento:
             req.body.complemento,
-          bairro: req.body.bairro,
-          cidade: req.body.cidade,
-          estado: req.body.estado
+
+          bairro:
+            req.body.bairro,
+
+          cidade:
+            req.body.cidade,
+
+          estado:
+            req.body.estado
 
         },
 
+
         // ATENDIMENTO
-        tipo: req.body.tipo,
-        convenio: req.body.convenio,
+
+        tipo:
+          req.body.tipo,
+
+        convenio:
+          req.body.convenio,
+
 
         // DOCUMENTO
+
         documento: req.file
           ? {
 
@@ -290,19 +334,24 @@ app.post(
             }
           : null,
 
+
         // CONTROLE
-        status: "triagem",
+
+        status:
+          "triagem",
 
         createdAt:
           new Date().toISOString()
 
       };
 
+
       db.pacientes.push(
         paciente
       );
 
       writeDB(db);
+
 
       res.status(201).json({
 
@@ -334,6 +383,7 @@ app.post(
   }
 );
 
+
 // =====================================================
 // LISTAR PACIENTES
 // =====================================================
@@ -350,6 +400,7 @@ app.get(
 
   }
 );
+
 
 // =====================================================
 // BUSCAR PACIENTE
@@ -384,6 +435,7 @@ app.get(
   }
 );
 
+
 // =====================================================
 // TRIAGEM
 // =====================================================
@@ -402,6 +454,7 @@ app.post(
         req.body.temperatura
       );
 
+
     if (
       temperatura >= 39
     ) {
@@ -419,6 +472,7 @@ app.post(
       risco = "verde";
 
     }
+
 
     const triagem = {
 
@@ -452,9 +506,11 @@ app.post(
 
     };
 
+
     db.triagens.push(
       triagem
     );
+
 
     const paciente =
       db.pacientes.find(
@@ -463,6 +519,7 @@ app.post(
           req.body.pacienteId
       );
 
+
     if (paciente) {
 
       paciente.status =
@@ -470,7 +527,9 @@ app.post(
 
     }
 
+
     writeDB(db);
+
 
     res.json(
       triagem
@@ -478,6 +537,7 @@ app.post(
 
   }
 );
+
 
 // =====================================================
 // LISTAR TRIAGENS
@@ -495,6 +555,7 @@ app.get(
 
   }
 );
+
 
 // =====================================================
 // TV - CHAMAR PACIENTE
@@ -531,12 +592,15 @@ app.post(
 
     };
 
+
     db.tv_chamada =
       chamada;
+
 
     db.tv_historico.unshift(
       chamada
     );
+
 
     if (
       db.tv_historico.length > 5
@@ -546,7 +610,9 @@ app.post(
 
     }
 
+
     writeDB(db);
+
 
     res.json(
       chamada
@@ -554,6 +620,7 @@ app.post(
 
   }
 );
+
 
 // =====================================================
 // TV - CONSULTAR CHAMADA
@@ -577,6 +644,7 @@ app.get(
 
   }
 );
+
 
 // =====================================================
 // LISTA DE MEDICAÇÕES
@@ -604,6 +672,7 @@ app.get(
   }
 );
 
+
 // =====================================================
 // CONSULTA
 // =====================================================
@@ -612,58 +681,82 @@ app.post(
   "/consulta",
   (req, res) => {
 
-    const db = readDB();
+    try {
 
-    const consulta = {
+      const db = readDB();
 
-      id: Date.now(),
+      const consulta = {
 
-      pacienteId:
-        req.body.pacienteId,
+        id: Date.now(),
 
-      paciente:
-        req.body.paciente,
+        pacienteId:
+          req.body.pacienteId,
 
-      diagnostico:
-        req.body.diagnostico,
+        paciente:
+          req.body.paciente,
 
-      medicacao:
-        req.body.medicacao,
+        diagnostico:
+          req.body.diagnostico,
 
-      obs:
-        req.body.obs,
+        medicacao:
+          req.body.medicacao,
 
-      createdAt:
-        new Date().toISOString()
+        obs:
+          req.body.obs,
 
-    };
+        createdAt:
+          new Date().toISOString()
 
-    db.consultas.push(
-      consulta
-    );
+      };
 
-    const paciente =
-      db.pacientes.find(
-        p =>
-          p.id ==
-          req.body.pacienteId
+
+      db.consultas.push(
+        consulta
       );
 
-    if (paciente) {
 
-      paciente.status =
-        "atendido";
+      const paciente =
+        db.pacientes.find(
+          p =>
+            p.id ==
+            req.body.pacienteId
+        );
+
+
+      if (paciente) {
+
+        paciente.status =
+          "atendido";
+
+      }
+
+
+      writeDB(db);
+
+
+      res.json(
+        consulta
+      );
+
+    } catch (erro) {
+
+      console.error(
+        "Erro ao salvar consulta:",
+        erro
+      );
+
+      res.status(500).json({
+
+        erro:
+          "Erro ao salvar consulta"
+
+      });
 
     }
 
-    writeDB(db);
-
-    res.json(
-      consulta
-    );
-
   }
 );
+
 
 // =====================================================
 // MEDICAÇÕES / CONSULTAS
@@ -682,6 +775,518 @@ app.get(
   }
 );
 
+
+// =====================================================
+// ALTA + GERAÇÃO DO PDF
+// =====================================================
+
+app.post(
+  "/alta",
+  (req, res) => {
+
+    try {
+
+      const db = readDB();
+
+
+      // -------------------------------------------------
+      // DADOS RECEBIDOS
+      // -------------------------------------------------
+
+      const pacienteId =
+        req.body.pacienteId;
+
+      const nomePaciente =
+        String(
+          req.body.paciente || ""
+        ).trim();
+
+      const diagnostico =
+        String(
+          req.body.diagnostico || ""
+        ).trim();
+
+      const medicacao =
+        String(
+          req.body.medicacao || ""
+        ).trim();
+
+      const obs =
+        String(
+          req.body.obs || ""
+        ).trim();
+
+
+      if (!nomePaciente) {
+
+        return res.status(400).json({
+
+          erro:
+            "Paciente não informado."
+
+        });
+
+      }
+
+
+      if (!diagnostico) {
+
+        return res.status(400).json({
+
+          erro:
+            "Diagnóstico não informado."
+
+        });
+
+      }
+
+
+      if (!medicacao) {
+
+        return res.status(400).json({
+
+          erro:
+            "Medicação não informada."
+
+        });
+
+      }
+
+
+      // -------------------------------------------------
+      // LOCALIZA O PACIENTE
+      // -------------------------------------------------
+
+      let paciente = null;
+
+
+      if (pacienteId) {
+
+        paciente =
+          db.pacientes.find(
+            p =>
+              p.id ==
+              pacienteId
+          );
+
+      }
+
+
+      // Caso o ID não seja encontrado,
+      // tenta encontrar pelo nome.
+
+      if (!paciente) {
+
+        paciente =
+          db.pacientes.find(
+            p =>
+              String(p.nome || "")
+                .trim()
+                .toLowerCase() ===
+              nomePaciente.toLowerCase()
+          );
+
+      }
+
+
+      // -------------------------------------------------
+      // SALVAR CONSULTA
+      // -------------------------------------------------
+
+      const consulta = {
+
+        id: Date.now(),
+
+        pacienteId:
+          paciente
+            ? paciente.id
+            : pacienteId || null,
+
+        paciente:
+          nomePaciente,
+
+        diagnostico:
+          diagnostico,
+
+        medicacao:
+          medicacao,
+
+        obs:
+          obs,
+
+        tipo:
+          "alta",
+
+        createdAt:
+          new Date().toISOString()
+
+      };
+
+
+      db.consultas.push(
+        consulta
+      );
+
+
+      // -------------------------------------------------
+      // ATUALIZAR PACIENTE
+      // -------------------------------------------------
+
+      if (paciente) {
+
+        paciente.status =
+          "alta";
+
+        paciente.dataAlta =
+          new Date().toISOString();
+
+      }
+
+
+      // -------------------------------------------------
+      // REMOVER DA FILA DE TRIAGEM
+      // -------------------------------------------------
+
+      if (paciente) {
+
+        db.triagens =
+          db.triagens.filter(
+            t =>
+              t.pacienteId !=
+              paciente.id
+          );
+
+      } else {
+
+        db.triagens =
+          db.triagens.filter(
+            t =>
+              String(t.nome || "")
+                .trim()
+                .toLowerCase() !==
+              nomePaciente.toLowerCase()
+          );
+
+      }
+
+
+      // -------------------------------------------------
+      // SALVAR BANCO
+      // -------------------------------------------------
+
+      writeDB(db);
+
+
+      // -------------------------------------------------
+      // GERAR PDF
+      // -------------------------------------------------
+
+      const doc =
+        new PDFDocument({
+          size: "A4",
+          margin: 50
+        });
+
+
+      // -------------------------------------------------
+      // CABEÇALHOS DA RESPOSTA
+      // -------------------------------------------------
+
+      res.status(200);
+
+      res.setHeader(
+        "Content-Type",
+        "application/pdf"
+      );
+
+      res.setHeader(
+        "Content-Disposition",
+        `inline; filename="alta-${Date.now()}.pdf"`
+      );
+
+
+      // Envia o PDF diretamente
+      // para o navegador.
+
+      doc.pipe(res);
+
+
+      // -------------------------------------------------
+      // CABEÇALHO
+      // -------------------------------------------------
+
+      doc
+        .fontSize(20)
+        .font("Helvetica-Bold")
+        .text(
+          "RELATÓRIO DE ALTA",
+          {
+            align: "center"
+          }
+        );
+
+
+      doc.moveDown();
+
+
+      doc
+        .fontSize(11)
+        .font("Helvetica")
+        .text(
+          "Painel Médico"
+        );
+
+
+      doc
+        .moveTo(50, doc.y + 10)
+        .lineTo(545, doc.y + 10)
+        .stroke();
+
+
+      doc.moveDown(2);
+
+
+      // -------------------------------------------------
+      // INFORMAÇÕES DO PACIENTE
+      // -------------------------------------------------
+
+      doc
+        .fontSize(14)
+        .font("Helvetica-Bold")
+        .text(
+          "Dados do Paciente"
+        );
+
+
+      doc.moveDown(0.5);
+
+
+      doc
+        .fontSize(11)
+        .font("Helvetica")
+        .text(
+          `Nome: ${nomePaciente}`
+        );
+
+
+      if (paciente) {
+
+        if (paciente.cpf) {
+
+          doc.text(
+            `CPF: ${paciente.cpf}`
+          );
+
+        }
+
+
+        if (paciente.dataNascimento) {
+
+          doc.text(
+            `Data de nascimento: ${paciente.dataNascimento}`
+          );
+
+        }
+
+
+        if (paciente.telefone) {
+
+          doc.text(
+            `Telefone: ${paciente.telefone}`
+          );
+
+        }
+
+
+        if (paciente.email) {
+
+          doc.text(
+            `E-mail: ${paciente.email}`
+          );
+
+        }
+
+      }
+
+
+      doc.moveDown(1.5);
+
+
+      // -------------------------------------------------
+      // DIAGNÓSTICO
+      // -------------------------------------------------
+
+      doc
+        .fontSize(14)
+        .font("Helvetica-Bold")
+        .text(
+          "Diagnóstico"
+        );
+
+
+      doc.moveDown(0.5);
+
+
+      doc
+        .fontSize(11)
+        .font("Helvetica")
+        .text(
+          diagnostico
+        );
+
+
+      doc.moveDown(1.5);
+
+
+      // -------------------------------------------------
+      // MEDICAÇÃO
+      // -------------------------------------------------
+
+      doc
+        .fontSize(14)
+        .font("Helvetica-Bold")
+        .text(
+          "Medicação"
+        );
+
+
+      doc.moveDown(0.5);
+
+
+      doc
+        .fontSize(11)
+        .font("Helvetica")
+        .text(
+          medicacao
+        );
+
+
+      doc.moveDown(1.5);
+
+
+      // -------------------------------------------------
+      // OBSERVAÇÕES
+      // -------------------------------------------------
+
+      doc
+        .fontSize(14)
+        .font("Helvetica-Bold")
+        .text(
+          "Observações"
+        );
+
+
+      doc.moveDown(0.5);
+
+
+      doc
+        .fontSize(11)
+        .font("Helvetica")
+        .text(
+          obs || "Nenhuma observação."
+        );
+
+
+      doc.moveDown(2);
+
+
+      // -------------------------------------------------
+      // DATA DA ALTA
+      // -------------------------------------------------
+
+      const dataAlta =
+        new Date().toLocaleString(
+          "pt-BR"
+        );
+
+
+      doc
+        .fontSize(11)
+        .font("Helvetica")
+        .text(
+          `Data e hora da alta: ${dataAlta}`
+        );
+
+
+      doc.moveDown(4);
+
+
+      // -------------------------------------------------
+      // ASSINATURA
+      // -------------------------------------------------
+
+      doc
+        .moveTo(180, doc.y)
+        .lineTo(365, doc.y)
+        .stroke();
+
+
+      doc.moveDown(0.5);
+
+
+      doc
+        .fontSize(10)
+        .text(
+          "Assinatura do responsável",
+          {
+            align: "center"
+          }
+        );
+
+
+      // -------------------------------------------------
+      // RODAPÉ
+      // -------------------------------------------------
+
+      doc
+        .fontSize(8)
+        .text(
+          "Documento gerado automaticamente pelo Painel Médico.",
+          50,
+          780,
+          {
+            align: "center",
+            width: 495
+          }
+        );
+
+
+      // Finaliza o PDF.
+
+      doc.end();
+
+
+    } catch (erro) {
+
+      console.error(
+        "Erro ao gerar alta:",
+        erro
+      );
+
+
+      // Se o PDF ainda não começou
+      // a ser enviado, retorna JSON.
+
+      if (!res.headersSent) {
+
+        return res.status(500).json({
+
+          erro:
+            "Erro ao gerar PDF de alta.",
+
+          detalhe:
+            erro.message
+
+        });
+
+      }
+
+    }
+
+  }
+);
+
+
 // =====================================================
 // ERROS DO UPLOAD
 // =====================================================
@@ -690,6 +1295,7 @@ app.use(
   (err, req, res, next) => {
 
     console.error(err);
+
 
     if (
       err instanceof
@@ -708,6 +1314,7 @@ app.use(
 
     }
 
+
     if (err) {
 
       return res.status(400).json({
@@ -719,10 +1326,12 @@ app.use(
 
     }
 
+
     next();
 
   }
 );
+
 
 // =====================================================
 // START
@@ -730,6 +1339,7 @@ app.use(
 
 const PORT =
   process.env.PORT || 3000;
+
 
 app.listen(
   PORT,

@@ -1075,3 +1075,406 @@ textarea:focus-visible {
         transition: none !important;
     }
 }
+
+/* =====================================================
+   ATENDIMENTO — FORMULÁRIO
+===================================================== */
+
+#formAtendimento {
+    display: grid;
+
+    grid-template-columns:
+        150px
+        minmax(180px, 1fr)
+        150px
+        minmax(180px, 1fr);
+
+    align-items: center;
+
+    column-gap: 12px;
+
+    row-gap: 14px;
+
+    padding: 10px 45px 40px;
+}
+
+
+/* =========================================
+   LABELS
+========================================= */
+
+#formAtendimento > label {
+    margin: 0;
+
+    color: var(--text);
+
+    font-size: 13px;
+
+    font-weight: 650;
+
+    text-align: right;
+
+    white-space: nowrap;
+}
+
+
+/* =========================================
+   INPUTS E SELECTS
+========================================= */
+
+#formAtendimento > input:not([type="file"]),
+#formAtendimento > select {
+    width: 100%;
+
+    height: 44px;
+
+    padding: 0 12px;
+
+    border: 1px solid var(--border);
+
+    border-radius: 9px;
+
+    background: var(--input-bg);
+
+    color: var(--text);
+
+    font-family: inherit;
+
+    font-size: 14px;
+
+    outline: none;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        background 0.2s ease;
+}
+
+
+#formAtendimento > input:not([type="file"]):hover,
+#formAtendimento > select:hover {
+    border-color: #bfd2d7;
+}
+
+
+#formAtendimento > input:not([type="file"]):focus,
+#formAtendimento > select:focus {
+    border-color: var(--primary-light);
+
+    background: white;
+
+    box-shadow:
+        0 0 0 3px rgba(8, 166, 199, 0.10);
+}
+
+
+/* =========================================
+   SEÇÕES
+========================================= */
+
+#formAtendimento > h3 {
+    grid-column: 1 / -1;
+
+    margin: 22px 0 4px;
+
+    padding: 0 0 10px;
+
+    border-bottom: 1px solid var(--border);
+
+    color: var(--primary);
+
+    font-size: 19px;
+
+    font-weight: 750;
+}
+
+
+/* =========================================
+   CAMPO CONVÊNIO
+========================================= */
+
+#formAtendimento > #campoConvenio {
+    grid-column: 1 / -1;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    width: 100%;
+
+    padding: 13px 16px;
+
+    border: 1px solid #d5e9ee;
+
+    border-radius: 10px;
+
+    background: #f1f9fb;
+}
+
+
+#formAtendimento > #campoConvenio label {
+    margin: 0;
+
+    color: var(--primary-dark);
+
+    font-size: 13px;
+
+    font-weight: 700;
+}
+
+
+#formAtendimento > #campoConvenio input {
+    flex: 1;
+
+    min-width: 0;
+
+    height: 42px;
+
+    padding: 0 12px;
+
+    border: 1px solid var(--border);
+
+    border-radius: 8px;
+
+    background: white;
+
+    color: var(--text);
+
+    outline: none;
+}
+
+
+/* =========================================
+   DOCUMENTO
+========================================= */
+
+#formAtendimento > label[for="documento"] {
+    grid-column: 1;
+
+    margin-top: 4px;
+}
+
+
+#formAtendimento > input[type="file"] {
+    grid-column: 2 / -1;
+
+    width: 100%;
+
+    padding: 10px;
+
+    border: 1px dashed #b9cdd2;
+
+    border-radius: 9px;
+
+    background: #fafcfd;
+
+    color: var(--text-light);
+
+    font-family: inherit;
+
+    font-size: 13px;
+
+    cursor: pointer;
+}
+
+
+#formAtendimento > input[type="file"]:hover {
+    border-color: var(--primary-light);
+
+    background: #f3fafc;
+}
+
+
+#formAtendimento > input[type="file"]::file-selector-button {
+    margin-right: 10px;
+
+    padding: 8px 12px;
+
+    border: none;
+
+    border-radius: 7px;
+
+    background: #e4f3f6;
+
+    color: var(--primary-dark);
+
+    font-family: inherit;
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+}
+
+
+/* =========================================
+   BOTÃO CADASTRAR
+========================================= */
+
+#formAtendimento > button[type="submit"] {
+    grid-column: 1 / -1;
+
+    justify-self: center;
+
+    width: 210px !important;
+
+    height: 48px !important;
+
+    margin: 15px 0 0 !important;
+
+    border: none;
+
+    border-radius: 9px;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--primary-light),
+            var(--primary)
+        ) !important;
+
+    color: white !important;
+
+    font-family: inherit;
+
+    font-size: 14px !important;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 7px 18px rgba(8, 127, 156, 0.18) !important;
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+#formAtendimento > button[type="submit"]:hover {
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 11px 24px rgba(8, 127, 156, 0.25) !important;
+}
+
+
+/* =====================================================
+   ATENDIMENTO — TABLET
+===================================================== */
+
+@media (max-width: 850px) {
+
+    #formAtendimento {
+        grid-template-columns:
+            130px
+            minmax(150px, 1fr);
+
+        padding-left: 25px;
+
+        padding-right: 25px;
+    }
+
+    #formAtendimento > label {
+        text-align: left;
+    }
+
+    #formAtendimento > #campoConvenio {
+        grid-column: 1 / -1;
+    }
+
+    #formAtendimento > label[for="documento"] {
+        grid-column: 1;
+    }
+
+    #formAtendimento > input[type="file"] {
+        grid-column: 2;
+    }
+}
+
+
+/* =====================================================
+   ATENDIMENTO — CELULAR
+===================================================== */
+
+@media (max-width: 550px) {
+
+    #formAtendimento {
+        display: flex;
+
+        flex-direction: column;
+
+        align-items: stretch;
+
+        gap: 7px;
+
+        padding: 10px 20px 30px;
+    }
+
+
+    #formAtendimento > label {
+        margin-top: 9px;
+
+        font-size: 13px;
+
+        text-align: left;
+    }
+
+
+    #formAtendimento > input:not([type="file"]),
+    #formAtendimento > select {
+        width: 100%;
+
+        height: 44px;
+
+        margin-bottom: 3px;
+    }
+
+
+    #formAtendimento > h3 {
+        width: 100%;
+
+        margin-top: 25px;
+
+        margin-bottom: 7px;
+    }
+
+
+    #formAtendimento > #campoConvenio {
+        display: flex;
+
+        flex-direction: column;
+
+        align-items: stretch;
+
+        gap: 7px;
+
+        width: 100%;
+    }
+
+
+    #formAtendimento > #campoConvenio input {
+        width: 100%;
+    }
+
+
+    #formAtendimento > label[for="documento"] {
+        margin-top: 12px;
+    }
+
+
+    #formAtendimento > input[type="file"] {
+        width: 100%;
+    }
+
+
+    #formAtendimento > button[type="submit"] {
+        width: 100% !important;
+
+        margin-top: 18px !important;
+    }
+}

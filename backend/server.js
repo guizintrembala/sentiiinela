@@ -17,7 +17,7 @@ app.use(cors());
 
 app.use(
   express.static(
-    path.join(__dirname, "../front-end")
+    path.join(__dirname, "../frontend")
   )
 );
 

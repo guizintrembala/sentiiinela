@@ -1,0 +1,15 @@
+{
+  "name": "sentiiinela",
+  "version": "1.0.0",
+  "description": "Sistema Sentiiinela",
+  "main": "backend/server.js",
+  "scripts": {
+    "start": "node backend/server.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^5.1.0",
+    "multer": "^2.0.2",
+    "pdfkit": "^0.17.2"
+  }
+}

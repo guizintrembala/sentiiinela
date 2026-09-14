@@ -1,18 +1,5 @@
 {
-  "name": "hospital-system",
-  "version": "1.0.0",
-  "main": "api/index.js",
-  "scripts": {
-    "start": "node backend/server.js"
-  },
   "dependencies": {
-    "cors": "^2.8.5",
-    "express": "^5.2.1",
-    "multer": "^2.0.0"
-  },
-  "description": "",
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "type": "commonjs"
+    "pdfkit": "^0.20.2"
+  }
 }

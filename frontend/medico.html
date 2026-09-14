@@ -1,7 +1,11 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-BR">
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <link rel="stylesheet" href="css/style.css">
+
   <style>
     .btn-tv {
       background: #28a745;
@@ -13,7 +17,11 @@
       font-size: 14px;
       margin-top: 8px;
     }
-    .btn-tv:hover { background: #1e7e34; }
+
+    .btn-tv:hover {
+      background: #1e7e34;
+    }
+
     .btn-abrir-tv {
       background: #17a2b8;
       color: white;
@@ -23,7 +31,11 @@
       font-size: 14px;
       cursor: pointer;
     }
-    .btn-abrir-tv:hover { background: #117a8b; }
+
+    .btn-abrir-tv:hover {
+      background: #117a8b;
+    }
+
     .consultorio-input {
       display: flex;
       align-items: center;
@@ -34,7 +46,11 @@
       border-radius: 6px;
       border: 1px solid #d0d8f0;
     }
-    .consultorio-input label { font-weight: bold; }
+
+    .consultorio-input label {
+      font-weight: bold;
+    }
+
     .consultorio-input input {
       width: 60px;
       text-align: center;
@@ -49,156 +65,414 @@
 
 <body>
 
-<div class="container">
+  <div class="container">
+
     <header>
-        <h1>Painel de Alunos</h1>
-        <p>Demonstração de CRUD FrontEnd/Backend (Node.js)</p>
-        <button onclick="window.print()" style="margin-top: 1rem; padding: 10px 20px; font-weight: bold; cursor: pointer; border-radius: 8px; border: none; background: white; color: var(--primary-color);">⬇️
-         Baixar PDF</button>
+      <h1>Painel de Alunos</h1>
+      <p>Demonstração de CRUD FrontEnd/Backend (Node.js)</p>
+
+      <button
+        onclick="window.print()"
+        style="
+          margin-top: 1rem;
+          padding: 10px 20px;
+          font-weight: bold;
+          cursor: pointer;
+          border-radius: 8px;
+          border: none;
+          background: white;
+          color: var(--primary-color);
+        "
+      >
+        ⬇️ Baixar PDF
+      </button>
     </header>
 
-  <!-- Cabeçalho com botão da TV -->
-  <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
-    <h2 style="margin:0;">🩺 Painel Médico</h2>
-    <button class="btn-abrir-tv" onclick="window.open('tv.html','_blank')">📺 Abrir Tela da TV</button>
+    <!-- Cabeçalho com botão da TV -->
+    <div
+      style="
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+      "
+    >
+      <h2 style="margin: 0;">🩺 Painel Médico</h2>
+
+      <button
+        class="btn-abrir-tv"
+        onclick="window.open('tv.html', '_blank')"
+      >
+        📺 Abrir Tela da TV
+      </button>
+    </div>
+
+    <!-- Campo para informar o consultório -->
+    <div class="consultorio-input">
+      <label for="consultorio-num">Meu Consultório:</label>
+
+      <input
+        type="text"
+        id="consultorio-num"
+        value="01"
+        maxlength="3"
+      >
+
+      <span style="color: #666; font-size: 13px;">
+        Este número será exibido na TV ao chamar o paciente.
+      </span>
+    </div>
+
+    <div id="triagens"></div>
+
+    <hr>
+
+    <h3>Consulta</h3>
+
+    <input
+      id="paciente"
+      placeholder="Paciente"
+      readonly
+    >
+
+    <input
+      id="diagnostico"
+      placeholder="Diagnóstico"
+    >
+
+    <select id="medicacao">
+      <option value="">Selecione a medicação</option>
+    </select>
+
+    <textarea
+      id="obs"
+      placeholder="Observações"
+    ></textarea>
+
+    <button onclick="salvar()">Salvar</button>
+
   </div>
 
-  <!-- Campo criado para informar o consultório e chamar o paciente na TV -->
-  <div class="consultorio-input">
-    <label>Meu Consultório:</label>
-    <input type="text" id="consultorio-num" value="01">
-    <span style="color:#666; font-size:13px;">Este número será exibido na TV ao chamar o paciente.</span>
-  </div>
+  <script>
+    let triagensCarregadas = [];
 
-  <div id="triagens"></div>
+    /**
+     * Escapa caracteres especiais para evitar problemas
+     * quando os dados vindos do backend forem inseridos no HTML.
+     */
+    function escaparHTML(valor) {
+      if (valor === null || valor === undefined) {
+        return "";
+      }
 
-  <hr>
+      return String(valor)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+    }
 
-  <h3>Consulta</h3>
+    function carregar() {
+      fetch("/triagens")
+        .then(response => {
+          if (!response.ok) {
+            throw new Error("Erro ao carregar a fila de pacientes.");
+          }
 
-  <input id="paciente" placeholder="Paciente" readonly>
-  <input id="diagnostico" placeholder="Diagnóstico">
+          return response.json();
+        })
+        .then(data => {
+          triagensCarregadas = Array.isArray(data) ? data : [];
 
-  <select id="medicacao">
-    <option value="">Selecione a medicação</option>
-  </select>
+          const div = document.getElementById("triagens");
+          div.innerHTML = "";
 
-  <textarea id="obs" placeholder="Observações"></textarea>
+          if (triagensCarregadas.length === 0) {
+            div.innerHTML = `
+              <p style="color: #888; text-align: center;">
+                Nenhum paciente na fila.
+              </p>
+            `;
+            return;
+          }
 
-  <button onclick="salvar()">Salvar</button>
+          triagensCarregadas.forEach((t, index) => {
+            const nome = escaparHTML(t.nome || "Paciente");
+            const sintoma = escaparHTML(
+              t.sintoma || "Não informado"
+            );
+            const temperatura = escaparHTML(
+              t.temperatura || "Não informada"
+            );
+            const risco = escaparHTML(
+              t.risco || "Não informado"
+            );
+            const alergia = escaparHTML(
+              t.alergia || "Nenhuma"
+            );
+            const observacao = escaparHTML(
+              t.observacao || "Nenhuma"
+            );
 
-</div>
+            div.innerHTML += `
+              <div class="card">
 
-<script>
+                <h3>${nome}</h3>
 
-let triagensCarregadas = [];
+                <p>
+                  <b>Sintoma:</b>
+                  ${sintoma}
+                </p>
 
-function carregar() {
-  fetch("/triagens")
-    .then(r => r.json())
-    .then(data => {
-      triagensCarregadas = data;
+                <p>
+                  <b>Temperatura:</b>
+                  ${temperatura}°C
+                </p>
 
-      const div = document.getElementById("triagens");
-      div.innerHTML = "";
+                <p>
+                  <span class="${risco}">
+                    ${risco}
+                  </span>
+                </p>
 
-      if (data.length === 0) {
-        div.innerHTML = "<p style='color:#888; text-align:center;'>Nenhum paciente na fila.</p>";
+                <p>
+                  <b>Alergia:</b>
+                  ${alergia}
+                </p>
+
+                <p>
+                  <b>Observação:</b>
+                  ${observacao}
+                </p>
+
+                <div
+                  style="
+                    display: flex;
+                    gap: 8px;
+                    flex-wrap: wrap;
+                  "
+                >
+                  <button onclick="selecionar(${index})">
+                    Atender
+                  </button>
+
+                  <button
+                    class="btn-tv"
+                    onclick="chamarNaTV(${index})"
+                  >
+                    📺 Chamar na TV
+                  </button>
+                </div>
+
+              </div>
+            `;
+          });
+        })
+        .catch(error => {
+          console.error(error);
+
+          document.getElementById("triagens").innerHTML = `
+            <p style="color: red; text-align: center;">
+              Erro ao carregar a fila de pacientes.
+            </p>
+          `;
+        });
+    }
+
+    /**
+     * Envia o paciente para a tela da TV.
+     */
+    function chamarNaTV(index) {
+      const paciente = triagensCarregadas[index];
+
+      if (!paciente || !paciente.nome) {
+        alert("Paciente inválido.");
         return;
       }
 
-      data.forEach((t, index) => {
-        div.innerHTML += `
-          <div class="card">
-            <h3>${t.nome}</h3>
-            <p><b>Sintoma:</b> ${t.sintoma || "Não informado"}</p>
-            <p><b>Temperatura:</b> ${t.temperatura || "Não informada"}°C</p>
-            <p><span class="${t.risco}">${t.risco}</span></p>
-            <p><b>Alergia:</b> ${t.alergia || "Nenhuma"}</p>
-            <p><b>Observação:</b> ${t.observacao || "Nenhuma"}</p>
-            <div style="display:flex; gap:8px; flex-wrap:wrap;">
-              <button onclick="selecionar(${index})">Atender</button>
-              <button class="btn-tv" onclick="chamarNaTV('${t.nome}')">📺 Chamar na TV</button>
-            </div>
-          </div>
-        `;
-      });
-    });
-}
+      const consultorioInput =
+        document.getElementById("consultorio-num");
 
-// Função criada para enviar o nome do paciente para a TV quando ele for chamado no consultório.
-function chamarNaTV(nome) {
-  const consultorio = document.getElementById("consultorio-num").value || "01";
-  fetch("/tv/chamar", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      localTipo: "CONSULTÓRIO",
-      localNumero: consultorio,
-      paciente: nome
-    })
-  })
-  .then(r => r.json())
-  .then(() => {
-    alert("✅ " + nome + " foi chamado na TV para o Consultório " + consultorio + "!");
-  });
-}
+      const consultorio =
+        consultorioInput.value.trim() || "01";
 
-function selecionar(index) {
-  const t = triagensCarregadas[index];
-  document.getElementById("paciente").value = t.nome;
-  document.getElementById("obs").value = t.observacao || "";
+      fetch("/tv/chamar", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          localTipo: "CONSULTÓRIO",
+          localNumero: consultorio,
+          paciente: paciente.nome
+        })
+      })
+        .then(response => {
+          if (!response.ok) {
+            throw new Error("Erro ao chamar o paciente na TV.");
+          }
 
-  if (t.alergia && t.alergia !== "Nenhuma") {
-    alert("⚠️ Paciente possui alergia: " + t.alergia);
-  }
-}
+          return response.json();
+        })
+        .then(() => {
+          alert(
+            "✅ " +
+            paciente.nome +
+            " foi chamado na TV para o Consultório " +
+            consultorio +
+            "!"
+          );
+        })
+        .catch(error => {
+          console.error(error);
+          alert("❌ Não foi possível chamar o paciente na TV.");
+        });
+    }
 
-function carregarMedicacoes() {
-  fetch("/lista-medicacoes")
-    .then(r => r.json())
-    .then(data => {
-      const select = document.getElementById("medicacao");
-      select.innerHTML = `<option value="">Selecione a medicação</option>`;
-      data.forEach(med => {
-        const option = document.createElement("option");
-        option.value = med;
-        option.textContent = med;
-        select.appendChild(option);
-      });
-    });
-}
+    function selecionar(index) {
+      const paciente = triagensCarregadas[index];
 
-function salvar() {
-  const paciente = document.getElementById("paciente").value;
-  const diagnostico = document.getElementById("diagnostico").value;
-  const medicacao = document.getElementById("medicacao").value;
-  const obs = document.getElementById("obs").value;
+      if (!paciente) {
+        alert("Paciente não encontrado.");
+        return;
+      }
 
-  if (!paciente) { alert("Selecione um paciente clicando em Atender."); return; }
-  if (!medicacao) { alert("Selecione uma medicação."); return; }
+      document.getElementById("paciente").value =
+        paciente.nome || "";
 
-  fetch("/consulta", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ paciente, diagnostico, medicacao, obs })
-  })
-  .then(r => r.json())
-  .then(() => {
-    alert("Consulta salva");
-    document.getElementById("diagnostico").value = "";
-    document.getElementById("medicacao").value = "";
-    document.getElementById("obs").value = "";
-  });
-}
+      document.getElementById("obs").value =
+        paciente.observacao || "";
 
-carregar();
-carregarMedicacoes();
+      if (
+        paciente.alergia &&
+        paciente.alergia !== "Nenhuma"
+      ) {
+        alert(
+          "⚠️ Paciente possui alergia: " +
+          paciente.alergia
+        );
+      }
+    }
 
-// Atualiza lista automaticamente a cada 10 segundos
-setInterval(carregar, 10000);
+    function carregarMedicacoes() {
+      fetch("/lista-medicacoes")
+        .then(response => {
+          if (!response.ok) {
+            throw new Error(
+              "Erro ao carregar a lista de medicações."
+            );
+          }
 
-</script>
+          return response.json();
+        })
+        .then(data => {
+          const select =
+            document.getElementById("medicacao");
+
+          select.innerHTML = `
+            <option value="">
+              Selecione a medicação
+            </option>
+          `;
+
+          if (!Array.isArray(data)) {
+            return;
+          }
+
+          data.forEach(medicacao => {
+            const option =
+              document.createElement("option");
+
+            option.value = medicacao;
+            option.textContent = medicacao;
+
+            select.appendChild(option);
+          });
+        })
+        .catch(error => {
+          console.error(error);
+
+          alert(
+            "❌ Não foi possível carregar as medicações."
+          );
+        });
+    }
+
+    function salvar() {
+      const paciente =
+        document.getElementById("paciente").value.trim();
+
+      const diagnostico =
+        document.getElementById("diagnostico").value.trim();
+
+      const medicacao =
+        document.getElementById("medicacao").value;
+
+      const obs =
+        document.getElementById("obs").value.trim();
+
+      if (!paciente) {
+        alert(
+          "Selecione um paciente clicando em Atender."
+        );
+        return;
+      }
+
+      if (!diagnostico) {
+        alert("Informe o diagnóstico.");
+        return;
+      }
+
+      if (!medicacao) {
+        alert("Selecione uma medicação.");
+        return;
+      }
+
+      fetch("/consulta", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          paciente,
+          diagnostico,
+          medicacao,
+          obs
+        })
+      })
+        .then(response => {
+          if (!response.ok) {
+            throw new Error("Erro ao salvar a consulta.");
+          }
+
+          return response.json();
+        })
+        .then(() => {
+          alert("✅ Consulta salva com sucesso!");
+
+          document.getElementById("diagnostico").value = "";
+          document.getElementById("medicacao").value = "";
+          document.getElementById("obs").value = "";
+
+          carregar();
+        })
+        .catch(error => {
+          console.error(error);
+
+          alert(
+            "❌ Não foi possível salvar a consulta."
+          );
+        });
+    }
+
+    // Carregamento inicial
+    carregar();
+    carregarMedicacoes();
+
+    // Atualiza a fila automaticamente a cada 10 segundos
+    setInterval(carregar, 10000);
+  </script>
 
 </body>
 </html>

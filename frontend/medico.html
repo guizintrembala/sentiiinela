@@ -1,4 +1,4 @@
-```html
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 
@@ -315,9 +315,11 @@
         </label>
 
         <input
+          type="date"
           id="dataNascimento"
+          name="dataNascimento"
           placeholder="Data de nascimento"
-          readonly
+          autocomplete="bday"
         >
 
       </div>
@@ -330,9 +332,13 @@
         </label>
 
         <input
+          type="text"
           id="cpf"
-          placeholder="CPF"
-          readonly
+          name="cpf"
+          placeholder="000.000.000-00"
+          maxlength="14"
+          inputmode="numeric"
+          autocomplete="off"
         >
 
       </div>
@@ -345,9 +351,13 @@
         </label>
 
         <input
+          type="tel"
           id="telefone"
-          placeholder="Telefone"
-          readonly
+          name="telefone"
+          placeholder="(00) 00000-0000"
+          maxlength="15"
+          inputmode="tel"
+          autocomplete="tel"
         >
 
       </div>
@@ -360,9 +370,11 @@
         </label>
 
         <input
+          type="email"
           id="email"
-          placeholder="E-mail"
-          readonly
+          name="email"
+          placeholder="email@exemplo.com"
+          autocomplete="email"
         >
 
       </div>
@@ -1830,6 +1842,67 @@ async function darAlta() {
 
 
 // =====================================================
+// FORMATAÇÃO DOS DADOS DO PACIENTE
+// =====================================================
+
+function formatarCPF(valor) {
+
+  return valor
+    .replace(/\D/g, "")
+    .slice(0, 11)
+    .replace(/(\d{3})(\d)/, "$1.$2")
+    .replace(/(\d{3})(\d)/, "$1.$2")
+    .replace(/(\d{3})(\d{1,2})$/, "$1-$2");
+
+}
+
+
+function formatarTelefone(valor) {
+
+  const numeros =
+    valor.replace(/\D/g, "").slice(0, 11);
+
+  if (numeros.length <= 2) {
+    return numeros.length ? `(${numeros}` : "";
+  }
+
+  if (numeros.length <= 6) {
+    return `(${numeros.slice(0, 2)}) ${numeros.slice(2)}`;
+  }
+
+  if (numeros.length <= 10) {
+    return `(${numeros.slice(0, 2)}) ${numeros.slice(2, 6)}-${numeros.slice(6)}`;
+  }
+
+  return `(${numeros.slice(0, 2)}) ${numeros.slice(2, 7)}-${numeros.slice(7)}`;
+
+}
+
+
+const campoCPF =
+  document.getElementById("cpf");
+
+const campoTelefone =
+  document.getElementById("telefone");
+
+if (campoCPF) {
+
+  campoCPF.addEventListener("input", function () {
+    this.value = formatarCPF(this.value);
+  });
+
+}
+
+if (campoTelefone) {
+
+  campoTelefone.addEventListener("input", function () {
+    this.value = formatarTelefone(this.value);
+  });
+
+}
+
+
+// =====================================================
 // INICIALIZAÇÃO
 // =====================================================
 
@@ -1888,4 +1961,3 @@ document
 </body>
 
 </html>
-```

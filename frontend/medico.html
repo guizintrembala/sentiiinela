@@ -1,19 +1,24 @@
+```html
 <!DOCTYPE html>
 <html lang="pt-BR">
 
 <head>
+
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
 
   <title>Painel Médico</title>
 
-  <link rel="stylesheet" href="css/style.css">
+  <link
+    rel="stylesheet"
+    href="css/style.css"
+  >
 
   <style>
-
-    /* =====================================================
-       BOTÃO TV
-    ===================================================== */
 
     .btn-tv {
       background: #28a745;
@@ -35,11 +40,6 @@
       cursor: not-allowed;
     }
 
-
-    /* =====================================================
-       BOTÃO ABRIR TV
-    ===================================================== */
-
     .btn-abrir-tv {
       background: #17a2b8;
       color: white;
@@ -53,11 +53,6 @@
     .btn-abrir-tv:hover {
       background: #117a8b;
     }
-
-
-    /* =====================================================
-       CONSULTÓRIO
-    ===================================================== */
 
     .consultorio-input {
       display: flex;
@@ -84,11 +79,6 @@
       border-radius: 4px;
     }
 
-
-    /* =====================================================
-       BOTÃO ALTA
-    ===================================================== */
-
     .btn-alta {
       background: #007bff;
       color: white;
@@ -110,11 +100,6 @@
       cursor: not-allowed;
     }
 
-
-    /* =====================================================
-       BOTÕES CONSULTA
-    ===================================================== */
-
     .botoes-consulta {
       display: flex;
       gap: 8px;
@@ -126,11 +111,6 @@
       cursor: pointer;
     }
 
-
-    /* =====================================================
-       CARDS
-    ===================================================== */
-
     .card {
       margin-bottom: 12px;
     }
@@ -140,21 +120,11 @@
       box-shadow: 0 0 5px rgba(0, 123, 255, 0.25);
     }
 
-
-    /* =====================================================
-       MENSAGEM VAZIA
-    ===================================================== */
-
     .mensagem-vazia {
       color: #888;
       text-align: center;
       padding: 20px;
     }
-
-
-    /* =====================================================
-       ERRO
-    ===================================================== */
 
     .erro {
       color: #dc3545;
@@ -164,226 +134,166 @@
       border: 1px solid #f5c2c7;
     }
 
-
-    /* =====================================================
-       RISCO
-    ===================================================== */
-
     .risco {
       font-weight: bold;
     }
 
-
-    /* =====================================================
-       FORMULÁRIO DE ALTA
-    ===================================================== */
-
-    .form-alta {
-      background: #f8f9fa;
-      border: 1px solid #ddd;
-      border-radius: 8px;
-      padding: 20px;
-      margin-top: 15px;
+    .dados-paciente {
+      display: grid;
+      grid-template-columns: repeat(
+        auto-fit,
+        minmax(220px, 1fr)
+      );
+      gap: 12px;
+      margin-bottom: 20px;
     }
 
-
-    .campo-form {
+    .campo-consulta {
       display: flex;
       flex-direction: column;
-      gap: 6px;
-      margin-bottom: 15px;
+      gap: 5px;
     }
 
-
-    .campo-form label {
+    .campo-consulta label {
       font-weight: bold;
-      color: #333;
+      font-size: 14px;
     }
 
-
-    .campo-form input,
-    .campo-form select,
-    .campo-form textarea {
+    .campo-consulta input,
+    .campo-consulta textarea,
+    .campo-consulta select {
       width: 100%;
       padding: 10px;
       border: 1px solid #ccc;
       border-radius: 6px;
       font-size: 14px;
-      font-family: inherit;
       box-sizing: border-box;
     }
 
-
-    .campo-form input:focus,
-    .campo-form select:focus,
-    .campo-form textarea:focus {
-      outline: none;
-      border-color: #007bff;
-      box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.1);
-    }
-
-
-    .campo-form textarea {
+    .campo-consulta textarea {
       min-height: 90px;
       resize: vertical;
     }
 
-
-    .linha-form {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 15px;
+    .campo-grande {
+      grid-column: 1 / -1;
     }
 
-
-    .info-formulario {
-      background: #e9f5ff;
-      border: 1px solid #b8daff;
-      color: #004085;
-      padding: 12px;
-      border-radius: 6px;
-      margin-bottom: 18px;
-      font-size: 14px;
+    .secao-consulta {
+      margin-top: 20px;
+      padding: 16px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      background: #fafafa;
     }
 
-
-    /* =====================================================
-       RESPONSIVIDADE
-    ===================================================== */
-
-    @media (max-width: 700px) {
-
-      .linha-form {
-        grid-template-columns: 1fr;
-        gap: 0;
-      }
-
-      .consultorio-input {
-        flex-wrap: wrap;
-      }
-
-      .btn-alta {
-        margin-left: 0;
-      }
-
+    .secao-consulta h4 {
+      margin-top: 0;
+      margin-bottom: 15px;
     }
 
   </style>
-</head>
 
+</head>
 
 <body>
 
-  <div class="container">
+<div class="container">
 
-    <!-- ===================================================
-         CABEÇALHO
-    =================================================== -->
+  <header>
 
-    <header>
+    <h1>Painel Médico</h1>
 
-      <h1>Painel Médico</h1>
+    <p>
+      Atendimento e gerenciamento de pacientes
+    </p>
 
-      <p>
-        Atendimento e gerenciamento de pacientes
-      </p>
-
-    </header>
+  </header>
 
 
-    <!-- ===================================================
-         TOPO
-    =================================================== -->
-
-    <div style="
+  <div
+    style="
       display:flex;
       justify-content:space-between;
       align-items:center;
       margin-bottom:20px;
       gap:10px;
       flex-wrap:wrap;
-    ">
+    "
+  >
 
-      <h2 style="margin:0;">
-        🩺 Painel Médico
-      </h2>
+    <h2 style="margin:0;">
+      🩺 Painel Médico
+    </h2>
 
-      <button
-        type="button"
-        class="btn-abrir-tv"
-        onclick="abrirTV()">
+    <button
+      type="button"
+      class="btn-abrir-tv"
+      onclick="abrirTV()"
+    >
+      📺 Abrir Tela da TV
+    </button>
 
-        📺 Abrir Tela da TV
-
-      </button>
-
-    </div>
-
-
-    <!-- ===================================================
-         CONSULTÓRIO
-    =================================================== -->
-
-    <div class="consultorio-input">
-
-      <label for="consultorio-num">
-        Meu Consultório:
-      </label>
-
-      <input
-        type="text"
-        id="consultorio-num"
-        value="01"
-        maxlength="2"
-        inputmode="numeric"
-        autocomplete="off">
-
-      <span style="color:#666; font-size:13px;">
-
-        Este número será exibido na TV ao chamar o paciente.
-
-      </span>
-
-    </div>
+  </div>
 
 
-    <!-- ===================================================
-         FILA DE TRIAGEM
-    =================================================== -->
+  <!-- CONSULTÓRIO -->
 
-    <h3>
-      👥 Pacientes aguardando atendimento
-    </h3>
+  <div class="consultorio-input">
 
-    <div id="triagens"></div>
+    <label for="consultorio-num">
+      Meu Consultório:
+    </label>
 
+    <input
+      type="text"
+      id="consultorio-num"
+      value="01"
+      maxlength="2"
+      inputmode="numeric"
+      autocomplete="off"
+    >
 
-    <hr>
+    <span
+      style="
+        color:#666;
+        font-size:13px;
+      "
+    >
+      Este número será exibido na TV ao chamar o paciente.
+    </span>
 
-
-    <!-- ===================================================
-         FORMULÁRIO DE ALTA
-    =================================================== -->
-
-    <h3>
-      🏠 Alta do Paciente
-    </h3>
-
-
-    <div class="form-alta">
-
-
-      <div class="info-formulario">
-
-        ℹ️ Selecione um paciente na fila clicando em
-        <b>"Atender"</b> para preencher a alta.
-
-      </div>
+  </div>
 
 
-      <!-- PACIENTE -->
+  <!-- FILA -->
 
-      <div class="campo-form">
+  <h3>
+    👥 Pacientes aguardando atendimento
+  </h3>
+
+  <div id="triagens"></div>
+
+
+  <hr>
+
+
+  <!-- CONSULTA -->
+
+  <h3>
+    🩺 Consulta
+  </h3>
+
+
+  <div class="secao-consulta">
+
+    <h4>
+      👤 Dados do paciente
+    </h4>
+
+    <div class="dados-paciente">
+
+      <div class="campo-consulta">
 
         <label for="paciente">
           Paciente
@@ -391,89 +301,119 @@
 
         <input
           id="paciente"
-          placeholder="Selecione um paciente"
-          readonly>
+          placeholder="Paciente"
+          readonly
+        >
 
       </div>
 
 
-      <!-- DADOS PESSOAIS -->
+      <div class="campo-consulta">
 
-      <div class="linha-form">
+        <label for="dataNascimento">
+          Data de nascimento
+        </label>
 
-
-        <div class="campo-form">
-
-          <label for="data-nascimento">
-            Data de nascimento
-          </label>
-
-          <input
-            type="date"
-            id="data-nascimento">
-
-        </div>
-
-
-        <div class="campo-form">
-
-          <label for="cpf">
-            CPF
-          </label>
-
-          <input
-            type="text"
-            id="cpf"
-            placeholder="000.000.000-00"
-            maxlength="14">
-
-        </div>
-
+        <input
+          id="dataNascimento"
+          placeholder="Data de nascimento"
+          readonly
+        >
 
       </div>
 
 
-      <!-- DIAGNÓSTICO E MEDICAÇÃO -->
+      <div class="campo-consulta">
 
-      <div class="linha-form">
+        <label for="cpf">
+          CPF
+        </label>
 
-
-        <div class="campo-form">
-
-          <label for="diagnostico">
-            Diagnóstico
-          </label>
-
-          <input
-            id="diagnostico"
-            placeholder="Informe o diagnóstico">
-
-        </div>
-
-
-        <div class="campo-form">
-
-          <label for="medicacao">
-            Medicação
-          </label>
-
-          <select id="medicacao">
-
-            <option value="">
-              Selecione a medicação
-            </option>
-
-          </select>
-
-        </div>
-
+        <input
+          id="cpf"
+          placeholder="CPF"
+          readonly
+        >
 
       </div>
 
 
-      <!-- PROCEDIMENTO -->
+      <div class="campo-consulta">
 
-      <div class="campo-form">
+        <label for="telefone">
+          Telefone
+        </label>
+
+        <input
+          id="telefone"
+          placeholder="Telefone"
+          readonly
+        >
+
+      </div>
+
+
+      <div class="campo-consulta">
+
+        <label for="email">
+          E-mail
+        </label>
+
+        <input
+          id="email"
+          placeholder="E-mail"
+          readonly
+        >
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- DADOS MÉDICOS -->
+
+  <div class="secao-consulta">
+
+    <h4>
+      🩺 Informações do atendimento
+    </h4>
+
+    <div class="dados-paciente">
+
+      <div class="campo-consulta campo-grande">
+
+        <label for="diagnostico">
+          Diagnóstico
+        </label>
+
+        <textarea
+          id="diagnostico"
+          placeholder="Informe o diagnóstico"
+        ></textarea>
+
+      </div>
+
+
+      <div class="campo-consulta">
+
+        <label for="medicacao">
+          Medicação
+        </label>
+
+        <select id="medicacao">
+
+          <option value="">
+            Selecione a medicação
+          </option>
+
+        </select>
+
+      </div>
+
+
+      <div class="campo-consulta campo-grande">
 
         <label for="procedimento">
           Procedimento realizado
@@ -481,31 +421,27 @@
 
         <textarea
           id="procedimento"
-          placeholder="Descreva o procedimento realizado...">
-        </textarea>
+          placeholder="Descreva o procedimento realizado"
+        ></textarea>
 
       </div>
 
 
-      <!-- ORIENTAÇÕES -->
-
-      <div class="campo-form">
+      <div class="campo-consulta campo-grande">
 
         <label for="orientacoes">
-          Orientações ao paciente
+          Orientações de alta
         </label>
 
         <textarea
           id="orientacoes"
-          placeholder="Informe os cuidados, recomendações e orientações para casa...">
-        </textarea>
+          placeholder="Digite as orientações para o paciente"
+        ></textarea>
 
       </div>
 
 
-      <!-- OBSERVAÇÕES -->
-
-      <div class="campo-form">
+      <div class="campo-consulta campo-grande">
 
         <label for="obs">
           Observações
@@ -513,1828 +449,1443 @@
 
         <textarea
           id="obs"
-          placeholder="Observações adicionais...">
-        </textarea>
+          placeholder="Observações"
+        ></textarea>
 
       </div>
-
-
-      <!-- MÉDICO -->
-
-      <div class="linha-form">
-
-
-        <div class="campo-form">
-
-          <label for="medico">
-            Médico responsável
-          </label>
-
-          <input
-            type="text"
-            id="medico"
-            placeholder="Nome do médico">
-
-        </div>
-
-
-        <div class="campo-form">
-
-          <label for="crm">
-            CRM
-          </label>
-
-          <input
-            type="text"
-            id="crm"
-            placeholder="CRM">
-
-        </div>
-
-
-      </div>
-
-
-      <!-- BOTÕES -->
-
-      <div class="botoes-consulta">
-
-        <button
-          type="button"
-          onclick="salvar()">
-
-          💾 Salvar Consulta
-
-        </button>
-
-
-        <button
-          type="button"
-          class="btn-alta"
-          id="btn-alta"
-          onclick="darAlta()">
-
-          🏠 Dar Alta e Gerar PDF
-
-        </button>
-
-      </div>
-
 
     </div>
 
   </div>
 
 
-  <script>
+  <!-- RESPONSÁVEL -->
+
+  <div class="secao-consulta">
+
+    <h4>
+      👨‍⚕️ Profissional responsável
+    </h4>
+
+    <div class="dados-paciente">
+
+      <div class="campo-consulta">
+
+        <label for="medico">
+          Médico responsável
+        </label>
+
+        <input
+          id="medico"
+          placeholder="Nome do médico"
+        >
+
+      </div>
 
 
-    /* =====================================================
-       VARIÁVEIS
-    ===================================================== */
+      <div class="campo-consulta">
 
-    let triagensCarregadas = [];
+        <label for="crm">
+          CRM
+        </label>
 
-    let pacienteSelecionado = null;
+        <input
+          id="crm"
+          placeholder="CRM"
+        >
 
-    let consultaSalvando = false;
+      </div>
 
-    let altaProcessando = false;
+    </div>
 
-    let tvChamando = false;
+  </div>
 
 
-    /* =====================================================
-       ESCAPAR HTML
-    ===================================================== */
+  <!-- BOTÕES -->
 
-    function escapeHTML(valor) {
+  <div class="botoes-consulta">
 
-      return String(valor ?? "")
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;")
-        .replace(/'/g, "&#039;");
+    <button
+      type="button"
+      onclick="salvar()"
+    >
+      💾 Salvar Consulta
+    </button>
+
+
+    <button
+      type="button"
+      class="btn-alta"
+      id="btn-alta"
+      onclick="darAlta()"
+    >
+      🏠 Dar Alta e Gerar PDF
+    </button>
+
+  </div>
+
+</div>
+
+
+<script>
+
+
+// =====================================================
+// VARIÁVEIS
+// =====================================================
+
+let triagensCarregadas = [];
+
+let pacienteSelecionado = null;
+
+let consultaSalvando = false;
+
+let altaProcessando = false;
+
+let tvChamando = false;
+
+
+// =====================================================
+// ESCAPAR HTML
+// =====================================================
+
+function escapeHTML(valor) {
+
+  return String(valor ?? "")
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
+
+}
+
+
+// =====================================================
+// ABRIR TV
+// =====================================================
+
+function abrirTV() {
+
+  window.open(
+    "tv.html",
+    "_blank"
+  );
+
+}
+
+
+// =====================================================
+// CONSULTÓRIO
+// =====================================================
+
+function obterConsultorio() {
+
+  let valor =
+    document
+      .getElementById("consultorio-num")
+      .value
+      .trim();
+
+  if (!valor) {
+    valor = "01";
+  }
+
+  valor =
+    valor.replace(/\D/g, "");
+
+  if (!valor) {
+    valor = "01";
+  }
+
+  valor =
+    valor.padStart(2, "0");
+
+  const numero =
+    parseInt(valor, 10);
+
+  if (
+    numero < 1 ||
+    numero > 99
+  ) {
+
+    valor = "01";
+
+  }
+
+  document
+    .getElementById("consultorio-num")
+    .value = valor;
+
+  return valor;
+
+}
+
+
+// =====================================================
+// CARREGAR TRIAGENS
+// =====================================================
+
+async function carregar() {
+
+  try {
+
+    const response =
+      await fetch(
+        "/triagens",
+        {
+          cache: "no-store"
+        }
+      );
+
+    if (!response.ok) {
+
+      throw new Error(
+        "Erro HTTP " +
+        response.status
+      );
+
+    }
+
+    const data =
+      await response.json();
+
+    if (!Array.isArray(data)) {
+
+      throw new Error(
+        "O servidor retornou dados inválidos."
+      );
+
+    }
+
+    triagensCarregadas = data;
+
+    renderizarTriagens();
+
+  }
+
+  catch (error) {
+
+    console.error(
+      "Erro ao carregar triagens:",
+      error
+    );
+
+    document
+      .getElementById("triagens")
+      .innerHTML = `
+        <div class="erro">
+          ❌ Não foi possível carregar os pacientes.
+          <br>
+          <small>
+            ${escapeHTML(error.message)}
+          </small>
+        </div>
+      `;
+
+  }
+
+}
+
+
+// =====================================================
+// RENDERIZAR TRIAGENS
+// =====================================================
+
+function renderizarTriagens() {
+
+  const div =
+    document.getElementById("triagens");
+
+  div.innerHTML = "";
+
+  if (
+    triagensCarregadas.length === 0
+  ) {
+
+    div.innerHTML = `
+      <div class="mensagem-vazia">
+        Nenhum paciente na fila.
+      </div>
+    `;
+
+    return;
+
+  }
+
+
+  triagensCarregadas.forEach(
+    (t, index) => {
+
+      const card =
+        document.createElement("div");
+
+      card.className =
+        "card";
+
+
+      if (
+        pacienteSelecionado &&
+        pacienteSelecionado.index === index
+      ) {
+
+        card.classList.add(
+          "card-atendimento"
+        );
+
+      }
+
+
+      const nome =
+        escapeHTML(
+          t.nome || "Paciente"
+        );
+
+      const sintoma =
+        escapeHTML(
+          t.sintoma || "Não informado"
+        );
+
+      const temperatura =
+        escapeHTML(
+          t.temperatura || "Não informada"
+        );
+
+      const risco =
+        escapeHTML(
+          t.risco || "Não informado"
+        );
+
+      const alergia =
+        escapeHTML(
+          t.alergia || "Nenhuma"
+        );
+
+      const observacao =
+        escapeHTML(
+          t.observacao || "Nenhuma"
+        );
+
+
+      card.innerHTML = `
+
+        <h3>${nome}</h3>
+
+        <p>
+          <b>Sintoma:</b>
+          ${sintoma}
+        </p>
+
+        <p>
+          <b>Temperatura:</b>
+          ${temperatura}°C
+        </p>
+
+        <p>
+          <span class="risco">
+            ${risco}
+          </span>
+        </p>
+
+        <p>
+          <b>Alergia:</b>
+          ${alergia}
+        </p>
+
+        <p>
+          <b>Observação:</b>
+          ${observacao}
+        </p>
+
+        <div
+          style="
+            display:flex;
+            gap:8px;
+            flex-wrap:wrap;
+          "
+        >
+
+          <button
+            type="button"
+            class="btn-atender"
+          >
+            👨‍⚕️ Atender
+          </button>
+
+          <button
+            type="button"
+            class="btn-tv"
+          >
+            📺 Chamar na TV
+          </button>
+
+        </div>
+
+      `;
+
+
+      card
+        .querySelector(".btn-atender")
+        .addEventListener(
+          "click",
+          () => selecionar(index)
+        );
+
+
+      card
+        .querySelector(".btn-tv")
+        .addEventListener(
+          "click",
+          () =>
+            chamarNaTV(
+              t.nome,
+              card.querySelector(".btn-tv")
+            )
+        );
+
+
+      div.appendChild(card);
+
+    }
+  );
+
+}
+
+
+// =====================================================
+// CHAMAR NA TV
+// =====================================================
+
+async function chamarNaTV(
+  nome,
+  botao
+) {
+
+  if (tvChamando) {
+    return;
+  }
+
+  const paciente =
+    String(nome || "").trim();
+
+  if (!paciente) {
+
+    alert(
+      "Nome do paciente inválido."
+    );
+
+    return;
+
+  }
+
+  const consultorio =
+    obterConsultorio();
+
+  tvChamando = true;
+
+  if (botao) {
+
+    botao.disabled = true;
+
+    botao.textContent =
+      "⏳ Chamando...";
+
+  }
+
+
+  try {
+
+    const response =
+      await fetch(
+        "/tv/chamar",
+        {
+
+          method: "POST",
+
+          headers: {
+            "Content-Type":
+              "application/json"
+          },
+
+          body: JSON.stringify({
+
+            localTipo:
+              "CONSULTÓRIO",
+
+            localNumero:
+              consultorio,
+
+            paciente:
+              paciente
+
+          })
+
+        }
+      );
+
+
+    let resultado = null;
+
+    try {
+
+      resultado =
+        await response.json();
+
+    }
+
+    catch {
+
+      resultado = null;
 
     }
 
 
-    /* =====================================================
-       ABRIR TV
-    ===================================================== */
+    if (!response.ok) {
 
-    function abrirTV() {
-
-      window.open(
-        "tv.html",
-        "_blank"
+      throw new Error(
+        resultado?.erro ||
+        resultado?.message ||
+        "Erro ao chamar paciente na TV."
       );
 
     }
 
 
-    /* =====================================================
-       VALIDAR CONSULTÓRIO
-    ===================================================== */
+    alert(
+      "✅ " +
+      paciente +
+      " foi chamado na TV para o Consultório " +
+      consultorio +
+      "!"
+    );
 
-    function obterConsultorio() {
+  }
 
-      let valor =
-        document
-          .getElementById("consultorio-num")
-          .value
-          .trim();
+  catch (error) {
 
+    console.error(
+      "Erro ao chamar paciente:",
+      error
+    );
 
-      if (!valor) {
+    alert(
+      "❌ Não foi possível chamar o paciente na TV.\n\n" +
+      error.message
+    );
 
-        valor = "01";
+  }
 
-      }
+  finally {
 
+    tvChamando = false;
 
-      valor =
-        valor.replace(/\D/g, "");
+    if (botao) {
 
+      botao.disabled = false;
 
-      if (!valor) {
-
-        valor = "01";
-
-      }
-
-
-      valor =
-        valor.padStart(2, "0");
-
-
-      const numero =
-        parseInt(valor, 10);
-
-
-      if (numero < 1 || numero > 99) {
-
-        valor = "01";
-
-      }
-
-
-      document
-        .getElementById("consultorio-num")
-        .value = valor;
-
-
-      return valor;
+      botao.textContent =
+        "📺 Chamar na TV";
 
     }
 
+  }
 
-    /* =====================================================
-       CARREGAR PACIENTES
-    ===================================================== */
+}
 
-    async function carregar() {
 
-      try {
+// =====================================================
+// LIMPAR FORMULÁRIO
+// =====================================================
 
-        const response =
-          await fetch(
-            "/triagens",
-            {
-              cache: "no-store"
-            }
-          );
+function limparFormulario() {
 
+  document
+    .getElementById("paciente")
+    .value = "";
 
-        if (!response.ok) {
+  document
+    .getElementById("dataNascimento")
+    .value = "";
 
-          throw new Error(
-            "Erro HTTP " +
-            response.status
-          );
+  document
+    .getElementById("cpf")
+    .value = "";
 
-        }
+  document
+    .getElementById("telefone")
+    .value = "";
 
+  document
+    .getElementById("email")
+    .value = "";
 
-        const data =
-          await response.json();
+  document
+    .getElementById("diagnostico")
+    .value = "";
 
+  document
+    .getElementById("medicacao")
+    .value = "";
 
-        if (!Array.isArray(data)) {
+  document
+    .getElementById("procedimento")
+    .value = "";
 
-          throw new Error(
-            "O servidor retornou dados inválidos."
-          );
+  document
+    .getElementById("orientacoes")
+    .value = "";
 
-        }
+  document
+    .getElementById("obs")
+    .value = "";
 
+  document
+    .getElementById("medico")
+    .value = "";
 
-        triagensCarregadas = data;
+  document
+    .getElementById("crm")
+    .value = "";
 
+}
 
-        renderizarTriagens();
 
-      }
+// =====================================================
+// SELECIONAR PACIENTE
+// =====================================================
 
+async function selecionar(index) {
 
-      catch (error) {
+  const t =
+    triagensCarregadas[index];
 
-        console.error(
-          "Erro ao carregar triagens:",
-          error
-        );
+  if (!t) {
 
+    alert(
+      "Paciente não encontrado."
+    );
 
-        document
-          .getElementById("triagens")
-          .innerHTML = `
+    return;
 
-            <div class="erro">
+  }
 
-              ❌ Não foi possível carregar os pacientes.
 
-              <br>
+  pacienteSelecionado = {
 
-              <small>
-                ${escapeHTML(error.message)}
-              </small>
+    index: index,
 
-            </div>
+    id:
+      t.pacienteId ??
+      t.id ??
+      null,
 
-          `;
+    nome:
+      t.nome
 
-      }
+  };
 
-    }
 
+  document
+    .getElementById("paciente")
+    .value =
+    t.nome || "";
 
-    /* =====================================================
-       RENDERIZAR PACIENTES
-       
-       MOSTRA SOMENTE 5 PACIENTES
-    ===================================================== */
 
-    function renderizarTriagens() {
+  document
+    .getElementById("obs")
+    .value =
+    t.observacao || "";
 
-      const div =
-        document.getElementById("triagens");
 
+  document
+    .getElementById("diagnostico")
+    .value = "";
 
-      div.innerHTML = "";
+  document
+    .getElementById("medicacao")
+    .value = "";
 
+  document
+    .getElementById("procedimento")
+    .value = "";
 
-      if (
-        triagensCarregadas.length === 0
-      ) {
+  document
+    .getElementById("orientacoes")
+    .value = "";
 
-        div.innerHTML = `
 
-          <div class="mensagem-vazia">
+  /*
+   * Tenta buscar os dados completos
+   * do paciente no cadastro.
+   */
 
-            Nenhum paciente na fila.
+  if (t.pacienteId) {
 
-          </div>
+    try {
 
-        `;
-
-        return;
-
-      }
-
-
-      /*
-       * Mostra somente os primeiros 5 pacientes.
-       * Não cria pacientes fictícios.
-       * Todos continuam vindo do backend.
-       */
-
-      const pacientesExibidos =
-        triagensCarregadas.slice(0, 5);
-
-
-      pacientesExibidos.forEach(
-        (t, index) => {
-
-
-          const card =
-            document.createElement("div");
-
-
-          card.className = "card";
-
-
-          /*
-           * Destaca paciente selecionado.
-           */
-
-          if (
-            pacienteSelecionado &&
-            pacienteSelecionado.index === index
-          ) {
-
-            card.classList.add(
-              "card-atendimento"
-            );
-
-          }
-
-
-          const nome =
-            escapeHTML(
-              t.nome || "Paciente"
-            );
-
-
-          const sintoma =
-            escapeHTML(
-              t.sintoma || "Não informado"
-            );
-
-
-          const temperatura =
-            escapeHTML(
-              t.temperatura || "Não informada"
-            );
-
-
-          const risco =
-            escapeHTML(
-              t.risco || "Não informado"
-            );
-
-
-          const alergia =
-            escapeHTML(
-              t.alergia || "Nenhuma"
-            );
-
-
-          const observacao =
-            escapeHTML(
-              t.observacao || "Nenhuma"
-            );
-
-
-          card.innerHTML = `
-
-            <h3>
-              ${nome}
-            </h3>
-
-
-            <p>
-
-              <b>Sintoma:</b>
-
-              ${sintoma}
-
-            </p>
-
-
-            <p>
-
-              <b>Temperatura:</b>
-
-              ${temperatura}°C
-
-            </p>
-
-
-            <p>
-
-              <span class="risco">
-
-                ${risco}
-
-              </span>
-
-            </p>
-
-
-            <p>
-
-              <b>Alergia:</b>
-
-              ${alergia}
-
-            </p>
-
-
-            <p>
-
-              <b>Observação:</b>
-
-              ${observacao}
-
-            </p>
-
-
-            <div
-              style="
-                display:flex;
-                gap:8px;
-                flex-wrap:wrap;
-              "
-            >
-
-
-              <button
-                type="button"
-                class="btn-atender">
-
-                👨‍⚕️ Atender
-
-              </button>
-
-
-              <button
-                type="button"
-                class="btn-tv">
-
-                📺 Chamar na TV
-
-              </button>
-
-
-            </div>
-
-          `;
-
-
-          /* =================================================
-             BOTÃO ATENDER
-          ================================================= */
-
-          const btnAtender =
-            card.querySelector(
-              ".btn-atender"
-            );
-
-
-          btnAtender.addEventListener(
-            "click",
-            () => {
-
-              selecionar(index);
-
-            }
-          );
-
-
-          /* =================================================
-             BOTÃO TV
-          ================================================= */
-
-          const btnTV =
-            card.querySelector(
-              ".btn-tv"
-            );
-
-
-          btnTV.addEventListener(
-            "click",
-            () => {
-
-              chamarNaTV(
-                t.nome,
-                btnTV
-              );
-
-            }
-          );
-
-
-          div.appendChild(card);
-
-        }
-      );
-
-
-      /*
-       * Informa se existem mais pacientes
-       * além dos 5 exibidos.
-       */
-
-      if (
-        triagensCarregadas.length > 5
-      ) {
-
-        const aviso =
-          document.createElement("p");
-
-
-        aviso.style.color = "#777";
-
-        aviso.style.textAlign = "center";
-
-        aviso.textContent =
-          `Existem ${
-            triagensCarregadas.length - 5
-          } paciente(s) aguardando na fila.`;
-
-
-        div.appendChild(aviso);
-
-      }
-
-    }
-
-
-    /* =====================================================
-       CHAMAR PACIENTE NA TV
-    ===================================================== */
-
-    async function chamarNaTV(
-      nome,
-      botao
-    ) {
-
-
-      if (tvChamando) {
-
-        return;
-
-      }
-
-
-      const paciente =
-        String(nome || "").trim();
-
-
-      if (!paciente) {
-
-        alert(
-          "Nome do paciente inválido."
-        );
-
-        return;
-
-      }
-
-
-      const consultorio =
-        obterConsultorio();
-
-
-      tvChamando = true;
-
-
-      if (botao) {
-
-        botao.disabled = true;
-
-        botao.textContent =
-          "⏳ Chamando...";
-
-      }
-
-
-      try {
-
-        const response =
-          await fetch(
-            "/tv/chamar",
-            {
-
-              method: "POST",
-
-              headers: {
-                "Content-Type":
-                  "application/json"
-              },
-
-              body: JSON.stringify({
-
-                localTipo:
-                  "CONSULTÓRIO",
-
-                localNumero:
-                  consultorio,
-
-                paciente:
-                  paciente
-
-              })
-
-            }
-          );
-
-
-        let resultado = null;
-
-
-        try {
-
-          resultado =
-            await response.json();
-
-        }
-
-        catch {
-
-          resultado = null;
-
-        }
-
-
-        if (!response.ok) {
-
-          throw new Error(
-            resultado?.erro ||
-            resultado?.message ||
-            "Erro ao chamar paciente na TV."
-          );
-
-        }
-
-
-        alert(
-          "✅ " +
-          paciente +
-          " foi chamado na TV para o Consultório " +
-          consultorio +
-          "!"
-        );
-
-      }
-
-
-      catch (error) {
-
-        console.error(
-          "Erro ao chamar paciente:",
-          error
-        );
-
-
-        alert(
-          "❌ Não foi possível chamar o paciente na TV.\n\n" +
-          error.message
-        );
-
-      }
-
-
-      finally {
-
-        tvChamando = false;
-
-
-        if (botao) {
-
-          botao.disabled = false;
-
-          botao.textContent =
-            "📺 Chamar na TV";
-
-        }
-
-      }
-
-    }
-
-
-    /* =====================================================
-       SELECIONAR PACIENTE
-    ===================================================== */
-
-    function selecionar(index) {
-
-
-      const t =
-        triagensCarregadas[index];
-
-
-      if (!t) {
-
-        alert(
-          "Paciente não encontrado."
-        );
-
-        return;
-
-      }
-
-
-      pacienteSelecionado = {
-
-        index: index,
-
-        id: t.id ?? null,
-
-        nome: t.nome
-
-      };
-
-
-      /*
-       * Preenche o paciente.
-       */
-
-      document
-        .getElementById("paciente")
-        .value =
-        t.nome || "";
-
-
-      /*
-       * Puxa observação da triagem.
-       */
-
-      document
-        .getElementById("obs")
-        .value =
-        t.observacao || "";
-
-
-      /*
-       * Limpa campos da nova consulta.
-       */
-
-      document
-        .getElementById("diagnostico")
-        .value = "";
-
-
-      document
-        .getElementById("medicacao")
-        .value = "";
-
-
-      document
-        .getElementById("procedimento")
-        .value = "";
-
-
-      document
-        .getElementById("orientacoes")
-        .value = "";
-
-
-      document
-        .getElementById("data-nascimento")
-        .value = "";
-
-
-      document
-        .getElementById("cpf")
-        .value = "";
-
-
-      /*
-       * Alerta de alergia.
-       */
-
-      if (
-        t.alergia &&
-        t.alergia !== "Nenhuma"
-      ) {
-
-        alert(
-          "⚠️ Paciente possui alergia: " +
-          t.alergia
-        );
-
-      }
-
-
-      renderizarTriagens();
-
-
-      /*
-       * Foco no diagnóstico.
-       */
-
-      document
-        .getElementById("diagnostico")
-        .focus();
-
-    }
-
-
-    /* =====================================================
-       CARREGAR MEDICAÇÕES
-    ===================================================== */
-
-    async function carregarMedicacoes() {
-
-
-      const select =
-        document.getElementById(
-          "medicacao"
-        );
-
-
-      try {
-
-        const response =
-          await fetch(
-            "/lista-medicacoes",
-            {
-              cache: "no-store"
-            }
-          );
-
-
-        if (!response.ok) {
-
-          throw new Error(
-            "Erro HTTP " +
-            response.status
-          );
-
-        }
-
-
-        const data =
-          await response.json();
-
-
-        if (!Array.isArray(data)) {
-
-          throw new Error(
-            "Lista de medicações inválida."
-          );
-
-        }
-
-
-        select.innerHTML = "";
-
-
-        const primeiraOpcao =
-          document.createElement(
-            "option"
-          );
-
-
-        primeiraOpcao.value = "";
-
-        primeiraOpcao.textContent =
-          "Selecione a medicação";
-
-
-        select.appendChild(
-          primeiraOpcao
-        );
-
-
-        /*
-         * Opção sem medicação.
-         */
-
-        const nenhuma =
-          document.createElement(
-            "option"
-          );
-
-
-        nenhuma.value =
-          "Nenhuma";
-
-
-        nenhuma.textContent =
-          "Nenhuma";
-
-
-        select.appendChild(
-          nenhuma
-        );
-
-
-        data.forEach(
-          med => {
-
-
-            const option =
-              document.createElement(
-                "option"
-              );
-
-
-            option.value =
-              String(med);
-
-
-            option.textContent =
-              String(med);
-
-
-            select.appendChild(
-              option
-            );
-
+      const response =
+        await fetch(
+          "/pacientes/" +
+          encodeURIComponent(
+            t.pacienteId
+          ),
+          {
+            cache: "no-store"
           }
         );
 
-      }
+
+      if (response.ok) {
+
+        const paciente =
+          await response.json();
 
 
-      catch (error) {
-
-        console.error(
-          "Erro ao carregar medicações:",
-          error
-        );
-
-
-        select.innerHTML = `
-
-          <option value="">
-
-            Erro ao carregar medicações
-
-          </option>
-
-        `;
-
-      }
-
-    }
-
-
-    /* =====================================================
-       OBTER DADOS DA CONSULTA / ALTA
-    ===================================================== */
-
-    function obterDadosConsulta() {
-
-
-      const paciente =
         document
           .getElementById("paciente")
-          .value
-          .trim();
+          .value =
+          paciente.nome || t.nome || "";
 
 
-      const dataNascimento =
         document
-          .getElementById("data-nascimento")
-          .value
-          .trim();
-
-
-      const cpf =
-        document
-          .getElementById("cpf")
-          .value
-          .trim();
-
-
-      const diagnostico =
-        document
-          .getElementById("diagnostico")
-          .value
-          .trim();
-
-
-      const medicacao =
-        document
-          .getElementById("medicacao")
-          .value
-          .trim();
-
-
-      const procedimento =
-        document
-          .getElementById("procedimento")
-          .value
-          .trim();
-
-
-      const orientacoes =
-        document
-          .getElementById("orientacoes")
-          .value
-          .trim();
-
-
-      const obs =
-        document
-          .getElementById("obs")
-          .value
-          .trim();
-
-
-      const medico =
-        document
-          .getElementById("medico")
-          .value
-          .trim();
-
-
-      const crm =
-        document
-          .getElementById("crm")
-          .value
-          .trim();
-
-
-      return {
-
-        paciente,
-
-        pacienteId:
-          pacienteSelecionado?.id ?? null,
-
-        dataNascimento,
-
-        cpf,
-
-        diagnostico,
-
-        medicacao,
-
-        procedimento,
-
-        orientacoes,
-
-        obs,
-
-        medico,
-
-        crm
-
-      };
-
-    }
-
-
-    /* =====================================================
-       SALVAR CONSULTA
-    ===================================================== */
-
-    async function salvar() {
-
-
-      if (consultaSalvando) {
-
-        return;
-
-      }
-
-
-      const dados =
-        obterDadosConsulta();
-
-
-      if (!dados.paciente) {
-
-        alert(
-          "⚠️ Selecione um paciente clicando em 'Atender'."
-        );
-
-        return;
-
-      }
-
-
-      if (!dados.diagnostico) {
-
-        alert(
-          "⚠️ Informe o diagnóstico."
-        );
+          .getElementById("dataNascimento")
+          .value =
+          paciente.dataNascimento || "";
 
 
         document
-          .getElementById("diagnostico")
-          .focus();
+          .getElementById("cpf")
+          .value =
+          paciente.cpf || "";
 
 
-        return;
-
-      }
-
-
-      if (!dados.medicacao) {
-
-        alert(
-          "⚠️ Selecione uma medicação ou escolha 'Nenhuma'."
-        );
-
-        return;
-
-      }
+        document
+          .getElementById("telefone")
+          .value =
+          paciente.telefone || "";
 
 
-      consultaSalvando = true;
+        document
+          .getElementById("email")
+          .value =
+          paciente.email || "";
 
 
-      try {
-
-        const response =
-          await fetch(
-            "/consulta",
-            {
-
-              method: "POST",
-
-              headers: {
-                "Content-Type":
-                  "application/json"
-              },
-
-              body: JSON.stringify({
-
-                paciente:
-                  dados.paciente,
-
-                pacienteId:
-                  dados.pacienteId,
-
-                dataNascimento:
-                  dados.dataNascimento,
-
-                cpf:
-                  dados.cpf,
-
-                diagnostico:
-                  dados.diagnostico,
-
-                medicacao:
-                  dados.medicacao,
-
-                procedimento:
-                  dados.procedimento,
-
-                orientacoes:
-                  dados.orientacoes,
-
-                obs:
-                  dados.obs,
-
-                medico:
-                  dados.medico,
-
-                crm:
-                  dados.crm
-
-              })
-
-            }
-          );
-
-
-        let resultado = null;
-
-
-        try {
-
-          resultado =
-            await response.json();
-
-        }
-
-        catch {
-
-          resultado = null;
-
-        }
-
-
-        if (!response.ok) {
-
-          throw new Error(
-            resultado?.erro ||
-            resultado?.message ||
-            "Erro ao salvar consulta."
-          );
-
-        }
-
-
-        alert(
-          "✅ Consulta salva com sucesso!"
-        );
-
-      }
-
-
-      catch (error) {
-
-        console.error(
-          "Erro ao salvar consulta:",
-          error
-        );
-
-
-        alert(
-          "❌ Não foi possível salvar a consulta.\n\n" +
-          error.message
-        );
-
-      }
-
-
-      finally {
-
-        consultaSalvando = false;
+        pacienteSelecionado.id =
+          paciente.id;
 
       }
 
     }
 
+    catch (error) {
 
-    /* =====================================================
-       DAR ALTA + GERAR PDF
-    ===================================================== */
+      console.warn(
+        "Não foi possível carregar os dados completos do paciente:",
+        error
+      );
 
-    async function darAlta() {
+    }
 
+  }
 
-      if (altaProcessando) {
 
-        return;
+  /*
+   * Alerta de alergia.
+   */
 
-      }
+  if (
+    t.alergia &&
+    t.alergia !== "Nenhuma"
+  ) {
 
+    alert(
+      "⚠️ Paciente possui alergia: " +
+      t.alergia
+    );
 
-      const dados =
-        obterDadosConsulta();
+  }
 
 
-      /* -----------------------------------------------------
-         VALIDAÇÕES
-      ----------------------------------------------------- */
+  renderizarTriagens();
 
-      if (!dados.paciente) {
 
-        alert(
-          "⚠️ Primeiro selecione um paciente em 'Atender'."
-        );
+  document
+    .getElementById("diagnostico")
+    .focus();
 
-        return;
+}
 
-      }
 
+// =====================================================
+// CARREGAR MEDICAÇÕES
+// =====================================================
 
-      if (!dados.diagnostico) {
+async function carregarMedicacoes() {
 
-        alert(
-          "⚠️ Informe o diagnóstico antes de dar alta."
-        );
+  const select =
+    document.getElementById(
+      "medicacao"
+    );
 
 
-        document
-          .getElementById("diagnostico")
-          .focus();
+  try {
 
-
-        return;
-
-      }
-
-
-      if (!dados.medicacao) {
-
-        alert(
-          "⚠️ Selecione uma medicação ou escolha 'Nenhuma'."
-        );
-
-        return;
-
-      }
-
-
-      if (!dados.procedimento) {
-
-        alert(
-          "⚠️ Informe o procedimento realizado."
-        );
-
-
-        document
-          .getElementById("procedimento")
-          .focus();
-
-
-        return;
-
-      }
-
-
-      if (!dados.orientacoes) {
-
-        alert(
-          "⚠️ Informe as orientações para o paciente."
-        );
-
-
-        document
-          .getElementById("orientacoes")
-          .focus();
-
-
-        return;
-
-      }
-
-
-      /* -----------------------------------------------------
-         CONFIRMAÇÃO
-      ----------------------------------------------------- */
-
-      const confirmar =
-        confirm(
-          "Deseja realmente dar alta para " +
-          dados.paciente +
-          " e gerar o PDF de alta?"
-        );
-
-
-      if (!confirmar) {
-
-        return;
-
-      }
-
-
-      /* -----------------------------------------------------
-         ABRIR ABA ANTES DO FETCH
-      ----------------------------------------------------- */
-
-      const novaAba =
-        window.open(
-          "",
-          "_blank"
-        );
-
-
-      if (!novaAba) {
-
-        alert(
-          "⚠️ O navegador bloqueou a nova aba.\n\n" +
-          "Permita pop-ups para este site e tente novamente."
-        );
-
-        return;
-
-      }
-
-
-      altaProcessando = true;
-
-
-      const btnAlta =
-        document.getElementById(
-          "btn-alta"
-        );
-
-
-      btnAlta.disabled = true;
-
-
-      btnAlta.textContent =
-        "⏳ Gerando PDF...";
-
-
-      try {
-
-
-        /* -------------------------------------------------
-           ENVIA TODOS OS DADOS PARA O BACKEND
-        ------------------------------------------------- */
-
-        const response =
-          await fetch(
-            "/alta",
-            {
-
-              method: "POST",
-
-              headers: {
-
-                "Content-Type":
-                  "application/json"
-
-              },
-
-              body: JSON.stringify({
-
-                paciente:
-                  dados.paciente,
-
-                pacienteId:
-                  dados.pacienteId,
-
-                dataNascimento:
-                  dados.dataNascimento,
-
-                cpf:
-                  dados.cpf,
-
-                diagnostico:
-                  dados.diagnostico,
-
-                medicacao:
-                  dados.medicacao,
-
-                procedimento:
-                  dados.procedimento,
-
-                orientacoes:
-                  dados.orientacoes,
-
-                obs:
-                  dados.obs,
-
-                medico:
-                  dados.medico,
-
-                crm:
-                  dados.crm
-
-              })
-
-            }
-          );
-
-
-        /* -------------------------------------------------
-           TRATAMENTO DE ERRO
-        ------------------------------------------------- */
-
-        if (!response.ok) {
-
-
-          let mensagem =
-            "Erro ao gerar alta.";
-
-
-          try {
-
-            const erro =
-              await response.json();
-
-
-            mensagem =
-              erro.erro ||
-              erro.message ||
-              mensagem;
-
-          }
-
-
-          catch {
-
-            try {
-
-              const texto =
-                await response.text();
-
-
-              if (texto) {
-
-                mensagem = texto;
-
-              }
-
-            }
-
-
-            catch {}
-
-          }
-
-
-          throw new Error(
-            mensagem
-          );
-
+    const response =
+      await fetch(
+        "/lista-medicacoes",
+        {
+          cache: "no-store"
         }
+      );
 
 
-        /* -------------------------------------------------
-           VERIFICAR PDF
-        ------------------------------------------------- */
+    if (!response.ok) {
 
-        const contentType =
-          response.headers.get(
-            "content-type"
-          ) || "";
+      throw new Error(
+        "Erro HTTP " +
+        response.status
+      );
+
+    }
 
 
-        if (
-          !contentType.includes(
-            "application/pdf"
-          )
-        ) {
+    const data =
+      await response.json();
 
-          console.warn(
-            "O servidor não informou application/pdf."
+
+    if (!Array.isArray(data)) {
+
+      throw new Error(
+        "Lista de medicações inválida."
+      );
+
+    }
+
+
+    select.innerHTML = "";
+
+
+    const primeiraOpcao =
+      document.createElement(
+        "option"
+      );
+
+    primeiraOpcao.value = "";
+
+    primeiraOpcao.textContent =
+      "Selecione a medicação";
+
+    select.appendChild(
+      primeiraOpcao
+    );
+
+
+    const nenhuma =
+      document.createElement(
+        "option"
+      );
+
+    nenhuma.value =
+      "Nenhuma";
+
+    nenhuma.textContent =
+      "Nenhuma";
+
+    select.appendChild(
+      nenhuma
+    );
+
+
+    data.forEach(
+      med => {
+
+        const option =
+          document.createElement(
+            "option"
           );
 
-        }
+        option.value =
+          String(med);
 
+        option.textContent =
+          String(med);
 
-        const blob =
-          await response.blob();
-
-
-        if (
-          !blob ||
-          blob.size === 0
-        ) {
-
-          throw new Error(
-            "O servidor retornou um PDF vazio."
-          );
-
-        }
-
-
-        /* -------------------------------------------------
-           CRIAR URL DO PDF
-        ------------------------------------------------- */
-
-        const url =
-          window.URL.createObjectURL(
-            blob
-          );
-
-
-        /* -------------------------------------------------
-           MOSTRAR PDF
-        ------------------------------------------------- */
-
-        novaAba.location.href =
-          url;
-
-
-        /* -------------------------------------------------
-           LIMPAR FORMULÁRIO
-        ------------------------------------------------- */
-
-        limparFormulario();
-
-
-        pacienteSelecionado =
-          null;
-
-
-        /* -------------------------------------------------
-           ATUALIZAR FILA
-        ------------------------------------------------- */
-
-        await carregar();
-
-
-        alert(
-          "✅ Alta realizada com sucesso!"
+        select.appendChild(
+          option
         );
 
+      }
+    );
 
-        /* -------------------------------------------------
-           LIBERAR URL TEMPORÁRIA
-        ------------------------------------------------- */
+  }
 
-        setTimeout(
-          () => {
+  catch (error) {
 
-            window.URL.revokeObjectURL(
-              url
-            );
+    console.error(
+      "Erro ao carregar medicações:",
+      error
+    );
 
+    select.innerHTML = `
+      <option value="">
+        Erro ao carregar medicações
+      </option>
+    `;
+
+  }
+
+}
+
+
+// =====================================================
+// PEGAR DADOS DA CONSULTA
+// =====================================================
+
+function obterDadosConsulta() {
+
+  return {
+
+    paciente:
+      document
+        .getElementById("paciente")
+        .value
+        .trim(),
+
+    pacienteId:
+      pacienteSelecionado?.id ??
+      null,
+
+    dataNascimento:
+      document
+        .getElementById("dataNascimento")
+        .value
+        .trim(),
+
+    cpf:
+      document
+        .getElementById("cpf")
+        .value
+        .trim(),
+
+    telefone:
+      document
+        .getElementById("telefone")
+        .value
+        .trim(),
+
+    email:
+      document
+        .getElementById("email")
+        .value
+        .trim(),
+
+    diagnostico:
+      document
+        .getElementById("diagnostico")
+        .value
+        .trim(),
+
+    medicacao:
+      document
+        .getElementById("medicacao")
+        .value
+        .trim(),
+
+    procedimento:
+      document
+        .getElementById("procedimento")
+        .value
+        .trim(),
+
+    orientacoes:
+      document
+        .getElementById("orientacoes")
+        .value
+        .trim(),
+
+    obs:
+      document
+        .getElementById("obs")
+        .value
+        .trim(),
+
+    medico:
+      document
+        .getElementById("medico")
+        .value
+        .trim(),
+
+    crm:
+      document
+        .getElementById("crm")
+        .value
+        .trim()
+
+  };
+
+}
+
+
+// =====================================================
+// SALVAR CONSULTA
+// =====================================================
+
+async function salvar() {
+
+  if (consultaSalvando) {
+    return;
+  }
+
+
+  const dados =
+    obterDadosConsulta();
+
+
+  if (!dados.paciente) {
+
+    alert(
+      "⚠️ Selecione um paciente clicando em 'Atender'."
+    );
+
+    return;
+
+  }
+
+
+  if (!dados.diagnostico) {
+
+    alert(
+      "⚠️ Informe o diagnóstico."
+    );
+
+    document
+      .getElementById("diagnostico")
+      .focus();
+
+    return;
+
+  }
+
+
+  if (!dados.medicacao) {
+
+    alert(
+      "⚠️ Selecione uma medicação ou escolha 'Nenhuma'."
+    );
+
+    return;
+
+  }
+
+
+  consultaSalvando = true;
+
+
+  try {
+
+    const response =
+      await fetch(
+        "/consulta",
+        {
+
+          method: "POST",
+
+          headers: {
+            "Content-Type":
+              "application/json"
           },
-          60000
-        );
+
+          body: JSON.stringify(
+            dados
+          )
+
+        }
+      );
+
+
+    let resultado = null;
+
+    try {
+
+      resultado =
+        await response.json();
+
+    }
+
+    catch {
+
+      resultado = null;
+
+    }
+
+
+    if (!response.ok) {
+
+      throw new Error(
+        resultado?.erro ||
+        resultado?.message ||
+        "Erro ao salvar consulta."
+      );
+
+    }
+
+
+    alert(
+      "✅ Consulta salva com sucesso!"
+    );
+
+
+    document
+      .getElementById("diagnostico")
+      .value = "";
+
+    document
+      .getElementById("medicacao")
+      .value = "";
+
+    document
+      .getElementById("procedimento")
+      .value = "";
+
+    document
+      .getElementById("orientacoes")
+      .value = "";
+
+  }
+
+  catch (error) {
+
+    console.error(
+      "Erro ao salvar consulta:",
+      error
+    );
+
+    alert(
+      "❌ Não foi possível salvar a consulta.\n\n" +
+      error.message
+    );
+
+  }
+
+  finally {
+
+    consultaSalvando = false;
+
+  }
+
+}
+
+
+// =====================================================
+// DAR ALTA + PDF
+// =====================================================
+
+async function darAlta() {
+
+  if (altaProcessando) {
+    return;
+  }
+
+
+  const dados =
+    obterDadosConsulta();
+
+
+  if (!dados.paciente) {
+
+    alert(
+      "⚠️ Primeiro selecione um paciente em 'Atender'."
+    );
+
+    return;
+
+  }
+
+
+  if (!dados.diagnostico) {
+
+    alert(
+      "⚠️ Informe o diagnóstico antes de dar alta."
+    );
+
+    document
+      .getElementById("diagnostico")
+      .focus();
+
+    return;
+
+  }
+
+
+  if (!dados.medicacao) {
+
+    alert(
+      "⚠️ Selecione uma medicação ou escolha 'Nenhuma'."
+    );
+
+    return;
+
+  }
+
+
+  const confirmar =
+    confirm(
+      "Deseja realmente dar alta para " +
+      dados.paciente +
+      " e gerar o PDF de alta?"
+    );
+
+
+  if (!confirmar) {
+    return;
+  }
+
+
+  const novaAba =
+    window.open(
+      "",
+      "_blank"
+    );
+
+
+  if (!novaAba) {
+
+    alert(
+      "⚠️ O navegador bloqueou a nova aba.\n\n" +
+      "Permita pop-ups para este site e tente novamente."
+    );
+
+    return;
+
+  }
+
+
+  altaProcessando = true;
+
+
+  const btnAlta =
+    document.getElementById(
+      "btn-alta"
+    );
+
+
+  btnAlta.disabled = true;
+
+  btnAlta.textContent =
+    "⏳ Gerando PDF...";
+
+
+  try {
+
+    const response =
+      await fetch(
+        "/alta",
+        {
+
+          method: "POST",
+
+          headers: {
+            "Content-Type":
+              "application/json"
+          },
+
+          body: JSON.stringify(
+            dados
+          )
+
+        }
+      );
+
+
+    if (!response.ok) {
+
+      let mensagem =
+        "Erro ao gerar alta.";
+
+
+      try {
+
+        const erro =
+          await response.json();
+
+        mensagem =
+          erro.erro ||
+          erro.message ||
+          mensagem;
 
       }
 
-
-      catch (error) {
-
-        console.error(
-          "Erro ao gerar alta:",
-          error
-        );
-
+      catch {
 
         try {
 
-          novaAba.close();
+          const texto =
+            await response.text();
+
+          if (texto) {
+            mensagem = texto;
+          }
 
         }
 
         catch {}
 
-
-        alert(
-          "❌ Não foi possível gerar o PDF de alta.\n\n" +
-          error.message
-        );
-
       }
 
 
-      finally {
-
-        altaProcessando = false;
-
-
-        btnAlta.disabled = false;
-
-
-        btnAlta.textContent =
-          "🏠 Dar Alta e Gerar PDF";
-
-      }
+      throw new Error(
+        mensagem
+      );
 
     }
 
 
-    /* =====================================================
-       LIMPAR FORMULÁRIO
-    ===================================================== */
-
-    function limparFormulario() {
+    const blob =
+      await response.blob();
 
 
-      document
-        .getElementById("paciente")
-        .value = "";
+    if (
+      !blob ||
+      blob.size === 0
+    ) {
 
-
-      document
-        .getElementById("data-nascimento")
-        .value = "";
-
-
-      document
-        .getElementById("cpf")
-        .value = "";
-
-
-      document
-        .getElementById("diagnostico")
-        .value = "";
-
-
-      document
-        .getElementById("medicacao")
-        .value = "";
-
-
-      document
-        .getElementById("procedimento")
-        .value = "";
-
-
-      document
-        .getElementById("orientacoes")
-        .value = "";
-
-
-      document
-        .getElementById("obs")
-        .value = "";
-
-
-      /*
-       * Médico e CRM não são apagados,
-       * pois normalmente permanecem os mesmos
-       * durante os atendimentos.
-       */
+      throw new Error(
+        "O servidor retornou um PDF vazio."
+      );
 
     }
 
 
-    /* =====================================================
-       MÁSCARA CPF
-    ===================================================== */
-
-    document
-      .getElementById("cpf")
-      .addEventListener(
-        "input",
-        function () {
-
-
-          let valor =
-            this.value.replace(
-              /\D/g,
-              ""
-            );
-
-
-          valor =
-            valor.substring(
-              0,
-              11
-            );
-
-
-          if (
-            valor.length > 9
-          ) {
-
-            valor =
-              valor.replace(
-                /^(\d{3})(\d{3})(\d{3})(\d{2}).*/,
-                "$1.$2.$3-$4"
-              );
-
-          }
-
-          else if (
-            valor.length > 6
-          ) {
-
-            valor =
-              valor.replace(
-                /^(\d{3})(\d{3})(\d{1,3}).*/,
-                "$1.$2.$3"
-              );
-
-          }
-
-          else if (
-            valor.length > 3
-          ) {
-
-            valor =
-              valor.replace(
-                /^(\d{3})(\d{1,3}).*/,
-                "$1.$2"
-              );
-
-          }
-
-
-          this.value =
-            valor;
-
-        }
+    const url =
+      window.URL.createObjectURL(
+        blob
       );
 
 
-    /* =====================================================
-       INICIALIZAÇÃO
-    ===================================================== */
-
-    async function inicializar() {
+    novaAba.location.href =
+      url;
 
 
-      await Promise.all([
-
-        carregar(),
-
-        carregarMedicacoes()
-
-      ]);
-
-    }
+    limparFormulario();
 
 
-    inicializar();
+    pacienteSelecionado = null;
 
 
-    /* =====================================================
-       ATUALIZA A FILA A CADA 10 SEGUNDOS
-    ===================================================== */
-
-    setInterval(
-      () => {
+    await carregar();
 
 
-        /*
-         * Não atualiza enquanto a alta
-         * estiver sendo processada.
-         */
-
-        if (!altaProcessando) {
-
-          carregar();
-
-        }
-
-      },
-      10000
+    alert(
+      "✅ Alta realizada com sucesso!"
     );
 
 
-    /* =====================================================
-       VALIDAR CONSULTÓRIO
-    ===================================================== */
+    setTimeout(
+      () => {
 
-    document
-      .getElementById("consultorio-num")
-      .addEventListener(
-        "input",
-        function () {
+        window.URL.revokeObjectURL(
+          url
+        );
+
+      },
+      60000
+    );
+
+  }
+
+  catch (error) {
+
+    console.error(
+      "Erro ao gerar alta:",
+      error
+    );
 
 
-          this.value =
-            this.value
-              .replace(/\D/g, "")
-              .slice(0, 2);
+    try {
+      novaAba.close();
+    }
+    catch {}
 
-        }
-      );
 
-  </script>
+    alert(
+      "❌ Não foi possível gerar o PDF de alta.\n\n" +
+      error.message
+    );
+
+  }
+
+  finally {
+
+    altaProcessando = false;
+
+    btnAlta.disabled = false;
+
+    btnAlta.textContent =
+      "🏠 Dar Alta e Gerar PDF";
+
+  }
+
+}
+
+
+// =====================================================
+// INICIALIZAÇÃO
+// =====================================================
+
+async function inicializar() {
+
+  await Promise.all([
+    carregar(),
+    carregarMedicacoes()
+  ]);
+
+}
+
+
+inicializar();
+
+
+// =====================================================
+// ATUALIZA FILA
+// =====================================================
+
+setInterval(
+  () => {
+
+    if (!altaProcessando) {
+      carregar();
+    }
+
+  },
+  10000
+);
+
+
+// =====================================================
+// CONSULTÓRIO
+// =====================================================
+
+document
+  .getElementById(
+    "consultorio-num"
+  )
+  .addEventListener(
+    "input",
+    function () {
+
+      this.value =
+        this.value
+          .replace(/\D/g, "")
+          .slice(0, 2);
+
+    }
+  );
+
+
+</script>
 
 </body>
 
 </html>
+```

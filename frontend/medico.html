@@ -10,6 +10,11 @@
   <link rel="stylesheet" href="css/style.css">
 
   <style>
+
+    /* =====================================================
+       BOTÃO TV
+    ===================================================== */
+
     .btn-tv {
       background: #28a745;
       color: white;
@@ -30,6 +35,11 @@
       cursor: not-allowed;
     }
 
+
+    /* =====================================================
+       BOTÃO ABRIR TV
+    ===================================================== */
+
     .btn-abrir-tv {
       background: #17a2b8;
       color: white;
@@ -43,6 +53,11 @@
     .btn-abrir-tv:hover {
       background: #117a8b;
     }
+
+
+    /* =====================================================
+       CONSULTÓRIO
+    ===================================================== */
 
     .consultorio-input {
       display: flex;
@@ -69,6 +84,11 @@
       border-radius: 4px;
     }
 
+
+    /* =====================================================
+       BOTÃO ALTA
+    ===================================================== */
+
     .btn-alta {
       background: #007bff;
       color: white;
@@ -90,6 +110,11 @@
       cursor: not-allowed;
     }
 
+
+    /* =====================================================
+       BOTÕES CONSULTA
+    ===================================================== */
+
     .botoes-consulta {
       display: flex;
       gap: 8px;
@@ -101,6 +126,11 @@
       cursor: pointer;
     }
 
+
+    /* =====================================================
+       CARDS
+    ===================================================== */
+
     .card {
       margin-bottom: 12px;
     }
@@ -110,11 +140,21 @@
       box-shadow: 0 0 5px rgba(0, 123, 255, 0.25);
     }
 
+
+    /* =====================================================
+       MENSAGEM VAZIA
+    ===================================================== */
+
     .mensagem-vazia {
       color: #888;
       text-align: center;
       padding: 20px;
     }
+
+
+    /* =====================================================
+       ERRO
+    ===================================================== */
 
     .erro {
       color: #dc3545;
@@ -124,20 +164,136 @@
       border: 1px solid #f5c2c7;
     }
 
+
+    /* =====================================================
+       RISCO
+    ===================================================== */
+
     .risco {
       font-weight: bold;
     }
+
+
+    /* =====================================================
+       FORMULÁRIO DE ALTA
+    ===================================================== */
+
+    .form-alta {
+      background: #f8f9fa;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 20px;
+      margin-top: 15px;
+    }
+
+
+    .campo-form {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-bottom: 15px;
+    }
+
+
+    .campo-form label {
+      font-weight: bold;
+      color: #333;
+    }
+
+
+    .campo-form input,
+    .campo-form select,
+    .campo-form textarea {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 14px;
+      font-family: inherit;
+      box-sizing: border-box;
+    }
+
+
+    .campo-form input:focus,
+    .campo-form select:focus,
+    .campo-form textarea:focus {
+      outline: none;
+      border-color: #007bff;
+      box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.1);
+    }
+
+
+    .campo-form textarea {
+      min-height: 90px;
+      resize: vertical;
+    }
+
+
+    .linha-form {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 15px;
+    }
+
+
+    .info-formulario {
+      background: #e9f5ff;
+      border: 1px solid #b8daff;
+      color: #004085;
+      padding: 12px;
+      border-radius: 6px;
+      margin-bottom: 18px;
+      font-size: 14px;
+    }
+
+
+    /* =====================================================
+       RESPONSIVIDADE
+    ===================================================== */
+
+    @media (max-width: 700px) {
+
+      .linha-form {
+        grid-template-columns: 1fr;
+        gap: 0;
+      }
+
+      .consultorio-input {
+        flex-wrap: wrap;
+      }
+
+      .btn-alta {
+        margin-left: 0;
+      }
+
+    }
+
   </style>
 </head>
+
 
 <body>
 
   <div class="container">
 
+    <!-- ===================================================
+         CABEÇALHO
+    =================================================== -->
+
     <header>
+
       <h1>Painel Médico</h1>
-      <p>Atendimento e gerenciamento de pacientes</p>
+
+      <p>
+        Atendimento e gerenciamento de pacientes
+      </p>
+
     </header>
+
+
+    <!-- ===================================================
+         TOPO
+    =================================================== -->
 
     <div style="
       display:flex;
@@ -148,18 +304,25 @@
       flex-wrap:wrap;
     ">
 
-      <h2 style="margin:0;">🩺 Painel Médico</h2>
+      <h2 style="margin:0;">
+        🩺 Painel Médico
+      </h2>
 
       <button
         type="button"
         class="btn-abrir-tv"
         onclick="abrirTV()">
+
         📺 Abrir Tela da TV
+
       </button>
 
     </div>
 
-    <!-- CONSULTÓRIO -->
+
+    <!-- ===================================================
+         CONSULTÓRIO
+    =================================================== -->
 
     <div class="consultorio-input">
 
@@ -176,57 +339,247 @@
         autocomplete="off">
 
       <span style="color:#666; font-size:13px;">
+
         Este número será exibido na TV ao chamar o paciente.
+
       </span>
 
     </div>
 
-    <!-- FILA DE TRIAGEM -->
 
-    <h3>👥 Pacientes aguardando atendimento</h3>
+    <!-- ===================================================
+         FILA DE TRIAGEM
+    =================================================== -->
+
+    <h3>
+      👥 Pacientes aguardando atendimento
+    </h3>
 
     <div id="triagens"></div>
 
+
     <hr>
 
-    <!-- CONSULTA -->
 
-    <h3>🩺 Consulta</h3>
+    <!-- ===================================================
+         FORMULÁRIO DE ALTA
+    =================================================== -->
 
-    <input
-      id="paciente"
-      placeholder="Paciente"
-      readonly>
+    <h3>
+      🏠 Alta do Paciente
+    </h3>
 
-    <input
-      id="diagnostico"
-      placeholder="Diagnóstico">
 
-    <select id="medicacao">
-      <option value="">
-        Selecione a medicação
-      </option>
-    </select>
+    <div class="form-alta">
 
-    <textarea
-      id="obs"
-      placeholder="Observações"></textarea>
 
-    <div class="botoes-consulta">
+      <div class="info-formulario">
 
-      <button
-        type="button"
-        onclick="salvar()">
-        💾 Salvar Consulta
-      </button>
+        ℹ️ Selecione um paciente na fila clicando em
+        <b>"Atender"</b> para preencher a alta.
 
-      <button
-        type="button"
-        class="btn-alta"
-        id="btn-alta"
-        onclick="darAlta()">
-        🏠 Dar Alta e Gerar PDF
-      </button>
+      </div>
+
+
+      <!-- PACIENTE -->
+
+      <div class="campo-form">
+
+        <label for="paciente">
+          Paciente
+        </label>
+
+        <input
+          id="paciente"
+          placeholder="Selecione um paciente"
+          readonly>
+
+      </div>
+
+
+      <!-- DADOS PESSOAIS -->
+
+      <div class="linha-form">
+
+
+        <div class="campo-form">
+
+          <label for="data-nascimento">
+            Data de nascimento
+          </label>
+
+          <input
+            type="date"
+            id="data-nascimento">
+
+        </div>
+
+
+        <div class="campo-form">
+
+          <label for="cpf">
+            CPF
+          </label>
+
+          <input
+            type="text"
+            id="cpf"
+            placeholder="000.000.000-00"
+            maxlength="14">
+
+        </div>
+
+
+      </div>
+
+
+      <!-- DIAGNÓSTICO E MEDICAÇÃO -->
+
+      <div class="linha-form">
+
+
+        <div class="campo-form">
+
+          <label for="diagnostico">
+            Diagnóstico
+          </label>
+
+          <input
+            id="diagnostico"
+            placeholder="Informe o diagnóstico">
+
+        </div>
+
+
+        <div class="campo-form">
+
+          <label for="medicacao">
+            Medicação
+          </label>
+
+          <select id="medicacao">
+
+            <option value="">
+              Selecione a medicação
+            </option>
+
+          </select>
+
+        </div>
+
+
+      </div>
+
+
+      <!-- PROCEDIMENTO -->
+
+      <div class="campo-form">
+
+        <label for="procedimento">
+          Procedimento realizado
+        </label>
+
+        <textarea
+          id="procedimento"
+          placeholder="Descreva o procedimento realizado...">
+        </textarea>
+
+      </div>
+
+
+      <!-- ORIENTAÇÕES -->
+
+      <div class="campo-form">
+
+        <label for="orientacoes">
+          Orientações ao paciente
+        </label>
+
+        <textarea
+          id="orientacoes"
+          placeholder="Informe os cuidados, recomendações e orientações para casa...">
+        </textarea>
+
+      </div>
+
+
+      <!-- OBSERVAÇÕES -->
+
+      <div class="campo-form">
+
+        <label for="obs">
+          Observações
+        </label>
+
+        <textarea
+          id="obs"
+          placeholder="Observações adicionais...">
+        </textarea>
+
+      </div>
+
+
+      <!-- MÉDICO -->
+
+      <div class="linha-form">
+
+
+        <div class="campo-form">
+
+          <label for="medico">
+            Médico responsável
+          </label>
+
+          <input
+            type="text"
+            id="medico"
+            placeholder="Nome do médico">
+
+        </div>
+
+
+        <div class="campo-form">
+
+          <label for="crm">
+            CRM
+          </label>
+
+          <input
+            type="text"
+            id="crm"
+            placeholder="CRM">
+
+        </div>
+
+
+      </div>
+
+
+      <!-- BOTÕES -->
+
+      <div class="botoes-consulta">
+
+        <button
+          type="button"
+          onclick="salvar()">
+
+          💾 Salvar Consulta
+
+        </button>
+
+
+        <button
+          type="button"
+          class="btn-alta"
+          id="btn-alta"
+          onclick="darAlta()">
+
+          🏠 Dar Alta e Gerar PDF
+
+        </button>
+
+      </div>
+
 
     </div>
 
@@ -234,6 +587,7 @@
 
 
   <script>
+
 
     /* =====================================================
        VARIÁVEIS
@@ -251,8 +605,7 @@
 
 
     /* =====================================================
-       FUNÇÃO AUXILIAR
-       Escapa HTML para evitar XSS
+       ESCAPAR HTML
     ===================================================== */
 
     function escapeHTML(valor) {
@@ -293,17 +646,6 @@
           .value
           .trim();
 
-      if (!valor) {
-
-        valor = "01";
-
-      }
-
-      /*
-       * Permite somente números
-       */
-
-      valor = valor.replace(/\D/g, "");
 
       if (!valor) {
 
@@ -311,17 +653,25 @@
 
       }
 
-      /*
-       * Mantém dois dígitos
-       */
 
-      valor = valor.padStart(2, "0");
+      valor =
+        valor.replace(/\D/g, "");
 
-      /*
-       * Limita a 99
-       */
 
-      const numero = parseInt(valor, 10);
+      if (!valor) {
+
+        valor = "01";
+
+      }
+
+
+      valor =
+        valor.padStart(2, "0");
+
+
+      const numero =
+        parseInt(valor, 10);
+
 
       if (numero < 1 || numero > 99) {
 
@@ -329,9 +679,11 @@
 
       }
 
+
       document
         .getElementById("consultorio-num")
         .value = valor;
+
 
       return valor;
 
@@ -347,20 +699,27 @@
       try {
 
         const response =
-          await fetch("/triagens", {
-            cache: "no-store"
-          });
+          await fetch(
+            "/triagens",
+            {
+              cache: "no-store"
+            }
+          );
+
 
         if (!response.ok) {
 
           throw new Error(
-            "Erro HTTP " + response.status
+            "Erro HTTP " +
+            response.status
           );
 
         }
 
+
         const data =
           await response.json();
+
 
         if (!Array.isArray(data)) {
 
@@ -370,11 +729,14 @@
 
         }
 
+
         triagensCarregadas = data;
+
 
         renderizarTriagens();
 
       }
+
 
       catch (error) {
 
@@ -383,16 +745,23 @@
           error
         );
 
+
         document
           .getElementById("triagens")
           .innerHTML = `
+
             <div class="erro">
+
               ❌ Não foi possível carregar os pacientes.
+
               <br>
+
               <small>
                 ${escapeHTML(error.message)}
               </small>
+
             </div>
+
           `;
 
       }
@@ -402,6 +771,8 @@
 
     /* =====================================================
        RENDERIZAR PACIENTES
+       
+       MOSTRA SOMENTE 5 PACIENTES
     ===================================================== */
 
     function renderizarTriagens() {
@@ -409,14 +780,22 @@
       const div =
         document.getElementById("triagens");
 
+
       div.innerHTML = "";
 
-      if (triagensCarregadas.length === 0) {
+
+      if (
+        triagensCarregadas.length === 0
+      ) {
 
         div.innerHTML = `
+
           <div class="mensagem-vazia">
+
             Nenhum paciente na fila.
+
           </div>
+
         `;
 
         return;
@@ -424,16 +803,29 @@
       }
 
 
-      triagensCarregadas.forEach(
+      /*
+       * Mostra somente os primeiros 5 pacientes.
+       * Não cria pacientes fictícios.
+       * Todos continuam vindo do backend.
+       */
+
+      const pacientesExibidos =
+        triagensCarregadas.slice(0, 5);
+
+
+      pacientesExibidos.forEach(
         (t, index) => {
+
 
           const card =
             document.createElement("div");
 
+
           card.className = "card";
 
+
           /*
-           * Destaca o paciente selecionado
+           * Destaca paciente selecionado.
            */
 
           if (
@@ -453,25 +845,30 @@
               t.nome || "Paciente"
             );
 
+
           const sintoma =
             escapeHTML(
               t.sintoma || "Não informado"
             );
+
 
           const temperatura =
             escapeHTML(
               t.temperatura || "Não informada"
             );
 
+
           const risco =
             escapeHTML(
               t.risco || "Não informado"
             );
 
+
           const alergia =
             escapeHTML(
               t.alergia || "Nenhuma"
             );
+
 
           const observacao =
             escapeHTML(
@@ -481,33 +878,57 @@
 
           card.innerHTML = `
 
-            <h3>${nome}</h3>
+            <h3>
+              ${nome}
+            </h3>
+
 
             <p>
+
               <b>Sintoma:</b>
+
               ${sintoma}
+
             </p>
 
+
             <p>
+
               <b>Temperatura:</b>
+
               ${temperatura}°C
+
             </p>
 
+
             <p>
+
               <span class="risco">
+
                 ${risco}
+
               </span>
+
             </p>
 
+
             <p>
+
               <b>Alergia:</b>
+
               ${alergia}
+
             </p>
 
+
             <p>
+
               <b>Observação:</b>
+
               ${observacao}
+
             </p>
+
 
             <div
               style="
@@ -517,19 +938,27 @@
               "
             >
 
+
               <button
                 type="button"
                 class="btn-atender">
+
                 👨‍⚕️ Atender
+
               </button>
+
 
               <button
                 type="button"
                 class="btn-tv">
+
                 📺 Chamar na TV
+
               </button>
 
+
             </div>
+
           `;
 
 
@@ -541,6 +970,7 @@
             card.querySelector(
               ".btn-atender"
             );
+
 
           btnAtender.addEventListener(
             "click",
@@ -561,6 +991,7 @@
               ".btn-tv"
             );
 
+
           btnTV.addEventListener(
             "click",
             () => {
@@ -579,6 +1010,34 @@
         }
       );
 
+
+      /*
+       * Informa se existem mais pacientes
+       * além dos 5 exibidos.
+       */
+
+      if (
+        triagensCarregadas.length > 5
+      ) {
+
+        const aviso =
+          document.createElement("p");
+
+
+        aviso.style.color = "#777";
+
+        aviso.style.textAlign = "center";
+
+        aviso.textContent =
+          `Existem ${
+            triagensCarregadas.length - 5
+          } paciente(s) aguardando na fila.`;
+
+
+        div.appendChild(aviso);
+
+      }
+
     }
 
 
@@ -591,6 +1050,7 @@
       botao
     ) {
 
+
       if (tvChamando) {
 
         return;
@@ -600,6 +1060,7 @@
 
       const paciente =
         String(nome || "").trim();
+
 
       if (!paciente) {
 
@@ -662,6 +1123,7 @@
 
         let resultado = null;
 
+
         try {
 
           resultado =
@@ -697,12 +1159,14 @@
 
       }
 
+
       catch (error) {
 
         console.error(
           "Erro ao chamar paciente:",
           error
         );
+
 
         alert(
           "❌ Não foi possível chamar o paciente na TV.\n\n" +
@@ -711,9 +1175,11 @@
 
       }
 
+
       finally {
 
         tvChamando = false;
+
 
         if (botao) {
 
@@ -735,6 +1201,7 @@
 
     function selecionar(index) {
 
+
       const t =
         triagensCarregadas[index];
 
@@ -754,11 +1221,6 @@
 
         index: index,
 
-        /*
-         * Caso o backend tenha um ID,
-         * ele será preservado.
-         */
-
         id: t.id ?? null,
 
         nome: t.nome
@@ -766,11 +1228,19 @@
       };
 
 
+      /*
+       * Preenche o paciente.
+       */
+
       document
         .getElementById("paciente")
         .value =
         t.nome || "";
 
+
+      /*
+       * Puxa observação da triagem.
+       */
 
       document
         .getElementById("obs")
@@ -779,8 +1249,7 @@
 
 
       /*
-       * Limpa diagnóstico e medicação
-       * ao trocar de paciente.
+       * Limpa campos da nova consulta.
        */
 
       document
@@ -793,8 +1262,28 @@
         .value = "";
 
 
+      document
+        .getElementById("procedimento")
+        .value = "";
+
+
+      document
+        .getElementById("orientacoes")
+        .value = "";
+
+
+      document
+        .getElementById("data-nascimento")
+        .value = "";
+
+
+      document
+        .getElementById("cpf")
+        .value = "";
+
+
       /*
-       * Alerta de alergia
+       * Alerta de alergia.
        */
 
       if (
@@ -814,7 +1303,7 @@
 
 
       /*
-       * Coloca o cursor no diagnóstico
+       * Foco no diagnóstico.
        */
 
       document
@@ -829,6 +1318,7 @@
     ===================================================== */
 
     async function carregarMedicacoes() {
+
 
       const select =
         document.getElementById(
@@ -872,15 +1362,18 @@
 
         select.innerHTML = "";
 
+
         const primeiraOpcao =
           document.createElement(
             "option"
           );
 
+
         primeiraOpcao.value = "";
 
         primeiraOpcao.textContent =
           "Selecione a medicação";
+
 
         select.appendChild(
           primeiraOpcao
@@ -888,7 +1381,7 @@
 
 
         /*
-         * Opção para casos sem medicação
+         * Opção sem medicação.
          */
 
         const nenhuma =
@@ -896,11 +1389,14 @@
             "option"
           );
 
+
         nenhuma.value =
           "Nenhuma";
 
+
         nenhuma.textContent =
           "Nenhuma";
+
 
         select.appendChild(
           nenhuma
@@ -910,16 +1406,20 @@
         data.forEach(
           med => {
 
+
             const option =
               document.createElement(
                 "option"
               );
 
+
             option.value =
               String(med);
 
+
             option.textContent =
               String(med);
+
 
             select.appendChild(
               option
@@ -930,6 +1430,7 @@
 
       }
 
+
       catch (error) {
 
         console.error(
@@ -937,10 +1438,15 @@
           error
         );
 
+
         select.innerHTML = `
+
           <option value="">
+
             Erro ao carregar medicações
+
           </option>
+
         `;
 
       }
@@ -949,14 +1455,29 @@
 
 
     /* =====================================================
-       PEGAR DADOS DA CONSULTA
+       OBTER DADOS DA CONSULTA / ALTA
     ===================================================== */
 
     function obterDadosConsulta() {
 
+
       const paciente =
         document
           .getElementById("paciente")
+          .value
+          .trim();
+
+
+      const dataNascimento =
+        document
+          .getElementById("data-nascimento")
+          .value
+          .trim();
+
+
+      const cpf =
+        document
+          .getElementById("cpf")
           .value
           .trim();
 
@@ -975,9 +1496,37 @@
           .trim();
 
 
+      const procedimento =
+        document
+          .getElementById("procedimento")
+          .value
+          .trim();
+
+
+      const orientacoes =
+        document
+          .getElementById("orientacoes")
+          .value
+          .trim();
+
+
       const obs =
         document
           .getElementById("obs")
+          .value
+          .trim();
+
+
+      const medico =
+        document
+          .getElementById("medico")
+          .value
+          .trim();
+
+
+      const crm =
+        document
+          .getElementById("crm")
           .value
           .trim();
 
@@ -986,19 +1535,26 @@
 
         paciente,
 
+        pacienteId:
+          pacienteSelecionado?.id ?? null,
+
+        dataNascimento,
+
+        cpf,
+
         diagnostico,
 
         medicacao,
 
+        procedimento,
+
+        orientacoes,
+
         obs,
 
-        /*
-         * Se o backend utilizar ID,
-         * ele poderá usar este campo.
-         */
+        medico,
 
-        pacienteId:
-          pacienteSelecionado?.id ?? null
+        crm
 
       };
 
@@ -1010,6 +1566,7 @@
     ===================================================== */
 
     async function salvar() {
+
 
       if (consultaSalvando) {
 
@@ -1039,9 +1596,11 @@
           "⚠️ Informe o diagnóstico."
         );
 
+
         document
           .getElementById("diagnostico")
           .focus();
+
 
         return;
 
@@ -1084,14 +1643,32 @@
                 pacienteId:
                   dados.pacienteId,
 
+                dataNascimento:
+                  dados.dataNascimento,
+
+                cpf:
+                  dados.cpf,
+
                 diagnostico:
                   dados.diagnostico,
 
                 medicacao:
                   dados.medicacao,
 
+                procedimento:
+                  dados.procedimento,
+
+                orientacoes:
+                  dados.orientacoes,
+
                 obs:
-                  dados.obs
+                  dados.obs,
+
+                medico:
+                  dados.medico,
+
+                crm:
+                  dados.crm
 
               })
 
@@ -1100,6 +1677,7 @@
 
 
         let resultado = null;
+
 
         try {
 
@@ -1130,28 +1708,8 @@
           "✅ Consulta salva com sucesso!"
         );
 
-
-        /*
-         * Limpa somente os dados
-         * da consulta.
-         */
-
-        document
-          .getElementById("diagnostico")
-          .value = "";
-
-
-        document
-          .getElementById("medicacao")
-          .value = "";
-
-
-        /*
-         * Mantém paciente e observação
-         * selecionados para continuidade.
-         */
-
       }
+
 
       catch (error) {
 
@@ -1160,12 +1718,14 @@
           error
         );
 
+
         alert(
           "❌ Não foi possível salvar a consulta.\n\n" +
           error.message
         );
 
       }
+
 
       finally {
 
@@ -1182,6 +1742,7 @@
 
     async function darAlta() {
 
+
       if (altaProcessando) {
 
         return;
@@ -1192,6 +1753,10 @@
       const dados =
         obterDadosConsulta();
 
+
+      /* -----------------------------------------------------
+         VALIDAÇÕES
+      ----------------------------------------------------- */
 
       if (!dados.paciente) {
 
@@ -1210,9 +1775,11 @@
           "⚠️ Informe o diagnóstico antes de dar alta."
         );
 
+
         document
           .getElementById("diagnostico")
           .focus();
+
 
         return;
 
@@ -1230,6 +1797,44 @@
       }
 
 
+      if (!dados.procedimento) {
+
+        alert(
+          "⚠️ Informe o procedimento realizado."
+        );
+
+
+        document
+          .getElementById("procedimento")
+          .focus();
+
+
+        return;
+
+      }
+
+
+      if (!dados.orientacoes) {
+
+        alert(
+          "⚠️ Informe as orientações para o paciente."
+        );
+
+
+        document
+          .getElementById("orientacoes")
+          .focus();
+
+
+        return;
+
+      }
+
+
+      /* -----------------------------------------------------
+         CONFIRMAÇÃO
+      ----------------------------------------------------- */
+
       const confirmar =
         confirm(
           "Deseja realmente dar alta para " +
@@ -1245,11 +1850,9 @@
       }
 
 
-      /*
-       * Abre a aba imediatamente,
-       * evitando bloqueio de popup
-       * por alguns navegadores.
-       */
+      /* -----------------------------------------------------
+         ABRIR ABA ANTES DO FETCH
+      ----------------------------------------------------- */
 
       const novaAba =
         window.open(
@@ -1281,11 +1884,17 @@
 
       btnAlta.disabled = true;
 
+
       btnAlta.textContent =
         "⏳ Gerando PDF...";
 
 
       try {
+
+
+        /* -------------------------------------------------
+           ENVIA TODOS OS DADOS PARA O BACKEND
+        ------------------------------------------------- */
 
         const response =
           await fetch(
@@ -1295,8 +1904,10 @@
               method: "POST",
 
               headers: {
+
                 "Content-Type":
                   "application/json"
+
               },
 
               body: JSON.stringify({
@@ -1307,14 +1918,32 @@
                 pacienteId:
                   dados.pacienteId,
 
+                dataNascimento:
+                  dados.dataNascimento,
+
+                cpf:
+                  dados.cpf,
+
                 diagnostico:
                   dados.diagnostico,
 
                 medicacao:
                   dados.medicacao,
 
+                procedimento:
+                  dados.procedimento,
+
+                orientacoes:
+                  dados.orientacoes,
+
                 obs:
-                  dados.obs
+                  dados.obs,
+
+                medico:
+                  dados.medico,
+
+                crm:
+                  dados.crm
 
               })
 
@@ -1322,15 +1951,22 @@
           );
 
 
+        /* -------------------------------------------------
+           TRATAMENTO DE ERRO
+        ------------------------------------------------- */
+
         if (!response.ok) {
+
 
           let mensagem =
             "Erro ao gerar alta.";
+
 
           try {
 
             const erro =
               await response.json();
+
 
             mensagem =
               erro.erro ||
@@ -1339,12 +1975,14 @@
 
           }
 
+
           catch {
 
             try {
 
               const texto =
                 await response.text();
+
 
               if (texto) {
 
@@ -1353,6 +1991,7 @@
               }
 
             }
+
 
             catch {}
 
@@ -1365,6 +2004,10 @@
 
         }
 
+
+        /* -------------------------------------------------
+           VERIFICAR PDF
+        ------------------------------------------------- */
 
         const contentType =
           response.headers.get(
@@ -1389,7 +2032,10 @@
           await response.blob();
 
 
-        if (!blob || blob.size === 0) {
+        if (
+          !blob ||
+          blob.size === 0
+        ) {
 
           throw new Error(
             "O servidor retornou um PDF vazio."
@@ -1398,50 +2044,38 @@
         }
 
 
+        /* -------------------------------------------------
+           CRIAR URL DO PDF
+        ------------------------------------------------- */
+
         const url =
           window.URL.createObjectURL(
             blob
           );
 
 
-        /*
-         * Mostra o PDF na aba aberta.
-         */
+        /* -------------------------------------------------
+           MOSTRAR PDF
+        ------------------------------------------------- */
 
         novaAba.location.href =
           url;
 
 
-        /*
-         * Limpa o formulário.
-         */
+        /* -------------------------------------------------
+           LIMPAR FORMULÁRIO
+        ------------------------------------------------- */
 
-        document
-          .getElementById("paciente")
-          .value = "";
+        limparFormulario();
 
 
-        document
-          .getElementById("diagnostico")
-          .value = "";
+        pacienteSelecionado =
+          null;
 
 
-        document
-          .getElementById("medicacao")
-          .value = "";
-
-
-        document
-          .getElementById("obs")
-          .value = "";
-
-
-        pacienteSelecionado = null;
-
-
-        /*
-         * Atualiza a fila.
-         */
+        /* -------------------------------------------------
+           ATUALIZAR FILA
+        ------------------------------------------------- */
 
         await carregar();
 
@@ -1451,10 +2085,9 @@
         );
 
 
-        /*
-         * Libera a URL temporária depois
-         * de um período.
-         */
+        /* -------------------------------------------------
+           LIBERAR URL TEMPORÁRIA
+        ------------------------------------------------- */
 
         setTimeout(
           () => {
@@ -1469,6 +2102,7 @@
 
       }
 
+
       catch (error) {
 
         console.error(
@@ -1476,11 +2110,6 @@
           error
         );
 
-
-        /*
-         * Fecha a aba vazia caso
-         * tenha ocorrido erro.
-         */
 
         try {
 
@@ -1498,11 +2127,14 @@
 
       }
 
+
       finally {
 
         altaProcessando = false;
 
+
         btnAlta.disabled = false;
+
 
         btnAlta.textContent =
           "🏠 Dar Alta e Gerar PDF";
@@ -1513,14 +2145,143 @@
 
 
     /* =====================================================
+       LIMPAR FORMULÁRIO
+    ===================================================== */
+
+    function limparFormulario() {
+
+
+      document
+        .getElementById("paciente")
+        .value = "";
+
+
+      document
+        .getElementById("data-nascimento")
+        .value = "";
+
+
+      document
+        .getElementById("cpf")
+        .value = "";
+
+
+      document
+        .getElementById("diagnostico")
+        .value = "";
+
+
+      document
+        .getElementById("medicacao")
+        .value = "";
+
+
+      document
+        .getElementById("procedimento")
+        .value = "";
+
+
+      document
+        .getElementById("orientacoes")
+        .value = "";
+
+
+      document
+        .getElementById("obs")
+        .value = "";
+
+
+      /*
+       * Médico e CRM não são apagados,
+       * pois normalmente permanecem os mesmos
+       * durante os atendimentos.
+       */
+
+    }
+
+
+    /* =====================================================
+       MÁSCARA CPF
+    ===================================================== */
+
+    document
+      .getElementById("cpf")
+      .addEventListener(
+        "input",
+        function () {
+
+
+          let valor =
+            this.value.replace(
+              /\D/g,
+              ""
+            );
+
+
+          valor =
+            valor.substring(
+              0,
+              11
+            );
+
+
+          if (
+            valor.length > 9
+          ) {
+
+            valor =
+              valor.replace(
+                /^(\d{3})(\d{3})(\d{3})(\d{2}).*/,
+                "$1.$2.$3-$4"
+              );
+
+          }
+
+          else if (
+            valor.length > 6
+          ) {
+
+            valor =
+              valor.replace(
+                /^(\d{3})(\d{3})(\d{1,3}).*/,
+                "$1.$2.$3"
+              );
+
+          }
+
+          else if (
+            valor.length > 3
+          ) {
+
+            valor =
+              valor.replace(
+                /^(\d{3})(\d{1,3}).*/,
+                "$1.$2"
+              );
+
+          }
+
+
+          this.value =
+            valor;
+
+        }
+      );
+
+
+    /* =====================================================
        INICIALIZAÇÃO
     ===================================================== */
 
     async function inicializar() {
 
+
       await Promise.all([
+
         carregar(),
+
         carregarMedicacoes()
+
       ]);
 
     }
@@ -1536,8 +2297,9 @@
     setInterval(
       () => {
 
+
         /*
-         * Não recarrega enquanto uma alta
+         * Não atualiza enquanto a alta
          * estiver sendo processada.
          */
 
@@ -1553,7 +2315,7 @@
 
 
     /* =====================================================
-       VALIDAR CAMPO DO CONSULTÓRIO
+       VALIDAR CONSULTÓRIO
     ===================================================== */
 
     document
@@ -1562,6 +2324,7 @@
         "input",
         function () {
 
+
           this.value =
             this.value
               .replace(/\D/g, "")
@@ -1569,7 +2332,6 @@
 
         }
       );
-
 
   </script>
 

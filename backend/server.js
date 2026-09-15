@@ -24,108 +24,144 @@ app.use(
 
 
 // =====================================================
-// CONFIGURAÇÃO DE UPLOAD
+// UPLOAD
 // =====================================================
 
-const UPLOAD_DIR = path.join(
-  __dirname,
-  "uploads"
-);
+const UPLOAD_DIR =
+  path.join(__dirname, "uploads");
 
 if (!fs.existsSync(UPLOAD_DIR)) {
-  fs.mkdirSync(UPLOAD_DIR, {
-    recursive: true
-  });
+
+  fs.mkdirSync(
+    UPLOAD_DIR,
+    {
+      recursive: true
+    }
+  );
+
 }
 
-const storage = multer.diskStorage({
 
-  destination: function (req, file, cb) {
-    cb(null, UPLOAD_DIR);
-  },
+const storage =
+  multer.diskStorage({
 
-  filename: function (req, file, cb) {
+    destination:
+      function (req, file, cb) {
 
-    const extensao =
-      path.extname(file.originalname);
+        cb(
+          null,
+          UPLOAD_DIR
+        );
 
-    const nomeArquivo =
-      Date.now() +
-      "-" +
-      Math.round(Math.random() * 1e9) +
-      extensao;
+      },
 
-    cb(null, nomeArquivo);
-  }
+    filename:
+      function (req, file, cb) {
 
-});
+        const extensao =
+          path.extname(
+            file.originalname
+          );
 
-const upload = multer({
+        const nomeArquivo =
+          Date.now() +
+          "-" +
+          Math.round(
+            Math.random() * 1e9
+          ) +
+          extensao;
 
-  storage: storage,
+        cb(
+          null,
+          nomeArquivo
+        );
 
-  limits: {
-    fileSize: 10 * 1024 * 1024
-  },
+      }
 
-  fileFilter: function (req, file, cb) {
-
-    const tiposPermitidos = [
-      "image/jpeg",
-      "image/png",
-      "image/jpg",
-      "application/pdf"
-    ];
-
-    if (
-      tiposPermitidos.includes(
-        file.mimetype
-      )
-    ) {
-
-      cb(null, true);
-
-    } else {
-
-      cb(
-        new Error(
-          "Formato de arquivo não permitido. Envie JPG, PNG ou PDF."
-        )
-      );
-
-    }
-
-  }
-
-});
+  });
 
 
-// Permitir acesso aos documentos
+const upload =
+  multer({
+
+    storage: storage,
+
+    limits: {
+      fileSize:
+        10 * 1024 * 1024
+    },
+
+    fileFilter:
+      function (req, file, cb) {
+
+        const tiposPermitidos = [
+
+          "image/jpeg",
+          "image/png",
+          "image/jpg",
+          "application/pdf"
+
+        ];
+
+
+        if (
+          tiposPermitidos.includes(
+            file.mimetype
+          )
+        ) {
+
+          cb(null, true);
+
+        } else {
+
+          cb(
+            new Error(
+              "Formato de arquivo não permitido. Envie JPG, PNG ou PDF."
+            )
+          );
+
+        }
+
+      }
+
+  });
+
 
 app.use(
   "/uploads",
-  express.static(UPLOAD_DIR)
+  express.static(
+    UPLOAD_DIR
+  )
 );
 
 
 // =====================================================
-// BANCO DE DADOS
+// BANCO
 // =====================================================
 
-const DB_FILE = path.join(
-  __dirname,
-  "db.json"
-);
+const DB_FILE =
+  path.join(
+    __dirname,
+    "db.json"
+  );
+
 
 function bancoVazio() {
 
   return {
+
     usuarios: [],
+
     pacientes: [],
+
     triagens: [],
+
     consultas: [],
+
     tv_chamada: null,
+
     tv_historico: []
+
   };
 
 }
@@ -133,23 +169,30 @@ function bancoVazio() {
 
 function readDB() {
 
-  if (!fs.existsSync(DB_FILE)) {
+  if (
+    !fs.existsSync(DB_FILE)
+  ) {
 
-    const banco = bancoVazio();
+    const banco =
+      bancoVazio();
 
     writeDB(banco);
 
     return banco;
+
   }
+
 
   try {
 
-    const db = JSON.parse(
-      fs.readFileSync(
-        DB_FILE,
-        "utf8"
-      )
-    );
+    const db =
+      JSON.parse(
+        fs.readFileSync(
+          DB_FILE,
+          "utf8"
+        )
+      );
+
 
     if (!db.usuarios)
       db.usuarios = [];
@@ -163,15 +206,24 @@ function readDB() {
     if (!db.consultas)
       db.consultas = [];
 
-    if (!db.tv_chamada)
-      db.tv_chamada = null;
-
     if (!db.tv_historico)
       db.tv_historico = [];
 
+    if (
+      typeof db.tv_chamada ===
+      "undefined"
+    ) {
+
+      db.tv_chamada = null;
+
+    }
+
+
     return db;
 
-  } catch (erro) {
+  }
+
+  catch (erro) {
 
     console.error(
       "Erro ao ler banco de dados:",
@@ -188,13 +240,17 @@ function readDB() {
 function writeDB(data) {
 
   fs.writeFileSync(
+
     DB_FILE,
+
     JSON.stringify(
       data,
       null,
       2
     ),
+
     "utf8"
+
   );
 
 }
@@ -204,27 +260,42 @@ function writeDB(data) {
 // LOGIN
 // =====================================================
 
-app.post("/login", (req, res) => {
+app.post(
+  "/login",
+  (req, res) => {
 
-  const db = readDB();
+    const db =
+      readDB();
 
-  const user = db.usuarios.find(
-    u =>
-      u.usuario === req.body.usuario &&
-      u.senha === req.body.senha
-  );
 
-  if (!user) {
+    const user =
+      db.usuarios.find(
+        u =>
+          u.usuario ===
+            req.body.usuario &&
+          u.senha ===
+            req.body.senha
+      );
 
-    return res.status(401).json({
-      erro: "Login inválido"
-    });
+
+    if (!user) {
+
+      return res
+        .status(401)
+        .json({
+
+          erro:
+            "Login inválido"
+
+        });
+
+    }
+
+
+    res.json(user);
 
   }
-
-  res.json(user);
-
-});
+);
 
 
 // =====================================================
@@ -238,17 +309,19 @@ app.post(
 
     try {
 
-      const db = readDB();
+      const db =
+        readDB();
+
 
       const paciente = {
 
         id: Date.now(),
 
-        // DADOS PESSOAIS
+        nome:
+          req.body.nome,
 
-        nome: req.body.nome,
-
-        cpf: req.body.cpf,
+        cpf:
+          req.body.cpf,
 
         nomeMae:
           req.body.nomeMae,
@@ -258,9 +331,6 @@ app.post(
 
         estadoCivil:
           req.body.estadoCivil,
-
-
-        // CONTATOS
 
         contato:
           req.body.contato,
@@ -274,8 +344,6 @@ app.post(
         contatoEmergencia:
           req.body.contatoEmergencia,
 
-
-        // ENDEREÇO
 
         endereco: {
 
@@ -303,8 +371,6 @@ app.post(
         },
 
 
-        // ATENDIMENTO
-
         tipo:
           req.body.tipo,
 
@@ -312,31 +378,29 @@ app.post(
           req.body.convenio,
 
 
-        // DOCUMENTO
+        documento:
+          req.file
+            ? {
 
-        documento: req.file
-          ? {
+                nomeOriginal:
+                  req.file.originalname,
 
-              nomeOriginal:
-                req.file.originalname,
+                nomeArquivo:
+                  req.file.filename,
 
-              nomeArquivo:
-                req.file.filename,
+                tipo:
+                  req.file.mimetype,
 
-              tipo:
-                req.file.mimetype,
+                tamanho:
+                  req.file.size,
 
-              tamanho:
-                req.file.size,
+                caminho:
+                  `/uploads/${req.file.filename}`
 
-              caminho:
-                `/uploads/${req.file.filename}`
+              }
 
-            }
-          : null,
+            : null,
 
-
-        // CONTROLE
 
         status:
           "triagem",
@@ -351,33 +415,41 @@ app.post(
         paciente
       );
 
+
       writeDB(db);
 
 
-      res.status(201).json({
+      res
+        .status(201)
+        .json({
 
-        sucesso: true,
+          sucesso: true,
 
-        mensagem:
-          "Paciente cadastrado com sucesso",
+          mensagem:
+            "Paciente cadastrado com sucesso",
 
-        paciente
+          paciente
 
-      });
+        });
 
-    } catch (erro) {
+    }
+
+    catch (erro) {
 
       console.error(
         "Erro ao cadastrar:",
         erro
       );
 
-      res.status(500).json({
 
-        erro:
-          "Erro ao cadastrar paciente"
+      res
+        .status(500)
+        .json({
 
-      });
+          erro:
+            "Erro ao cadastrar paciente"
+
+        });
 
     }
 
@@ -386,14 +458,15 @@ app.post(
 
 
 // =====================================================
-// LISTAR PACIENTES
+// PACIENTES
 // =====================================================
 
 app.get(
   "/pacientes",
   (req, res) => {
 
-    const db = readDB();
+    const db =
+      readDB();
 
     res.json(
       db.pacientes
@@ -403,15 +476,13 @@ app.get(
 );
 
 
-// =====================================================
-// BUSCAR PACIENTE
-// =====================================================
-
 app.get(
   "/pacientes/:id",
   (req, res) => {
 
-    const db = readDB();
+    const db =
+      readDB();
+
 
     const paciente =
       db.pacientes.find(
@@ -420,18 +491,24 @@ app.get(
           req.params.id
       );
 
+
     if (!paciente) {
 
-      return res.status(404).json({
+      return res
+        .status(404)
+        .json({
 
-        erro:
-          "Paciente não encontrado"
+          erro:
+            "Paciente não encontrado"
 
-      });
+        });
 
     }
 
-    res.json(paciente);
+
+    res.json(
+      paciente
+    );
 
   }
 );
@@ -445,10 +522,13 @@ app.post(
   "/triagem",
   (req, res) => {
 
-    const db = readDB();
+    const db =
+      readDB();
+
 
     let risco =
       req.body.risco;
+
 
     const temperatura =
       Number(
@@ -460,17 +540,24 @@ app.post(
       temperatura >= 39
     ) {
 
-      risco = "vermelho";
+      risco =
+        "vermelho";
 
-    } else if (
+    }
+
+    else if (
       temperatura >= 38
     ) {
 
-      risco = "amarelo";
+      risco =
+        "amarelo";
 
-    } else if (!risco) {
+    }
 
-      risco = "verde";
+    else if (!risco) {
+
+      risco =
+        "verde";
 
     }
 
@@ -497,7 +584,9 @@ app.post(
       observacao:
         req.body.observacao,
 
-      risco,
+      risco:
+
+        risco,
 
       status:
         "aguardando_medico",
@@ -548,7 +637,8 @@ app.get(
   "/triagens",
   (req, res) => {
 
-    const db = readDB();
+    const db =
+      readDB();
 
     res.json(
       db.triagens
@@ -559,14 +649,16 @@ app.get(
 
 
 // =====================================================
-// TV - CHAMAR PACIENTE
+// TV
 // =====================================================
 
 app.post(
   "/tv/chamar",
   (req, res) => {
 
-    const db = readDB();
+    const db =
+      readDB();
+
 
     const chamada = {
 
@@ -623,15 +715,13 @@ app.post(
 );
 
 
-// =====================================================
-// TV - CONSULTAR CHAMADA
-// =====================================================
-
 app.get(
   "/tv/chamada",
   (req, res) => {
 
-    const db = readDB();
+    const db =
+      readDB();
+
 
     res.json({
 
@@ -648,7 +738,7 @@ app.get(
 
 
 // =====================================================
-// LISTA DE MEDICAÇÕES
+// MEDICAÇÕES
 // =====================================================
 
 app.get(
@@ -684,11 +774,14 @@ app.post(
 
     try {
 
-      const db = readDB();
+      const db =
+        readDB();
+
 
       const consulta = {
 
-        id: Date.now(),
+        id:
+          Date.now(),
 
         pacienteId:
           req.body.pacienteId,
@@ -701,6 +794,12 @@ app.post(
 
         cpf:
           req.body.cpf,
+
+        telefone:
+          req.body.telefone,
+
+        email:
+          req.body.email,
 
         diagnostico:
           req.body.diagnostico,
@@ -722,6 +821,9 @@ app.post(
 
         crm:
           req.body.crm,
+
+        tipo:
+          "consulta",
 
         createdAt:
           new Date().toISOString()
@@ -757,19 +859,27 @@ app.post(
         consulta
       );
 
-    } catch (erro) {
+    }
+
+    catch (erro) {
 
       console.error(
         "Erro ao salvar consulta:",
         erro
       );
 
-      res.status(500).json({
 
-        erro:
-          "Erro ao salvar consulta"
+      res
+        .status(500)
+        .json({
 
-      });
+          erro:
+            "Erro ao salvar consulta",
+
+          detalhe:
+            erro.message
+
+        });
 
     }
 
@@ -778,14 +888,15 @@ app.post(
 
 
 // =====================================================
-// MEDICAÇÕES / CONSULTAS
+// LISTAR CONSULTAS
 // =====================================================
 
 app.get(
   "/medicacoes",
   (req, res) => {
 
-    const db = readDB();
+    const db =
+      readDB();
 
     res.json(
       db.consultas
@@ -796,7 +907,27 @@ app.get(
 
 
 // =====================================================
-// ALTA + GERAÇÃO DO PDF
+// FUNÇÃO AUXILIAR PARA PDF
+// =====================================================
+
+function texto(valor, padrao) {
+
+  const resultado =
+    String(
+      valor ??
+      ""
+    ).trim();
+
+
+  return resultado ||
+    padrao ||
+    "Não informado";
+
+}
+
+
+// =====================================================
+// ALTA + PDF
 // =====================================================
 
 app.post(
@@ -805,120 +936,123 @@ app.post(
 
     try {
 
-      const db = readDB();
+      const db =
+        readDB();
 
 
-      // =================================================
-      // DADOS RECEBIDOS DO FORMULÁRIO
-      // =================================================
+      // -------------------------------------------------
+      // DADOS DO FORMULÁRIO
+      // -------------------------------------------------
 
       const pacienteId =
         req.body.pacienteId;
 
 
       const nomePaciente =
-        String(
-          req.body.paciente || ""
-        ).trim();
-
-
-      const dataNascimento =
-        String(
-          req.body.dataNascimento || ""
-        ).trim();
-
-
-      const cpf =
-        String(
-          req.body.cpf || ""
-        ).trim();
+        texto(
+          req.body.paciente,
+          ""
+        );
 
 
       const diagnostico =
-        String(
-          req.body.diagnostico || ""
-        ).trim();
+        texto(
+          req.body.diagnostico,
+          ""
+        );
 
 
       const medicacao =
-        String(
-          req.body.medicacao || ""
-        ).trim();
+        texto(
+          req.body.medicacao,
+          ""
+        );
 
 
       const procedimento =
-        String(
-          req.body.procedimento || ""
-        ).trim();
+        texto(
+          req.body.procedimento,
+          "Não informado."
+        );
 
 
       const orientacoes =
-        String(
-          req.body.orientacoes || ""
-        ).trim();
+        texto(
+          req.body.orientacoes,
+          "Nenhuma orientação informada."
+        );
 
 
       const obs =
-        String(
-          req.body.obs || ""
-        ).trim();
+        texto(
+          req.body.obs,
+          "Nenhuma observação."
+        );
 
 
       const medico =
-        String(
-          req.body.medico || ""
-        ).trim();
+        texto(
+          req.body.medico,
+          "Não informado"
+        );
 
 
       const crm =
-        String(
-          req.body.crm || ""
-        ).trim();
+        texto(
+          req.body.crm,
+          "Não informado"
+        );
 
 
-      // =================================================
+      // -------------------------------------------------
       // VALIDAÇÕES
-      // =================================================
+      // -------------------------------------------------
 
       if (!nomePaciente) {
 
-        return res.status(400).json({
+        return res
+          .status(400)
+          .json({
 
-          erro:
-            "Paciente não informado."
+            erro:
+              "Paciente não informado."
 
-        });
+          });
 
       }
 
 
       if (!diagnostico) {
 
-        return res.status(400).json({
+        return res
+          .status(400)
+          .json({
 
-          erro:
-            "Diagnóstico não informado."
+            erro:
+              "Diagnóstico não informado."
 
-        });
+          });
 
       }
 
 
       if (!medicacao) {
 
-        return res.status(400).json({
+        return res
+          .status(400)
+          .json({
 
-          erro:
-            "Medicação não informada."
+            erro:
+              "Medicação não informada."
 
-        });
+          });
 
       }
 
 
-      // =================================================
+      // -------------------------------------------------
       // LOCALIZAR PACIENTE
-      // =================================================
+      // -------------------------------------------------
 
       let paciente = null;
 
@@ -935,66 +1069,59 @@ app.post(
       }
 
 
-      /*
-       * Caso o ID não seja encontrado,
-       * procura pelo nome.
-       */
-
       if (!paciente) {
 
         paciente =
           db.pacientes.find(
             p =>
-              String(p.nome || "")
+              String(
+                p.nome || ""
+              )
                 .trim()
                 .toLowerCase() ===
-              nomePaciente.toLowerCase()
+              nomePaciente
+                .toLowerCase()
           );
 
       }
 
 
-      // =================================================
+      // -------------------------------------------------
       // DADOS DO PACIENTE
-      // =================================================
+      // -------------------------------------------------
 
-      /*
-       * Se os dados pessoais já existirem
-       * no cadastro, usamos eles.
-       *
-       * Caso contrário, usamos os dados
-       * enviados pelo formulário.
-       */
-
-      const cpfFinal =
-        cpf ||
-        paciente?.cpf ||
-        "";
-
-
-      const dataNascimentoFinal =
-        dataNascimento ||
+      const dataNascimento =
+        req.body.dataNascimento ||
         paciente?.dataNascimento ||
         "";
 
 
-      const telefoneFinal =
+      const cpf =
+        req.body.cpf ||
+        paciente?.cpf ||
+        "";
+
+
+      const telefone =
+        req.body.telefone ||
         paciente?.telefone ||
         "";
 
 
-      const emailFinal =
+      const email =
+        req.body.email ||
         paciente?.email ||
         "";
 
 
-      // =================================================
-      // SALVAR CONSULTA
-      // =================================================
+      // -------------------------------------------------
+      // CONSULTA DE ALTA
+      // -------------------------------------------------
 
       const consulta = {
 
-        id: Date.now(),
+        id:
+          Date.now(),
 
         pacienteId:
           paciente
@@ -1005,10 +1132,16 @@ app.post(
           nomePaciente,
 
         dataNascimento:
-          dataNascimentoFinal,
+          dataNascimento,
 
         cpf:
-          cpfFinal,
+          cpf,
+
+        telefone:
+          telefone,
+
+        email:
+          email,
 
         diagnostico:
           diagnostico,
@@ -1045,15 +1178,14 @@ app.post(
       );
 
 
-      // =================================================
+      // -------------------------------------------------
       // ATUALIZAR PACIENTE
-      // =================================================
+      // -------------------------------------------------
 
       if (paciente) {
 
         paciente.status =
           "alta";
-
 
         paciente.dataAlta =
           new Date().toISOString();
@@ -1061,9 +1193,9 @@ app.post(
       }
 
 
-      // =================================================
-      // REMOVER DA FILA DE TRIAGEM
-      // =================================================
+      // -------------------------------------------------
+      // REMOVER DA FILA
+      // -------------------------------------------------
 
       if (paciente) {
 
@@ -1074,44 +1206,47 @@ app.post(
               paciente.id
           );
 
-      } else {
+      }
+
+      else {
 
         db.triagens =
           db.triagens.filter(
             t =>
-              String(t.nome || "")
+              String(
+                t.nome || ""
+              )
                 .trim()
                 .toLowerCase() !==
-              nomePaciente.toLowerCase()
+              nomePaciente
+                .toLowerCase()
           );
 
       }
 
 
-      // =================================================
-      // SALVAR BANCO
-      // =================================================
+      // -------------------------------------------------
+      // SALVAR
+      // -------------------------------------------------
 
       writeDB(db);
 
 
-      // =================================================
-      // GERAR PDF
-      // =================================================
+      // -------------------------------------------------
+      // PDF
+      // -------------------------------------------------
 
       const doc =
         new PDFDocument({
 
-          size: "A4",
+          size:
+            "A4",
 
-          margin: 50
+          margin:
+            50
 
         });
 
-
-      // =================================================
-      // CABEÇALHOS HTTP
-      // =================================================
 
       res.status(200);
 
@@ -1136,12 +1271,15 @@ app.post(
       // =================================================
 
       doc
+        .font(
+          "Helvetica-Bold"
+        )
         .fontSize(20)
-        .font("Helvetica-Bold")
         .text(
           "RELATÓRIO DE ALTA",
           {
-            align: "center"
+            align:
+              "center"
           }
         );
 
@@ -1150,12 +1288,15 @@ app.post(
 
 
       doc
+        .font(
+          "Helvetica"
+        )
         .fontSize(11)
-        .font("Helvetica")
         .text(
           "PAINEL MÉDICO",
           {
-            align: "center"
+            align:
+              "center"
           }
         );
 
@@ -1164,8 +1305,14 @@ app.post(
 
 
       doc
-        .moveTo(50, doc.y)
-        .lineTo(545, doc.y)
+        .moveTo(
+          50,
+          doc.y
+        )
+        .lineTo(
+          545,
+          doc.y
+        )
         .stroke();
 
 
@@ -1177,8 +1324,10 @@ app.post(
       // =================================================
 
       doc
+        .font(
+          "Helvetica-Bold"
+        )
         .fontSize(14)
-        .font("Helvetica-Bold")
         .text(
           "Dados do Paciente"
         );
@@ -1188,8 +1337,10 @@ app.post(
 
 
       doc
+        .font(
+          "Helvetica"
+        )
         .fontSize(11)
-        .font("Helvetica")
         .text(
           `Nome: ${nomePaciente}`
         );
@@ -1197,7 +1348,7 @@ app.post(
 
       doc.text(
         `CPF: ${
-          cpfFinal ||
+          cpf ||
           "Não informado"
         }`
       );
@@ -1205,7 +1356,7 @@ app.post(
 
       doc.text(
         `Data de nascimento: ${
-          dataNascimentoFinal ||
+          dataNascimento ||
           "Não informada"
         }`
       );
@@ -1213,7 +1364,7 @@ app.post(
 
       doc.text(
         `Telefone: ${
-          telefoneFinal ||
+          telefone ||
           "Não informado"
         }`
       );
@@ -1221,13 +1372,13 @@ app.post(
 
       doc.text(
         `E-mail: ${
-          emailFinal ||
+          email ||
           "Não informado"
         }`
       );
 
 
-      doc.moveDown(1.2);
+      doc.moveDown(1.3);
 
 
       // =================================================
@@ -1235,21 +1386,29 @@ app.post(
       // =================================================
 
       doc
+        .font(
+          "Helvetica-Bold"
+        )
         .fontSize(14)
-        .font("Helvetica-Bold")
         .text(
           "Diagnóstico"
         );
 
 
-      doc.moveDown(0.5);
+      doc.moveDown(0.4);
 
 
       doc
+        .font(
+          "Helvetica"
+        )
         .fontSize(11)
-        .font("Helvetica")
         .text(
-          diagnostico
+          diagnostico,
+          {
+            width:
+              495
+          }
         );
 
 
@@ -1261,19 +1420,23 @@ app.post(
       // =================================================
 
       doc
+        .font(
+          "Helvetica-Bold"
+        )
         .fontSize(14)
-        .font("Helvetica-Bold")
         .text(
           "Medicação"
         );
 
 
-      doc.moveDown(0.5);
+      doc.moveDown(0.4);
 
 
       doc
+        .font(
+          "Helvetica"
+        )
         .fontSize(11)
-        .font("Helvetica")
         .text(
           medicacao
         );
@@ -1287,22 +1450,29 @@ app.post(
       // =================================================
 
       doc
+        .font(
+          "Helvetica-Bold"
+        )
         .fontSize(14)
-        .font("Helvetica-Bold")
         .text(
           "Procedimento Realizado"
         );
 
 
-      doc.moveDown(0.5);
+      doc.moveDown(0.4);
 
 
       doc
+        .font(
+          "Helvetica"
+        )
         .fontSize(11)
-        .font("Helvetica")
         .text(
-          procedimento ||
-          "Não informado."
+          procedimento,
+          {
+            width:
+              495
+          }
         );
 
 
@@ -1314,22 +1484,29 @@ app.post(
       // =================================================
 
       doc
+        .font(
+          "Helvetica-Bold"
+        )
         .fontSize(14)
-        .font("Helvetica-Bold")
         .text(
-          "Orientações ao Paciente"
+          "Orientações de Alta"
         );
 
 
-      doc.moveDown(0.5);
+      doc.moveDown(0.4);
 
 
       doc
+        .font(
+          "Helvetica"
+        )
         .fontSize(11)
-        .font("Helvetica")
         .text(
-          orientacoes ||
-          "Nenhuma orientação informada."
+          orientacoes,
+          {
+            width:
+              495
+          }
         );
 
 
@@ -1341,26 +1518,33 @@ app.post(
       // =================================================
 
       doc
+        .font(
+          "Helvetica-Bold"
+        )
         .fontSize(14)
-        .font("Helvetica-Bold")
         .text(
           "Observações"
         );
 
 
-      doc.moveDown(0.5);
+      doc.moveDown(0.4);
 
 
       doc
+        .font(
+          "Helvetica"
+        )
         .fontSize(11)
-        .font("Helvetica")
         .text(
-          obs ||
-          "Nenhuma observação."
+          obs,
+          {
+            width:
+              495
+          }
         );
 
 
-      doc.moveDown(1.5);
+      doc.moveDown(1.4);
 
 
       // =================================================
@@ -1368,36 +1552,34 @@ app.post(
       // =================================================
 
       doc
+        .font(
+          "Helvetica-Bold"
+        )
         .fontSize(14)
-        .font("Helvetica-Bold")
         .text(
           "Profissional Responsável"
         );
 
 
-      doc.moveDown(0.5);
+      doc.moveDown(0.4);
 
 
       doc
+        .font(
+          "Helvetica"
+        )
         .fontSize(11)
-        .font("Helvetica")
         .text(
-          `Médico: ${
-            medico ||
-            "Não informado"
-          }`
+          `Médico: ${medico}`
         );
 
 
       doc.text(
-        `CRM: ${
-          crm ||
-          "Não informado"
-        }`
+        `CRM: ${crm}`
       );
 
 
-      doc.moveDown(1.5);
+      doc.moveDown(1.4);
 
 
       // =================================================
@@ -1405,18 +1587,21 @@ app.post(
       // =================================================
 
       const dataAlta =
-        new Date().toLocaleString(
-          "pt-BR",
-          {
-            dateStyle: "short",
-            timeStyle: "short"
-          }
-        );
+        new Date()
+          .toLocaleString(
+            "pt-BR",
+            {
+              dateStyle:
+                "short",
+
+              timeStyle:
+                "short"
+            }
+          );
 
 
       doc
         .fontSize(11)
-        .font("Helvetica")
         .text(
           `Data e hora da alta: ${dataAlta}`
         );
@@ -1430,8 +1615,14 @@ app.post(
       // =================================================
 
       doc
-        .moveTo(170, doc.y)
-        .lineTo(375, doc.y)
+        .moveTo(
+          170,
+          doc.y
+        )
+        .lineTo(
+          375,
+          doc.y
+        )
         .stroke();
 
 
@@ -1440,25 +1631,34 @@ app.post(
 
       doc
         .fontSize(10)
-        .font("Helvetica")
         .text(
-          medico
+          medico !==
+            "Não informado"
             ? medico
             : "Assinatura do responsável",
           {
-            align: "center"
+            align:
+              "center",
+            width:
+              205
           }
         );
 
 
-      if (crm) {
+      if (
+        crm !==
+        "Não informado"
+      ) {
 
         doc
           .fontSize(9)
           .text(
             `CRM: ${crm}`,
             {
-              align: "center"
+              align:
+                "center",
+              width:
+                205
             }
           );
 
@@ -1471,26 +1671,31 @@ app.post(
 
       doc
         .fontSize(8)
-        .font("Helvetica")
+        .font(
+          "Helvetica"
+        )
         .text(
           "Documento gerado automaticamente pelo Painel Médico.",
           50,
           780,
           {
-            align: "center",
-            width: 495
+            align:
+              "center",
+            width:
+              495
           }
         );
 
 
       // =================================================
-      // FINALIZAR PDF
+      // FINALIZAR
       // =================================================
 
       doc.end();
 
+    }
 
-    } catch (erro) {
+    catch (erro) {
 
       console.error(
         "Erro ao gerar alta:",
@@ -1498,17 +1703,21 @@ app.post(
       );
 
 
-      if (!res.headersSent) {
+      if (
+        !res.headersSent
+      ) {
 
-        return res.status(500).json({
+        return res
+          .status(500)
+          .json({
 
-          erro:
-            "Erro ao gerar PDF de alta.",
+            erro:
+              "Erro ao gerar PDF de alta.",
 
-          detalhe:
-            erro.message
+            detalhe:
+              erro.message
 
-        });
+          });
 
       }
 
@@ -1533,27 +1742,31 @@ app.use(
       multer.MulterError
     ) {
 
-      return res.status(400).json({
+      return res
+        .status(400)
+        .json({
 
-        erro:
-          "Erro no upload",
+          erro:
+            "Erro no upload",
 
-        detalhe:
-          err.message
+          detalhe:
+            err.message
 
-      });
+        });
 
     }
 
 
     if (err) {
 
-      return res.status(400).json({
+      return res
+        .status(400)
+        .json({
 
-        erro:
-          err.message
+          erro:
+            err.message
 
-      });
+        });
 
     }
 
@@ -1565,11 +1778,12 @@ app.use(
 
 
 // =====================================================
-// START
+// SERVIDOR
 // =====================================================
 
 const PORT =
-  process.env.PORT || 3000;
+  process.env.PORT ||
+  3000;
 
 
 app.listen(
@@ -1583,44 +1797,3 @@ app.listen(
   }
 );
 ```
-
-### ⚠️ Uma coisa importante
-
-Agora existe uma diferença entre os **dados cadastrados do paciente** e os **dados preenchidos na alta**.
-
-Por exemplo, se o paciente já foi cadastrado com:
-
-```text
-Nome: João
-CPF: 123...
-Data de nascimento: 10/10/2000
-Telefone: ...
-```
-
-o PDF automaticamente aproveita esses dados do cadastro.
-
-Já:
-
-```text
-Diagnóstico
-Medicação
-Procedimento
-Orientações
-Observações
-Médico
-CRM
-```
-
-vêm do formulário de alta.
-
-Também alterei `/consulta` para salvar esses novos campos no `db.json`, então eles não ficam apenas no PDF.
-
-**Depois de substituir o `server.js`, reinicie o servidor Node.js.** Se estiver usando o terminal, normalmente é `Ctrl + C` e depois:
-
-```bash
-node server.js
-```
-
-Se estiver usando `nodemon`, basta salvar o arquivo que ele deve reiniciar automaticamente.
-
-Uma melhoria que eu faria depois é deixar o PDF com uma aparência mais de **documento hospitalar profissional**, com logo/nome da clínica, caixas para cada seção, número da alta e assinatura, em vez desse formato mais simples.

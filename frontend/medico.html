@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="pt-BR">
 
@@ -17,213 +18,63 @@
     href="css/style.css"
   >
 
-  <style>
-
-    .btn-tv {
-      background: #28a745;
-      color: white;
-      border: none;
-      padding: 8px 14px;
-      border-radius: 5px;
-      cursor: pointer;
-      font-size: 14px;
-      margin-top: 8px;
-    }
-
-    .btn-tv:hover {
-      background: #1e7e34;
-    }
-
-    .btn-tv:disabled {
-      background: #999;
-      cursor: not-allowed;
-    }
-
-    .btn-abrir-tv {
-      background: #17a2b8;
-      color: white;
-      border: none;
-      padding: 8px 16px;
-      border-radius: 5px;
-      font-size: 14px;
-      cursor: pointer;
-    }
-
-    .btn-abrir-tv:hover {
-      background: #117a8b;
-    }
-
-    .consultorio-input {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      margin-bottom: 16px;
-      background: #f0f4ff;
-      padding: 10px 14px;
-      border-radius: 6px;
-      border: 1px solid #d0d8f0;
-    }
-
-    .consultorio-input label {
-      font-weight: bold;
-    }
-
-    .consultorio-input input {
-      width: 60px;
-      text-align: center;
-      font-size: 18px;
-      font-weight: bold;
-      padding: 4px 8px;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-    }
-
-    .btn-alta {
-      background: #007bff;
-      color: white;
-      border: none;
-      padding: 10px 18px;
-      border-radius: 6px;
-      cursor: pointer;
-      font-size: 15px;
-      font-weight: bold;
-      margin-left: 8px;
-    }
-
-    .btn-alta:hover {
-      background: #0056b3;
-    }
-
-    .btn-alta:disabled {
-      background: #999;
-      cursor: not-allowed;
-    }
-
-    .botoes-consulta {
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-      margin-top: 12px;
-    }
-
-    .botoes-consulta button {
-      cursor: pointer;
-    }
-
-    .card {
-      margin-bottom: 12px;
-    }
-
-    .card-atendimento {
-      border: 2px solid #007bff;
-      box-shadow: 0 0 5px rgba(0, 123, 255, 0.25);
-    }
-
-    .mensagem-vazia {
-      color: #888;
-      text-align: center;
-      padding: 20px;
-    }
-
-    .erro {
-      color: #dc3545;
-      background: #fff0f0;
-      padding: 12px;
-      border-radius: 6px;
-      border: 1px solid #f5c2c7;
-    }
-
-    .risco {
-      font-weight: bold;
-    }
-
-    .dados-paciente {
-      display: grid;
-      grid-template-columns: repeat(
-        auto-fit,
-        minmax(220px, 1fr)
-      );
-      gap: 12px;
-      margin-bottom: 20px;
-    }
-
-    .campo-consulta {
-      display: flex;
-      flex-direction: column;
-      gap: 5px;
-    }
-
-    .campo-consulta label {
-      font-weight: bold;
-      font-size: 14px;
-    }
-
-    .campo-consulta input,
-    .campo-consulta textarea,
-    .campo-consulta select {
-      width: 100%;
-      padding: 10px;
-      border: 1px solid #ccc;
-      border-radius: 6px;
-      font-size: 14px;
-      box-sizing: border-box;
-    }
-
-    .campo-consulta textarea {
-      min-height: 90px;
-      resize: vertical;
-    }
-
-    .campo-grande {
-      grid-column: 1 / -1;
-    }
-
-    .secao-consulta {
-      margin-top: 20px;
-      padding: 16px;
-      border: 1px solid #ddd;
-      border-radius: 8px;
-      background: #fafafa;
-    }
-
-    .secao-consulta h4 {
-      margin-top: 0;
-      margin-bottom: 15px;
-    }
-
-  </style>
-
 </head>
+
 
 <body>
 
 <div class="container">
 
-  <header>
+  <!-- =====================================================
+       CABEÇALHO
+  ====================================================== -->
 
-    <h1>Painel Médico</h1>
+  <header class="painel-header">
 
-    <p>
-      Atendimento e gerenciamento de pacientes
-    </p>
+    <div class="header-content">
+
+      <div>
+
+        <span class="header-status">
+          SISTEMA MÉDICO • ONLINE
+        </span>
+
+        <h1>
+          Painel Médico
+        </h1>
+
+        <p>
+          Atendimento e gerenciamento de pacientes
+        </p>
+
+      </div>
+
+      <div class="header-decoration">
+        +
+      </div>
+
+    </div>
 
   </header>
 
 
-  <div
-    style="
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      margin-bottom:20px;
-      gap:10px;
-      flex-wrap:wrap;
-    "
-  >
+  <!-- =====================================================
+       BARRA DO PAINEL
+  ====================================================== -->
 
-    <h2 style="margin:0;">
-      🩺 Painel Médico
-    </h2>
+  <section class="painel-toolbar">
+
+    <div>
+
+      <span class="section-kicker">
+        CENTRAL DE ATENDIMENTO
+      </span>
+
+      <h2>
+        🩺 Painel Médico
+      </h2>
+
+    </div>
 
     <button
       type="button"
@@ -233,16 +84,30 @@
       📺 Abrir Tela da TV
     </button>
 
-  </div>
+  </section>
 
 
-  <!-- CONSULTÓRIO -->
+  <!-- =====================================================
+       CONSULTÓRIO
+  ====================================================== -->
 
-  <div class="consultorio-input">
+  <section class="consultorio-box">
 
-    <label for="consultorio-num">
-      Meu Consultório:
-    </label>
+    <div class="consultorio-icon">
+      01
+    </div>
+
+    <div class="consultorio-info">
+
+      <label for="consultorio-num">
+        Meu Consultório
+      </label>
+
+      <span>
+        Número exibido na TV ao chamar um paciente.
+      </span>
+
+    </div>
 
     <input
       type="text"
@@ -253,287 +118,382 @@
       autocomplete="off"
     >
 
-    <span
-      style="
-        color:#666;
-        font-size:13px;
-      "
-    >
-      Este número será exibido na TV ao chamar o paciente.
-    </span>
-
-  </div>
+  </section>
 
 
-  <!-- FILA -->
+  <!-- =====================================================
+       FILA DE PACIENTES
+  ====================================================== -->
 
-  <h3>
-    👥 Pacientes aguardando atendimento
-  </h3>
+  <section class="fila-section">
 
-  <div id="triagens"></div>
+    <div class="section-heading">
+
+      <div>
+
+        <span class="section-kicker">
+          TRIAGEM
+        </span>
+
+        <h3>
+          👥 Pacientes aguardando atendimento
+        </h3>
+
+      </div>
+
+      <span class="fila-status">
+        ● FILA ATIVA
+      </span>
+
+    </div>
+
+
+    <div id="triagens"></div>
+
+  </section>
 
 
   <hr>
 
 
-  <!-- CONSULTA -->
+  <!-- =====================================================
+       CONSULTA
+  ====================================================== -->
 
-  <h3>
-    🩺 Consulta
-  </h3>
+  <section class="consulta-section">
 
+    <div class="section-heading">
 
-  <div class="secao-consulta">
+      <div>
 
-    <h4>
-      👤 Dados do paciente
-    </h4>
+        <span class="section-kicker">
+          PRONTUÁRIO
+        </span>
 
-    <div class="dados-paciente">
-
-      <div class="campo-consulta">
-
-        <label for="paciente">
-          Paciente
-        </label>
-
-        <input
-          id="paciente"
-          placeholder="Paciente"
-          readonly
-        >
-
-      </div>
-
-
-      <div class="campo-consulta">
-
-        <label for="dataNascimento">
-          Data de nascimento
-        </label>
-
-        <input
-          type="date"
-          id="dataNascimento"
-          name="dataNascimento"
-          placeholder="Data de nascimento"
-          autocomplete="bday"
-        >
-
-      </div>
-
-
-      <div class="campo-consulta">
-
-        <label for="cpf">
-          CPF
-        </label>
-
-        <input
-          type="text"
-          id="cpf"
-          name="cpf"
-          placeholder="000.000.000-00"
-          maxlength="14"
-          inputmode="numeric"
-          autocomplete="off"
-        >
-
-      </div>
-
-
-      <div class="campo-consulta">
-
-        <label for="telefone">
-          Telefone
-        </label>
-
-        <input
-          type="tel"
-          id="telefone"
-          name="telefone"
-          placeholder="(00) 00000-0000"
-          maxlength="15"
-          inputmode="tel"
-          autocomplete="tel"
-        >
-
-      </div>
-
-
-      <div class="campo-consulta">
-
-        <label for="email">
-          E-mail
-        </label>
-
-        <input
-          type="email"
-          id="email"
-          name="email"
-          placeholder="email@exemplo.com"
-          autocomplete="email"
-        >
+        <h3>
+          🩺 Consulta
+        </h3>
 
       </div>
 
     </div>
 
-  </div>
 
+    <!-- ===================================================
+         DADOS DO PACIENTE
+    ==================================================== -->
 
-  <!-- DADOS MÉDICOS -->
+    <div class="secao-consulta">
 
-  <div class="secao-consulta">
+      <div class="secao-header">
 
-    <h4>
-      🩺 Informações do atendimento
-    </h4>
+        <div class="secao-icon">
+          👤
+        </div>
 
-    <div class="dados-paciente">
+        <div>
 
-      <div class="campo-consulta campo-grande">
+          <span>
+            IDENTIFICAÇÃO
+          </span>
 
-        <label for="diagnostico">
-          Diagnóstico
-        </label>
+          <h4>
+            Dados do paciente
+          </h4>
 
-        <textarea
-          id="diagnostico"
-          placeholder="Informe o diagnóstico"
-        ></textarea>
-
-      </div>
-
-
-      <div class="campo-consulta">
-
-        <label for="medicacao">
-          Medicação
-        </label>
-
-        <select id="medicacao">
-
-          <option value="">
-            Selecione a medicação
-          </option>
-
-        </select>
+        </div>
 
       </div>
 
 
-      <div class="campo-consulta campo-grande">
+      <div class="dados-paciente">
 
-        <label for="procedimento">
-          Procedimento realizado
-        </label>
+        <div class="campo-consulta campo-destaque">
 
-        <textarea
-          id="procedimento"
-          placeholder="Descreva o procedimento realizado"
-        ></textarea>
+          <label for="paciente">
+            Paciente
+          </label>
 
-      </div>
+          <input
+            id="paciente"
+            placeholder="Selecione um paciente na fila"
+            readonly
+          >
 
-
-      <div class="campo-consulta campo-grande">
-
-        <label for="orientacoes">
-          Orientações de alta
-        </label>
-
-        <textarea
-          id="orientacoes"
-          placeholder="Digite as orientações para o paciente"
-        ></textarea>
-
-      </div>
+        </div>
 
 
-      <div class="campo-consulta campo-grande">
+        <div class="campo-consulta">
 
-        <label for="obs">
-          Observações
-        </label>
+          <label for="dataNascimento">
+            Data de nascimento
+          </label>
 
-        <textarea
-          id="obs"
-          placeholder="Observações"
-        ></textarea>
+          <input
+            type="date"
+            id="dataNascimento"
+            name="dataNascimento"
+            autocomplete="bday"
+          >
 
-      </div>
-
-    </div>
-
-  </div>
+        </div>
 
 
-  <!-- RESPONSÁVEL -->
+        <div class="campo-consulta">
 
-  <div class="secao-consulta">
+          <label for="cpf">
+            CPF
+          </label>
 
-    <h4>
-      👨‍⚕️ Profissional responsável
-    </h4>
+          <input
+            type="text"
+            id="cpf"
+            name="cpf"
+            placeholder="000.000.000-00"
+            maxlength="14"
+            inputmode="numeric"
+            autocomplete="off"
+          >
 
-    <div class="dados-paciente">
-
-      <div class="campo-consulta">
-
-        <label for="medico">
-          Médico responsável
-        </label>
-
-        <input
-          id="medico"
-          placeholder="Nome do médico"
-        >
-
-      </div>
+        </div>
 
 
-      <div class="campo-consulta">
+        <div class="campo-consulta">
 
-        <label for="crm">
-          CRM
-        </label>
+          <label for="telefone">
+            Telefone
+          </label>
 
-        <input
-          id="crm"
-          placeholder="CRM"
-        >
+          <input
+            type="tel"
+            id="telefone"
+            name="telefone"
+            placeholder="(00) 00000-0000"
+            maxlength="15"
+            inputmode="tel"
+            autocomplete="tel"
+          >
+
+        </div>
+
+
+        <div class="campo-consulta">
+
+          <label for="email">
+            E-mail
+          </label>
+
+          <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="email@exemplo.com"
+            autocomplete="email"
+          >
+
+        </div>
 
       </div>
 
     </div>
 
-  </div>
+
+    <!-- ===================================================
+         INFORMAÇÕES MÉDICAS
+    ==================================================== -->
+
+    <div class="secao-consulta">
+
+      <div class="secao-header">
+
+        <div class="secao-icon">
+          🩺
+        </div>
+
+        <div>
+
+          <span>
+            REGISTRO CLÍNICO
+          </span>
+
+          <h4>
+            Informações do atendimento
+          </h4>
+
+        </div>
+
+      </div>
 
 
-  <!-- BOTÕES -->
+      <div class="dados-paciente">
 
-  <div class="botoes-consulta">
+        <div class="campo-consulta campo-grande">
 
-    <button
-      type="button"
-      onclick="salvar()"
-    >
-      💾 Salvar Consulta
-    </button>
+          <label for="diagnostico">
+            Diagnóstico
+          </label>
+
+          <textarea
+            id="diagnostico"
+            placeholder="Informe o diagnóstico clínico..."
+          ></textarea>
+
+        </div>
 
 
-    <button
-      type="button"
-      class="btn-alta"
-      id="btn-alta"
-      onclick="darAlta()"
-    >
-      🏠 Dar Alta e Gerar PDF
-    </button>
+        <div class="campo-consulta">
 
-  </div>
+          <label for="medicacao">
+            Medicação
+          </label>
+
+          <select id="medicacao">
+
+            <option value="">
+              Selecione a medicação
+            </option>
+
+          </select>
+
+        </div>
+
+
+        <div class="campo-consulta campo-grande">
+
+          <label for="procedimento">
+            Procedimento realizado
+          </label>
+
+          <textarea
+            id="procedimento"
+            placeholder="Descreva o procedimento realizado..."
+          ></textarea>
+
+        </div>
+
+
+        <div class="campo-consulta campo-grande">
+
+          <label for="orientacoes">
+            Orientações de alta
+          </label>
+
+          <textarea
+            id="orientacoes"
+            placeholder="Digite as orientações para o paciente..."
+          ></textarea>
+
+        </div>
+
+
+        <div class="campo-consulta campo-grande">
+
+          <label for="obs">
+            Observações
+          </label>
+
+          <textarea
+            id="obs"
+            placeholder="Adicione observações relevantes..."
+          ></textarea>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- ===================================================
+         PROFISSIONAL RESPONSÁVEL
+    ==================================================== -->
+
+    <div class="secao-consulta">
+
+      <div class="secao-header">
+
+        <div class="secao-icon">
+          👨‍⚕️
+        </div>
+
+        <div>
+
+          <span>
+            RESPONSABILIDADE TÉCNICA
+          </span>
+
+          <h4>
+            Profissional responsável
+          </h4>
+
+        </div>
+
+      </div>
+
+
+      <div class="dados-paciente">
+
+        <div class="campo-consulta">
+
+          <label for="medico">
+            Médico responsável
+          </label>
+
+          <input
+            id="medico"
+            placeholder="Nome do médico"
+          >
+
+        </div>
+
+
+        <div class="campo-consulta">
+
+          <label for="crm">
+            CRM
+          </label>
+
+          <input
+            id="crm"
+            placeholder="CRM"
+          >
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- ===================================================
+         AÇÕES
+    ==================================================== -->
+
+    <div class="botoes-consulta">
+
+      <button
+        type="button"
+        class="btn-salvar-consulta"
+        onclick="salvar()"
+      >
+        <span>💾</span>
+        Salvar Consulta
+      </button>
+
+
+      <button
+        type="button"
+        class="btn-alta"
+        id="btn-alta"
+        onclick="darAlta()"
+      >
+        <span>🏠</span>
+        Dar Alta e Gerar PDF
+      </button>
+
+    </div>
+
+  </section>
 
 </div>
 
@@ -716,7 +676,17 @@ function renderizarTriagens() {
 
     div.innerHTML = `
       <div class="mensagem-vazia">
-        Nenhum paciente na fila.
+        <div class="empty-icon">
+          ✓
+        </div>
+
+        <strong>
+          Nenhum paciente na fila
+        </strong>
+
+        <span>
+          Aguardando novos pacientes...
+        </span>
       </div>
     `;
 
@@ -780,41 +750,60 @@ function renderizarTriagens() {
 
       card.innerHTML = `
 
-        <h3>${nome}</h3>
+        <div class="patient-top">
 
-        <p>
-          <b>Sintoma:</b>
-          ${sintoma}
-        </p>
+          <div class="patient-avatar">
+            ${nome.charAt(0).toUpperCase()}
+          </div>
 
-        <p>
-          <b>Temperatura:</b>
-          ${temperatura}°C
-        </p>
+          <div>
 
-        <p>
-          <span class="risco">
-            ${risco}
-          </span>
-        </p>
+            <span class="patient-label">
+              PACIENTE
+            </span>
 
-        <p>
-          <b>Alergia:</b>
-          ${alergia}
-        </p>
+            <h3>
+              ${nome}
+            </h3>
 
-        <p>
-          <b>Observação:</b>
-          ${observacao}
-        </p>
+          </div>
 
-        <div
-          style="
-            display:flex;
-            gap:8px;
-            flex-wrap:wrap;
-          "
-        >
+        </div>
+
+
+        <div class="patient-data">
+
+          <p>
+            <span>Sintoma</span>
+            <strong>${sintoma}</strong>
+          </p>
+
+          <p>
+            <span>Temperatura</span>
+            <strong>${temperatura}°C</strong>
+          </p>
+
+          <p>
+            <span>Classificação</span>
+            <strong class="risco">
+              ${risco}
+            </strong>
+          </p>
+
+          <p>
+            <span>Alergia</span>
+            <strong>${alergia}</strong>
+          </p>
+
+          <p class="patient-observation">
+            <span>Observação</span>
+            <strong>${observacao}</strong>
+          </p>
+
+        </div>
+
+
+        <div class="botoes-paciente">
 
           <button
             type="button"
@@ -1010,53 +999,29 @@ async function chamarNaTV(
 
 function limparFormulario() {
 
-  document
-    .getElementById("paciente")
-    .value = "";
+  document.getElementById("paciente").value = "";
 
-  document
-    .getElementById("dataNascimento")
-    .value = "";
+  document.getElementById("dataNascimento").value = "";
 
-  document
-    .getElementById("cpf")
-    .value = "";
+  document.getElementById("cpf").value = "";
 
-  document
-    .getElementById("telefone")
-    .value = "";
+  document.getElementById("telefone").value = "";
 
-  document
-    .getElementById("email")
-    .value = "";
+  document.getElementById("email").value = "";
 
-  document
-    .getElementById("diagnostico")
-    .value = "";
+  document.getElementById("diagnostico").value = "";
 
-  document
-    .getElementById("medicacao")
-    .value = "";
+  document.getElementById("medicacao").value = "";
 
-  document
-    .getElementById("procedimento")
-    .value = "";
+  document.getElementById("procedimento").value = "";
 
-  document
-    .getElementById("orientacoes")
-    .value = "";
+  document.getElementById("orientacoes").value = "";
 
-  document
-    .getElementById("obs")
-    .value = "";
+  document.getElementById("obs").value = "";
 
-  document
-    .getElementById("medico")
-    .value = "";
+  document.getElementById("medico").value = "";
 
-  document
-    .getElementById("crm")
-    .value = "";
+  document.getElementById("crm").value = "";
 
 }
 
@@ -1125,11 +1090,6 @@ async function selecionar(index) {
     .value = "";
 
 
-  /*
-   * Tenta buscar os dados completos
-   * do paciente no cadastro.
-   */
-
   if (t.pacienteId) {
 
     try {
@@ -1155,7 +1115,9 @@ async function selecionar(index) {
         document
           .getElementById("paciente")
           .value =
-          paciente.nome || t.nome || "";
+          paciente.nome ||
+          t.nome ||
+          "";
 
 
         document
@@ -1200,10 +1162,6 @@ async function selecionar(index) {
 
   }
 
-
-  /*
-   * Alerta de alergia.
-   */
 
   if (
     t.alergia &&
@@ -1278,9 +1236,7 @@ async function carregarMedicacoes() {
 
 
     const primeiraOpcao =
-      document.createElement(
-        "option"
-      );
+      document.createElement("option");
 
     primeiraOpcao.value = "";
 
@@ -1293,9 +1249,7 @@ async function carregarMedicacoes() {
 
 
     const nenhuma =
-      document.createElement(
-        "option"
-      );
+      document.createElement("option");
 
     nenhuma.value =
       "Nenhuma";
@@ -1312,9 +1266,7 @@ async function carregarMedicacoes() {
       med => {
 
         const option =
-          document.createElement(
-            "option"
-          );
+          document.createElement("option");
 
         option.value =
           String(med);
@@ -1816,6 +1768,7 @@ async function darAlta() {
     try {
       novaAba.close();
     }
+
     catch {}
 
 
@@ -1832,8 +1785,8 @@ async function darAlta() {
 
     btnAlta.disabled = false;
 
-    btnAlta.textContent =
-      "🏠 Dar Alta e Gerar PDF";
+    btnAlta.innerHTML =
+      "<span>🏠</span> Dar Alta e Gerar PDF";
 
   }
 
@@ -1841,7 +1794,7 @@ async function darAlta() {
 
 
 // =====================================================
-// FORMATAÇÃO DOS DADOS DO PACIENTE
+// FORMATAÇÃO
 // =====================================================
 
 function formatarCPF(valor) {
@@ -1884,19 +1837,37 @@ const campoCPF =
 const campoTelefone =
   document.getElementById("telefone");
 
+
 if (campoCPF) {
 
-  campoCPF.addEventListener("input", function () {
-    this.value = formatarCPF(this.value);
-  });
+  campoCPF.addEventListener(
+    "input",
+    function () {
+
+      this.value =
+        formatarCPF(
+          this.value
+        );
+
+    }
+  );
 
 }
 
+
 if (campoTelefone) {
 
-  campoTelefone.addEventListener("input", function () {
-    this.value = formatarTelefone(this.value);
-  });
+  campoTelefone.addEventListener(
+    "input",
+    function () {
+
+      this.value =
+        formatarTelefone(
+          this.value
+        );
+
+    }
+  );
 
 }
 
@@ -1960,3 +1931,4 @@ document
 </body>
 
 </html>
+```

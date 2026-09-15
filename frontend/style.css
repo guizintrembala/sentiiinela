@@ -1,11 +1,6 @@
-/* =========================================================
-   PAINEL MÉDICO — STYLE.CSS
-   ========================================================= */
-
-
-/* =========================================================
+/* =========================================
    RESET
-   ========================================================= */
+========================================= */
 
 * {
     margin: 0;
@@ -14,18 +9,16 @@
 }
 
 
-/* =========================================================
+/* =========================================
    VARIÁVEIS
-   ========================================================= */
+========================================= */
 
 :root {
-
     --primary: #087f9c;
     --primary-light: #08a6c7;
     --primary-dark: #05657d;
 
     --background: #f3f7f9;
-
     --surface: #ffffff;
     --surface-soft: #f8fbfc;
     --input-bg: #f8fafb;
@@ -58,12 +51,11 @@
 }
 
 
-/* =========================================================
+/* =========================================
    BODY
-   ========================================================= */
+========================================= */
 
 body {
-
     min-height: 100vh;
 
     background:
@@ -94,25 +86,23 @@ body {
 }
 
 
-/* =========================================================
+/* =========================================
    CONTAINER PRINCIPAL
-   ========================================================= */
+========================================= */
 
 .container {
-
     width: 100%;
-
     max-width: 1150px;
 
     margin: 0 auto;
 
     background: var(--surface);
 
-    border: 1px solid rgba(220, 231, 234, 0.8);
-
     border-radius: 22px;
 
     overflow: hidden;
+
+    border: 1px solid rgba(220, 231, 234, 0.8);
 
     box-shadow: var(--shadow);
 
@@ -120,16 +110,11 @@ body {
 }
 
 
-/* =========================================================
+/* =========================================
    CABEÇALHO
-   ========================================================= */
+========================================= */
 
 .container header {
-
-    position: relative;
-
-    overflow: hidden;
-
     padding: 34px 45px;
 
     color: white;
@@ -141,11 +126,16 @@ body {
             var(--primary) 55%,
             var(--primary-dark)
         );
+
+    position: relative;
+
+    overflow: hidden;
 }
 
 
-.container header::before {
+/* Elemento decorativo */
 
+.container header::before {
     content: "";
 
     position: absolute;
@@ -158,13 +148,11 @@ body {
 
     border-radius: 50%;
 
-    background:
-        rgba(255, 255, 255, 0.07);
+    background: rgba(255, 255, 255, 0.07);
 }
 
 
 .container header::after {
-
     content: "";
 
     position: absolute;
@@ -177,33 +165,30 @@ body {
 
     border-radius: 50%;
 
-    background:
-        rgba(255, 255, 255, 0.05);
+    background: rgba(255, 255, 255, 0.05);
 }
 
 
-/* =========================================================
+/* =========================================
    TÍTULO DO CABEÇALHO
-   ========================================================= */
+========================================= */
 
 .container header h1 {
-
     position: relative;
 
     z-index: 1;
-
-    margin-bottom: 7px;
 
     font-size: 30px;
 
     font-weight: 750;
 
     letter-spacing: -0.5px;
+
+    margin-bottom: 7px;
 }
 
 
 .container header p {
-
     position: relative;
 
     z-index: 1;
@@ -214,36 +199,75 @@ body {
 }
 
 
-/* =========================================================
-   ÁREA DO PAINEL
-   ========================================================= */
+/* =========================================
+   BOTÃO PDF
+========================================= */
 
-.container > div[style*="justify-content:space-between"] {
+.container header button {
+    position: relative;
 
-    padding: 30px 45px 5px !important;
+    z-index: 2;
 
-    margin-bottom: 0 !important;
+    margin-top: 20px !important;
+
+    width: auto !important;
+    height: auto !important;
+
+    padding: 10px 18px !important;
+
+    border: none !important;
+
+    border-radius: 9px !important;
+
+    background: white !important;
+
+    color: var(--primary-dark) !important;
+
+    font-size: 13px !important;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 5px 15px rgba(0, 0, 0, 0.08) !important;
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
 }
 
 
+.container header button:hover {
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 8px 20px rgba(0, 0, 0, 0.12) !important;
+}
+
+
+/* =========================================
+   TÍTULO PAINEL MÉDICO
+========================================= */
+
 .container h2 {
-
-    padding: 0 !important;
-
     color: var(--text);
-
-    background: transparent;
 
     font-size: 24px;
 
     font-weight: 750;
 
     letter-spacing: -0.3px;
+
+    padding: 30px 45px 16px;
+
+    background: white;
 }
 
 
-.container h2::after {
+/* Pequeno destaque */
 
+.container h2::after {
     content: "";
 
     display: block;
@@ -259,32 +283,32 @@ body {
 }
 
 
-/* =========================================================
+/* =========================================
    BOTÃO ABRIR TV
-   ========================================================= */
+========================================= */
 
 .btn-abrir-tv {
-
-    width: auto !important;
-    height: auto !important;
-
-    margin: 0 !important;
-
-    padding: 10px 17px !important;
-
-    border: none !important;
-
-    border-radius: 9px !important;
-
     background: var(--primary) !important;
 
     color: white !important;
+
+    border: none !important;
+
+    padding: 10px 17px !important;
+
+    border-radius: 9px !important;
 
     font-size: 13px !important;
 
     font-weight: 650;
 
     cursor: pointer;
+
+    width: auto !important;
+
+    height: auto !important;
+
+    margin: 0 !important;
 
     box-shadow:
         0 5px 14px rgba(8, 127, 156, 0.16) !important;
@@ -296,18 +320,18 @@ body {
 
 
 .btn-abrir-tv:hover {
-
     background: var(--primary-dark) !important;
 
     transform: translateY(-2px);
 }
 
 
-/* =========================================================
+/* =========================================
    CONSULTÓRIO
-   ========================================================= */
+========================================= */
 
 .consultorio-input {
+    margin: 8px 45px 25px;
 
     display: flex;
 
@@ -315,34 +339,37 @@ body {
 
     gap: 12px;
 
-    width: fit-content;
-
-    margin: 18px 45px 25px;
+    background: #f2f8fa;
 
     padding: 13px 16px;
 
-    border: 1px solid var(--border);
-
     border-radius: 11px;
 
-    background: #f2f8fa;
+    border: 1px solid var(--border);
+
+    width: fit-content;
 }
 
 
 .consultorio-input label {
-
-    color: var(--primary-dark);
+    font-weight: 700;
 
     font-size: 13px;
 
-    font-weight: 700;
+    color: var(--primary-dark);
 }
 
 
 .consultorio-input input {
-
     width: 65px !important;
+
     height: 38px !important;
+
+    text-align: center;
+
+    font-size: 16px;
+
+    font-weight: 700;
 
     padding: 5px !important;
 
@@ -354,12 +381,6 @@ body {
 
     color: var(--text);
 
-    font-size: 16px;
-
-    font-weight: 700;
-
-    text-align: center;
-
     outline: none;
 
     transition:
@@ -369,7 +390,6 @@ body {
 
 
 .consultorio-input input:focus {
-
     border-color: var(--primary-light);
 
     box-shadow:
@@ -377,31 +397,12 @@ body {
 }
 
 
-/* =========================================================
-   TÍTULO DA FILA
-   ========================================================= */
-
-.container > h3 {
-
-    margin: 0 45px 18px;
-
-    padding-bottom: 12px;
-
-    border-bottom: 1px solid var(--border);
-
-    color: var(--text);
-
-    font-size: 20px;
-
-    font-weight: 750;
-}
-
-
-/* =========================================================
-   FILA DE PACIENTES
-   ========================================================= */
+/* =========================================
+   FILA DE TRIAGENS
+========================================= */
 
 #triagens {
+    padding: 8px 45px 32px;
 
     display: grid;
 
@@ -409,26 +410,21 @@ body {
         repeat(2, minmax(0, 1fr));
 
     gap: 18px;
-
-    padding: 8px 45px 32px;
 }
 
 
-/* =========================================================
-   CARD DO PACIENTE
-   ========================================================= */
+/* =========================================
+   CARTÃO DO PACIENTE
+========================================= */
 
 .card {
-
-    position: relative;
-
-    padding: 21px;
-
     background: white;
 
     border: 1px solid var(--border);
 
     border-radius: var(--radius);
+
+    padding: 21px;
 
     box-shadow: var(--shadow-sm);
 
@@ -436,11 +432,12 @@ body {
         transform 0.2s ease,
         box-shadow 0.2s ease,
         border-color 0.2s ease;
+
+    position: relative;
 }
 
 
 .card:hover {
-
     transform: translateY(-3px);
 
     border-color: #cbdde2;
@@ -449,266 +446,146 @@ body {
 }
 
 
-/* =========================================================
-   TOPO DO CARD
-   ========================================================= */
+/* =========================================
+   NOME DO PACIENTE
+========================================= */
 
-.card-topo {
-
-    display: flex;
-
-    align-items: center;
-
-    gap: 13px;
-
-    margin-bottom: 18px;
-}
-
-
-.avatar-paciente {
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    flex-shrink: 0;
-
-    width: 48px;
-    height: 48px;
-
-    border-radius: 50%;
-
-    background:
-        linear-gradient(
-            135deg,
-            var(--primary-light),
-            var(--primary)
-        );
-
-    color: white;
-
-    font-size: 18px;
-
-    font-weight: 750;
-
-    box-shadow:
-        0 5px 12px rgba(8, 127, 156, 0.18);
-}
-
-
-.info-principal {
-
-    min-width: 0;
-}
-
-
-.info-principal h3 {
-
-    margin: 0 0 4px;
-
-    padding: 0;
-
-    border: none;
-
+.card h3 {
     color: var(--text);
 
     font-size: 18px;
 
     font-weight: 750;
-
-    overflow: hidden;
-
-    text-overflow: ellipsis;
-
-    white-space: nowrap;
-}
-
-
-.status-paciente {
-
-    display: inline-flex;
-
-    align-items: center;
-
-    font-size: 12px;
-
-    color: var(--text-light);
-}
-
-
-.status-paciente::before {
-
-    content: "";
-
-    width: 7px;
-    height: 7px;
-
-    margin-right: 6px;
-
-    border-radius: 50%;
-
-    background: var(--yellow);
-}
-
-
-/* =========================================================
-   DADOS DA TRIAGEM
-   ========================================================= */
-
-.dados-triagem {
-
-    display: grid;
-
-    grid-template-columns:
-        repeat(2, minmax(0, 1fr));
-
-    gap: 10px;
 
     margin-bottom: 15px;
+
+    padding-bottom: 12px;
+
+    border-bottom: 1px solid var(--border-light);
 }
 
 
-.dado-triagem {
+/* =========================================
+   INFORMAÇÕES
+========================================= */
 
-    min-width: 0;
-
-    padding: 11px;
-
-    border: 1px solid #edf2f4;
-
-    border-radius: 9px;
-
-    background: #f7f9fb;
-}
-
-
-.label-dado {
-
-    display: block;
-
-    margin-bottom: 4px;
-
-    color: #7a8990;
-
-    font-size: 10px;
-
-    font-weight: 750;
-
-    letter-spacing: 0.5px;
-
-    text-transform: uppercase;
-}
-
-
-.valor-dado {
-
-    display: block;
-
-    color: var(--text);
-
-    font-size: 13px;
-
-    font-weight: 550;
-
-    overflow: hidden;
-
-    text-overflow: ellipsis;
-}
-
-
-/* =========================================================
-   RISCO
-   ========================================================= */
-
-.risco,
-.risco-alto,
-.risco-medio,
-.risco-baixo {
-
-    font-weight: 750;
-}
-
-
-.risco-alto {
-
-    color: var(--red);
-}
-
-
-.risco-medio {
-
-    color: var(--yellow-dark);
-}
-
-
-.risco-baixo {
-
-    color: var(--green);
-}
-
-
-/* =========================================================
-   OBSERVAÇÃO
-   ========================================================= */
-
-.observacao-paciente {
-
-    margin-bottom: 17px;
-
-    padding-top: 14px;
-
-    border-top: 1px solid var(--border-light);
-}
-
-
-.observacao-paciente p {
-
-    margin: 5px 0 0;
+.card p {
+    margin-bottom: 9px;
 
     color: var(--text-light);
 
-    font-size: 13px;
+    font-size: 13.5px;
 
     line-height: 1.55;
 }
 
 
-/* =========================================================
-   AÇÕES DO PACIENTE
-   ========================================================= */
+.card p b {
+    color: var(--text);
 
-.acoes-paciente {
+    font-weight: 650;
+}
+
+
+/* =========================================
+   CLASSIFICAÇÃO DE RISCO
+========================================= */
+
+.card .verde,
+.card .green {
+    display: inline-flex;
+
+    align-items: center;
+
+    padding: 5px 11px;
+
+    border-radius: 999px;
+
+    background: #e4f6ed;
+
+    color: #18734b;
+
+    font-weight: 700;
+
+    font-size: 12px;
+}
+
+
+.card .amarelo,
+.card .yellow {
+    display: inline-flex;
+
+    align-items: center;
+
+    padding: 5px 11px;
+
+    border-radius: 999px;
+
+    background: #fff5d6;
+
+    color: #936c00;
+
+    font-weight: 700;
+
+    font-size: 12px;
+}
+
+
+.card .vermelho,
+.card .red {
+    display: inline-flex;
+
+    align-items: center;
+
+    padding: 5px 11px;
+
+    border-radius: 999px;
+
+    background: #fde7e9;
+
+    color: #a82d36;
+
+    font-weight: 700;
+
+    font-size: 12px;
+}
+
+
+/* =========================================
+   ÁREA DOS BOTÕES
+========================================= */
+
+.card div {
+    margin-top: 17px;
 
     display: flex;
 
     gap: 8px;
 
     flex-wrap: wrap;
-
-    margin-top: 0;
 }
 
 
-.acoes-paciente button {
+/* =========================================
+   BOTÃO ATENDER
+========================================= */
 
-    flex: 1;
-
-    min-width: 130px;
-
+.card button {
     width: auto !important;
+
     height: auto !important;
 
     margin: 0 !important;
 
-    padding: 10px 14px !important;
-
-    border: none !important;
+    padding: 9px 14px !important;
 
     border-radius: 8px !important;
 
-    font-family: inherit;
+    background: var(--primary) !important;
+
+    color: white !important;
+
+    border: none !important;
 
     font-size: 12.5px !important;
 
@@ -724,236 +601,177 @@ body {
 }
 
 
-/* =========================================================
-   BOTÃO ATENDER
-   ========================================================= */
-
-.acoes-paciente .btn-atender {
-
-    background: var(--primary) !important;
-
-    color: white !important;
-}
-
-
-.acoes-paciente .btn-atender:hover {
-
+.card button:hover {
     background: var(--primary-dark) !important;
 
     transform: translateY(-1px);
 }
 
 
-/* =========================================================
-   BOTÃO TV
-   ========================================================= */
+/* =========================================
+   BOTÃO CHAMAR TV
+========================================= */
 
-.acoes-paciente .btn-tv {
-
+.btn-tv {
     background: var(--green) !important;
 
     color: white !important;
+
+    border: none !important;
+
+    padding: 9px 14px !important;
+
+    border-radius: 8px !important;
+
+    cursor: pointer;
+
+    font-size: 12.5px !important;
+
+    font-weight: 650;
+
+    margin: 0 !important;
+
+    width: auto !important;
+
+    height: auto !important;
+
+    box-shadow: none !important;
+
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease;
 }
 
 
-.acoes-paciente .btn-tv:hover {
-
+.btn-tv:hover {
     background: var(--green-dark) !important;
 
     transform: translateY(-1px);
 }
 
 
-.acoes-paciente button:disabled {
-
-    opacity: 0.65;
-
-    cursor: not-allowed;
-
-    transform: none !important;
-}
-
-
-/* =========================================================
-   PACIENTE SELECIONADO
-   ========================================================= */
-
-.card-atendimento {
-
-    border: 2px solid var(--primary-light);
-
-    box-shadow:
-        0 0 0 4px rgba(8, 166, 199, 0.08),
-        var(--shadow-sm);
-}
-
-
-/* =========================================================
-   FILA VAZIA
-   ========================================================= */
-
-.mensagem-vazia {
-
-    grid-column: 1 / -1;
-
-    display: flex;
-
-    flex-direction: column;
-
-    align-items: center;
-
-    justify-content: center;
-
-    min-height: 180px;
-
-    padding: 35px 20px;
-
-    border: 1px dashed #cbd9dd;
-
-    border-radius: 14px;
-
-    background: #f8fafb;
-
-    color: var(--text-light);
-
-    text-align: center;
-}
-
-
-.mensagem-vazia strong {
-
-    margin-bottom: 5px;
-
-    color: var(--text);
-
-    font-size: 15px;
-}
-
-
-.icone-vazio {
-
-    margin-bottom: 10px;
-
-    font-size: 34px;
-}
-
-
-/* =========================================================
+/* =========================================
    LINHA
-   ========================================================= */
+========================================= */
 
 hr {
-
-    margin: 4px 45px 30px;
-
     border: none;
 
     border-top: 1px solid var(--border-light);
+
+    margin: 4px 45px 30px;
 }
 
 
-/* =========================================================
-   SEÇÕES DA CONSULTA
-   ========================================================= */
+/* =========================================
+   SEÇÃO CONSULTA
+========================================= */
 
-.secao-consulta {
-
+.container > h3 {
     margin: 0 45px 20px;
 
-    padding: 20px;
-
-    border: 1px solid var(--border);
-
-    border-radius: 13px;
-
-    background: var(--surface-soft);
-}
-
-
-.secao-consulta h4 {
-
-    margin: 0 0 17px;
-
-    color: var(--primary-dark);
-
-    font-size: 16px;
-
-    font-weight: 750;
-}
-
-
-/* =========================================================
-   DADOS DO PACIENTE
-   ========================================================= */
-
-.dados-paciente {
-
-    display: grid;
-
-    grid-template-columns:
-        repeat(2, minmax(0, 1fr));
-
-    gap: 15px;
-}
-
-
-.campo-consulta {
-
-    display: flex;
-
-    flex-direction: column;
-
-    gap: 6px;
-}
-
-
-.campo-consulta label {
+    padding-bottom: 12px;
 
     color: var(--text);
 
-    font-size: 12px;
+    font-size: 20px;
 
-    font-weight: 700;
+    font-weight: 750;
+
+    border-bottom: 1px solid var(--border);
 }
 
 
-.campo-consulta input,
-.campo-consulta textarea,
-.campo-consulta select {
+/* =========================================
+   CAMPOS DA CONSULTA
+========================================= */
 
-    width: 100%;
+#paciente,
+#diagnostico,
+#medicacao,
+#obs {
+    margin-left: 45px;
 
-    padding: 11px 12px;
+    margin-bottom: 14px;
+
+    background: var(--input-bg);
 
     border: 1px solid var(--border);
-
-    border-radius: 9px;
-
-    background: white;
 
     color: var(--text);
 
     font-family: inherit;
 
-    font-size: 13.5px;
+    font-size: 14px;
 
     outline: none;
 
     transition:
         border-color 0.2s ease,
-        box-shadow 0.2s ease;
+        box-shadow 0.2s ease,
+        background 0.2s ease;
 }
 
 
-.campo-consulta input {
+/* =========================================
+   INPUT PACIENTE
+========================================= */
 
-    height: 44px;
+#paciente {
+    width: calc(50% - 50px);
+
+    height: 46px;
+
+    border-radius: 9px;
+
+    padding: 0 13px;
 }
 
 
-.campo-consulta textarea {
+/* =========================================
+   INPUT DIAGNÓSTICO
+========================================= */
 
-    min-height: 100px;
+#diagnostico {
+    width: calc(50% - 50px);
+
+    height: 46px;
+
+    border-radius: 9px;
+
+    padding: 0 13px;
+}
+
+
+/* =========================================
+   SELECT MEDICAÇÃO
+========================================= */
+
+#medicacao {
+    width: calc(50% - 50px);
+
+    height: 46px;
+
+    border-radius: 9px;
+
+    padding: 0 13px;
+
+    cursor: pointer;
+}
+
+
+/* =========================================
+   TEXTAREA
+========================================= */
+
+#obs {
+    width: calc(50% - 50px);
+
+    min-height: 105px;
+
+    border-radius: 9px;
+
+    padding: 12px 13px;
 
     resize: vertical;
 
@@ -961,89 +779,46 @@ hr {
 }
 
 
-.campo-consulta input:focus,
-.campo-consulta textarea:focus,
-.campo-consulta select:focus {
+/* =========================================
+   PLACEHOLDERS
+========================================= */
 
+#paciente::placeholder,
+#diagnostico::placeholder,
+#obs::placeholder {
+    color: #9aa9ae;
+}
+
+
+/* =========================================
+   FOCO DOS CAMPOS
+========================================= */
+
+#paciente:focus,
+#diagnostico:focus,
+#medicacao:focus,
+#obs:focus {
     border-color: var(--primary-light);
+
+    background: white;
 
     box-shadow:
         0 0 0 3px rgba(8, 166, 199, 0.10);
 }
 
 
-.campo-consulta input[readonly] {
+/* =========================================
+   BOTÃO SALVAR
+========================================= */
 
-    background: #eef6f8;
+.container > button {
+    display: block;
 
-    color: var(--primary-dark);
+    width: 200px !important;
 
-    font-weight: 650;
-}
+    height: 48px !important;
 
-
-.campo-grande {
-
-    grid-column: 1 / -1;
-}
-
-
-/* =========================================================
-   BOTÕES DA CONSULTA
-   ========================================================= */
-
-.botoes-consulta {
-
-    display: flex;
-
-    justify-content: center;
-
-    align-items: center;
-
-    gap: 10px;
-
-    flex-wrap: wrap;
-
-    padding: 5px 45px 40px;
-}
-
-
-.botoes-consulta button {
-
-    width: auto !important;
-
-    min-width: 190px;
-
-    height: 46px !important;
-
-    margin: 0 !important;
-
-    padding: 10px 18px !important;
-
-    border: none;
-
-    border-radius: 9px;
-
-    font-family: inherit;
-
-    font-size: 13px !important;
-
-    font-weight: 700;
-
-    cursor: pointer;
-
-    transition:
-        transform 0.2s ease,
-        box-shadow 0.2s ease,
-        background 0.2s ease;
-}
-
-
-/* =========================================================
-   SALVAR CONSULTA
-   ========================================================= */
-
-.botoes-consulta button:first-child {
+    margin: 12px auto 38px !important;
 
     background:
         linear-gradient(
@@ -1054,89 +829,65 @@ hr {
 
     color: white !important;
 
+    border: none;
+
+    border-radius: 9px;
+
+    font-size: 14px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
     box-shadow:
-        0 7px 18px rgba(8, 127, 156, 0.18);
+        0 7px 18px rgba(8, 127, 156, 0.18) !important;
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
 }
 
 
-.botoes-consulta button:first-child:hover {
-
+.container > button:hover {
     transform: translateY(-2px);
 
     box-shadow:
-        0 11px 24px rgba(8, 127, 156, 0.25);
+        0 11px 24px rgba(8, 127, 156, 0.25) !important;
 }
 
 
-/* =========================================================
-   DAR ALTA
-   ========================================================= */
-
-.btn-alta {
-
-    background:
-        linear-gradient(
-            135deg,
-            var(--green),
-            var(--green-dark)
-        ) !important;
-
-    color: white !important;
-
-    box-shadow:
-        0 7px 18px rgba(34, 160, 107, 0.18);
+.container > button:active {
+    transform: translateY(0);
 }
 
 
-.btn-alta:hover {
-
-    transform: translateY(-2px);
-
-    box-shadow:
-        0 11px 24px rgba(34, 160, 107, 0.25);
-}
-
-
-.btn-alta:disabled {
-
-    opacity: 0.65;
-
-    cursor: not-allowed;
-
-    transform: none !important;
-}
-
-
-/* =========================================================
+/* =========================================
    ACESSIBILIDADE
-   ========================================================= */
+========================================= */
 
 button:focus-visible,
 input:focus-visible,
 select:focus-visible,
 textarea:focus-visible {
-
     outline: 3px solid rgba(8, 166, 199, 0.22);
 
     outline-offset: 2px;
 }
 
 
-/* =========================================================
+/* =========================================
    ANIMAÇÃO
-   ========================================================= */
+========================================= */
 
 @keyframes fadeIn {
 
     from {
-
         opacity: 0;
 
         transform: translateY(10px);
     }
 
     to {
-
         opacity: 1;
 
         transform: translateY(0);
@@ -1144,265 +895,586 @@ textarea:focus-visible {
 }
 
 
-/* =========================================================
-   TABLET
-   ========================================================= */
+/* =========================================
+   RESPONSIVIDADE — TABLET
+========================================= */
 
 @media (max-width: 850px) {
 
     body {
-
         padding: 20px 10px;
     }
 
 
     .container {
-
         border-radius: 18px;
     }
 
 
     .container header {
-
         padding: 28px 25px;
     }
 
 
     .container header h1 {
-
         font-size: 26px;
     }
 
 
-    .container > div[style*="justify-content:space-between"] {
-
-        padding-left: 25px !important;
-        padding-right: 25px !important;
+    .container h2 {
+        padding: 25px 25px 15px;
     }
 
 
     .consultorio-input {
-
         margin-left: 25px;
+
         margin-right: 25px;
     }
 
 
     #triagens {
+        padding-left: 25px;
+
+        padding-right: 25px;
 
         grid-template-columns: 1fr;
-
-        padding-left: 25px;
-        padding-right: 25px;
-    }
-
-
-    .container > h3 {
-
-        margin-left: 25px;
-        margin-right: 25px;
     }
 
 
     hr {
-
         margin-left: 25px;
+
         margin-right: 25px;
     }
 
 
-    .secao-consulta {
-
+    .container > h3 {
         margin-left: 25px;
+
         margin-right: 25px;
     }
 
 
-    .botoes-consulta {
+    #paciente,
+    #diagnostico,
+    #medicacao,
+    #obs {
+        width: calc(100% - 50px);
 
-        padding-left: 25px;
-        padding-right: 25px;
+        margin-left: 25px;
     }
 }
 
 
-/* =========================================================
+/* =========================================
    CELULAR
-   ========================================================= */
+========================================= */
 
 @media (max-width: 550px) {
 
     body {
-
         padding: 5px;
     }
 
 
     .container {
-
         border-radius: 13px;
     }
 
 
     .container header {
-
         padding: 25px 20px;
     }
 
 
     .container header h1 {
-
         font-size: 23px;
     }
 
 
-    .container > div[style*="justify-content:space-between"] {
-
-        align-items: flex-start !important;
-
-        padding:
-            22px
-            20px
-            5px !important;
-    }
-
-
     .container h2 {
-
         font-size: 21px;
-    }
 
-
-    .btn-abrir-tv {
-
-        padding: 9px 12px !important;
-
-        font-size: 12px !important;
+        padding: 22px 20px 12px;
     }
 
 
     .consultorio-input {
-
-        width: auto;
-
-        margin: 12px 20px 20px;
+        margin: 10px 20px 20px;
 
         flex-wrap: wrap;
     }
 
 
-    .consultorio-input span {
-
-        width: 100%;
-
-        line-height: 1.4;
-    }
-
-
-    .container > h3 {
-
-        margin-left: 20px;
-        margin-right: 20px;
-
-        font-size: 18px;
-    }
-
-
     #triagens {
+        padding-left: 20px;
 
-        padding:
-            5px
-            20px
-            25px;
+        padding-right: 20px;
     }
 
 
     .card {
-
         padding: 18px;
     }
 
 
-    .dados-triagem {
-
-        grid-template-columns: 1fr;
-    }
-
-
-    .acoes-paciente {
-
+    .card div {
         flex-direction: column;
+
+        gap: 7px;
     }
 
 
-    .acoes-paciente button {
-
+    .card div button {
         width: 100% !important;
     }
 
 
     hr {
-
         margin-left: 20px;
+
         margin-right: 20px;
     }
 
 
-    .secao-consulta {
+    .container > h3 {
+        margin-left: 20px;
 
-        margin:
-            0
-            20px
-            16px;
-
-        padding: 16px;
+        margin-right: 20px;
     }
 
 
-    .dados-paciente {
+    #paciente,
+    #diagnostico,
+    #medicacao,
+    #obs {
+        width: calc(100% - 40px);
 
-        grid-template-columns: 1fr;
+        margin-left: 20px;
     }
 
 
-    .campo-grande {
-
-        grid-column: auto;
-    }
-
-
-    .botoes-consulta {
-
-        flex-direction: column;
-
-        padding:
-            5px
-            20px
-            30px;
-    }
-
-
-    .botoes-consulta button {
-
-        width: 100% !important;
-
-        min-width: 0;
+    .container > button {
+        width: calc(100% - 40px) !important;
     }
 }
 
 
-/* =========================================================
+/* =========================================
    REDUÇÃO DE MOVIMENTO
-   ========================================================= */
+========================================= */
 
 @media (prefers-reduced-motion: reduce) {
 
     *,
     *::before,
     *::after {
-
         animation: none !important;
 
         transition: none !important;
+    }
+}
+
+/* =====================================================
+   ATENDIMENTO — FORMULÁRIO
+===================================================== */
+
+#formAtendimento {
+    display: grid;
+
+    grid-template-columns:
+        150px
+        minmax(180px, 1fr)
+        150px
+        minmax(180px, 1fr);
+
+    align-items: center;
+
+    column-gap: 12px;
+
+    row-gap: 14px;
+
+    padding: 10px 45px 40px;
+}
+
+
+/* =========================================
+   LABELS
+========================================= */
+
+#formAtendimento > label {
+    margin: 0;
+
+    color: var(--text);
+
+    font-size: 13px;
+
+    font-weight: 650;
+
+    text-align: right;
+
+    white-space: nowrap;
+}
+
+
+/* =========================================
+   INPUTS E SELECTS
+========================================= */
+
+#formAtendimento > input:not([type="file"]),
+#formAtendimento > select {
+    width: 100%;
+
+    height: 44px;
+
+    padding: 0 12px;
+
+    border: 1px solid var(--border);
+
+    border-radius: 9px;
+
+    background: var(--input-bg);
+
+    color: var(--text);
+
+    font-family: inherit;
+
+    font-size: 14px;
+
+    outline: none;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        background 0.2s ease;
+}
+
+
+#formAtendimento > input:not([type="file"]):hover,
+#formAtendimento > select:hover {
+    border-color: #bfd2d7;
+}
+
+
+#formAtendimento > input:not([type="file"]):focus,
+#formAtendimento > select:focus {
+    border-color: var(--primary-light);
+
+    background: white;
+
+    box-shadow:
+        0 0 0 3px rgba(8, 166, 199, 0.10);
+}
+
+
+/* =========================================
+   SEÇÕES
+========================================= */
+
+#formAtendimento > h3 {
+    grid-column: 1 / -1;
+
+    margin: 22px 0 4px;
+
+    padding: 0 0 10px;
+
+    border-bottom: 1px solid var(--border);
+
+    color: var(--primary);
+
+    font-size: 19px;
+
+    font-weight: 750;
+}
+
+
+/* =========================================
+   CAMPO CONVÊNIO
+========================================= */
+
+#formAtendimento > #campoConvenio {
+    grid-column: 1 / -1;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    width: 100%;
+
+    padding: 13px 16px;
+
+    border: 1px solid #d5e9ee;
+
+    border-radius: 10px;
+
+    background: #f1f9fb;
+}
+
+
+#formAtendimento > #campoConvenio label {
+    margin: 0;
+
+    color: var(--primary-dark);
+
+    font-size: 13px;
+
+    font-weight: 700;
+}
+
+
+#formAtendimento > #campoConvenio input {
+    flex: 1;
+
+    min-width: 0;
+
+    height: 42px;
+
+    padding: 0 12px;
+
+    border: 1px solid var(--border);
+
+    border-radius: 8px;
+
+    background: white;
+
+    color: var(--text);
+
+    outline: none;
+}
+
+
+/* =========================================
+   DOCUMENTO
+========================================= */
+
+#formAtendimento > label[for="documento"] {
+    grid-column: 1;
+
+    margin-top: 4px;
+}
+
+
+#formAtendimento > input[type="file"] {
+    grid-column: 2 / -1;
+
+    width: 100%;
+
+    padding: 10px;
+
+    border: 1px dashed #b9cdd2;
+
+    border-radius: 9px;
+
+    background: #fafcfd;
+
+    color: var(--text-light);
+
+    font-family: inherit;
+
+    font-size: 13px;
+
+    cursor: pointer;
+}
+
+
+#formAtendimento > input[type="file"]:hover {
+    border-color: var(--primary-light);
+
+    background: #f3fafc;
+}
+
+
+#formAtendimento > input[type="file"]::file-selector-button {
+    margin-right: 10px;
+
+    padding: 8px 12px;
+
+    border: none;
+
+    border-radius: 7px;
+
+    background: #e4f3f6;
+
+    color: var(--primary-dark);
+
+    font-family: inherit;
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+}
+
+
+/* =========================================
+   BOTÃO CADASTRAR
+========================================= */
+
+#formAtendimento > button[type="submit"] {
+    grid-column: 1 / -1;
+
+    justify-self: center;
+
+    width: 210px !important;
+
+    height: 48px !important;
+
+    margin: 15px 0 0 !important;
+
+    border: none;
+
+    border-radius: 9px;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--primary-light),
+            var(--primary)
+        ) !important;
+
+    color: white !important;
+
+    font-family: inherit;
+
+    font-size: 14px !important;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 7px 18px rgba(8, 127, 156, 0.18) !important;
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+#formAtendimento > button[type="submit"]:hover {
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 11px 24px rgba(8, 127, 156, 0.25) !important;
+}
+
+
+/* =====================================================
+   ATENDIMENTO — TABLET
+===================================================== */
+
+@media (max-width: 850px) {
+
+    #formAtendimento {
+        grid-template-columns:
+            130px
+            minmax(150px, 1fr);
+
+        padding-left: 25px;
+
+        padding-right: 25px;
+    }
+
+    #formAtendimento > label {
+        text-align: left;
+    }
+
+    #formAtendimento > #campoConvenio {
+        grid-column: 1 / -1;
+    }
+
+    #formAtendimento > label[for="documento"] {
+        grid-column: 1;
+    }
+
+    #formAtendimento > input[type="file"] {
+        grid-column: 2;
+    }
+}
+
+
+/* =====================================================
+   ATENDIMENTO — CELULAR
+===================================================== */
+
+@media (max-width: 550px) {
+
+    #formAtendimento {
+        display: flex;
+
+        flex-direction: column;
+
+        align-items: stretch;
+
+        gap: 7px;
+
+        padding: 10px 20px 30px;
+    }
+
+
+    #formAtendimento > label {
+        margin-top: 9px;
+
+        font-size: 13px;
+
+        text-align: left;
+    }
+
+
+    #formAtendimento > input:not([type="file"]),
+    #formAtendimento > select {
+        width: 100%;
+
+        height: 44px;
+
+        margin-bottom: 3px;
+    }
+
+
+    #formAtendimento > h3 {
+        width: 100%;
+
+        margin-top: 25px;
+
+        margin-bottom: 7px;
+    }
+
+
+    #formAtendimento > #campoConvenio {
+        display: flex;
+
+        flex-direction: column;
+
+        align-items: stretch;
+
+        gap: 7px;
+
+        width: 100%;
+    }
+
+
+    #formAtendimento > #campoConvenio input {
+        width: 100%;
+    }
+
+
+    #formAtendimento > label[for="documento"] {
+        margin-top: 12px;
+    }
+
+
+    #formAtendimento > input[type="file"] {
+        width: 100%;
+    }
+
+
+    #formAtendimento > button[type="submit"] {
+        width: 100% !important;
+
+        margin-top: 18px !important;
     }
 }

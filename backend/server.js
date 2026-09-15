@@ -1,3 +1,4 @@
+```javascript
 const express = require("express");
 const fs = require("fs");
 const path = require("path");
@@ -695,14 +696,32 @@ app.post(
         paciente:
           req.body.paciente,
 
+        dataNascimento:
+          req.body.dataNascimento,
+
+        cpf:
+          req.body.cpf,
+
         diagnostico:
           req.body.diagnostico,
 
         medicacao:
           req.body.medicacao,
 
+        procedimento:
+          req.body.procedimento,
+
+        orientacoes:
+          req.body.orientacoes,
+
         obs:
           req.body.obs,
+
+        medico:
+          req.body.medico,
+
+        crm:
+          req.body.crm,
 
         createdAt:
           new Date().toISOString()
@@ -789,33 +808,77 @@ app.post(
       const db = readDB();
 
 
-      // -------------------------------------------------
-      // DADOS RECEBIDOS
-      // -------------------------------------------------
+      // =================================================
+      // DADOS RECEBIDOS DO FORMULÁRIO
+      // =================================================
 
       const pacienteId =
         req.body.pacienteId;
+
 
       const nomePaciente =
         String(
           req.body.paciente || ""
         ).trim();
 
+
+      const dataNascimento =
+        String(
+          req.body.dataNascimento || ""
+        ).trim();
+
+
+      const cpf =
+        String(
+          req.body.cpf || ""
+        ).trim();
+
+
       const diagnostico =
         String(
           req.body.diagnostico || ""
         ).trim();
+
 
       const medicacao =
         String(
           req.body.medicacao || ""
         ).trim();
 
+
+      const procedimento =
+        String(
+          req.body.procedimento || ""
+        ).trim();
+
+
+      const orientacoes =
+        String(
+          req.body.orientacoes || ""
+        ).trim();
+
+
       const obs =
         String(
           req.body.obs || ""
         ).trim();
 
+
+      const medico =
+        String(
+          req.body.medico || ""
+        ).trim();
+
+
+      const crm =
+        String(
+          req.body.crm || ""
+        ).trim();
+
+
+      // =================================================
+      // VALIDAÇÕES
+      // =================================================
 
       if (!nomePaciente) {
 
@@ -853,9 +916,9 @@ app.post(
       }
 
 
-      // -------------------------------------------------
-      // LOCALIZA O PACIENTE
-      // -------------------------------------------------
+      // =================================================
+      // LOCALIZAR PACIENTE
+      // =================================================
 
       let paciente = null;
 
@@ -872,8 +935,10 @@ app.post(
       }
 
 
-      // Caso o ID não seja encontrado,
-      // tenta encontrar pelo nome.
+      /*
+       * Caso o ID não seja encontrado,
+       * procura pelo nome.
+       */
 
       if (!paciente) {
 
@@ -889,9 +954,43 @@ app.post(
       }
 
 
-      // -------------------------------------------------
+      // =================================================
+      // DADOS DO PACIENTE
+      // =================================================
+
+      /*
+       * Se os dados pessoais já existirem
+       * no cadastro, usamos eles.
+       *
+       * Caso contrário, usamos os dados
+       * enviados pelo formulário.
+       */
+
+      const cpfFinal =
+        cpf ||
+        paciente?.cpf ||
+        "";
+
+
+      const dataNascimentoFinal =
+        dataNascimento ||
+        paciente?.dataNascimento ||
+        "";
+
+
+      const telefoneFinal =
+        paciente?.telefone ||
+        "";
+
+
+      const emailFinal =
+        paciente?.email ||
+        "";
+
+
+      // =================================================
       // SALVAR CONSULTA
-      // -------------------------------------------------
+      // =================================================
 
       const consulta = {
 
@@ -905,14 +1004,32 @@ app.post(
         paciente:
           nomePaciente,
 
+        dataNascimento:
+          dataNascimentoFinal,
+
+        cpf:
+          cpfFinal,
+
         diagnostico:
           diagnostico,
 
         medicacao:
           medicacao,
 
+        procedimento:
+          procedimento,
+
+        orientacoes:
+          orientacoes,
+
         obs:
           obs,
+
+        medico:
+          medico,
+
+        crm:
+          crm,
 
         tipo:
           "alta",
@@ -928,14 +1045,15 @@ app.post(
       );
 
 
-      // -------------------------------------------------
+      // =================================================
       // ATUALIZAR PACIENTE
-      // -------------------------------------------------
+      // =================================================
 
       if (paciente) {
 
         paciente.status =
           "alta";
+
 
         paciente.dataAlta =
           new Date().toISOString();
@@ -943,9 +1061,9 @@ app.post(
       }
 
 
-      // -------------------------------------------------
+      // =================================================
       // REMOVER DA FILA DE TRIAGEM
-      // -------------------------------------------------
+      // =================================================
 
       if (paciente) {
 
@@ -970,34 +1088,39 @@ app.post(
       }
 
 
-      // -------------------------------------------------
+      // =================================================
       // SALVAR BANCO
-      // -------------------------------------------------
+      // =================================================
 
       writeDB(db);
 
 
-      // -------------------------------------------------
+      // =================================================
       // GERAR PDF
-      // -------------------------------------------------
+      // =================================================
 
       const doc =
         new PDFDocument({
+
           size: "A4",
+
           margin: 50
+
         });
 
 
-      // -------------------------------------------------
-      // CABEÇALHOS DA RESPOSTA
-      // -------------------------------------------------
+      // =================================================
+      // CABEÇALHOS HTTP
+      // =================================================
 
       res.status(200);
+
 
       res.setHeader(
         "Content-Type",
         "application/pdf"
       );
+
 
       res.setHeader(
         "Content-Disposition",
@@ -1005,15 +1128,12 @@ app.post(
       );
 
 
-      // Envia o PDF diretamente
-      // para o navegador.
-
       doc.pipe(res);
 
 
-      // -------------------------------------------------
+      // =================================================
       // CABEÇALHO
-      // -------------------------------------------------
+      // =================================================
 
       doc
         .fontSize(20)
@@ -1026,29 +1146,35 @@ app.post(
         );
 
 
-      doc.moveDown();
+      doc.moveDown(0.5);
 
 
       doc
         .fontSize(11)
         .font("Helvetica")
         .text(
-          "Painel Médico"
+          "PAINEL MÉDICO",
+          {
+            align: "center"
+          }
         );
 
 
+      doc.moveDown();
+
+
       doc
-        .moveTo(50, doc.y + 10)
-        .lineTo(545, doc.y + 10)
+        .moveTo(50, doc.y)
+        .lineTo(545, doc.y)
         .stroke();
 
 
-      doc.moveDown(2);
+      doc.moveDown(1.5);
 
 
-      // -------------------------------------------------
-      // INFORMAÇÕES DO PACIENTE
-      // -------------------------------------------------
+      // =================================================
+      // DADOS DO PACIENTE
+      // =================================================
 
       doc
         .fontSize(14)
@@ -1069,52 +1195,44 @@ app.post(
         );
 
 
-      if (paciente) {
-
-        if (paciente.cpf) {
-
-          doc.text(
-            `CPF: ${paciente.cpf}`
-          );
-
-        }
+      doc.text(
+        `CPF: ${
+          cpfFinal ||
+          "Não informado"
+        }`
+      );
 
 
-        if (paciente.dataNascimento) {
-
-          doc.text(
-            `Data de nascimento: ${paciente.dataNascimento}`
-          );
-
-        }
-
-
-        if (paciente.telefone) {
-
-          doc.text(
-            `Telefone: ${paciente.telefone}`
-          );
-
-        }
+      doc.text(
+        `Data de nascimento: ${
+          dataNascimentoFinal ||
+          "Não informada"
+        }`
+      );
 
 
-        if (paciente.email) {
-
-          doc.text(
-            `E-mail: ${paciente.email}`
-          );
-
-        }
-
-      }
+      doc.text(
+        `Telefone: ${
+          telefoneFinal ||
+          "Não informado"
+        }`
+      );
 
 
-      doc.moveDown(1.5);
+      doc.text(
+        `E-mail: ${
+          emailFinal ||
+          "Não informado"
+        }`
+      );
 
 
-      // -------------------------------------------------
+      doc.moveDown(1.2);
+
+
+      // =================================================
       // DIAGNÓSTICO
-      // -------------------------------------------------
+      // =================================================
 
       doc
         .fontSize(14)
@@ -1135,12 +1253,12 @@ app.post(
         );
 
 
-      doc.moveDown(1.5);
+      doc.moveDown(1.2);
 
 
-      // -------------------------------------------------
+      // =================================================
       // MEDICAÇÃO
-      // -------------------------------------------------
+      // =================================================
 
       doc
         .fontSize(14)
@@ -1161,12 +1279,66 @@ app.post(
         );
 
 
-      doc.moveDown(1.5);
+      doc.moveDown(1.2);
 
 
-      // -------------------------------------------------
+      // =================================================
+      // PROCEDIMENTO
+      // =================================================
+
+      doc
+        .fontSize(14)
+        .font("Helvetica-Bold")
+        .text(
+          "Procedimento Realizado"
+        );
+
+
+      doc.moveDown(0.5);
+
+
+      doc
+        .fontSize(11)
+        .font("Helvetica")
+        .text(
+          procedimento ||
+          "Não informado."
+        );
+
+
+      doc.moveDown(1.2);
+
+
+      // =================================================
+      // ORIENTAÇÕES
+      // =================================================
+
+      doc
+        .fontSize(14)
+        .font("Helvetica-Bold")
+        .text(
+          "Orientações ao Paciente"
+        );
+
+
+      doc.moveDown(0.5);
+
+
+      doc
+        .fontSize(11)
+        .font("Helvetica")
+        .text(
+          orientacoes ||
+          "Nenhuma orientação informada."
+        );
+
+
+      doc.moveDown(1.2);
+
+
+      // =================================================
       // OBSERVAÇÕES
-      // -------------------------------------------------
+      // =================================================
 
       doc
         .fontSize(14)
@@ -1183,20 +1355,62 @@ app.post(
         .fontSize(11)
         .font("Helvetica")
         .text(
-          obs || "Nenhuma observação."
+          obs ||
+          "Nenhuma observação."
         );
 
 
-      doc.moveDown(2);
+      doc.moveDown(1.5);
 
 
-      // -------------------------------------------------
+      // =================================================
+      // RESPONSÁVEL
+      // =================================================
+
+      doc
+        .fontSize(14)
+        .font("Helvetica-Bold")
+        .text(
+          "Profissional Responsável"
+        );
+
+
+      doc.moveDown(0.5);
+
+
+      doc
+        .fontSize(11)
+        .font("Helvetica")
+        .text(
+          `Médico: ${
+            medico ||
+            "Não informado"
+          }`
+        );
+
+
+      doc.text(
+        `CRM: ${
+          crm ||
+          "Não informado"
+        }`
+      );
+
+
+      doc.moveDown(1.5);
+
+
+      // =================================================
       // DATA DA ALTA
-      // -------------------------------------------------
+      // =================================================
 
       const dataAlta =
         new Date().toLocaleString(
-          "pt-BR"
+          "pt-BR",
+          {
+            dateStyle: "short",
+            timeStyle: "short"
+          }
         );
 
 
@@ -1208,16 +1422,16 @@ app.post(
         );
 
 
-      doc.moveDown(4);
+      doc.moveDown(3);
 
 
-      // -------------------------------------------------
+      // =================================================
       // ASSINATURA
-      // -------------------------------------------------
+      // =================================================
 
       doc
-        .moveTo(180, doc.y)
-        .lineTo(365, doc.y)
+        .moveTo(170, doc.y)
+        .lineTo(375, doc.y)
         .stroke();
 
 
@@ -1226,20 +1440,38 @@ app.post(
 
       doc
         .fontSize(10)
+        .font("Helvetica")
         .text(
-          "Assinatura do responsável",
+          medico
+            ? medico
+            : "Assinatura do responsável",
           {
             align: "center"
           }
         );
 
 
-      // -------------------------------------------------
+      if (crm) {
+
+        doc
+          .fontSize(9)
+          .text(
+            `CRM: ${crm}`,
+            {
+              align: "center"
+            }
+          );
+
+      }
+
+
+      // =================================================
       // RODAPÉ
-      // -------------------------------------------------
+      // =================================================
 
       doc
         .fontSize(8)
+        .font("Helvetica")
         .text(
           "Documento gerado automaticamente pelo Painel Médico.",
           50,
@@ -1251,7 +1483,9 @@ app.post(
         );
 
 
-      // Finaliza o PDF.
+      // =================================================
+      // FINALIZAR PDF
+      // =================================================
 
       doc.end();
 
@@ -1263,9 +1497,6 @@ app.post(
         erro
       );
 
-
-      // Se o PDF ainda não começou
-      // a ser enviado, retorna JSON.
 
       if (!res.headersSent) {
 
@@ -1351,3 +1582,45 @@ app.listen(
 
   }
 );
+```
+
+### ⚠️ Uma coisa importante
+
+Agora existe uma diferença entre os **dados cadastrados do paciente** e os **dados preenchidos na alta**.
+
+Por exemplo, se o paciente já foi cadastrado com:
+
+```text
+Nome: João
+CPF: 123...
+Data de nascimento: 10/10/2000
+Telefone: ...
+```
+
+o PDF automaticamente aproveita esses dados do cadastro.
+
+Já:
+
+```text
+Diagnóstico
+Medicação
+Procedimento
+Orientações
+Observações
+Médico
+CRM
+```
+
+vêm do formulário de alta.
+
+Também alterei `/consulta` para salvar esses novos campos no `db.json`, então eles não ficam apenas no PDF.
+
+**Depois de substituir o `server.js`, reinicie o servidor Node.js.** Se estiver usando o terminal, normalmente é `Ctrl + C` e depois:
+
+```bash
+node server.js
+```
+
+Se estiver usando `nodemon`, basta salvar o arquivo que ele deve reiniciar automaticamente.
+
+Uma melhoria que eu faria depois é deixar o PDF com uma aparência mais de **documento hospitalar profissional**, com logo/nome da clínica, caixas para cada seção, número da alta e assinatura, em vez desse formato mais simples.

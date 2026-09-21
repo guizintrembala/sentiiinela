@@ -1,0 +1,913 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ficha de Alta</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #087f9c;
+            --primary-light: #08a6c7;
+            --primary-dark: #05657d;
+            --bg: #f4f7f9;
+            --white: #ffffff;
+            --text: #263238;
+            --muted: #6b7c85;
+            --border: #dce5e9;
+            --danger: #d9534f;
+            --success: #198754;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+        }
+
+        .topbar {
+            background: var(--primary-dark);
+            color: white;
+            padding: 18px 32px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,.12);
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .brand-icon {
+            width: 42px;
+            height: 42px;
+            border-radius: 10px;
+            background: rgba(255,255,255,.14);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+        }
+
+        .brand h1 {
+            font-size: 20px;
+        }
+
+        .brand span {
+            display: block;
+            font-size: 12px;
+            opacity: .8;
+            margin-top: 3px;
+        }
+
+        .container {
+            width: min(1180px, calc(100% - 32px));
+            margin: 28px auto 50px;
+        }
+
+        .page-header {
+            margin-bottom: 22px;
+        }
+
+        .page-header h2 {
+            font-size: 28px;
+            color: var(--primary-dark);
+            margin-bottom: 6px;
+        }
+
+        .page-header p {
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        .card {
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 24px;
+            margin-bottom: 18px;
+            box-shadow: 0 3px 12px rgba(31, 61, 72, .05);
+        }
+
+        .card-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--primary-dark);
+            font-size: 17px;
+            font-weight: 700;
+            padding-bottom: 14px;
+            margin-bottom: 18px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .card-title .number {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: #e5f6fa;
+            color: var(--primary-dark);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 13px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 16px;
+        }
+
+        .col-12 { grid-column: span 12; }
+        .col-8 { grid-column: span 8; }
+        .col-6 { grid-column: span 6; }
+        .col-4 { grid-column: span 4; }
+        .col-3 { grid-column: span 3; }
+
+        label {
+            display: block;
+            font-size: 13px;
+            font-weight: 700;
+            color: #455a64;
+            margin-bottom: 7px;
+        }
+
+        input,
+        select,
+        textarea {
+            width: 100%;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 11px 12px;
+            font: inherit;
+            font-size: 14px;
+            color: var(--text);
+            background: white;
+            outline: none;
+            transition: .2s;
+        }
+
+        input:focus,
+        select:focus,
+        textarea:focus {
+            border-color: var(--primary-light);
+            box-shadow: 0 0 0 3px rgba(8, 166, 199, .10);
+        }
+
+        textarea {
+            min-height: 115px;
+            resize: vertical;
+            line-height: 1.5;
+        }
+
+        .patient-summary {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            margin-top: 8px;
+        }
+
+        .patient-item {
+            background: #f7fafb;
+            border: 1px solid var(--border);
+            border-radius: 9px;
+            padding: 12px;
+        }
+
+        .patient-item small {
+            display: block;
+            color: var(--muted);
+            font-size: 11px;
+            margin-bottom: 5px;
+        }
+
+        .patient-item strong {
+            font-size: 14px;
+            word-break: break-word;
+        }
+
+        .check-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px 24px;
+        }
+
+        .check-item {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+            font-size: 14px;
+            color: #455a64;
+        }
+
+        .check-item input {
+            width: 17px;
+            height: 17px;
+            accent-color: var(--primary);
+        }
+
+        .medication-row {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1.2fr auto;
+            gap: 10px;
+            margin-bottom: 10px;
+            align-items: end;
+        }
+
+        .remove-med {
+            border: 0;
+            background: #fff0ef;
+            color: var(--danger);
+            height: 41px;
+            width: 41px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 18px;
+        }
+
+        .add-med {
+            border: 1px solid var(--primary);
+            background: #eefafd;
+            color: var(--primary-dark);
+            padding: 10px 14px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 700;
+            margin-top: 4px;
+        }
+
+        .signature-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-top: 25px;
+        }
+
+        .signature {
+            text-align: center;
+        }
+
+        .signature-line {
+            border-top: 1px solid #455a64;
+            margin-top: 55px;
+            padding-top: 8px;
+            font-size: 13px;
+            color: var(--muted);
+        }
+
+        .actions {
+            display: flex;
+            justify-content: space-between;
+            gap: 12px;
+            margin-top: 24px;
+        }
+
+        .actions-left,
+        .actions-right {
+            display: flex;
+            gap: 10px;
+        }
+
+        button {
+            border: 0;
+            border-radius: 9px;
+            padding: 12px 18px;
+            font: inherit;
+            font-weight: 700;
+            cursor: pointer;
+            transition: .2s;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: var(--primary-dark);
+            border: 1px solid var(--border);
+        }
+
+        .btn-success {
+            background: var(--success);
+            color: white;
+        }
+
+        .btn-danger {
+            background: #fff0ef;
+            color: var(--danger);
+            border: 1px solid #f3cdca;
+        }
+
+        .status {
+            padding: 10px 14px;
+            border-radius: 8px;
+            background: #eef8f1;
+            color: #176b3a;
+            border: 1px solid #cde9d6;
+            font-size: 13px;
+            display: inline-block;
+        }
+
+        .required {
+            color: var(--danger);
+        }
+
+        @media (max-width: 800px) {
+            .col-8,
+            .col-6,
+            .col-4,
+            .col-3 {
+                grid-column: span 12;
+            }
+
+            .patient-summary {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .check-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .medication-row {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .medication-row .remove-med {
+                width: 100%;
+            }
+
+            .signature-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .actions {
+                flex-direction: column;
+            }
+
+            .actions-left,
+            .actions-right {
+                width: 100%;
+            }
+
+            .actions button {
+                flex: 1;
+            }
+
+            .topbar {
+                padding: 15px 18px;
+            }
+        }
+
+        @media print {
+            body {
+                background: white;
+            }
+
+            .topbar {
+                background: white;
+                color: black;
+                box-shadow: none;
+                border-bottom: 2px solid #ddd;
+            }
+
+            .brand-icon {
+                display: none;
+            }
+
+            .container {
+                width: 100%;
+                margin: 0;
+            }
+
+            .card {
+                box-shadow: none;
+                break-inside: avoid;
+                border: 1px solid #ccc;
+            }
+
+            .actions,
+            .add-med,
+            .remove-med {
+                display: none !important;
+            }
+
+            input,
+            select,
+            textarea {
+                border: 0;
+                border-bottom: 1px solid #ccc;
+                border-radius: 0;
+                padding-left: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header class="topbar">
+    <div class="brand">
+        <div class="brand-icon">✚</div>
+        <div>
+            <h1>Painel Médico</h1>
+            <span>Gestão de atendimento hospitalar</span>
+        </div>
+    </div>
+
+    <div class="status">
+        Ficha de Alta
+    </div>
+</header>
+
+<main class="container">
+
+    <div class="page-header">
+        <h2>Ficha de Alta</h2>
+        <p>Preencha as informações referentes à alta hospitalar do paciente.</p>
+    </div>
+
+    <!-- DADOS DO PACIENTE -->
+    <section class="card">
+        <div class="card-title">
+            <div class="number">1</div>
+            Dados do paciente
+        </div>
+
+        <div class="patient-summary">
+            <div class="patient-item">
+                <small>Paciente</small>
+                <strong id="patientName">Não informado</strong>
+            </div>
+
+            <div class="patient-item">
+                <small>CPF</small>
+                <strong id="patientCpf">Não informado</strong>
+            </div>
+
+            <div class="patient-item">
+                <small>Data de nascimento</small>
+                <strong id="patientBirth">Não informado</strong>
+            </div>
+
+            <div class="patient-item">
+                <small>Prontuário</small>
+                <strong id="patientRecord">Não informado</strong>
+            </div>
+        </div>
+
+        <div class="grid" style="margin-top: 18px;">
+            <div class="col-4">
+                <label for="admissionDate">Data de admissão</label>
+                <input type="date" id="admissionDate">
+            </div>
+
+            <div class="col-4">
+                <label for="dischargeDate">Data da alta <span class="required">*</span></label>
+                <input type="date" id="dischargeDate">
+            </div>
+
+            <div class="col-4">
+                <label for="dischargeTime">Horário da alta</label>
+                <input type="time" id="dischargeTime">
+            </div>
+        </div>
+    </section>
+
+    <!-- INFORMAÇÕES DA ALTA -->
+    <section class="card">
+        <div class="card-title">
+            <div class="number">2</div>
+            Informações da alta
+        </div>
+
+        <div class="grid">
+            <div class="col-6">
+                <label for="dischargeType">Tipo de alta</label>
+                <select id="dischargeType">
+                    <option value="">Selecione</option>
+                    <option>Alta médica</option>
+                    <option>Alta a pedido</option>
+                    <option>Alta administrativa</option>
+                    <option>Transferência</option>
+                    <option>Óbito</option>
+                </select>
+            </div>
+
+            <div class="col-6">
+                <label for="destination">Destino após a alta</label>
+                <select id="destination">
+                    <option value="">Selecione</option>
+                    <option>Domicílio</option>
+                    <option>Outra unidade hospitalar</option>
+                    <option>Unidade de pronto atendimento</option>
+                    <option>Instituição de longa permanência</option>
+                    <option>Outro</option>
+                </select>
+            </div>
+
+            <div class="col-12">
+                <label for="diagnosis">Diagnóstico / hipótese diagnóstica <span class="required">*</span></label>
+                <textarea id="diagnosis" placeholder="Informe o diagnóstico principal e diagnósticos relevantes..."></textarea>
+            </div>
+
+            <div class="col-12">
+                <label for="clinicalSummary">Resumo da internação / atendimento</label>
+                <textarea id="clinicalSummary" placeholder="Descreva de forma objetiva a evolução clínica, exames, procedimentos e principais acontecimentos durante o atendimento..."></textarea>
+            </div>
+
+            <div class="col-12">
+                <label for="condition">Condição clínica no momento da alta</label>
+                <textarea id="condition" placeholder="Informe o estado geral do paciente no momento da alta..."></textarea>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROCEDIMENTOS -->
+    <section class="card">
+        <div class="card-title">
+            <div class="number">3</div>
+            Procedimentos e exames realizados
+        </div>
+
+        <div class="grid">
+            <div class="col-12">
+                <label for="procedures">Procedimentos, exames e resultados relevantes</label>
+                <textarea id="procedures" placeholder="Liste os principais procedimentos e exames realizados, incluindo resultados relevantes..."></textarea>
+            </div>
+        </div>
+    </section>
+
+    <!-- MEDICAMENTOS -->
+    <section class="card">
+        <div class="card-title">
+            <div class="number">4</div>
+            Medicamentos e prescrições
+        </div>
+
+        <div id="medications">
+            <div class="medication-row">
+                <div>
+                    <label>Medicamento</label>
+                    <input type="text" placeholder="Nome do medicamento">
+                </div>
+
+                <div>
+                    <label>Dose</label>
+                    <input type="text" placeholder="Ex.: 500 mg">
+                </div>
+
+                <div>
+                    <label>Frequência</label>
+                    <input type="text" placeholder="Ex.: 8/8h">
+                </div>
+
+                <div>
+                    <label>Duração</label>
+                    <input type="text" placeholder="Ex.: 7 dias">
+                </div>
+
+                <button type="button" class="remove-med" onclick="removeMedication(this)" title="Remover">×</button>
+            </div>
+        </div>
+
+        <button type="button" class="add-med" onclick="addMedication()">
+            + Adicionar medicamento
+        </button>
+
+        <div class="grid" style="margin-top: 20px;">
+            <div class="col-12">
+                <label for="medicationNotes">Observações sobre os medicamentos</label>
+                <textarea id="medicationNotes" placeholder="Inclua orientações específicas sobre horários, cuidados ou alterações de medicamentos..."></textarea>
+            </div>
+        </div>
+    </section>
+
+    <!-- ORIENTAÇÕES -->
+    <section class="card">
+        <div class="card-title">
+            <div class="number">5</div>
+            Orientações ao paciente
+        </div>
+
+        <div class="check-grid">
+            <label class="check-item">
+                <input type="checkbox">
+                Repouso conforme orientação médica
+            </label>
+
+            <label class="check-item">
+                <input type="checkbox">
+                Retorno para acompanhamento
+            </label>
+
+            <label class="check-item">
+                <input type="checkbox">
+                Manter medicação prescrita
+            </label>
+
+            <label class="check-item">
+                <input type="checkbox">
+                Realizar exames de acompanhamento
+            </label>
+
+            <label class="check-item">
+                <input type="checkbox">
+                Retornar em caso de piora
+            </label>
+
+            <label class="check-item">
+                <input type="checkbox">
+                Encaminhamento para especialista
+            </label>
+        </div>
+
+        <div class="grid" style="margin-top: 20px;">
+            <div class="col-12">
+                <label for="instructions">Orientações complementares</label>
+                <textarea id="instructions" placeholder="Digite as orientações fornecidas ao paciente e/ou responsável..."></textarea>
+            </div>
+
+            <div class="col-6">
+                <label for="returnDate">Data prevista para retorno</label>
+                <input type="date" id="returnDate">
+            </div>
+
+            <div class="col-6">
+                <label for="referral">Encaminhamento</label>
+                <input type="text" id="referral" placeholder="Ex.: Clínica médica / Cardiologia / UBS">
+            </div>
+        </div>
+    </section>
+
+    <!-- RESPONSÁVEL -->
+    <section class="card">
+        <div class="card-title">
+            <div class="number">6</div>
+            Profissional responsável
+        </div>
+
+        <div class="grid">
+            <div class="col-8">
+                <label for="doctor">Médico responsável <span class="required">*</span></label>
+                <input type="text" id="doctor" placeholder="Nome completo">
+            </div>
+
+            <div class="col-4">
+                <label for="crm">CRM</label>
+                <input type="text" id="crm" placeholder="CRM / UF">
+            </div>
+
+            <div class="col-12">
+                <label for="observations">Observações finais</label>
+                <textarea id="observations" placeholder="Observações adicionais referentes à alta..."></textarea>
+            </div>
+        </div>
+
+        <div class="signature-grid">
+            <div class="signature">
+                <div class="signature-line">
+                    Assinatura do médico responsável
+                </div>
+            </div>
+
+            <div class="signature">
+                <div class="signature-line">
+                    Assinatura do paciente / responsável
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AÇÕES -->
+    <div class="actions">
+        <div class="actions-left">
+            <button type="button" class="btn-secondary" onclick="voltarAtendimento()">
+                ← Voltar
+            </button>
+
+            <button type="button" class="btn-danger" onclick="limparFormulario()">
+                Limpar
+            </button>
+        </div>
+
+        <div class="actions-right">
+            <button type="button" class="btn-secondary" onclick="window.print()">
+                🖨 Imprimir
+            </button>
+
+            <button type="button" class="btn-success" onclick="finalizarAlta()">
+                ✓ Finalizar alta
+            </button>
+        </div>
+    </div>
+
+</main>
+
+<script>
+    // =========================================================
+    // DATA E HORA AUTOMÁTICAS
+    // =========================================================
+
+    const now = new Date();
+
+    document.getElementById("dischargeDate").value =
+        now.toISOString().split("T")[0];
+
+    document.getElementById("dischargeTime").value =
+        now.toTimeString().slice(0, 5);
+
+
+    // =========================================================
+    // RECEBER DADOS DO PACIENTE PELA URL
+    //
+    // Exemplo:
+    // alta.html?nome=Joao&cpf=00000000000
+    // =========================================================
+
+    const params = new URLSearchParams(window.location.search);
+
+    const nome = params.get("nome");
+    const cpf = params.get("cpf");
+    const nascimento = params.get("nascimento");
+    const prontuario = params.get("prontuario");
+
+    if (nome) {
+        document.getElementById("patientName").textContent = nome;
+    }
+
+    if (cpf) {
+        document.getElementById("patientCpf").textContent = cpf;
+    }
+
+    if (nascimento) {
+        document.getElementById("patientBirth").textContent = nascimento;
+    }
+
+    if (prontuario) {
+        document.getElementById("patientRecord").textContent = prontuario;
+    }
+
+
+    // =========================================================
+    // MEDICAMENTOS
+    // =========================================================
+
+    function addMedication() {
+        const container = document.getElementById("medications");
+
+        const row = document.createElement("div");
+
+        row.className = "medication-row";
+
+        row.innerHTML = `
+            <div>
+                <label>Medicamento</label>
+                <input type="text" placeholder="Nome do medicamento">
+            </div>
+
+            <div>
+                <label>Dose</label>
+                <input type="text" placeholder="Ex.: 500 mg">
+            </div>
+
+            <div>
+                <label>Frequência</label>
+                <input type="text" placeholder="Ex.: 8/8h">
+            </div>
+
+            <div>
+                <label>Duração</label>
+                <input type="text" placeholder="Ex.: 7 dias">
+            </div>
+
+            <button
+                type="button"
+                class="remove-med"
+                onclick="removeMedication(this)"
+                title="Remover"
+            >
+                ×
+            </button>
+        `;
+
+        container.appendChild(row);
+    }
+
+
+    function removeMedication(button) {
+        const rows = document.querySelectorAll(".medication-row");
+
+        if (rows.length > 1) {
+            button.parentElement.remove();
+        } else {
+            alert("É necessário manter pelo menos um campo de medicamento.");
+        }
+    }
+
+
+    // =========================================================
+    // FINALIZAR ALTA
+    // =========================================================
+
+    function finalizarAlta() {
+
+        const diagnosis =
+            document.getElementById("diagnosis").value.trim();
+
+        const doctor =
+            document.getElementById("doctor").value.trim();
+
+        if (!diagnosis) {
+            alert("Informe o diagnóstico antes de finalizar a alta.");
+            document.getElementById("diagnosis").focus();
+            return;
+        }
+
+        if (!doctor) {
+            alert("Informe o médico responsável antes de finalizar a alta.");
+            document.getElementById("doctor").focus();
+            return;
+        }
+
+        const confirmar = confirm(
+            "Deseja finalizar a ficha de alta deste paciente?"
+        );
+
+        if (!confirmar) {
+            return;
+        }
+
+        alert("Ficha de alta preenchida com sucesso.");
+
+        // Aqui você poderá futuramente enviar os dados
+        // para seu servidor / banco de dados.
+    }
+
+
+    // =========================================================
+    // LIMPAR FORMULÁRIO
+    // =========================================================
+
+    function limparFormulario() {
+
+        const confirmar = confirm(
+            "Tem certeza que deseja limpar todos os dados preenchidos?"
+        );
+
+        if (!confirmar) {
+            return;
+        }
+
+        document.querySelectorAll("input, textarea, select").forEach(element => {
+
+            if (element.type === "checkbox") {
+                element.checked = false;
+            } else if (element.type !== "date" && element.type !== "time") {
+                element.value = "";
+            }
+        });
+
+        document.querySelectorAll(".medication-row").forEach((row, index) => {
+            if (index > 0) {
+                row.remove();
+            }
+        });
+
+        const current = new Date();
+
+        document.getElementById("dischargeDate").value =
+            current.toISOString().split("T")[0];
+
+        document.getElementById("dischargeTime").value =
+            current.toTimeString().slice(0, 5);
+    }
+
+
+    // =========================================================
+    // VOLTAR PARA ATENDIMENTO
+    // =========================================================
+
+    function voltarAtendimento() {
+        window.location.href = "atendimento.html";
+    }
+</script>
+
+</body>
+</html>

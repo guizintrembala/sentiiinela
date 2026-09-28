@@ -171,6 +171,12 @@
             line-height: 1.5;
         }
 
+        /*
+        =========================================================
+        DADOS DO PACIENTE
+        =========================================================
+        */
+
         .patient-summary {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -192,9 +198,16 @@
             margin-bottom: 5px;
         }
 
-        .patient-item strong {
+        .patient-item input {
+            background: white;
+            font-weight: 700;
             font-size: 14px;
-            word-break: break-word;
+            padding: 9px 10px;
+        }
+
+        .patient-item input::placeholder {
+            color: #263238;
+            opacity: 1;
         }
 
         .check-grid {
@@ -416,6 +429,12 @@
                 border-radius: 0;
                 padding-left: 0;
             }
+
+            .patient-item {
+                border: 0;
+                background: white;
+                padding-left: 0;
+            }
         }
     </style>
 </head>
@@ -425,6 +444,7 @@
 <header class="topbar">
     <div class="brand">
         <div class="brand-icon">✚</div>
+
         <div>
             <h1>Painel Médico</h1>
             <span>Gestão de atendimento hospitalar</span>
@@ -436,366 +456,979 @@
     </div>
 </header>
 
+
 <main class="container">
 
     <div class="page-header">
         <h2>Ficha de Alta</h2>
-        <p>Preencha as informações referentes à alta hospitalar do paciente.</p>
+
+        <p>
+            Preencha as informações referentes à alta hospitalar do paciente.
+        </p>
     </div>
 
-    <!-- DADOS DO PACIENTE -->
+
+    <!-- =====================================================
+         1 - DADOS DO PACIENTE
+    ====================================================== -->
+
     <section class="card">
+
         <div class="card-title">
             <div class="number">1</div>
             Dados do paciente
         </div>
 
+
         <div class="patient-summary">
+
             <div class="patient-item">
                 <small>Paciente</small>
-                <strong id="patientName">Não informado</strong>
+
+                <input
+                    type="text"
+                    id="patientName"
+                    placeholder="Nome do paciente"
+                >
             </div>
+
 
             <div class="patient-item">
                 <small>CPF</small>
-                <strong id="patientCpf">Não informado</strong>
+
+                <input
+                    type="text"
+                    id="patientCpf"
+                    placeholder="CPF"
+                >
             </div>
+
 
             <div class="patient-item">
                 <small>Data de nascimento</small>
-                <strong id="patientBirth">Não informado</strong>
+
+                <input
+                    type="text"
+                    id="patientBirth"
+                    placeholder="Data de nascimento"
+                >
             </div>
+
 
             <div class="patient-item">
                 <small>Prontuário</small>
-                <strong id="patientRecord">Não informado</strong>
+
+                <input
+                    type="text"
+                    id="patientRecord"
+                    placeholder="Número do prontuário"
+                >
             </div>
+
         </div>
+
 
         <div class="grid" style="margin-top: 18px;">
-            <div class="col-4">
-                <label for="admissionDate">Data de admissão</label>
-                <input type="date" id="admissionDate">
-            </div>
 
             <div class="col-4">
-                <label for="dischargeDate">Data da alta <span class="required">*</span></label>
-                <input type="date" id="dischargeDate">
+
+                <label for="admissionDate">
+                    Data de admissão
+                </label>
+
+                <input
+                    type="date"
+                    id="admissionDate"
+                >
+
             </div>
 
+
             <div class="col-4">
-                <label for="dischargeTime">Horário da alta</label>
-                <input type="time" id="dischargeTime">
+
+                <label for="dischargeDate">
+                    Data da alta
+                    <span class="required">*</span>
+                </label>
+
+                <input
+                    type="date"
+                    id="dischargeDate"
+                >
+
             </div>
+
+
+            <div class="col-4">
+
+                <label for="dischargeTime">
+                    Horário da alta
+                </label>
+
+                <input
+                    type="time"
+                    id="dischargeTime"
+                >
+
+            </div>
+
         </div>
+
     </section>
 
-    <!-- INFORMAÇÕES DA ALTA -->
+
+    <!-- =====================================================
+         2 - INFORMAÇÕES DA ALTA
+    ====================================================== -->
+
     <section class="card">
+
         <div class="card-title">
             <div class="number">2</div>
             Informações da alta
         </div>
 
+
         <div class="grid">
+
             <div class="col-6">
-                <label for="dischargeType">Tipo de alta</label>
+
+                <label for="dischargeType">
+                    Tipo de alta
+                </label>
+
                 <select id="dischargeType">
-                    <option value="">Selecione</option>
-                    <option>Alta médica</option>
-                    <option>Alta a pedido</option>
-                    <option>Alta administrativa</option>
-                    <option>Transferência</option>
-                    <option>Óbito</option>
+
+                    <option value="">
+                        Selecione
+                    </option>
+
+                    <option>
+                        Alta médica
+                    </option>
+
+                    <option>
+                        Alta a pedido
+                    </option>
+
+                    <option>
+                        Alta administrativa
+                    </option>
+
+                    <option>
+                        Transferência
+                    </option>
+
+                    <option>
+                        Óbito
+                    </option>
+
                 </select>
+
             </div>
+
 
             <div class="col-6">
-                <label for="destination">Destino após a alta</label>
+
+                <label for="destination">
+                    Destino após a alta
+                </label>
+
                 <select id="destination">
-                    <option value="">Selecione</option>
-                    <option>Domicílio</option>
-                    <option>Outra unidade hospitalar</option>
-                    <option>Unidade de pronto atendimento</option>
-                    <option>Instituição de longa permanência</option>
-                    <option>Outro</option>
+
+                    <option value="">
+                        Selecione
+                    </option>
+
+                    <option>
+                        Domicílio
+                    </option>
+
+                    <option>
+                        Outra unidade hospitalar
+                    </option>
+
+                    <option>
+                        Unidade de pronto atendimento
+                    </option>
+
+                    <option>
+                        Instituição de longa permanência
+                    </option>
+
+                    <option>
+                        Outro
+                    </option>
+
                 </select>
+
             </div>
 
-            <div class="col-12">
-                <label for="diagnosis">Diagnóstico / hipótese diagnóstica <span class="required">*</span></label>
-                <textarea id="diagnosis" placeholder="Informe o diagnóstico principal e diagnósticos relevantes..."></textarea>
-            </div>
 
             <div class="col-12">
-                <label for="clinicalSummary">Resumo da internação / atendimento</label>
-                <textarea id="clinicalSummary" placeholder="Descreva de forma objetiva a evolução clínica, exames, procedimentos e principais acontecimentos durante o atendimento..."></textarea>
+
+                <label for="diagnosis">
+                    Diagnóstico / hipótese diagnóstica
+                    <span class="required">*</span>
+                </label>
+
+                <textarea
+                    id="diagnosis"
+                    placeholder="Informe o diagnóstico principal e diagnósticos relevantes..."
+                ></textarea>
+
             </div>
 
+
             <div class="col-12">
-                <label for="condition">Condição clínica no momento da alta</label>
-                <textarea id="condition" placeholder="Informe o estado geral do paciente no momento da alta..."></textarea>
+
+                <label for="clinicalSummary">
+                    Resumo da internação / atendimento
+                </label>
+
+                <textarea
+                    id="clinicalSummary"
+                    placeholder="Descreva de forma objetiva a evolução clínica, exames, procedimentos e principais acontecimentos durante o atendimento..."
+                ></textarea>
+
             </div>
+
+
+            <div class="col-12">
+
+                <label for="condition">
+                    Condição clínica no momento da alta
+                </label>
+
+                <textarea
+                    id="condition"
+                    placeholder="Informe o estado geral do paciente no momento da alta..."
+                ></textarea>
+
+            </div>
+
         </div>
+
     </section>
 
-    <!-- PROCEDIMENTOS -->
+
+    <!-- =====================================================
+         3 - PROCEDIMENTOS
+    ====================================================== -->
+
     <section class="card">
+
         <div class="card-title">
             <div class="number">3</div>
             Procedimentos e exames realizados
         </div>
 
+
         <div class="grid">
+
             <div class="col-12">
-                <label for="procedures">Procedimentos, exames e resultados relevantes</label>
-                <textarea id="procedures" placeholder="Liste os principais procedimentos e exames realizados, incluindo resultados relevantes..."></textarea>
+
+                <label for="procedures">
+                    Procedimentos, exames e resultados relevantes
+                </label>
+
+                <textarea
+                    id="procedures"
+                    placeholder="Liste os principais procedimentos e exames realizados, incluindo resultados relevantes..."
+                ></textarea>
+
             </div>
+
         </div>
+
     </section>
 
-    <!-- MEDICAMENTOS -->
+
+    <!-- =====================================================
+         4 - MEDICAMENTOS
+    ====================================================== -->
+
     <section class="card">
+
         <div class="card-title">
             <div class="number">4</div>
             Medicamentos e prescrições
         </div>
 
+
         <div id="medications">
+
             <div class="medication-row">
-                <div>
-                    <label>Medicamento</label>
-                    <input type="text" placeholder="Nome do medicamento">
-                </div>
 
                 <div>
-                    <label>Dose</label>
-                    <input type="text" placeholder="Ex.: 500 mg">
+
+                    <label>
+                        Medicamento
+                    </label>
+
+                    <input
+                        type="text"
+                        placeholder="Nome do medicamento"
+                    >
+
                 </div>
+
 
                 <div>
-                    <label>Frequência</label>
-                    <input type="text" placeholder="Ex.: 8/8h">
+
+                    <label>
+                        Dose
+                    </label>
+
+                    <input
+                        type="text"
+                        placeholder="Ex.: 500 mg"
+                    >
+
                 </div>
+
 
                 <div>
-                    <label>Duração</label>
-                    <input type="text" placeholder="Ex.: 7 dias">
+
+                    <label>
+                        Frequência
+                    </label>
+
+                    <input
+                        type="text"
+                        placeholder="Ex.: 8/8h"
+                    >
+
                 </div>
 
-                <button type="button" class="remove-med" onclick="removeMedication(this)" title="Remover">×</button>
+
+                <div>
+
+                    <label>
+                        Duração
+                    </label>
+
+                    <input
+                        type="text"
+                        placeholder="Ex.: 7 dias"
+                    >
+
+                </div>
+
+
+                <button
+                    type="button"
+                    class="remove-med"
+                    onclick="removeMedication(this)"
+                    title="Remover"
+                >
+                    ×
+                </button>
+
             </div>
+
         </div>
 
-        <button type="button" class="add-med" onclick="addMedication()">
+
+        <button
+            type="button"
+            class="add-med"
+            onclick="addMedication()"
+        >
             + Adicionar medicamento
         </button>
 
-        <div class="grid" style="margin-top: 20px;">
+
+        <div
+            class="grid"
+            style="margin-top: 20px;"
+        >
+
             <div class="col-12">
-                <label for="medicationNotes">Observações sobre os medicamentos</label>
-                <textarea id="medicationNotes" placeholder="Inclua orientações específicas sobre horários, cuidados ou alterações de medicamentos..."></textarea>
+
+                <label for="medicationNotes">
+                    Observações sobre os medicamentos
+                </label>
+
+                <textarea
+                    id="medicationNotes"
+                    placeholder="Inclua orientações específicas sobre horários, cuidados ou alterações de medicamentos..."
+                ></textarea>
+
             </div>
+
         </div>
+
     </section>
 
-    <!-- ORIENTAÇÕES -->
+
+    <!-- =====================================================
+         5 - ORIENTAÇÕES
+    ====================================================== -->
+
     <section class="card">
+
         <div class="card-title">
             <div class="number">5</div>
             Orientações ao paciente
         </div>
 
+
         <div class="check-grid">
+
             <label class="check-item">
+
                 <input type="checkbox">
+
                 Repouso conforme orientação médica
+
             </label>
 
+
             <label class="check-item">
+
                 <input type="checkbox">
+
                 Retorno para acompanhamento
+
             </label>
 
+
             <label class="check-item">
+
                 <input type="checkbox">
+
                 Manter medicação prescrita
+
             </label>
 
+
             <label class="check-item">
+
                 <input type="checkbox">
+
                 Realizar exames de acompanhamento
+
             </label>
 
+
             <label class="check-item">
+
                 <input type="checkbox">
+
                 Retornar em caso de piora
+
             </label>
+
 
             <label class="check-item">
+
                 <input type="checkbox">
+
                 Encaminhamento para especialista
+
             </label>
+
         </div>
 
-        <div class="grid" style="margin-top: 20px;">
+
+        <div
+            class="grid"
+            style="margin-top: 20px;"
+        >
+
             <div class="col-12">
-                <label for="instructions">Orientações complementares</label>
-                <textarea id="instructions" placeholder="Digite as orientações fornecidas ao paciente e/ou responsável..."></textarea>
+
+                <label for="instructions">
+                    Orientações complementares
+                </label>
+
+                <textarea
+                    id="instructions"
+                    placeholder="Digite as orientações fornecidas ao paciente e/ou responsável..."
+                ></textarea>
+
             </div>
 
-            <div class="col-6">
-                <label for="returnDate">Data prevista para retorno</label>
-                <input type="date" id="returnDate">
-            </div>
 
             <div class="col-6">
-                <label for="referral">Encaminhamento</label>
-                <input type="text" id="referral" placeholder="Ex.: Clínica médica / Cardiologia / UBS">
+
+                <label for="returnDate">
+                    Data prevista para retorno
+                </label>
+
+                <input
+                    type="date"
+                    id="returnDate"
+                >
+
             </div>
+
+
+            <div class="col-6">
+
+                <label for="referral">
+                    Encaminhamento
+                </label>
+
+                <input
+                    type="text"
+                    id="referral"
+                    placeholder="Ex.: Clínica médica / Cardiologia / UBS"
+                >
+
+            </div>
+
         </div>
+
     </section>
 
-    <!-- RESPONSÁVEL -->
+
+    <!-- =====================================================
+         6 - PROFISSIONAL RESPONSÁVEL
+    ====================================================== -->
+
     <section class="card">
+
         <div class="card-title">
             <div class="number">6</div>
             Profissional responsável
         </div>
 
+
         <div class="grid">
+
             <div class="col-8">
-                <label for="doctor">Médico responsável <span class="required">*</span></label>
-                <input type="text" id="doctor" placeholder="Nome completo">
+
+                <label for="doctor">
+                    Médico responsável
+                    <span class="required">*</span>
+                </label>
+
+                <input
+                    type="text"
+                    id="doctor"
+                    placeholder="Nome completo"
+                >
+
             </div>
+
 
             <div class="col-4">
-                <label for="crm">CRM</label>
-                <input type="text" id="crm" placeholder="CRM / UF">
+
+                <label for="crm">
+                    CRM
+                </label>
+
+                <input
+                    type="text"
+                    id="crm"
+                    placeholder="CRM / UF"
+                >
+
             </div>
+
 
             <div class="col-12">
-                <label for="observations">Observações finais</label>
-                <textarea id="observations" placeholder="Observações adicionais referentes à alta..."></textarea>
+
+                <label for="observations">
+                    Observações finais
+                </label>
+
+                <textarea
+                    id="observations"
+                    placeholder="Observações adicionais referentes à alta..."
+                ></textarea>
+
             </div>
+
         </div>
 
+
         <div class="signature-grid">
+
             <div class="signature">
+
                 <div class="signature-line">
                     Assinatura do médico responsável
                 </div>
+
             </div>
 
+
             <div class="signature">
+
                 <div class="signature-line">
                     Assinatura do paciente / responsável
                 </div>
+
             </div>
+
         </div>
+
     </section>
 
-    <!-- AÇÕES -->
+
+    <!-- =====================================================
+         AÇÕES
+    ====================================================== -->
+
     <div class="actions">
+
         <div class="actions-left">
-            <button type="button" class="btn-secondary" onclick="voltarAtendimento()">
+
+            <button
+                type="button"
+                class="btn-secondary"
+                onclick="voltarAtendimento()"
+            >
                 ← Voltar
             </button>
 
-            <button type="button" class="btn-danger" onclick="limparFormulario()">
+
+            <button
+                type="button"
+                class="btn-danger"
+                onclick="limparFormulario()"
+            >
                 Limpar
             </button>
+
         </div>
 
+
         <div class="actions-right">
-            <button type="button" class="btn-secondary" onclick="window.print()">
+
+            <button
+                type="button"
+                class="btn-secondary"
+                onclick="window.print()"
+            >
                 🖨 Imprimir
             </button>
 
-            <button type="button" class="btn-success" onclick="finalizarAlta()">
+
+            <button
+                type="button"
+                class="btn-success"
+                onclick="finalizarAlta()"
+            >
                 ✓ Finalizar alta
             </button>
+
         </div>
+
     </div>
 
 </main>
 
+
 <script>
-    // =========================================================
-    // DATA E HORA AUTOMÁTICAS
-    // =========================================================
+
+    /*
+    =========================================================
+    DATA E HORA AUTOMÁTICAS
+    =========================================================
+    */
 
     const now = new Date();
 
     document.getElementById("dischargeDate").value =
-        now.toISOString().split("T")[0];
+        formatDateForInput(now);
 
     document.getElementById("dischargeTime").value =
         now.toTimeString().slice(0, 5);
 
 
-    // =========================================================
-    // RECEBER DADOS DO PACIENTE PELA URL
-    //
-    // Exemplo:
-    // alta.html?nome=Joao&cpf=00000000000
-    // =========================================================
+    /*
+    =========================================================
+    FUNÇÃO PARA FORMATAR DATA
+    =========================================================
+    */
 
-    const params = new URLSearchParams(window.location.search);
+    function formatDateForInput(date) {
 
-    const nome = params.get("nome");
-    const cpf = params.get("cpf");
-    const nascimento = params.get("nascimento");
-    const prontuario = params.get("prontuario");
+        const year = date.getFullYear();
 
-    if (nome) {
-        document.getElementById("patientName").textContent = nome;
-    }
+        const month = String(
+            date.getMonth() + 1
+        ).padStart(2, "0");
 
-    if (cpf) {
-        document.getElementById("patientCpf").textContent = cpf;
-    }
+        const day = String(
+            date.getDate()
+        ).padStart(2, "0");
 
-    if (nascimento) {
-        document.getElementById("patientBirth").textContent = nascimento;
-    }
-
-    if (prontuario) {
-        document.getElementById("patientRecord").textContent = prontuario;
+        return `${year}-${month}-${day}`;
     }
 
 
-    // =========================================================
-    // MEDICAMENTOS
-    // =========================================================
+    /*
+    =========================================================
+    RECEBER PACIENTE SELECIONADO
+    =========================================================
+
+    A página aceita:
+
+    alta.html?nome=Joao&cpf=12345678900&nascimento=10/01/1990&prontuario=12345
+
+    Também tenta buscar no localStorage.
+    */
+
+
+    const params =
+        new URLSearchParams(window.location.search);
+
+
+    /*
+    ---------------------------------------------------------
+    PRIMEIRA OPÇÃO: DADOS PELA URL
+    ---------------------------------------------------------
+    */
+
+    let paciente = {
+
+        nome:
+            params.get("nome") ||
+            params.get("paciente") ||
+            "",
+
+        cpf:
+            params.get("cpf") ||
+            "",
+
+        nascimento:
+            params.get("nascimento") ||
+            params.get("dataNascimento") ||
+            "",
+
+        prontuario:
+            params.get("prontuario") ||
+            params.get("registro") ||
+            ""
+
+    };
+
+
+    /*
+    ---------------------------------------------------------
+    SEGUNDA OPÇÃO: LOCALSTORAGE
+    ---------------------------------------------------------
+    */
+
+    if (
+        !paciente.nome &&
+        !paciente.cpf &&
+        !paciente.nascimento &&
+        !paciente.prontuario
+    ) {
+
+        try {
+
+            const pacienteSalvo =
+                localStorage.getItem("pacienteSelecionado");
+
+            if (pacienteSalvo) {
+
+                const dados =
+                    JSON.parse(pacienteSalvo);
+
+                paciente.nome =
+                    dados.nome ||
+                    dados.paciente ||
+                    "";
+
+                paciente.cpf =
+                    dados.cpf ||
+                    "";
+
+                paciente.nascimento =
+                    dados.nascimento ||
+                    dados.dataNascimento ||
+                    "";
+
+                paciente.prontuario =
+                    dados.prontuario ||
+                    dados.registro ||
+                    "";
+            }
+
+        } catch (erro) {
+
+            console.error(
+                "Não foi possível recuperar o paciente:",
+                erro
+            );
+
+        }
+
+    }
+
+
+    /*
+    ---------------------------------------------------------
+    PREENCHER OS CAMPOS DO PACIENTE
+    ---------------------------------------------------------
+    */
+
+    document.getElementById("patientName").value =
+        paciente.nome;
+
+    document.getElementById("patientCpf").value =
+        paciente.cpf;
+
+    document.getElementById("patientBirth").value =
+        paciente.nascimento;
+
+    document.getElementById("patientRecord").value =
+        paciente.prontuario;
+
+
+    /*
+    =========================================================
+    SALVAR ALTERAÇÕES DO PACIENTE
+    =========================================================
+
+    Como agora os dados são inputs, o usuário pode editar.
+
+    Também salvamos as alterações no localStorage.
+    */
+
+    function salvarPacienteLocalmente() {
+
+        const dadosPaciente = {
+
+            nome:
+                document.getElementById("patientName").value.trim(),
+
+            cpf:
+                document.getElementById("patientCpf").value.trim(),
+
+            nascimento:
+                document.getElementById("patientBirth").value.trim(),
+
+            prontuario:
+                document.getElementById("patientRecord").value.trim()
+
+        };
+
+
+        localStorage.setItem(
+            "pacienteSelecionado",
+            JSON.stringify(dadosPaciente)
+        );
+
+    }
+
+
+    document
+        .getElementById("patientName")
+        .addEventListener(
+            "input",
+            salvarPacienteLocalmente
+        );
+
+
+    document
+        .getElementById("patientCpf")
+        .addEventListener(
+            "input",
+            salvarPacienteLocalmente
+        );
+
+
+    document
+        .getElementById("patientBirth")
+        .addEventListener(
+            "input",
+            salvarPacienteLocalmente
+        );
+
+
+    document
+        .getElementById("patientRecord")
+        .addEventListener(
+            "input",
+            salvarPacienteLocalmente
+        );
+
+
+    /*
+    =========================================================
+    MEDICAMENTOS
+    =========================================================
+    */
 
     function addMedication() {
-        const container = document.getElementById("medications");
 
-        const row = document.createElement("div");
+        const container =
+            document.getElementById("medications");
 
-        row.className = "medication-row";
+
+        const row =
+            document.createElement("div");
+
+
+        row.className =
+            "medication-row";
+
 
         row.innerHTML = `
-            <div>
-                <label>Medicamento</label>
-                <input type="text" placeholder="Nome do medicamento">
-            </div>
 
             <div>
-                <label>Dose</label>
-                <input type="text" placeholder="Ex.: 500 mg">
+
+                <label>
+                    Medicamento
+                </label>
+
+                <input
+                    type="text"
+                    placeholder="Nome do medicamento"
+                >
+
             </div>
 
-            <div>
-                <label>Frequência</label>
-                <input type="text" placeholder="Ex.: 8/8h">
-            </div>
 
             <div>
-                <label>Duração</label>
-                <input type="text" placeholder="Ex.: 7 dias">
+
+                <label>
+                    Dose
+                </label>
+
+                <input
+                    type="text"
+                    placeholder="Ex.: 500 mg"
+                >
+
             </div>
+
+
+            <div>
+
+                <label>
+                    Frequência
+                </label>
+
+                <input
+                    type="text"
+                    placeholder="Ex.: 8/8h"
+                >
+
+            </div>
+
+
+            <div>
+
+                <label>
+                    Duração
+                </label>
+
+                <input
+                    type="text"
+                    placeholder="Ex.: 7 dias"
+                >
+
+            </div>
+
 
             <button
                 type="button"
@@ -805,108 +1438,259 @@
             >
                 ×
             </button>
+
         `;
 
+
         container.appendChild(row);
+
     }
 
 
     function removeMedication(button) {
-        const rows = document.querySelectorAll(".medication-row");
+
+        const rows =
+            document.querySelectorAll(
+                ".medication-row"
+            );
+
 
         if (rows.length > 1) {
+
             button.parentElement.remove();
+
         } else {
-            alert("É necessário manter pelo menos um campo de medicamento.");
+
+            alert(
+                "É necessário manter pelo menos um campo de medicamento."
+            );
+
         }
+
     }
 
 
-    // =========================================================
-    // FINALIZAR ALTA
-    // =========================================================
+    /*
+    =========================================================
+    FINALIZAR ALTA
+    =========================================================
+    */
 
     function finalizarAlta() {
 
         const diagnosis =
-            document.getElementById("diagnosis").value.trim();
+            document
+                .getElementById("diagnosis")
+                .value
+                .trim();
+
 
         const doctor =
-            document.getElementById("doctor").value.trim();
+            document
+                .getElementById("doctor")
+                .value
+                .trim();
+
+
+        const patientName =
+            document
+                .getElementById("patientName")
+                .value
+                .trim();
+
+
+        if (!patientName) {
+
+            alert(
+                "Informe o nome do paciente."
+            );
+
+            document
+                .getElementById("patientName")
+                .focus();
+
+            return;
+
+        }
+
 
         if (!diagnosis) {
-            alert("Informe o diagnóstico antes de finalizar a alta.");
-            document.getElementById("diagnosis").focus();
+
+            alert(
+                "Informe o diagnóstico antes de finalizar a alta."
+            );
+
+            document
+                .getElementById("diagnosis")
+                .focus();
+
             return;
+
         }
+
 
         if (!doctor) {
-            alert("Informe o médico responsável antes de finalizar a alta.");
-            document.getElementById("doctor").focus();
+
+            alert(
+                "Informe o médico responsável antes de finalizar a alta."
+            );
+
+            document
+                .getElementById("doctor")
+                .focus();
+
             return;
+
         }
 
-        const confirmar = confirm(
-            "Deseja finalizar a ficha de alta deste paciente?"
-        );
+
+        salvarPacienteLocalmente();
+
+
+        const confirmar =
+            confirm(
+                "Deseja finalizar a ficha de alta deste paciente?"
+            );
+
 
         if (!confirmar) {
             return;
         }
 
-        alert("Ficha de alta preenchida com sucesso.");
 
-        // Aqui você poderá futuramente enviar os dados
-        // para seu servidor / banco de dados.
+        alert(
+            "Ficha de alta preenchida com sucesso."
+        );
+
+
+        /*
+        =====================================================
+        FUTURO:
+
+        Aqui poderá ser feita a gravação no banco de dados.
+
+        Por enquanto, os dados continuam disponíveis
+        nesta página.
+        =====================================================
+        */
+
     }
 
 
-    // =========================================================
-    // LIMPAR FORMULÁRIO
-    // =========================================================
+    /*
+    =========================================================
+    LIMPAR FORMULÁRIO
+    =========================================================
+    */
 
     function limparFormulario() {
 
-        const confirmar = confirm(
-            "Tem certeza que deseja limpar todos os dados preenchidos?"
-        );
+        const confirmar =
+            confirm(
+                "Tem certeza que deseja limpar os dados preenchidos?"
+            );
+
 
         if (!confirmar) {
             return;
         }
 
-        document.querySelectorAll("input, textarea, select").forEach(element => {
 
-            if (element.type === "checkbox") {
-                element.checked = false;
-            } else if (element.type !== "date" && element.type !== "time") {
-                element.value = "";
-            }
-        });
+        /*
+        -----------------------------------------------------
+        LIMPA OS CAMPOS DA FICHA
+        -----------------------------------------------------
+        */
 
-        document.querySelectorAll(".medication-row").forEach((row, index) => {
-            if (index > 0) {
-                row.remove();
-            }
-        });
+        document
+            .querySelectorAll(
+                "input, textarea, select"
+            )
+            .forEach(element => {
 
-        const current = new Date();
+                /*
+                Não limpar os dados do paciente selecionado.
+                */
 
-        document.getElementById("dischargeDate").value =
-            current.toISOString().split("T")[0];
+                if (
+                    element.id === "patientName" ||
+                    element.id === "patientCpf" ||
+                    element.id === "patientBirth" ||
+                    element.id === "patientRecord"
+                ) {
+                    return;
+                }
 
-        document.getElementById("dischargeTime").value =
-            current.toTimeString().slice(0, 5);
+
+                if (element.type === "checkbox") {
+
+                    element.checked = false;
+
+                } else {
+
+                    element.value = "";
+
+                }
+
+            });
+
+
+        /*
+        -----------------------------------------------------
+        REMOVE MEDICAMENTOS EXTRAS
+        -----------------------------------------------------
+        */
+
+        document
+            .querySelectorAll(".medication-row")
+            .forEach((row, index) => {
+
+                if (index > 0) {
+                    row.remove();
+                }
+
+            });
+
+
+        /*
+        -----------------------------------------------------
+        COLOCA DATA/HORA ATUAL NOVAMENTE
+        -----------------------------------------------------
+        */
+
+        const current =
+            new Date();
+
+
+        document
+            .getElementById("dischargeDate")
+            .value =
+            formatDateForInput(current);
+
+
+        document
+            .getElementById("dischargeTime")
+            .value =
+            current
+                .toTimeString()
+                .slice(0, 5);
+
     }
 
 
-    // =========================================================
-    // VOLTAR PARA ATENDIMENTO
-    // =========================================================
+    /*
+    =========================================================
+    VOLTAR PARA ATENDIMENTO
+    =========================================================
+    */
 
     function voltarAtendimento() {
-        window.location.href = "atendimento.html";
+
+        window.location.href =
+            "atendimento.html";
+
     }
+
 </script>
 
 </body>

@@ -1,4 +1,3 @@
-
 function normalizarTexto(valor) {
   return String(valor ?? "")
     .trim()
@@ -21,24 +20,35 @@ function classificarAlerta(dados) {
     "infarto",
     "avc",
     "convulsao",
-    "hemorragia"
+    "hemorragia",
+    "dor_no_peito"
   ];
 
-  // Uma pulseira vermelha nunca deve ser rebaixada.
+  // Sinais de alerta exigem avaliação imediata,
+  // sem substituir a classificação da equipe.
+  if (sinaisDeAlerta.includes(sintoma)) {
+    return {
+      risco: riscosValidos.includes(riscoInformado)
+        ? riscoInformado
+        : "pendente_avaliacao",
+      alerta: true,
+      motivo: "Sinal de alerta identificado. Acione o protocolo de emergência do serviço."
+    };
+  }
+
+  // Uma classificação vermelha informada não deve ser rebaixada.
   if (
     riscoInformado === "vermelho" ||
     pulseira === "vermelho" ||
-    pulseira === "red" ||
-    sinaisDeAlerta.includes(sintoma)
+    pulseira === "red"
   ) {
     return {
       risco: "vermelho",
       alerta: true,
-      motivo: "Prioridade máxima indicada; requer avaliação imediata."
+      motivo: "Prioridade alta informada. Requer atenção imediata da equipe."
     };
   }
 
-  // Não inventa uma classificação quando faltam dados.
   if (!riscosValidos.includes(riscoInformado)) {
     return {
       risco: "pendente_avaliacao",
@@ -59,9 +69,19 @@ app.post("/triagem", (req, res) => {
     const db = readDB();
     const dados = req.body || {};
 
-    if (!dados.nome && !dados.pacienteId) {
+    const nome = String(dados.nome ?? "").trim();
+    const pacienteId = dados.pacienteId ?? null;
+    const sintoma = String(dados.sintoma ?? "").trim();
+
+    if (!nome && !pacienteId) {
       return res.status(400).json({
         erro: "Informe o nome ou o identificador do paciente."
+      });
+    }
+
+    if (!sintoma) {
+      return res.status(400).json({
+        erro: "Informe o sintoma principal."
       });
     }
 
@@ -69,17 +89,15 @@ app.post("/triagem", (req, res) => {
 
     const triagem = {
       id: Date.now(),
-      pacienteId: dados.pacienteId ?? null,
-      nome: String(dados.nome ?? "").trim(),
-      sintoma: String(dados.sintoma ?? "").trim(),
+      pacienteId,
+      nome,
+      sintoma,
       temperatura: dados.temperatura ?? null,
       alergia: String(dados.alergia ?? "").trim(),
       observacao: String(dados.observacao ?? "").trim(),
-
       risco: resultado.risco,
       alerta: resultado.alerta,
       motivoAlerta: resultado.motivo,
-
       status: "aguardando_medico",
       createdAt: new Date().toISOString()
     };
@@ -95,7 +113,7 @@ app.post("/triagem", (req, res) => {
     db.triagens.push(triagem);
 
     const paciente = db.pacientes.find(
-      p => String(p.id) === String(dados.pacienteId)
+      p => String(p.id) === String(pacienteId)
     );
 
     if (paciente) {
@@ -106,6 +124,7 @@ app.post("/triagem", (req, res) => {
 
     return res.status(201).json({
       sucesso: true,
+      nome: triagem.nome,
       triagem
     });
   } catch (erro) {

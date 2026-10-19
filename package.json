@@ -1,7 +1,8 @@
+
 {
   "name": "sentiiinela",
   "version": "1.0.0",
-  "description": "Sistema Sentiiinela",
+  "description": "Sistema Sentiiinela - análise de sintomas e controle de riscos",
   "main": "backend/server.js",
   "scripts": {
     "start": "node backend/server.js"

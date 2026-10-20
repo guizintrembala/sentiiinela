@@ -27,7 +27,7 @@
     }
 
     body {
-      background: linear-gradient(135deg, #f5fbfd 0%, #e8f5f8 100%);
+      background: linear-gradient(135deg, #f5fbfd, #e8f5f8);
       min-height: 100vh;
       overflow: hidden;
       color: #263942;
@@ -91,7 +91,7 @@
 
     .local-box {
       flex: 1;
-      background: linear-gradient(145deg, #ffffff 0%, #f2fafc 100%);
+      background: linear-gradient(145deg, #fff, #f2fafc);
     }
 
     .local-box .box-title {
@@ -157,7 +157,7 @@
       min-height: 0;
       background:
         radial-gradient(circle at top right, rgba(24, 168, 137, 0.10), transparent 35%),
-        linear-gradient(145deg, #ffffff 0%, #f4fbfd 100%);
+        linear-gradient(145deg, #fff, #f4fbfd);
     }
 
     .patient-box .box-title {
@@ -202,7 +202,7 @@
       flex-direction: row;
       justify-content: space-between;
       padding: 20px 35px;
-      background: #ffffff;
+      background: #fff;
     }
 
     .hospital-brand {
@@ -251,14 +251,18 @@
         transform: scale(1);
         box-shadow: var(--sombra);
       }
+
       35% {
         transform: scale(1.015);
-        box-shadow: 0 0 0 8px rgba(8, 126, 164, 0.12),
+        box-shadow:
+          0 0 0 8px rgba(8, 126, 164, 0.12),
           0 15px 40px rgba(0, 66, 91, 0.18);
       }
+
       70% {
         transform: scale(1.005);
       }
+
       100% {
         transform: scale(1);
         box-shadow: var(--sombra);
@@ -318,6 +322,7 @@
 
 <body>
   <main class="tv-container">
+
     <section class="left-panel">
       <div class="box local-box">
         <div class="box-title" id="local-tipo">GUICHÊ</div>
@@ -336,7 +341,9 @@
     <section class="right-panel">
       <div class="box patient-box">
         <div class="box-title">Paciente chamado</div>
-        <div class="patient-name" id="patient-name">AGUARDANDO...</div>
+        <div class="patient-name" id="patient-name">
+          AGUARDANDO...
+        </div>
 
         <div class="waiting-indicator">
           <span class="waiting-dot"></span>
@@ -347,87 +354,150 @@
       <div class="box logo-box">
         <div class="hospital-brand">
           <div class="hospital-icon">+</div>
+
           <div>
             <div class="logo-text">Hosp+</div>
-            <div class="logo-subtitle">Cuidar. Acolher. Transformar.</div>
+            <div class="logo-subtitle">
+              Cuidar. Acolher. Transformar.
+            </div>
           </div>
         </div>
 
         <div class="clock" id="clock">--:--</div>
       </div>
     </section>
+
   </main>
 
   <script>
+    "use strict";
+
     let ultimoId = null;
     let buscandoChamada = false;
 
+    const elementos = {
+      localTipo: document.getElementById("local-tipo"),
+      localNumero: document.getElementById("local-numero"),
+      nomePaciente: document.getElementById("patient-name"),
+      patientBox: document.querySelector(".patient-box"),
+      historico: document.getElementById("history-list"),
+      relogio: document.getElementById("clock")
+    };
+
+    function texto(valor, padrao = "--") {
+      if (
+        valor === null ||
+        valor === undefined ||
+        String(valor).trim() === ""
+      ) {
+        return padrao;
+      }
+
+      return String(valor);
+    }
+
+    function renderizarHistorico(historico) {
+      const lista = elementos.historico;
+      lista.replaceChildren();
+
+      if (!historico.length) {
+        const li = document.createElement("li");
+        li.textContent = "Nenhuma chamada recente";
+        lista.appendChild(li);
+        return;
+      }
+
+      historico.slice(0, 4).forEach(chamada => {
+        const li = document.createElement("li");
+
+        const tipo = texto(
+          chamada.localTipo,
+          "GUIC"
+        ).substring(0, 4);
+
+        li.textContent =
+          `${tipo}. ${texto(chamada.localNumero)} - ` +
+          `${texto(chamada.paciente, "Paciente")}`;
+
+        lista.appendChild(li);
+      });
+    }
+
+    function renderizarChamada(chamada) {
+      if (!chamada || typeof chamada !== "object") {
+        ultimoId = null;
+
+        elementos.localTipo.textContent = "GUICHÊ";
+        elementos.localNumero.textContent = "--";
+        elementos.nomePaciente.textContent = "AGUARDANDO...";
+
+        elementos.patientBox.classList.remove("flash");
+        return;
+      }
+
+      elementos.localTipo.textContent =
+        texto(chamada.localTipo, "GUICHÊ");
+
+      elementos.localNumero.textContent =
+        texto(chamada.localNumero);
+
+      elementos.nomePaciente.textContent =
+        texto(chamada.paciente, "AGUARDANDO...");
+
+      const idAtual = chamada.id ?? [
+        chamada.paciente,
+        chamada.localTipo,
+        chamada.localNumero
+      ].map(valor => texto(valor, "")).join("|");
+
+      if (idAtual !== ultimoId) {
+        ultimoId = idAtual;
+
+        elementos.patientBox.classList.remove("flash");
+
+        void elementos.patientBox.offsetWidth;
+
+        elementos.patientBox.classList.add("flash");
+      }
+    }
+
     async function atualizar() {
       if (buscandoChamada) return;
+
       buscandoChamada = true;
 
       try {
         const resposta = await fetch("/tv/chamada", {
-          headers: { Accept: "application/json" },
+          method: "GET",
+          headers: {
+            "Accept": "application/json"
+          },
           cache: "no-store"
         });
 
         if (!resposta.ok) {
-          throw new Error(`Erro HTTP: ${resposta.status}`);
+          throw new Error(`Erro HTTP ${resposta.status}`);
         }
 
         const data = await resposta.json();
-        const chamada = data.chamada || null;
-        const historico = Array.isArray(data.historico)
-          ? data.historico
-          : [];
 
-        const localTipo = document.getElementById("local-tipo");
-        const localNumero = document.getElementById("local-numero");
-        const nomePaciente = document.getElementById("patient-name");
-        const patientBox = document.querySelector(".patient-box");
-
-        if (chamada) {
-          localTipo.innerText = chamada.localTipo || "GUICHÊ";
-          localNumero.innerText = chamada.localNumero || "--";
-          nomePaciente.innerText = chamada.paciente || "AGUARDANDO...";
-
-          if (chamada.id !== ultimoId) {
-            ultimoId = chamada.id;
-            patientBox.classList.remove("flash");
-            void patientBox.offsetWidth;
-            patientBox.classList.add("flash");
-          }
-        } else {
-          ultimoId = null;
-          localTipo.innerText = "GUICHÊ";
-          localNumero.innerText = "--";
-          nomePaciente.innerText = "AGUARDANDO...";
-          patientBox.classList.remove("flash");
+        if (!data || typeof data !== "object") {
+          throw new Error("Resposta inválida do servidor.");
         }
 
-        const lista = document.getElementById("history-list");
-        lista.innerHTML = "";
+        renderizarChamada(data.chamada ?? null);
 
-        if (historico.length === 0) {
-          const item = document.createElement("li");
-          item.innerText = "Nenhuma chamada recente";
-          lista.appendChild(item);
-        } else {
-          historico.slice(0, 4).forEach(item => {
-            const li = document.createElement("li");
-            const tipo = item.localTipo
-              ? String(item.localTipo).substring(0, 4)
-              : "GUIC";
+        renderizarHistorico(
+          Array.isArray(data.historico)
+            ? data.historico
+            : []
+        );
 
-            li.innerText =
-              `${tipo}. ${item.localNumero || "--"} - ${item.paciente || "Paciente"}`;
-
-            lista.appendChild(li);
-          });
-        }
       } catch (erro) {
-        console.error("Erro ao buscar chamada:", erro);
+        console.error(
+          "Erro ao atualizar chamadas:",
+          erro
+        );
       } finally {
         buscandoChamada = false;
       }
@@ -435,10 +505,17 @@
 
     function atualizarRelogio() {
       const agora = new Date();
-      const horas = String(agora.getHours()).padStart(2, "0");
-      const minutos = String(agora.getMinutes()).padStart(2, "0");
 
-      document.getElementById("clock").innerText = `${horas}:${minutos}`;
+      const horas = String(
+        agora.getHours()
+      ).padStart(2, "0");
+
+      const minutos = String(
+        agora.getMinutes()
+      ).padStart(2, "0");
+
+      elementos.relogio.textContent =
+        `${horas}:${minutos}`;
     }
 
     atualizar();

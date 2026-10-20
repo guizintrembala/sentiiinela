@@ -1,16 +1,20 @@
+
 function normalizarTexto(valor) {
   return String(valor ?? "")
     .trim()
     .toLowerCase()
     .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, "");
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/\s+/g, "_");
 }
 
 function classificarAlerta(dados) {
   const riscoInformado = normalizarTexto(dados.risco);
+
   const pulseira = normalizarTexto(
     dados.pulseira ?? dados.corPulseira
   );
+
   const sintoma = normalizarTexto(dados.sintoma);
 
   const riscosValidos = ["vermelho", "amarelo", "verde"];
@@ -24,19 +28,17 @@ function classificarAlerta(dados) {
     "dor_no_peito"
   ];
 
-  // Sinais de alerta exigem avaliação imediata,
-  // sem substituir a classificação da equipe.
   if (sinaisDeAlerta.includes(sintoma)) {
     return {
-      risco: riscosValidos.includes(riscoInformado)
-        ? riscoInformado
+      risco: riscoInformado === "vermelho"
+        ? "vermelho"
         : "pendente_avaliacao",
       alerta: true,
-      motivo: "Sinal de alerta identificado. Acione o protocolo de emergência do serviço."
+      motivo:
+        "Sinal de alerta identificado. Acione imediatamente o protocolo de emergência e a equipe clínica."
     };
   }
 
-  // Uma classificação vermelha informada não deve ser rebaixada.
   if (
     riscoInformado === "vermelho" ||
     pulseira === "vermelho" ||
@@ -45,7 +47,8 @@ function classificarAlerta(dados) {
     return {
       risco: "vermelho",
       alerta: true,
-      motivo: "Prioridade alta informada. Requer atenção imediata da equipe."
+      motivo:
+        "Prioridade alta informada. Solicite avaliação imediata da equipe."
     };
   }
 
@@ -63,6 +66,10 @@ function classificarAlerta(dados) {
     motivo: "Classificação informada para revisão da equipe."
   };
 }
+
+// IMPORTANTE:
+// Este trecho pressupõe que app, readDB e writeDB
+// já estejam definidos no arquivo do servidor.
 
 app.post("/triagem", (req, res) => {
   try {
@@ -113,7 +120,8 @@ app.post("/triagem", (req, res) => {
     db.triagens.push(triagem);
 
     const paciente = db.pacientes.find(
-      p => String(p.id) === String(pacienteId)
+      p => pacienteId != null &&
+        String(p.id) === String(pacienteId)
     );
 
     if (paciente) {

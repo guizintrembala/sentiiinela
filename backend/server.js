@@ -48,7 +48,7 @@ const upload = multer({
   }
 });
 
-app.use("/uploads", express.static(UPLOAD_DIR));
+app.use(express.static(path.join(__dirname, "../front-end")));
 
 // =====================================================
 // BANCO DE DADOS (JSON)

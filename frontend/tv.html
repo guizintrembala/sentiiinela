@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Chamadas - Hosp+</title>
+  <title>Triagem | Hosp+</title>
 
   <style>
     * {
@@ -19,203 +19,56 @@
       --azul-escuro: #075b78;
       --azul-claro: #eaf7fb;
       --verde: #18a889;
-      --branco: #ffffff;
-      --cinza: #f4f7f9;
-      --cinza-texto: #60717a;
+      --verde-claro: #e9f8f4;
+      --amarelo: #e7a900;
+      --amarelo-claro: #fff7df;
+      --vermelho: #d64545;
+      --vermelho-claro: #fff0f0;
+      --cinza-fundo: #f4f8fa;
       --cinza-borda: #dce7eb;
-      --sombra: 0 10px 30px rgba(0, 66, 91, 0.12);
+      --cinza-texto: #667980;
+      --branco: #ffffff;
+      --sombra: 0 8px 25px rgba(0, 70, 95, 0.09);
     }
 
     body {
-      background: linear-gradient(135deg, #f5fbfd, #e8f5f8);
+      background: linear-gradient(135deg, #f7fcfd, #eaf5f8);
       min-height: 100vh;
-      overflow: hidden;
       color: #263942;
     }
 
-    .tv-container {
-      width: 94vw;
-      height: 92vh;
-      margin: auto;
-      display: grid;
-      grid-template-columns: minmax(0, 31fr) minmax(0, 69fr);
-      gap: 22px;
-      position: relative;
-      top: 50%;
-      transform: translateY(-50%);
-    }
-
-    .left-panel,
-    .right-panel {
-      display: flex;
-      flex-direction: column;
-      gap: 22px;
-      min-width: 0;
-      min-height: 0;
-    }
-
-    .box {
-      background: var(--branco);
-      border: 1px solid var(--cinza-borda);
-      border-radius: 24px;
-      padding: 28px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      box-shadow: var(--sombra);
+    body.tv-aberta {
       overflow: hidden;
-      position: relative;
-      min-width: 0;
     }
 
-    .box::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 6px;
-      background: linear-gradient(90deg, var(--azul), var(--verde));
+    .container {
+      width: 94%;
+      max-width: 1500px;
+      margin: 0 auto;
+      padding: 28px 0 50px;
     }
 
-    .box-title {
-      color: var(--cinza-texto);
-      font-size: clamp(16px, 1.4vw, 26px);
-      font-weight: 700;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      margin-bottom: 18px;
-    }
-
-    .local-box {
-      flex: 1;
-      background: linear-gradient(145deg, #fff, #f2fafc);
-    }
-
-    .local-box .box-title {
-      color: var(--azul);
-    }
-
-    .local-number {
-      color: var(--azul-escuro);
-      font-size: clamp(90px, 9vw, 180px);
-      font-weight: 800;
-      line-height: 0.95;
-      letter-spacing: -5px;
-    }
-
-    .local-type {
-      color: var(--cinza-texto);
-      font-size: clamp(16px, 1.5vw, 28px);
-      font-weight: 600;
-      margin-top: 15px;
-    }
-
-    .history-box {
-      flex: 1;
-      justify-content: flex-start;
-      align-items: stretch;
-      padding: 28px 30px;
-    }
-
-    .history-box .box-title {
-      align-self: center;
-      margin-bottom: 20px;
-    }
-
-    #history-list {
-      list-style: none;
-      width: 100%;
-      color: #405761;
-      font-size: clamp(15px, 1.25vw, 22px);
-      font-weight: 600;
-      text-align: left;
-    }
-
-    #history-list li {
+    .header {
       display: flex;
       align-items: center;
-      min-height: 48px;
-      margin-bottom: 8px;
-      padding: 10px 14px;
-      background: var(--cinza);
-      border-radius: 10px;
-      border-left: 4px solid #b9dce5;
-      overflow-wrap: anywhere;
-    }
-
-    #history-list li:first-child {
-      background: var(--azul-claro);
-      border-left-color: var(--azul);
-      color: var(--azul-escuro);
-    }
-
-    .patient-box {
-      flex: 3;
-      min-height: 0;
-      background:
-        radial-gradient(circle at top right, rgba(24, 168, 137, 0.10), transparent 35%),
-        linear-gradient(145deg, #fff, #f4fbfd);
-    }
-
-    .patient-box .box-title {
-      color: var(--azul);
-      font-size: clamp(18px, 1.7vw, 32px);
-      margin-bottom: 25px;
-    }
-
-    .patient-name {
-      width: 100%;
-      color: #174c5d;
-      font-size: clamp(42px, 5.5vw, 105px);
-      font-weight: 800;
-      line-height: 1.05;
-      letter-spacing: -2px;
-      word-break: break-word;
-      overflow-wrap: anywhere;
-    }
-
-    .waiting-indicator {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      margin-top: 28px;
-      color: #7a8b92;
-      font-size: clamp(14px, 1.1vw, 20px);
-      font-weight: 500;
-    }
-
-    .waiting-dot {
-      flex: 0 0 10px;
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      background: var(--verde);
-      box-shadow: 0 0 0 5px rgba(24, 168, 137, 0.12);
-    }
-
-    .logo-box {
-      flex: 1;
-      flex-direction: row;
       justify-content: space-between;
-      padding: 20px 35px;
-      background: #fff;
+      background: white;
+      padding: 18px 24px;
+      margin-bottom: 24px;
+      border: 1px solid var(--cinza-borda);
+      border-radius: 18px;
+      box-shadow: var(--sombra);
     }
 
-    .hospital-brand {
+    .brand {
       display: flex;
       align-items: center;
-      gap: 16px;
-      min-width: 0;
+      gap: 14px;
     }
 
-    .hospital-icon {
-      flex: 0 0 54px;
-      width: 54px;
-      height: 54px;
+    .brand-icon {
+      width: 52px;
+      height: 52px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -223,306 +76,573 @@
       color: white;
       border-radius: 14px;
       font-size: 28px;
-      font-weight: bold;
-    }
-
-    .logo-text {
-      color: var(--azul-escuro);
-      font-size: clamp(22px, 2.2vw, 42px);
       font-weight: 800;
-      letter-spacing: -1px;
     }
 
-    .logo-subtitle {
-      color: #84959c;
-      font-size: clamp(12px, 0.9vw, 18px);
-      font-weight: 500;
+    .brand h1 {
+      color: var(--azul-escuro);
+      font-size: 25px;
+      font-weight: 800;
     }
 
-    .clock {
-      color: #71848c;
-      font-size: clamp(18px, 1.5vw, 28px);
+    .brand p {
+      color: var(--cinza-texto);
+      font-size: 13px;
+      margin-top: 2px;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    button {
+      border: none;
+      cursor: pointer;
+      font-family: inherit;
+    }
+
+    button:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none !important;
+    }
+
+    .btn-tv {
+      background: var(--azul);
+      color: white;
+      padding: 11px 16px;
+      border-radius: 10px;
+      font-size: 14px;
+      font-weight: 700;
+      transition: 0.2s;
+    }
+
+    .btn-tv:hover {
+      background: var(--azul-escuro);
+      transform: translateY(-1px);
+    }
+
+    .btn-atualizar {
+      background: #edf3f5;
+      color: #50636b;
+      padding: 9px 14px;
+      border-radius: 9px;
+      font-size: 13px;
       font-weight: 600;
+      margin-top: 5px;
+    }
+
+    .btn-atualizar:hover {
+      background: #dfe9ed;
+    }
+
+    .btn-salvar {
+      width: 100%;
+      background: linear-gradient(135deg, var(--azul), var(--azul-escuro));
+      color: white;
+      padding: 15px;
+      border-radius: 12px;
+      font-size: 16px;
+      font-weight: 700;
+      margin-top: 8px;
+      box-shadow: 0 5px 15px rgba(8, 126, 164, 0.2);
+      transition: 0.2s;
+    }
+
+    .main-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.25fr;
+      gap: 24px;
+      align-items: start;
+    }
+
+    .card {
+      background: var(--branco);
+      border: 1px solid var(--cinza-borda);
+      border-radius: 20px;
+      box-shadow: var(--sombra);
+      overflow: hidden;
+    }
+
+    .card-header {
+      padding: 22px 24px;
+      border-bottom: 1px solid var(--cinza-borda);
+      background: #fbfdfe;
+    }
+
+    .card-header h2 {
+      color: var(--azul-escuro);
+      font-size: 19px;
+      font-weight: 750;
+    }
+
+    .card-header p {
+      color: var(--cinza-texto);
+      font-size: 13px;
+      margin-top: 5px;
+    }
+
+    .card-body {
+      padding: 22px 24px;
+    }
+
+    .fila-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 15px;
+    }
+
+    .fila-count {
+      background: var(--azul-claro);
+      color: var(--azul-escuro);
+      min-width: 30px;
+      height: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    #fila-pacientes {
+      max-height: 520px;
+      overflow-y: auto;
+      padding-right: 4px;
+    }
+
+    .fila-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 15px;
+      background: #f8fbfc;
+      border: 1px solid var(--cinza-borda);
+      border-radius: 13px;
+      padding: 14px;
+      margin-bottom: 10px;
+      transition: 0.2s;
+    }
+
+    .paciente-info {
+      min-width: 0;
+    }
+
+    .paciente-nome {
+      display: block;
+      color: #2c444d;
+      font-size: 15px;
+      font-weight: 750;
       white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 280px;
     }
 
-    @keyframes chamada {
-      0% {
-        transform: scale(1);
-        box-shadow: var(--sombra);
+    .paciente-detalhes {
+      display: block;
+      color: #84959c;
+      font-size: 12px;
+      margin-top: 4px;
+    }
+
+    .btn-chamar {
+      flex-shrink: 0;
+      background: var(--verde);
+      color: white;
+      padding: 9px 12px;
+      border-radius: 9px;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .fila-vazia {
+      text-align: center;
+      padding: 35px 15px;
+      color: #8999a0;
+      font-size: 14px;
+    }
+
+    .fila-vazia-icon {
+      font-size: 32px;
+      margin-bottom: 8px;
+    }
+
+    .form-section {
+      margin-bottom: 22px;
+    }
+
+    .section-title {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      color: var(--azul-escuro);
+      font-size: 14px;
+      font-weight: 750;
+      margin-bottom: 13px;
+    }
+
+    .section-number {
+      width: 25px;
+      height: 25px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--azul-claro);
+      color: var(--azul);
+      border-radius: 50%;
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .field.full {
+      grid-column: 1 / -1;
+    }
+
+    label {
+      color: #52666e;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    input,
+    select,
+    textarea {
+      width: 100%;
+      border: 1px solid #d5e2e6;
+      background: #fbfdfe;
+      color: #334950;
+      border-radius: 10px;
+      padding: 12px 13px;
+      font-size: 14px;
+      outline: none;
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+      border-color: var(--azul);
+      background: white;
+      box-shadow: 0 0 0 3px rgba(8, 126, 164, 0.10);
+    }
+
+    textarea {
+      min-height: 100px;
+      resize: vertical;
+    }
+
+    .resultado {
+      display: none;
+      margin-top: 18px;
+      border-radius: 14px;
+      padding: 18px;
+      text-align: center;
+    }
+
+    .resultado.visivel {
+      display: block;
+    }
+
+    .resultado.verde {
+      background: var(--verde-claro);
+      border: 1px solid #bde9de;
+      color: #087b66;
+    }
+
+    .resultado.amarelo {
+      background: var(--amarelo-claro);
+      border: 1px solid #f2dda4;
+      color: #9b7000;
+    }
+
+    .resultado.vermelho {
+      background: var(--vermelho-claro);
+      border: 1px solid #f0c4c4;
+      color: #b52f2f;
+    }
+
+    #mensagem {
+      display: none;
+      margin-bottom: 18px;
+      padding: 12px 15px;
+      border-radius: 10px;
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    #mensagem.sucesso {
+      display: block;
+      background: var(--verde-claro);
+      color: #087b66;
+      border: 1px solid #bde9de;
+    }
+
+    #mensagem.erro {
+      display: block;
+      background: var(--vermelho-claro);
+      color: #b52f2f;
+      border: 1px solid #f0c4c4;
+    }
+
+    /* JANELA DA TV */
+
+    #modalTV {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background: rgba(15, 35, 45, 0.85);
+      padding: 18px;
+    }
+
+    .tv-conteudo {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      background: white;
+      border-radius: 14px;
+      overflow: hidden;
+    }
+
+    #frameTV {
+      width: 100%;
+      height: 100%;
+      border: 0;
+      display: block;
+    }
+
+    .btn-fechar-tv {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      z-index: 2;
+      padding: 10px 14px;
+      border-radius: 9px;
+      background: var(--vermelho);
+      color: white;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    @media (max-width: 1000px) {
+      .main-grid {
+        grid-template-columns: 1fr;
       }
 
-      35% {
-        transform: scale(1.015);
-        box-shadow:
-          0 0 0 8px rgba(8, 126, 164, 0.12),
-          0 15px 40px rgba(0, 66, 91, 0.18);
-      }
-
-      70% {
-        transform: scale(1.005);
-      }
-
-      100% {
-        transform: scale(1);
-        box-shadow: var(--sombra);
+      #fila-pacientes {
+        max-height: 350px;
       }
     }
 
-    .flash {
-      animation: chamada 0.8s ease 3;
-    }
-
-    @media (max-width: 900px) {
-      body {
-        overflow: auto;
+    @media (max-width: 650px) {
+      .container {
+        width: 94%;
+        padding-top: 15px;
       }
 
-      .tv-container {
-        width: 94vw;
-        height: auto;
-        min-height: 94vh;
-        top: auto;
-        transform: none;
-        margin: 3vh auto;
-        grid-template-columns: minmax(0, 1fr);
-        grid-template-rows: minmax(280px, 38vh) minmax(320px, 1fr);
+      .header {
+        flex-direction: column;
+        align-items: stretch;
         gap: 15px;
       }
 
-      .left-panel,
-      .right-panel {
-        gap: 15px;
+      .header-actions,
+      .btn-tv {
+        width: 100%;
       }
 
-      .local-number {
-        font-size: 15vw;
+      .form-grid {
+        grid-template-columns: 1fr;
       }
 
-      .patient-name {
-        font-size: 9vw;
+      .field.full {
+        grid-column: auto;
       }
 
-      .logo-box {
-        padding: 15px 20px;
+      .fila-item {
+        align-items: flex-start;
+        flex-direction: column;
       }
 
-      .box {
-        padding: 22px;
+      .btn-chamar {
+        width: 100%;
       }
-    }
 
-    @media (prefers-reduced-motion: reduce) {
-      .flash {
-        animation: none;
+      .paciente-nome {
+        max-width: 100%;
       }
     }
   </style>
 </head>
 
 <body>
-  <main class="tv-container">
+  <div class="container">
 
-    <section class="left-panel">
-      <div class="box local-box">
-        <div class="box-title" id="local-tipo">GUICHÊ</div>
-        <div class="local-number" id="local-numero">--</div>
-        <div class="local-type">Dirija-se ao local indicado</div>
-      </div>
-
-      <div class="box history-box">
-        <div class="box-title">Últimas chamadas</div>
-        <ul id="history-list">
-          <li>Aguardando chamadas...</li>
-        </ul>
-      </div>
-    </section>
-
-    <section class="right-panel">
-      <div class="box patient-box">
-        <div class="box-title">Paciente chamado</div>
-        <div class="patient-name" id="patient-name">
-          AGUARDANDO...
-        </div>
-
-        <div class="waiting-indicator">
-          <span class="waiting-dot"></span>
-          <span>Por favor, dirija-se ao local indicado</span>
+    <header class="header">
+      <div class="brand">
+        <div class="brand-icon" aria-hidden="true">+</div>
+        <div>
+          <h1>Hosp+</h1>
+          <p>Sistema de Atendimento Hospitalar</p>
         </div>
       </div>
 
-      <div class="box logo-box">
-        <div class="hospital-brand">
-          <div class="hospital-icon">+</div>
+      <div class="header-actions">
+        <button type="button" class="btn-tv" onclick="abrirTV()">
+          📺 Abrir Tela da TV
+        </button>
+      </div>
+    </header>
 
-          <div>
-            <div class="logo-text">Hosp+</div>
-            <div class="logo-subtitle">
-              Cuidar. Acolher. Transformar.
+    <div id="mensagem" role="alert" aria-live="polite"></div>
+
+    <div class="main-grid">
+
+      <section class="card">
+        <div class="card-header">
+          <div class="fila-header">
+            <div>
+              <h2>Pacientes aguardando</h2>
+              <p>Selecione um paciente para realizar a chamada.</p>
             </div>
+
+            <div class="fila-count" id="fila-count"
+                 aria-label="Quantidade de pacientes aguardando">0</div>
           </div>
         </div>
 
-        <div class="clock" id="clock">--:--</div>
-      </div>
-    </section>
+        <div class="card-body">
+          <div id="fila-pacientes">
+            <div class="fila-vazia">
+              <div class="fila-vazia-icon">⏳</div>
+              Carregando pacientes...
+            </div>
+          </div>
 
-  </main>
+          <button type="button" id="btn-atualizar"
+                  class="btn-atualizar" onclick="carregarPacientes()">
+            🔄 Atualizar lista
+          </button>
+        </div>
+      </section>
+
+      <section class="card">
+        <div class="card-header">
+          <h2>Triagem do paciente</h2>
+          <p>Preencha as informações para registrar o atendimento.</p>
+        </div>
+
+        <div class="card-body">
+          <div class="form-section">
+            <div class="section-title">
+              <span class="section-number">1</span>
+              Dados do paciente
+            </div>
+
+            <div class="form-grid">
+              <div class="field full">
+                <label for="nome">Nome do paciente</label>
+                <input id="nome" type="text" autocomplete="name"
+                       placeholder="Digite o nome completo">
+              </div>
+            </div>
+          </div>
+
+          <div class="form-section">
+            <div class="section-title">
+              <span class="section-number">2</span>
+              Queixa principal
+            </div>
+
+            <div class="form-grid">
+              <div class="field">
+                <label for="sintoma">Sintoma principal</label>
+                <select id="sintoma">
+                  <option value="">Selecione o sintoma</option>
+                  <option value="dor_leve">Dor leve</option>
+                  <option value="resfriado">Resfriado</option>
+                  <option value="coriza">Coriza</option>
+                  <option value="tosse">Tosse</option>
+                  <option value="febre">Febre</option>
+                  <option value="vomito">Vômito</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </div>
+
+  <!-- A TV aparece sobre a página de triagem -->
+  <div id="modalTV" role="dialog" aria-modal="true"
+       aria-label="Tela de chamadas do Hosp+">
+    <div class="tv-conteudo">
+      <button type="button" class="btn-fechar-tv"
+              onclick="fecharTV()">Fechar TV ✕</button>
+
+      <iframe id="frameTV"
+              title="Painel de chamadas do Hosp+"
+              src="about:blank"></iframe>
+    </div>
+  </div>
 
   <script>
     "use strict";
 
-    let ultimoId = null;
-    let buscandoChamada = false;
+    /*
+      IMPORTANTE:
+      Altere este caminho caso o arquivo da TV tenha outro nome.
+      Exemplo: "/tv.html" ou "/chamadas.html".
+    */
+    const CAMINHO_TV = "/chamadas.html";
 
-    const elementos = {
-      localTipo: document.getElementById("local-tipo"),
-      localNumero: document.getElementById("local-numero"),
-      nomePaciente: document.getElementById("patient-name"),
-      patientBox: document.querySelector(".patient-box"),
-      historico: document.getElementById("history-list"),
-      relogio: document.getElementById("clock")
-    };
+    function abrirTV() {
+      const modal = document.getElementById("modalTV");
+      const frame = document.getElementById("frameTV");
 
-    function texto(valor, padrao = "--") {
-      if (
-        valor === null ||
-        valor === undefined ||
-        String(valor).trim() === ""
-      ) {
-        return padrao;
-      }
-
-      return String(valor);
-    }
-
-    function renderizarHistorico(historico) {
-      const lista = elementos.historico;
-      lista.replaceChildren();
-
-      if (!historico.length) {
-        const li = document.createElement("li");
-        li.textContent = "Nenhuma chamada recente";
-        lista.appendChild(li);
+      if (!modal || !frame) {
+        alert("Não foi possível encontrar a janela da TV.");
         return;
       }
 
-      historico.slice(0, 4).forEach(chamada => {
-        const li = document.createElement("li");
+      modal.style.display = "block";
+      document.body.classList.add("tv-aberta");
 
-        const tipo = texto(
-          chamada.localTipo,
-          "GUIC"
-        ).substring(0, 4);
-
-        li.textContent =
-          `${tipo}. ${texto(chamada.localNumero)} - ` +
-          `${texto(chamada.paciente, "Paciente")}`;
-
-        lista.appendChild(li);
-      });
-    }
-
-    function renderizarChamada(chamada) {
-      if (!chamada || typeof chamada !== "object") {
-        ultimoId = null;
-
-        elementos.localTipo.textContent = "GUICHÊ";
-        elementos.localNumero.textContent = "--";
-        elementos.nomePaciente.textContent = "AGUARDANDO...";
-
-        elementos.patientBox.classList.remove("flash");
-        return;
-      }
-
-      elementos.localTipo.textContent =
-        texto(chamada.localTipo, "GUICHÊ");
-
-      elementos.localNumero.textContent =
-        texto(chamada.localNumero);
-
-      elementos.nomePaciente.textContent =
-        texto(chamada.paciente, "AGUARDANDO...");
-
-      const idAtual = chamada.id ?? [
-        chamada.paciente,
-        chamada.localTipo,
-        chamada.localNumero
-      ].map(valor => texto(valor, "")).join("|");
-
-      if (idAtual !== ultimoId) {
-        ultimoId = idAtual;
-
-        elementos.patientBox.classList.remove("flash");
-
-        void elementos.patientBox.offsetWidth;
-
-        elementos.patientBox.classList.add("flash");
+      if (frame.dataset.carregada !== "true") {
+        frame.src = CAMINHO_TV;
+        frame.dataset.carregada = "true";
       }
     }
 
-    async function atualizar() {
-      if (buscandoChamada) return;
+    function fecharTV() {
+      const modal = document.getElementById("modalTV");
+      if (modal) modal.style.display = "none";
 
-      buscandoChamada = true;
+      document.body.classList.remove("tv-aberta");
+    }
 
-      try {
-        const resposta = await fetch("/tv/chamada", {
-          method: "GET",
-          headers: {
-            "Accept": "application/json"
-          },
-          cache: "no-store"
-        });
-
-        if (!resposta.ok) {
-          throw new Error(`Erro HTTP ${resposta.status}`);
-        }
-
-        const data = await resposta.json();
-
-        if (!data || typeof data !== "object") {
-          throw new Error("Resposta inválida do servidor.");
-        }
-
-        renderizarChamada(data.chamada ?? null);
-
-        renderizarHistorico(
-          Array.isArray(data.historico)
-            ? data.historico
-            : []
-        );
-
-      } catch (erro) {
-        console.error(
-          "Erro ao atualizar chamadas:",
-          erro
-        );
-      } finally {
-        buscandoChamada = false;
+    document.addEventListener("keydown", function(event) {
+      if (event.key === "Escape") {
+        fecharTV();
       }
-    }
-
-    function atualizarRelogio() {
-      const agora = new Date();
-
-      const horas = String(
-        agora.getHours()
-      ).padStart(2, "0");
-
-      const minutos = String(
-        agora.getMinutes()
-      ).padStart(2, "0");
-
-      elementos.relogio.textContent =
-        `${horas}:${minutos}`;
-    }
-
-    atualizar();
-    atualizarRelogio();
-
-    setInterval(atualizar, 2000);
-    setInterval(atualizarRelogio, 1000);
+    });
   </script>
 </body>
 </html>

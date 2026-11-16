@@ -166,5 +166,44 @@
  </div>
 </div>
     
+<!-- COLUNA DIREITA: ESTOQUE ATUAL -->
+ <div class="card">
+    <div class="card-header">
+        <h2>📊 Estoque Atual de Medicamentos</h2>
+        <button class="btn-sm btn-secondary"
+        onclick="carregarEstoque()">🔄️Atualizar</button>
+    </div>
+    <div class="card-body">
+    
+    <div class="search-bar">
+        <input type="text" class="search-input" id="buscarMed"
+        placeholder="🔍 Buscar medicamento..."
+        oninput="filtrarTabela()">
+    </div>
+
+    <div class="filter-chips" id="filterChips">
+        <span class="chip active" onclick="setFiltro('todos', this)">Todos</span>
+    </div>
+
+    <div style="overFlow-x:auto">
+        <table class="estoque-table">
+            <thead>
+                <tr>
+                    <th>Medicamentos</th>
+                    <th>Categoria</th>
+                    <th>Disponível</th>
+                    <th>Unidade</th>
+                    <th style="text-align:right">Ações</th>
+                </tr>
+            </thead>
+            <tbody id="tabelaEstoque">
+                <tr>
+                    
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+ </div>
 </body>
 </html>

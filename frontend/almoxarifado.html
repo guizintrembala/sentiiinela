@@ -73,13 +73,97 @@
             <div class="card-body">
                 <!-- Tabs: Novo ou Repor-->
                  <div class="entrada-tabs">
-                    <button class="tab-btn active" id="tabNovo" onclick="setTab('novo')">Novo Medicamento</button>
-                    <button class="tab-btn" id=""></button>
+                    <button class="tab-btn active" id="tabNovo" onclick="setTab('novo')">➕Novo Medicamento</button>
+                    <button class="tab-btn" id="tabRepor" onclick="setTab('repor')">📦 Repor Existente</button>
                  </div>
             </div>
-        </div>
-     </div>
 
+            <!-- PAINEL: Cadastrar Novo -->
+            <div id="painelNovo">
+                <div class="form-group">
+                    <label for="emQtd">Quantidade
+                        <small>(unidades a adicionar)</small></label>
+                        <input type="number" id="emQtd" class="form-control"
+                        value="10" min="1">
+                </div>
+                <div class="form-group">
+                    <label for="emUnidade" class="form-control">Tipo de Unidade</label>
+                        <select name="emUnidade" id="form-control">
+                        <option value="comprimidos">Comprimidos</option>
+                        <option value="cápsulas">Cápsulas</option>
+                        <option value="frascos">Frascos</option>
+                        <option value="ampolas">Ampolas</option>
+                        <option value="sachês">Sachês</option>
+                        <option value="unidades">Unidades</option>
+                      </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="emCategoria">Categoria 
+                      Farmacológica</label>
+                    <select id="emCategoria" class="form-control">
+                        <option value="Analgésico/Antipirético">
+                            Analgésico / Antipirético</option>
+                        <option value="Antibiótico">Antibiótico</option>
+                        <option value="Anti-Inflamatório">Anti-Inflamatório</option>
+                        <option value="Antialérgico">Antialérgico</option>
+                        <option value="Protetor Gástrico">Protetor 
+                          Gástrico</option>
+                        <option value="Antiespasmódico">
+                            Antiespasmódico</option>
+                        <option value="Antiemético">Antiemético</option>
+                        <option value="Solução">Solução</option>
+                        <option value="Vitamina/Suplemento">Vitamina / Suplemento</option>
+                        <option value="Geral">Geral</option>
+                    </select>
+                </div>
+                <button class="btn-full btn-purple" onclick="darEntrada()">
+                    📥 Registrar Entrada no Estoque
+                </button>
+            </div>
+
+            <!-- PAINEL: Repor Existente -->
+             <div class="form-group">
+                <label for="selReporMed">Selecionar Medicamento
+
+                </label>
+
+                <select id="selReported" class="form-control">
+                    <option value="">-- Selecione --</option>
+                </select>
+             </div>
+             <div class="form-group">
+                <label for="reporQtd">Quantidade a 
+                    Adicionar</label>
+                    <input type="number" id="reporQtd"
+                    class="form-control" value="10" min="1">
+             </div>
+             <div class="form-group">
+                <label for="reporObs">Observação <small>
+                    (opcional)</small></label>
+                    <input type="text" id="reporObs"
+                    class="form-control" placeholder="Ex: Nota fiscal NF -001">
+             </div>
+             <button class="btn-full btn-purple" 
+             onclick="reporEstoque()">
+            ➕Adicionar ao Estoque Existente
+        </button>
+        
+    </div>
+ </div>
+
+ <!-- Histórico de Entradas -->
+  <div class="card" style="margin-top:20px">
+    <div class="card-header">
+        <h2>📋Últimas Entradas Registradas</h2>
+        <button class="btn-sm btn-secondary"
+        onclick="carregarHistoricoEntradas()">🔄️</button>
+    <div class="empty-state">
+        <div class="empty-icon">📋</div>
+        <p>Nenhuma entrada registrada ainda.</p>
+    </div>
+  </div>
+ </div>
 </div>
     
 </body>
